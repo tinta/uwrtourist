@@ -5,6 +5,6 @@ An underwater rugby aficionado's best friend. Find a team to practice with, wher
 
 ## Requirements
 - Python
--- Flask
+    - Flask
 - Node
--- Leaflet
+    - Leaflet
