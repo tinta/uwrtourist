@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mod_wsgi-express start-server app/uwrtourist.wsgi --document-root client/
