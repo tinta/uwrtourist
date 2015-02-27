@@ -9,45 +9,46 @@ $dirs: (
 %pad {
     display: inline-block;
 }
+html {
+    @each $key, $val in $dirs {
+        .pad-#{$key} {
+            padding-#{$val}: $pad;
+            @extend %pad;
+        }
 
-@each $key, $val in $dirs {
-    .pad-#{$key} {
-        padding-#{$val}: $pad;
-        @extend %pad;
+        .pad-#{$key}-double {
+            padding-#{$val}: $pad * 2;
+            @extend %pad;
+        }
     }
 
-    .pad-#{$key}-double {
-        padding-#{$val}: $pad * 2;
-        @extend %pad;
+    .pad-tb {
+        @extend .pad-t;
+        @extend .pad-b;
     }
-}
 
-.pad-tb {
-    @extend .pad-t;
-    @extend .pad-b;
-}
+    .pad-lr {
+        @extend .pad-l;
+        @extend .pad-r;
+    }
 
-.pad-lr {
-    @extend .pad-l;
-    @extend .pad-r;
-}
+    .pad {
+        @extend .pad-lr;
+        @extend .pad-tb;
+    }
 
-.pad {
-    @extend .pad-lr;
-    @extend .pad-tb;
-}
+    .pad-tb-double {
+        @extend .pad-t-double;
+        @extend .pad-b-double;
+    }
 
-.pad-tb-double {
-    @extend .pad-t-double;
-    @extend .pad-b-double;
-}
+    .pad-lr-double {
+        @extend .pad-l-double;
+        @extend .pad-r-double;
+    }
 
-.pad-lr-double {
-    @extend .pad-l-double;
-    @extend .pad-r-double;
-}
-
-.pad-double {
-    @extend .pad-lr-double;
-    @extend .pad-tb-double;
+    .pad-double {
+        @extend .pad-lr-double;
+        @extend .pad-tb-double;
+    }
 }

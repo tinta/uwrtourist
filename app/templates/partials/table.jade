@@ -1,3 +1,23 @@
+div.spacer-sm
+
+div.row
+    div.column.small-4
+        div.row.collapse
+            div.column.small-10
+                input.text-xxs.width-full.spacer-xl.pad(
+                    type="text"
+                    placeholder="Search by Name or Region"
+                    ng-model="table.filter.val"
+                )
+            div.column.small-2.bg-red.spacer-xl.text-center(
+                ng-if="table.filter.val"
+                ng-click="table.filter.val = ''"
+            )
+                div.spacer-xs
+                i.fa.fa-close.text-white.text-xs
+
+div.spacer-sm
+
 table.text-left.text-gray-dark.text-xxs.valign-top
     thead
         tr
@@ -15,7 +35,7 @@ table.text-left.text-gray-dark.text-xxs.valign-top
                     span.table-arrow
     tbody.bg-gray-xlight
         tr.bg-hover-gray-md-dark.text-hover-white(
-            ng-repeat='row in table.all | orderBy : table.order.value : table.order.reverse'
+            ng-repeat='row in table.all | filter : table.filter.val | orderBy : table.order.value : table.order.reverse'
         )
             td(ng-repeat='key in table.keys')
                 a.pad-lr-double.pad-tb.width-full(
