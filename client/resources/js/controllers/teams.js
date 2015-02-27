@@ -15,6 +15,8 @@ angular.module('ControllerTeams', [
 ){
     $scope.table = new Table(window.teams);
 
+    $scope.table.order.set('Name')
+
 
     $scope.typeOf = function(input) {
         return typeof input;
@@ -26,6 +28,7 @@ angular.module('ControllerTeams', [
             '.facebook.': 'fa-facebook'
         },
         getClass: function (url) {
+            if (!url) return false;
             var className = this.default;
             angular.forEach(this.map, function (val, key) {
                 if (url.indexOf(key) > -1) className = val;
@@ -36,6 +39,10 @@ angular.module('ControllerTeams', [
 
     $scope.icons = icons;
 
+
+    $scope.followLink = function () {
+        console.log('LLLL')
+    }
     // Dev
     $window.logScope = function () {
         $window.$scope = $scope;

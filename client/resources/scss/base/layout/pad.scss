@@ -1,28 +1,53 @@
 $pad: 0.5em;
-$dirs: "top", "right", "bottom", "left";
+$dirs: (
+    "t": "top",
+    "r": "right",
+    "b": "bottom",
+    "l": "left"
+);
 
 %pad {
     display: inline-block;
 }
 
-@each $key in $dirs {
+@each $key, $val in $dirs {
     .pad-#{$key} {
-        padding-#{$key}: $pad;
+        padding-#{$val}: $pad;
+        @extend %pad;
+    }
+
+    .pad-#{$key}-double {
+        padding-#{$val}: $pad * 2;
         @extend %pad;
     }
 }
 
-.pad-top-bottom {
-    @extend .pad-top;
-    @extend .pad-bottom;
+.pad-tb {
+    @extend .pad-t;
+    @extend .pad-b;
 }
 
-.pad-left-right {
-    @extend .pad-left;
-    @extend .pad-right;
+.pad-lr {
+    @extend .pad-l;
+    @extend .pad-r;
 }
 
 .pad {
-    @extend .pad-left-right;
-    @extend .pad-top-bottom;
+    @extend .pad-lr;
+    @extend .pad-tb;
+}
+
+.pad-tb-double {
+    @extend .pad-t-double;
+    @extend .pad-b-double;
+}
+
+.pad-lr-double {
+    @extend .pad-l-double;
+    @extend .pad-r-double;
+}
+
+.pad-double {
+    @extend .pad-lr-double;
+    @extend .pad-tb-double;
 }
