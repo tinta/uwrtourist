@@ -1,8 +1,15 @@
 #! /usr/bin/env python
 
 from flaskext.mysql import MySQL
+from flask_sqlalchemy import SQLAlchemy
 from pprint import pprint
 import os.path, inspect
+from configs.prod import ProdConfig
+
+def create_app(config=ProdConfig):
+    app = Flask(__name__)
+    app.config.from_object(config)
+    return app
 
 def get_db():
     '''
