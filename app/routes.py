@@ -3,6 +3,7 @@ from flask.ext.babel import Babel, gettext, format_date
 from config import LANGUAGES
 
 app = Flask(__name__)
+app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 babel = Babel(app)
 
 @babel.localeselector
@@ -12,7 +13,7 @@ def get_locale():
 @app.route("/")
 def homepage():
     title = "Underwater Rugby Tourist"
-    return render_template("home.html", title=title)
+    return render_template("home.jade", title=title)
 
 @app.route("/about")
 def about():
