@@ -1,3 +1,5 @@
 #!/bin/sh
 
-mod_wsgi-express start-server app/uwrtourist.wsgi --document-root client/
+root_dir="${PWD%/bin}"
+source "$root_dir/venv_uwrtourist/bin/activate"
+mod_wsgi-express start-server server/uwrtourist.wsgi --document-root client/

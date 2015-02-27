@@ -8,3 +8,11 @@ An underwater rugby aficionado's best friend. Find a team to practice with, wher
     - Flask
 - Node
     - Leaflet
+
+## Setting up a dev environment
+
+    bin/setup_project
+
+## Starting the dev server
+
+    bin/runserver
