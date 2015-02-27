@@ -24,6 +24,3 @@ connect_timeout=2
 [mysqlhotcopy]
 interactive-timeout
 EOF
-
-dump_file="$root_dir/dumps/04022015_dump.sql"
-mysql -u $username -p$userpass $dbname < $dump_file
