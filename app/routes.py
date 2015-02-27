@@ -1,10 +1,31 @@
+PYTHONDEBUG = True
+
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext, format_date
 from config import LANGUAGES
 
 app = Flask(__name__)
+
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 babel = Babel(app)
+
+pages = {
+    'about': {
+        'title': 'about',
+        'link': '/about',
+        'current': False
+    },
+    'teams': {
+        'title': 'teams',
+        'link': '/teams',
+        'current': False
+    },
+    'add_team': {
+        'title': 'add team',
+        'link': '/add-team',
+        'current': False
+    }
+}
 
 @babel.localeselector
 def get_locale():
@@ -13,27 +34,27 @@ def get_locale():
 @app.route("/")
 def homepage():
     title = "Underwater Rugby Tourist"
-    return render_template("pages/home.jade", title=title)
+    return render_template("pages/home.jade", title=title, pages=pages)
 
 @app.route("/about")
 def about():
     title = gettext("About")
-    return render_template("about.html", title=title)
+    return render_template("about.html", title=title, pages=pages)
 
 @app.route("/countries")
 def countries():
     title = gettext("Countries")
-    return render_template("countries.html", title=title)
+    return render_template("countries.html", title=title, pages=pages)
 
 @app.route("/teams")
 def teams():
     title = gettext("Teams")
-    return render_template("pages/teams.jade", title=title)
+    return render_template("pages/teams.jade", title=title, pages=pages)
 
 @app.route("/competitions")
 def competitions():
     title = gettext("Competitions")
-    return render_template("competitions.html", title=title)
+    return render_template("competitions.html", title=title, pages=pages)
 
 @app.errorhandler(404)
 def page_not_found(e):

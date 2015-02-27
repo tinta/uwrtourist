@@ -1,6 +1,6 @@
 @each $key, $color in $colors {
-    .text-#{$key},
-    .text-hover-#{$key}:hover {
+    html body .text-#{$key},
+    html body .text-hover-#{$key}:hover {
         color: $color;
     }
 }

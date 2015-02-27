@@ -15,15 +15,84 @@ script(src="/resources/js/table.js")
 {% endblock %}
 
 {% block body %}
-div.row.width-full
+div.row.width-full(
+    ng-app="ControllerTeams"
+    ng-controller="ControllerTeams"
+    ng-cloak
+)
     div.column.small-11.small-centered
         div.row
             div.column.small-12
-                div(
-                    ng-app="ControllerTeams"
-                    ng-controller="ControllerTeams"
-                    ng-cloak
-                )
-                    include partials/table
+                div.spacer-sm
 
+                div.row
+                    div.column.small-4
+                        div.row.collapse
+                            div.column.small-10
+                                input.text-xxs.width-full.spacer-xl.pad(
+                                    type="text"
+                                    placeholder="Search by Name or Region"
+                                    ng-model="table.filter.val"
+                                )
+                            div.column.small-2.bg-red.spacer-xl.text-center(
+                                ng-if="table.filter.val"
+                                ng-click="table.filter.val = ''"
+                            )
+                                div.spacer-xs
+                                i.fa.fa-close.text-white.text-xs
+
+                div.spacer-sm
+
+                table.text-left.text-gray-dark.text-xxs.valign-top
+                    thead
+                        tr
+                            th.text-white.text-thin.unselectable(
+                                ng-repeat="key in table.keys"
+                                ng-click="table.order.set(key)"
+                                ng-class="{
+                                    'bg-gray-dark': table.order.latestInput !== key,
+                                    'selected bg-gray-md-dark'    : table.order.latestInput === key,
+                                    'reversed'    : table.order.latestInput === key && table.order.reverse
+                                }"
+                            )
+                                div.pad-lr-double.pad-tb.width-full
+                                    span [[key]]
+                                    span.table-arrow
+                    tbody.bg-gray-xlight
+                        tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
+                            ng-repeat='row in table.all | filter : table.filter.val | orderBy : table.order.value : table.order.reverse'
+                        )
+                            td(ng-repeat='key in table.keys')
+                                a.pad-lr-double.pad-tb.width-full(
+                                    href="/"
+                                    ng-if="key !== 'Links'"
+                                )
+                                    div.spacer-xs
+                                    div(ng-if="typeOf(row[key]) !== 'object'")
+                                        div [[ row[key] ]]
+                                        div.spacer-sm
+
+                                    div.pull-left(
+                                        ng-if="typeOf(row[key]) === 'object'"
+                                        ng-repeat='val in row[key] track by $index'
+                                    )
+                                        div(ng-if="key != 'Links'") [[val.text]]
+                                div(ng-if="key === 'Links'").width-full
+                                    div
+                                        div(ng-repeat='val in row[key] track by $index').small-4.left.pad-lr-double
+                                            a(href="[[val]]").fa-stack.text-xs.text-hover-gray-dark
+                                                div.spacer-xs
+                                                i.fa.fa-stack-2x.fa-circle-thin
+                                                i.fa.fa-stack-1x(class="[[icons.getClass(val)]]")
+                                                div.spacer-xs
+                                        div(ng-if="row[key].length === 1").small-8.right
+                                            a(href="/")
+                                                div.spacer-lg
+                                                div.spacer-md
+                                                div.spacer-xs
+                                        div(ng-if="row[key].length === 2").small-4.right
+                                            a(href="/")
+                                                div.spacer-lg
+                                                div.spacer-md
+                                                div.spacer-xs
 {% endblock %}
