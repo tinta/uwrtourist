@@ -1,0 +1,19 @@
+div.row.text-center.collapse
+    div.column.small-12
+        div.spacer-lg
+        div
+            a(href="/").text-md.text-hover-gray-md-dark.pad-left-right Underwater Rugby Tourist
+        div.spacer-sm
+        div.text-xxxs Find the closest team to you!
+
+        div.spacer-sm
+        div.spacer-xxs.bg-gray-dark
+
+    div.column.small-12
+        ul.text-xxxs
+            each val, index in ['about', 'teams', 'add team']
+                li.pad
+                    div.spacer-xs
+                    div
+                        a(href="/").text-hover-gray-md-dark= val
+                    div.spacer-xs

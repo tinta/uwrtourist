@@ -19,6 +19,10 @@ body a {
     color: inherit;
 }
 
+body a:hover {
+    color: inherit
+}
+
 div, img, form, input, ul, li, a {
     overflow: visible;
     box-sizing: border-box;

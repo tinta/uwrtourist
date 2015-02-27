@@ -1,0 +1,32 @@
+table.text-left.text-gray-dark
+    thead
+        tr.text-xs
+            th.bg-gray-dark.text-white.text-thin(
+                ng-repeat='key in table.keys'
+                ng-click='table.order.set(key)'
+                ng-class='{
+                    selected    : table.order.latestInput === key,
+                    reversed    : table.order.latestInput === key && table.order.reverse
+                }'
+            )
+                div.pad
+                    span [[key]]
+                    span.table-arrow
+    tbody
+        tr.text-xxs.bg-gray-xlight.bg-hover-gray-md-light(
+            ng-repeat='row in table.all | orderBy : table.order.value : table.order.reverse',
+        )
+            td(ng-repeat='key in table.keys')
+                a(
+                    href="/"
+                    ng-if="key != 'Links'"
+                ).pad.width-full
+                    div(ng-if="typeOf(row[key]) !== 'object'") [[ row[key] ]]
+                    div(ng-if="typeOf(row[key]) === 'object'", ng-repeat='val in row[key] track by $index').pull-left
+                        a(ng-if="key != 'Links'", href='[[val.link]]') [[val.text]]
+                div(ng-if="key == 'Links'").pad-left.pad-top.width-full
+                    div(ng-repeat='val in row[key] track by $index').pull-left.pad-right
+                        a(href="[[val]]").fa-stack.text-xs.text-gray-dark.text-hover-gray-md
+                            i.fa.fa-stack-2x.fa-circle-thin
+                            i.fa.fa-stack-1x(class="[[icons.getClass(val)]]")
+                div.spacer-1.bg-gray-dark

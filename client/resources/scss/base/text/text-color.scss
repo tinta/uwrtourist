@@ -1,23 +1,6 @@
-@include breakpoint($colors, color, "text");
-
 @each $key, $color in $colors {
+    .text-#{$key},
     .text-hover-#{$key}:hover {
         color: $color;
-    }
-}
-
-@include breakpoint(medium) {
-    @each $key, $color in $colors {
-        .medium-text-hover-#{$key}:hover {
-            color: $color;
-        }
-    }
-}
-
-@include breakpoint(large) {
-    @each $key, $color in $colors {
-        .large-text-hover-#{$key}:hover {
-            color: $color;
-        }
     }
 }

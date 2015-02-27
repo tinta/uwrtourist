@@ -31,6 +31,7 @@ gulp.task('js:lint', function() {
 gulp.task('scss:compile', function() {
     var options = options || {
         outputStyle: 'compressed',
+        errLogToConsole: true
     };
     return tasks.scssCompile(paths.scss.src, paths.build, options);
 });

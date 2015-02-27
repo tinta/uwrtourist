@@ -1,5 +1,5 @@
 [class*="text-"] {
-    font-family: "maven-pro-light200", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 200;
     line-height: 1;
     letter-spacing: 0.05em;
@@ -16,7 +16,18 @@ p {
     text-transform: capitalize;
 }
 
-@import "font-family";
+.text-thin {
+    font-weight: 100;
+}
+
+.text-reg {
+    font-weight: 200;
+}
+
+.text-bold {
+    font-weight: 400;
+}
+
 @import "font-size";
 @import "text-align";
 @import "text-color";

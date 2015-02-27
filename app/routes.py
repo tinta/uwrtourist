@@ -13,7 +13,7 @@ def get_locale():
 @app.route("/")
 def homepage():
     title = "Underwater Rugby Tourist"
-    return render_template("home.jade", title=title)
+    return render_template("pages/home.jade", title=title)
 
 @app.route("/about")
 def about():
@@ -28,7 +28,7 @@ def countries():
 @app.route("/teams")
 def teams():
     title = gettext("Teams")
-    return render_template("teams.html", title=title)
+    return render_template("pages/teams.jade", title=title)
 
 @app.route("/competitions")
 def competitions():

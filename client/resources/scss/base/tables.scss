@@ -18,4 +18,36 @@ table {
             display: inline-block;
         }
     }
+
+    .table-arrow {
+        font-size: 10px;
+        position: absolute;
+        right: 10px;
+        top: 11px;
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .selected {
+        background-color: map-get($colors, gray-md-light);
+
+        .table-arrow {
+            display: inline-block;
+            border-left: .6em solid transparent;
+            border-right: .6em solid transparent;
+            border-bottom: 0 solid transparent;
+            border-top: 1em solid map-get($colors, gray-light);
+        }
+
+        &.reversed {
+            .table-arrow {
+                display: inline-block;
+                border-left: .6em solid transparent;
+                border-right: .6em solid transparent;
+                border-bottom: 1em solid map-get($colors, gray-light);
+                border-top: 0 solid transparent;
+            }
+        }
+    }
 }

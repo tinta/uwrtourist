@@ -1,19 +1,28 @@
+$pad: 0.5em;
+$dirs: "top", "right", "bottom", "left";
+
 %pad {
     display: inline-block;
 }
 
-.pad-left {
-    padding-left: 0.5em;
-    @extend %pad;
+@each $key in $dirs {
+    .pad-#{$key} {
+        padding-#{$key}: $pad;
+        @extend %pad;
+    }
 }
 
-.pad-right {
-    padding-right: 0.5em;
-    @extend %pad;
+.pad-top-bottom {
+    @extend .pad-top;
+    @extend .pad-bottom;
+}
+
+.pad-left-right {
+    @extend .pad-left;
+    @extend .pad-right;
 }
 
 .pad {
-    @extend .pad-left;
-    @extend .pad-right;
-    @extend %pad;
+    @extend .pad-left-right;
+    @extend .pad-top-bottom;
 }
