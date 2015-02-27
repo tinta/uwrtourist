@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var tasks = require('./client/tasks');
+var spawn = require('child_process').spawn;
 
 var paths = {};
 
@@ -34,6 +35,18 @@ gulp.task('scss:compile', function() {
     return tasks.scssCompile(paths.scss.src, paths.build, options);
 });
 
+gulp.task('server', function() {
+    var child = spawn('bin/runserver');
+    child.stdin.on('data', logStd);
+    child.stdout.on('data', logStd);
+    child.stderr.on('data', logStd);
+});
+
+function logStd (data) {
+    var message = data.toString();
+    if (data) console.log(message);
+}
+
 gulp.task('watch', function() {
     gulp.watch(paths.js.watch, ['js:lint']);
     gulp.watch(paths.scss.watch, ['scss:compile']);
@@ -45,10 +58,11 @@ gulp.task('build', [
 ])
 
 gulp.task('dev', [
+    'server',
     'build',
     'watch',
 ]);
 
-gulp.task('default', ['build']);
+gulp.task('default', ['dev']);
 
 module.exports = gulp;
