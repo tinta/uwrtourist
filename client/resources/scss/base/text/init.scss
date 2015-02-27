@@ -1,0 +1,22 @@
+[class*="text-"] {
+    font-family: "maven-pro-light200", Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: 0.05em;
+}
+
+p {
+    margin: 0;
+    line-height: 1.25;
+    font-size: inherit;
+    display: inline;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+@import "font-family";
+@import "font-size";
+@import "text-align";
+@import "text-color";

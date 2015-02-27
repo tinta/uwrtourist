@@ -1,0 +1,19 @@
+%pad {
+    display: inline-block;
+}
+
+.pad-left {
+    padding-left: 0.5em;
+    @extend %pad;
+}
+
+.pad-right {
+    padding-right: 0.5em;
+    @extend %pad;
+}
+
+.pad {
+    @extend .pad-left;
+    @extend .pad-right;
+    @extend %pad;
+}

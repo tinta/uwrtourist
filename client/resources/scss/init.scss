@@ -1,0 +1,17 @@
+@import "modules/init";
+@import "base/init";
+@import "components/init";
+@import "lib-extend/init";
+
+html {
+    font-size: 8px;
+
+    .image-wrapper {
+        background-size: cover;
+        background-position: center;
+    }
+
+    #map {
+        height: 500px;
+    }
+}

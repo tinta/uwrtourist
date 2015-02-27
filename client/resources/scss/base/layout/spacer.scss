@@ -1,0 +1,32 @@
+// `-spacer-` classes allow us to control vertical padding between elements across screen sizes
+// One rule per loop due to specificity
+
+[class*="-spacer-"] {
+    margin: 0;
+
+    + * {
+        clear: both;
+    }
+}
+
+$xxs: 4px;
+$xs: $xxs * 2;
+$sm: $xxs * 3;
+$md: $xs * 2;
+$lg: $sm * 2;
+$xl: $md * 2;
+$xxl: $md * 3;
+
+$spacer-sizes: (
+    none: 0px,
+    1: 1px,
+    xxs: $xxs,
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    xl: $xl,
+    xxl: $xxl
+);
+
+@include breakpoint($spacer-sizes, height, "spacer");

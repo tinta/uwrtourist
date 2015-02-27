@@ -1,0 +1,15 @@
+.border-dotted-gray-dark {
+    background-image: linear-gradient(90deg, map-get($colors, gray-dark) 20%, rgba(255,255,255,0) 0%);
+}
+
+.border-dotted-gray-md {
+    background-image: linear-gradient(90deg, map-get($colors, gray-md) 20%, rgba(255,255,255,0) 0%);
+}
+
+[class*="border-dotted-"] {
+    background-position: bottom left;
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    border-style: none;
+    min-height: 1px;
+}

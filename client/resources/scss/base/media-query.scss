@@ -1,0 +1,15 @@
+#media-query {
+    z-index: 0;
+}
+
+@include breakpoint(medium) {
+    #media-query {
+        z-index: 1;
+    }
+}
+
+@include breakpoint(large) {
+    #media-query {
+        z-index: 2;
+    }
+}

@@ -1,0 +1,51 @@
+$font-base-path: "../../../fonts/";
+$maven-pro-light-200: $font-base-path + "mavenprolight-200/mavenprolight-200-webfont";
+$maven-pro-light-300: $font-base-path + "mavenprolight-300/mavenprolight-300-webfont";
+$maven-pro-regular: $font-base-path + "mavenpro/mavenpro-webfont";
+
+@font-face {
+    font-family: "maven-pro-light200";
+    src: url("#{$maven-pro-light-200 + '.eot'}");
+    src: url("#{$maven-pro-light-200 + '.eot?#iefix'}") format('embedded-opentype'),
+         url("#{$maven-pro-light-200 + '.woff'}") format('woff'),
+         url("#{$maven-pro-light-200 + '.ttf'}") format('truetype'),
+         url("#{$maven-pro-light-200 + '.svg#maven_pro_light200'}") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "maven-pro-light300";
+    src: url("#{$maven-pro-light-300 + '.eot'}");
+    src: url("#{$maven-pro-light-300 + '.eot?#iefix'}") format('embedded-opentype'),
+         url("#{$maven-pro-light-300 + '.woff'}") format('woff'),
+         url("#{$maven-pro-light-300 + '.ttf'}") format('truetype'),
+         url("#{$maven-pro-light-300 + '.svg#maven_pro_light200'}") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "maven-pro";
+    src: url("#{$maven-pro-regular + '.eot'}");
+    src: url("#{$maven-pro-regular + '.eot?#iefix'}") format('embedded-opentype'),
+         url("#{$maven-pro-regular + '.woff'}") format('woff'),
+         url("#{$maven-pro-regular + '.ttf'}") format('truetype'),
+         url("#{$maven-pro-regular + '.svg#maven_pro_light200'}") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class*="text-"] {
+    &.text-thin {
+        font-family: "maven-pro-light200", sans-serif;
+    }
+
+    &.text-semibold {
+        font-family: "maven-pro-light300", sans-serif;
+    }
+
+    &.text-bold {
+        font-family: "maven-pro", sans-serif;
+    }
+}

@@ -1,0 +1,139 @@
+// @include breakpoint()
+// ================================================================
+// View bottom of this file for use cases and examples
+
+$mq-prefixes: (
+    small: "",
+    medium: "medium-",
+    large: "large-"
+);
+
+// Default Foundation breakpoints
+$medium-bp: 40.063em;
+$large-bp: 64.063em;
+
+@mixin breakpoint ($size, $rules: "", $classPrefix: "") {
+    $sizeIsMap: length($size) > 1;
+    $sizeIsNull: map-get($mq-prefixes, $size) == null;
+
+    // If $size is a map, `breakpoint` will generate all media-query versions
+    // of class for each item in map.
+    @if $sizeIsMap {
+        // For each media query...
+        @each $key, $mq-prefix in $mq-prefixes {
+            // And each item in $size, which is a map of values
+            @each $class, $value in $size {
+                $class: #{$mq-prefix + $classPrefix + "-" + $class};
+                @include breakpoint($key) {
+                    .#{$class} {
+                        @each $rule in $rules {
+                            #{$rule}: $value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // If $size IS NOT DEFINED in $mq-prefixes, `breakpoint` will assume
+    // that it is a class and will create all media query versions of class
+    @else if $sizeIsNull {
+        $className: $size;
+        @each $key, $prefix in $mq-prefixes {
+            @include breakpoint($key) {
+                .#{$prefix}#{$className} {
+                    @content;
+                }
+            }
+        }
+    }
+    // If $size IS DEFINED in $mq-prefixes, apply @content only to specified media query
+    @else if $size == small {
+      @content;
+    }
+    @else if $size == medium {
+        @media (min-width: $medium-bp) { @content; }
+    }
+    @else if $size == large {
+        @media (min-width: $large-bp)  { @content; }
+    }
+}
+
+// `breakpoint` Usage
+// ================================================================
+// (1) $size: string that is a VALID key for `$mq-prefixes` && $rule: undefined
+// ================================================================
+// INPUT:
+// @include breakpoint(medium) {
+//     display: block;
+// }
+// ================================================================
+// OUTPUT:
+// @media all and (min-width: 40.063em) {
+//   display: block;
+// }
+
+// (2) $size: string that is an INVALID key for `$mq-prefixes` && $rule: undefined
+// ================================================================
+// INPUT:
+// @include breakpoint(show) {
+//     display: block;
+// }
+// ================================================================
+// OUTPUT:
+// @media all {
+//   .show {
+//     display: block;
+//   }
+// }
+// @media all and (min-width: 40.063em) {
+//   .medium-show {
+//     display: block;
+//   }
+// }
+// @media all and (min-width: 64.063em) {
+//   .large-show {
+//     display: block;
+//   }
+// }
+
+// ================================================================
+// (3) $size: scss map && $rule: string
+// ================================================================
+// INPUT:
+// ```
+// $sizes: (
+//     "text-xxxs": 13px,
+//     "text-xxs": 16px
+// );
+// @include breakpoint($sizes, font-size);
+// ```
+// ================================================================
+// OUTPUT:
+// .text-xxxs {
+//   font-size: 13px;
+// }
+//
+// .text-xxs {
+//   font-size: 16px;
+// }
+//
+// @media (min-width: 40.063em) {
+//   .medium-text-xxxs {
+//     font-size: 13px;
+//   }
+// }
+// @media (min-width: 40.063em) {
+//   .medium-text-xxs {
+//     font-size: 16px;
+//   }
+// }
+// @media (min-width: 64.063em) {
+//   .large-text-xxxs {
+//     font-size: 13px;
+//   }
+// }
+// @media (min-width: 64.063em) {
+//   .large-text-xxs {
+//     font-size: 16px;
+//   }
+// }

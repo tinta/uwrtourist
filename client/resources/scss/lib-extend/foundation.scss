@@ -1,0 +1,76 @@
+$gutter: 0.9375em;
+
+// Using mixins rather than placeholder classes due to use in media queries
+@mixin collapse () {
+    margin-left: 0;
+    margin-right: 0;
+    > .column {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@mixin uncollapse () {
+    margin-left: 0;
+    margin-right: 0;
+    > .column {
+        padding-left: $gutter;
+        padding-right: $gutter;
+    }
+}
+
+@mixin double-gutter () {
+    margin-left: 0;
+    margin-right: 0;
+    > .column {
+        padding-left: $gutter * 2;
+        padding-right: $gutter * 2;
+    }
+}
+
+#html {
+    .row {
+        max-width: initial;
+
+        &.uncollapse {
+            @include uncollapse;
+        }
+
+        &.double-gutter {
+            @include double-gutter;
+        }
+    }
+    // Sets gutter size, unless overridden
+    .column,
+    .columns {
+        font-size: 1rem;
+    }
+
+    @include breakpoint(medium) {
+        .row.medium-collapse {
+            @include collapse;
+        }
+
+        .row.medium-uncollapse {
+            @include uncollapse;
+        }
+
+        .row.medium-double-gutter {
+            @include double-gutter;
+        }
+    }
+
+    @include breakpoint(large) {
+        .row.large-collapse {
+            @include collapse;
+        }
+
+        .row.large-uncollapse {
+            @include uncollapse;
+        }
+
+        .row.large-double-gutter {
+            @include double-gutter;
+        }
+    }
+}

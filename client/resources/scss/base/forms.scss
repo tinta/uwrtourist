@@ -1,0 +1,32 @@
+form {
+    position: relative;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=text],
+input[type=email] {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    overflow: hidden;
+    padding: 5px 10px;
+    color: inherit;
+    border: 1px solid map-get($colors, gray-dark);
+
+    &:focus {
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        border: 1px solid rgba(81, 203, 238, 1);
+    }
+
+    &.invis {
+        background: transparent;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+    }
+}

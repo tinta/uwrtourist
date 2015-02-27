@@ -1,0 +1,32 @@
+{
+  "name": "uwrtourist",
+  "version": "0.0.1",
+  "description": "Find nearby underwater rugby teams to practice with while you travel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xmunoz/uwrtourist"
+  },
+  "keywords": [
+    "maps",
+    "underwater_rugby"
+  ],
+  "author": "Cristina Munoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xmunoz/uwrtourist/issues"
+  },
+  "homepage": "https://github.com/xmunoz/uwrtourist",
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jshint": "1.8.4",
+    "gulp-load-plugins": "0.8.0",
+    "gulp-rename": "1.2.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "1.3.0",
+    "map-stream": "0.0.5"
+  }
+}

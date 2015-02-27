@@ -1,0 +1,7 @@
+@include breakpoint("hide") {
+    display: none;
+}
+
+@include breakpoint("show") {
+    display: inline-block;
+}

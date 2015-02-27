@@ -1,0 +1,22 @@
+i.fa {
+    font-family: FontAwesome;
+    line-height: inherit;
+}
+
+.fa-stack {
+    z-index: 1;
+    line-height: 2em;
+}
+
+.fa-plus:before,
+.fa-minus:before
+{
+    margin-top: 1px;
+    display: inline-block;
+}
+
+.fa-chevron-up:before {
+    content: "\f077";
+    top: -1px;
+    position: relative;
+}

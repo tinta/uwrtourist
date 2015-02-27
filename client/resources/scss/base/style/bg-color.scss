@@ -1,0 +1,13 @@
+@include breakpoint($colors, (background-color, fill), "bg");
+
+@each $key, $color in $colors {
+    .bg-hover-#{$key}:hover {
+        background-color: $color;
+        fill: $color;
+    }
+}
+
+
+#html .fill {
+    background-color: transparent;
+}

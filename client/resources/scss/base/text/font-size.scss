@@ -1,0 +1,12 @@
+$sizes: (
+    icon: 10px,
+    xxxs: 13px,
+    xxs: 16px,
+    xs: 18px,
+    sm: 24px,
+    md: 30px,
+    lg: 38px,
+    xl: 48px
+);
+
+@include breakpoint($sizes, font-size, "text");

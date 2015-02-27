@@ -1,0 +1,21 @@
+@import "reset";
+@import "media-query";
+@import "layout/init";
+@import "style/init";
+@import "text/init";
+@import "forms";
+@import "tables";
+
+a,
+label,
+[ng-click],
+[type="submit"],
+.clickable {
+    cursor: pointer;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}

@@ -1,0 +1,21 @@
+.valign-top {
+    vertical-align: top;
+}
+
+table {
+    &.valign-top {
+        td {
+            vertical-align: top;
+        }
+    }
+
+    td {
+        padding: 0;
+        vertical-align: middle;
+        display: table-cell;
+
+        > * {
+            display: inline-block;
+        }
+    }
+}
