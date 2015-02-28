@@ -33,12 +33,12 @@ def addform():
     else:
         # show the login form
         title = gettext("Add a new team")
-        return render_template("add.html", title=title)
+        return render_template("pages/add.jade", title=title)
 
 @app.route("/competitions")
 def competitions():
     title = gettext("Competitions")
-    return render_template("competitions.html", title=title)
+    return render_template("pages/competitions.jade", title=title)
 
 @app.errorhandler(404)
 def page_not_found(e):

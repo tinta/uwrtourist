@@ -29,8 +29,9 @@ head
     {% endblock %}
 
 body.text-gray-dark
-    {% block header %}
-    {% endblock %}
+    div.row.text-center.collapse
+        include partials/header
+        include partials/nav
 
     {% block body %}
     {% endblock %}
