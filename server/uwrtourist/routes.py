@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask.ext.babel import Babel, gettext, format_date
+from flask.ext.babel import Babel, gettext
 
 app = Flask(__name__)
 
@@ -24,10 +24,6 @@ pages = {
     }
 }
 
-@babel.localeselector
-def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys())
-
 @app.route("/")
 def homepage():
     title = "Underwater Rugby Tourist"
@@ -49,7 +45,7 @@ def teams():
     return render_template("pages/teams.jade", title=title, pages=pages)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
-def teams():
+def addform():
     if request.method == "POST":
         # process the submission
         pass
@@ -70,7 +66,3 @@ def page_not_found(e):
 @app.errorhandler(500)
 def site_down(e):
     return render_template("500.jade", error=e), 500
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
