@@ -1,23 +1,8 @@
-div.row.text-center.collapse
-    div.column.small-12
-        div.spacer-lg
-        div
-            a(href="/").text-md.text-hover-gray-md-dark.pad-lr Underwater Rugby Tourist
-        div.spacer-sm
-        div.text-xxxs Find the closest team to you!
-        div.spacer-sm
-        div.spacer-1.bg-gray-dark
-    div.column.small-12
-        div.spacer-xs
-        ul.text-xxxs
-            {% for key, val in pages|dictsort(false, "value") %}
-            li.show
-                {% set navClass = 'text-hover-gray-md-dark' %}
-                a.pad(
-                    href=val.link
-                    class=navClass
-                )
-                    div.spacer-xxs
-                    div= val.title
-                    div.spacer-xxs
-            {% endfor %}
+div.column.small-12
+    div.spacer-lg
+    div
+        a(href="/").text-md.text-hover-gray-md-dark.pad-lr Underwater Rugby Tourist
+    div.spacer-sm
+    div.text-xxxs Find the closest team to you!
+    div.spacer-sm
+    div.spacer-1.bg-gray-dark

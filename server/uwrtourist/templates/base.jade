@@ -29,7 +29,10 @@ head
     {% endblock %}
 
 body.text-gray-dark
-    include partials/header
+    {% block header %}
+    {% endblock %}
+
     {% block body %}
     {% endblock %}
+
     include partials/footer
