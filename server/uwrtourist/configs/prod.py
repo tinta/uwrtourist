@@ -1,8 +1,4 @@
-from default import DefaultConfig
-
-import os
-
-class ProdConfig(DefaultConfig):
+class ProdConfig:
     TESTING = False
     DEBUG = False
     DATABASE = "mysql"

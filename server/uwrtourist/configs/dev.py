@@ -1,8 +1,9 @@
-from default import DefaultConfig
+import os.path, inspect
 
-import os
-
-class DevConfig(DefaultConfig):
+class DevConfig:
+    BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(
+                              inspect.getfile(inspect.currentframe()))))
     DEBUG = True
     DATABASE = "sqlite"
-    DATABASE_PATH = os.path.join(BASEDIR, "server", "uwrtourist.sqlite3")
+    SQLALCHEMY_DATABASE_URI = "{}:///{}/uwrtourist.db"\
+                                .format(DATABASE, BASEDIR)

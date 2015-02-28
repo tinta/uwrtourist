@@ -5,3 +5,4 @@ virtualenv "$root_dir/server/venv_uwrtourist"
 source "$root_dir/server/venv_uwrtourist/bin/activate"
 pip install -r "$root_dir/server/requirements-dev.txt"
 
+

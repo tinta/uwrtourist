@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
+from flask.ext.sqlalchemy import SQLAlchemy
+from configs.dev import DevConfig
 
+# set up app
 app = Flask(__name__)
 
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
+app.config.from_object(DevConfig)
+
+db = SQLAlchemy(app)
 babel = Babel(app)
 
 @app.context_processor
