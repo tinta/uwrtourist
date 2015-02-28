@@ -1,8 +1,34 @@
-div.column.small-12
-    div.spacer-lg
-    div
-        a(href="/").text-md.text-hover-gray-md-dark.pad-lr Underwater Rugby Tourist
-    div.spacer-sm
-    div.text-xxxs Find the closest team to you!
-    div.spacer-sm
-    div.spacer-1.bg-gray-dark
+div.row.text-center.collapse
+    div.column.small-12
+        div.spacer-md
+        div
+            a(href="/").text-lg.text-thin.pad-lr Underwater Rugby Tourist
+        div.spacer-sm
+
+        div.row.collapse.bg-blue.text-white
+            div.column.small-10.small-centered
+                div.row
+                    div.column.small-11.small-centered
+                        ul.text-xxxs.text-thin
+                            {% for route in pages %}
+                            li.show
+                                {% set navClass = 'text-hover-gray-md-dark' %}
+                                a.pad(
+                                    href=route.url
+                                )
+                                    div.spacer-xxs
+                                    div=route.title
+                                    div.spacer-xxs
+                            {% endfor %}
+
+        {% if title %}
+        div.spacer-xs
+        div.row.collapse.text-white.text-left
+            div.column.small-10.small-centered.bg-red
+                div.row
+                    div.column.small-11.small-centered
+                        div.spacer-sm
+                        div.text-md.text-thin= title
+                        div.spacer-xs
+        div.spacer-xs
+        {%  endif %}

@@ -29,11 +29,11 @@ head
     {% endblock %}
 
 body.text-gray-dark
-    div.row.text-center.collapse
-        include partials/header
-        include partials/nav
+    include partials/header
 
-    {% block body %}
-    {% endblock %}
+    div.row.collapse
+        div.column.small-10.small-centered
+            {% block body %}
+            {% endblock %}
 
     include partials/footer

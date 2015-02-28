@@ -1,12 +1,26 @@
-@include breakpoint($colors, (background-color, fill), "bg");
-
 @each $key, $color in $colors {
+    .bg-#{$key} {
+        background-color: $color;
+        fill: $color;
+    }
+
     .bg-hover-#{$key}:hover {
         background-color: $color;
         fill: $color;
     }
 }
 
+@each $key, $color in $palette {
+    .bg-#{$key} {
+        background-color: $color;
+        fill: $color;
+    }
+
+    .bg-hover-#{$key}:hover {
+        background-color: $color;
+        fill: $color;
+    }
+}
 
 .fill {
     background-color: transparent;

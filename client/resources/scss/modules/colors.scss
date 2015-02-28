@@ -5,12 +5,16 @@ $colors: (
     "gray-md-light": #CCCCCC,
     "gray-light"  : #EDEDED,
     "gray-xlight"  : #F6F6F6,
-    "green"   : #8cc63f,
     "white"   : #FFFFFF,
-    "blue": #243A54,
-    "blue-light"    : #269DCC,
-    "red"     : #CC1111,
-    "yellow"  : #FFD149,
     "black-overlay": rgba(0,0,0,0.75),
     "none"    : transparent
 );
+
+$palette1: (
+    "blue": #3E606F,
+    "yellow": #FFB03B,
+    "green": #468966,
+    "red": #B64926
+);
+
+$palette: $palette1;
