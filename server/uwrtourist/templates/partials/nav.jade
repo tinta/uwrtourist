@@ -1,14 +1,14 @@
 div.column.small-12
     div.spacer-xs
     ul.text-xxxs
-        {% for key, val in pages|dictsort(false, "value") %}
+        {% for route in pages %}
         li.show
             {% set navClass = 'text-hover-gray-md-dark' %}
             a.pad(
-                href=val.link
+                href=route.url
                 class=navClass
             )
                 div.spacer-xxs
-                div= val.title
+                div=route.title
                 div.spacer-xxs
         {% endfor %}
