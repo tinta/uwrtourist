@@ -1,29 +1,54 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-from app import db
+from routes import db
+import datetime
 
-engine = create_engine('sqlite:///database.db', echo=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
+class BaseMixin(object):
+    id =  db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow())
+    date_modified = db.Column(db.DateTime, default=datetime.utcnow())
 
-# Set your classes here.
+class Team(db.Model, BaseMixin):
+    __tablename__ = "teams"
+    name = db.Column(db.String(128))
+    blurb = db.Column(db.String(1024))
+    logo = db.Column(db.String(256))
+    photo = db.Column(db.String(256))
+    location = db.Column(db.String(256))
 
-'''
-class User(Base):
-    __tablename__ = 'Users'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True)
-    email = db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(30))
-    def __init__(self, name=None, password=None):
-        self.name = name
-        self.password = password
-'''
+class PracticeTime(db.model, BaseMixin):
+    __tablename__ = "practice_times"
+    day = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday",
+                          "Friday", "Saturday", "Sunday"))
+    start_time = db.Column(db.Time())
+    end_time = db.Column(db.Time())
+    notes = db.Column(db.String(512))
 
-# Create tables.
-Base.metadata.create_all(bind=engine)
+    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+    practice_location_id = db.Column(db.Integer, db.ForeignKey(
+                                     "practice_locations.id"), index=True)
+
+class Link(db.model, BaseMixin):
+    __tablename__ = "links"
+    # facebook, twitter, etc
+    link = db.Column(db.String(128))
+    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+
+class PracticeLocation(db.Model, BaseMixin):
+    __tablename__ = "practice_locations"
+    name = db.Column(db.String(128))
+    street_address = db.Column(db.String(128))
+    city = db.Column(db.String(128))
+    region = db.Column(db.String(128))
+    country = db.Column(db.String(128))
+    postal_code = db.Column(db.String(128))
+    permalink = db.Column(db.String(1024))
+    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+
+class Contact(db.Model, BaseMixin):
+    __tablename__ = "contacts"
+    name = db.Column(db.String(128))
+    email= db.Column(db.String(128))
+    title = db.Column(db.String(128))
+    phone = db.Column(db.String(128))
+    whatsapp = db.Column(db.String(128))
+    facebook = db.Column(db.String(128))
+    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
