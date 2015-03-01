@@ -26,7 +26,7 @@ div.row.bg-gray-xlight
             div.column.small-5
                 div.row.collapse
                     div.column.small-10
-                        input.text-xxs.text-gray-dark.width-full.spacer-xl.pad(
+                        input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
                             type="text"
                             placeholder="Search by Name or Region"
                             ng-model="table.filter.val"
@@ -55,7 +55,11 @@ div.row.bg-gray-xlight
                             span.table-arrow
             tbody.bg-white
                 tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
-                    ng-repeat='row in table.all | filter : table.filter.val | orderBy : table.order.value : table.order.reverse'
+                    ng-repeat='
+                        row in table.all |
+                        filter : table.filter.apply |
+                        orderBy : table.order.value : table.order.reverse
+                    '
                 )
                     td(ng-repeat='key in table.keys')
                         a.pad-lr-double.pad-tb.width-full(
@@ -75,11 +79,12 @@ div.row.bg-gray-xlight
                         div(ng-if="key === 'Links'").width-full.pad-lr
                             div
                                 div(ng-repeat='val in row[key] track by $index').small-4.left.pad-lr
-                                    a(href="[[val]]").fa-stack.text-xs.text-hover-gray-dark
+                                    a(href="[[val]]").text-xs.text-hover-gray-dark
                                         div.spacer-xs
-                                        i.fa.fa-stack-2x.fa-circle-thin
-                                        i.fa.fa-stack-1x(class="[[icons.getClass(val)]]")
-                                        div.spacer-xs
+                                        div.fa-stack
+                                            i.fa.fa-stack-2x.fa-circle-thin
+                                            i.fa.fa-stack-1x(class="[[icons.getClass(val)]]")
+                                        div.spacer-xxs
                                 div(ng-if="row[key].length === 1").small-8.right
                                     a(href="/")
                                         div.spacer-lg

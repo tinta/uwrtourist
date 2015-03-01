@@ -15,8 +15,13 @@ angular.module('ControllerTeams', [
 ){
     $scope.table = new Table(window.teams);
 
-    $scope.table.order.set('Name')
+    $scope.table.order.set('Name');
 
+    $scope.table.filter.apply = function (obj) {
+        var val = $scope.table.filter.val;
+        var re = new RegExp(val, 'i');
+        return !val || re.test(obj['Name']) || re.test(obj['Region']);
+    };
 
     $scope.typeOf = function(input) {
         return typeof input;

@@ -66,7 +66,7 @@ class Navbar:
             },
             {
                 "url": "/add-new-team",
-                "title": "Add your team!",
+                "title": "Add Your Team",
             },
         ]
 
