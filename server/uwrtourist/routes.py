@@ -24,7 +24,7 @@ def homepage():
 @app.route("/about")
 def about():
     title = gettext("About")
-    return render_template("about.html", title=title)
+    return render_template("pages/about.jade", title=title)
 
 @app.route("/teams")
 def teams():
