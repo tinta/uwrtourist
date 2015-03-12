@@ -51,4 +51,5 @@ class Contact(db.Model, BaseMixin):
     phone = db.Column(db.String(128))
     whatsapp = db.Column(db.String(128))
     facebook = db.Column(db.String(128))
+    twitter = db.Column(db.String(128))
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
