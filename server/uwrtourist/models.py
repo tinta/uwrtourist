@@ -1,10 +1,11 @@
 from routes import db
+from sqlalchemy.orm import relationship
 import datetime
 
 class BaseMixin(object):
     id =  db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow())
-    date_modified = db.Column(db.DateTime, default=datetime.utcnow())
+    date_created = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+    date_modified = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
 class Team(db.Model, BaseMixin):
     __tablename__ = "teams"
@@ -14,7 +15,14 @@ class Team(db.Model, BaseMixin):
     photo = db.Column(db.String(256))
     location = db.Column(db.String(256))
 
-class PracticeTime(db.model, BaseMixin):
+    def __init__(self, club_name, city):
+        self.name = club_name
+        self.location = city
+
+    practice_locations = relationship("PracticeLocation", order_by="PracticeLocation.id", backref="team")
+
+
+class PracticeTime(db.Model, BaseMixin):
     __tablename__ = "practice_times"
     day = db.Column(db.Enum("Monday", "Tuesday", "Wednesday", "Thursday",
                           "Friday", "Saturday", "Sunday"))
@@ -26,9 +34,9 @@ class PracticeTime(db.model, BaseMixin):
     practice_location_id = db.Column(db.Integer, db.ForeignKey(
                                      "practice_locations.id"), index=True)
 
-class Link(db.model, BaseMixin):
+class Link(db.Model, BaseMixin):
     __tablename__ = "links"
-    # facebook, twitter, etc
+    # facebook, twitter, meetup, etc
     link = db.Column(db.String(128))
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
 

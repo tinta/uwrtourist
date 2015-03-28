@@ -7,3 +7,4 @@ class DevConfig:
     DATABASE = "sqlite"
     SQLALCHEMY_DATABASE_URI = "{}:///{}/uwrtourist.db"\
                                 .format(DATABASE, BASEDIR)
+    SITE_NAME = "Underwater Rugby Tourist"

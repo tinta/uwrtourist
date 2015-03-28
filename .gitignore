@@ -32,6 +32,9 @@ node_modules
 # virtualenvs namespace
 venv_*
 
+# sqlite db
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

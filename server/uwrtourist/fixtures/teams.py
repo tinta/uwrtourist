@@ -1,8 +1,7 @@
-from collections import OrderedDict
-
-fixure = OrderedDict(
+seed = [
     {
         "name": "San Francisco Sea Bass",
+        "city": "San Francisco, CA, USA",
         "locations": [
             {
                 "uid": 0,
@@ -45,7 +44,8 @@ fixure = OrderedDict(
         "contacts": []
     },
     {
-        "name": "CAMO UWR",
+        "name": "Club CAMO",
+        "city": "Montreal, QC, CAN",
         "locations": [
             {
                 "uid": 0,
@@ -84,6 +84,7 @@ fixure = OrderedDict(
     },
     {
         "name": "New Jersey Hammerheads",
+        "city": "Newark, NJ, USA",
         "locations": [
             {
                 "uid": 0,
@@ -140,6 +141,7 @@ fixure = OrderedDict(
     },
     {
         "name": "Quincy Narwhals",
+        "city": "Quincy, MA, USA",
         "locations": [
             {
                 "uid": 0,
@@ -199,6 +201,7 @@ fixure = OrderedDict(
     },
     {
         "name": "Club Liberation",
+        "city": "Brantford, ON, CAN",
         "locations": [
             {
                 "uid": 0,
@@ -210,7 +213,7 @@ fixure = OrderedDict(
                 "country" : "Canada"
             },
             {
-                "uid": 0,
+                "uid": 1,
                 "name": "Balmoral Recreation Centre",
                 "address": "225 Balmoral Drive",
                 "city": "Brampton",
@@ -276,4 +279,4 @@ fixure = OrderedDict(
             }
         ]
     }
-)
+]
