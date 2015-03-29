@@ -19,7 +19,13 @@ class Team(db.Model, BaseMixin):
         self.name = club_name
         self.location = city
 
-    practice_locations = relationship("PracticeLocation", order_by="PracticeLocation.id", backref="team")
+    practice_locations = relationship("PracticeLocation",
+                                      order_by="PracticeLocation.id",
+                                      backref="team")
+    practice_times = relationship("PracticeTime", order_by="PracticeTime.id",
+                                  backref="team")
+    contacts = relationship("Contact", order_by="Contact.id", backref="team")
+    links = relationship("Link", order_by="Link.id", backref="team")
 
 
 class PracticeTime(db.Model, BaseMixin):
@@ -34,11 +40,23 @@ class PracticeTime(db.Model, BaseMixin):
     practice_location_id = db.Column(db.Integer, db.ForeignKey(
                                      "practice_locations.id"), index=True)
 
+    def __init__(self, day=None, start_time=None, end_time=None, notes=None):
+        '''
+        Make str to datetime conversions seamless when this obj is created.
+        '''
+        self.start_time = format_time_strings(start_time)
+        self.end_time = format_time_strings(end_time)
+        self.day = day
+        self.notes = notes
+
 class Link(db.Model, BaseMixin):
     __tablename__ = "links"
     # facebook, twitter, meetup, etc
     link = db.Column(db.String(128))
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+
+    def __init__(self, url):
+        self.link= url
 
 class PracticeLocation(db.Model, BaseMixin):
     __tablename__ = "practice_locations"
@@ -49,7 +67,9 @@ class PracticeLocation(db.Model, BaseMixin):
     country = db.Column(db.String(128))
     postal_code = db.Column(db.String(128))
     permalink = db.Column(db.String(1024))
+
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+    practice_times = relationship("PracticeTime", order_by="PracticeTime.id", backref="location")
 
 class Contact(db.Model, BaseMixin):
     __tablename__ = "contacts"
@@ -61,3 +81,15 @@ class Contact(db.Model, BaseMixin):
     facebook = db.Column(db.String(128))
     twitter = db.Column(db.String(128))
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+
+
+# helper method
+def format_time_strings(time_str):
+    if isinstance(time_str, str) and ":" in time_str:
+        hour, minute = time_str.split(":")
+        return datetime.time(int(hour), int(minute))
+    elif isinstance(time_str, datetime.time):
+       return time_str
+    else:
+       return None
+

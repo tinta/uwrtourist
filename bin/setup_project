@@ -4,5 +4,6 @@ root_dir="${PWD%/bin}"
 virtualenv "$root_dir/server/venv_uwrtourist"
 source "$root_dir/server/venv_uwrtourist/bin/activate"
 pip install -r "$root_dir/server/requirements-dev.txt"
-
+# seed database
+python "$root_dir/server/manage.py"
 
