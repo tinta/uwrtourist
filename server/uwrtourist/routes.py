@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
-from flask.ext.sqlalchemy import SQLAlchemy
 from configs.dev import DevConfig
+from models import db, get_teams
 
 # set up app
 app = Flask(__name__)
+db.init_app(app)
 
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 app.config.from_object(DevConfig)
 
-db = SQLAlchemy(app)
 babel = Babel(app)
 
 @app.context_processor
@@ -29,7 +29,8 @@ def about():
 @app.route("/teams")
 def teams():
     title = gettext("Teams")
-    return render_template("pages/teams.jade", title=title)
+    teams = get_teams(format="json")
+    return render_template("pages/teams.jade", title=title, teams=teams)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():

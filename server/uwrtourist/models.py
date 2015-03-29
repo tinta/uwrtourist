@@ -1,11 +1,28 @@
-from routes import db
-from sqlalchemy.orm import relationship
+from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect
+from sqlalchemy.orm import relationship, subqueryload, joinedload
 import datetime
+import json
+
+db = SQLAlchemy()
 
 class BaseMixin(object):
     id =  db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=datetime.datetime.utcnow())
     date_modified = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+
+    # does some recursive business that might be inefficient
+    def as_dict(self):
+        d = {}
+        for attr in inspect(self).attrs:
+            value = getattr(self, attr.key)
+            if isinstance(value, list):
+                d[attr.key] = []
+                for elem in value:
+                   d[attr.key].append(elem.as_dict())
+            else:
+                d[attr.key] = str(value)
+        return d
 
 class Team(db.Model, BaseMixin):
     __tablename__ = "teams"
@@ -93,3 +110,8 @@ def format_time_strings(time_str):
     else:
        return None
 
+def get_teams(format=None):
+    teams = db.session.query(Team).all()
+    if format == "json":
+        return json.dumps([team.as_dict() for team in teams])
+    return teams
