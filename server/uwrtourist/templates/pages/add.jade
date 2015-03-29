@@ -16,5 +16,12 @@ script(src="/resources/js/map.js")
 
 {% block body %}
 div.spacer-xs
-div#map
+form(method="POST", action="/add-new-team", name="add-team")
+    input(type="text", name="name", label="Team Name")
+    input(type="text", name="city", label="Home Base")
+    input(type="text", name="size", label="Team Size")
+    input(type="text", name="practice-locations", label="Practice Locations")
+    input(type="text", name="urls", label="Team Links")
+    input(type="text", name="contacts", label="Contacts")
+    input(type="submit")
 {% endblock %}
