@@ -25,22 +25,27 @@ div.row.bg-gray-light
         ng-cloak
     )
         div.spacer-lg
-        div.row.collapse
-            div.column.small-5
-                div.row.collapse
-                    div.column.small-10
-                        input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
-                            type="text"
-                            placeholder="Search by Name or Region"
-                            ng-model="table.filter.value"
-                            tabindex="1"
-                        )
-                    //- div.column.small-2.bg-red.spacer-xl.text-center(
-                    //-     ng-if="table.filter.val"
-                    //-     ng-click="table.filter.val = ''"
-                    //- )
-                    //-     div.spacer-xs
-                    //-     i.fa.fa-close.text-white.text-xs
+        div.row.collapse.bg-green.text-white
+            div.column.small-4
+                input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
+                    type="text"
+                    placeholder="Search by Name or Region"
+                    ng-model="table.filter.value"
+                    ng-change="table.filter.apply()"
+                    tabindex="1"
+                )
+
+
+            div.columns.small-3.height-medium(ng-click="table.paginate.previous()")
+                div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+                    div.text-valign Previous Page
+
+            div.columns.small-2.height-medium
+                div.text-xxs.width-full.pad.text-center.bg-red
+                    div.text-valign [[ table.paginate.displayCurrent() ]] / [[ table.paginate.pages.length ]]
+            div.columns.small-3(ng-click="table.paginate.next()")
+                div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+                    div.text-valign Next Page
 
         div.spacer-sm
         table.text-left.text-gray-dark.text-xxs.valign-top
@@ -60,8 +65,7 @@ div.row.bg-gray-light
             tbody.bg-white
                 tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
                     ng-repeat='
-                        row in table.rows |
-                        filter : table.filter.apply |
+                        row in table.queried |
                         orderBy : table.order.value : table.order.reverse
                     '
                 )
