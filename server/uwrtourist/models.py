@@ -20,6 +20,8 @@ class BaseMixin(object):
                 d[attr.key] = []
                 for elem in value:
                    d[attr.key].append(elem.as_dict())
+            elif value is None:
+                d[attr.key] = None
             else:
                 d[attr.key] = str(value)
         return d
