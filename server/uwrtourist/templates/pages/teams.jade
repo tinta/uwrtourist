@@ -13,6 +13,8 @@ script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
 script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js")
 script(src="/resources/js/controllers/teams.js")
 script(src="/resources/js/table.js")
+script
+    window.teams = {{ teams }}
 {% endblock %}
 
 {% block body %}
@@ -30,7 +32,8 @@ div.row.bg-gray-light
                         input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
                             type="text"
                             placeholder="Search by Name or Region"
-                            ng-model="table.filter.val"
+                            ng-model="table.filter.value"
+                            tabindex="1"
                         )
                     //- div.column.small-2.bg-red.spacer-xl.text-center(
                     //-     ng-if="table.filter.val"
@@ -44,14 +47,14 @@ div.row.bg-gray-light
             thead
                 tr.bg-gray-dark
                     th.text-white.text-thin.unselectable(
-                        ng-repeat="key in table.keys"
-                        ng-click="table.order.set(key)"
+                        ng-repeat="key in table.keys.list"
+                        ng-click="table.keys.order.set(key)"
                         ng-class="{
-                            'selected bg-green'    : table.order.latestInput === key,
-                            'reversed'    : table.order.latestInput === key && table.order.reverse
+                            'selected bg-green'    : table.keys.order.latestInput === key,
+                            'reversed'    : table.keys.order.latestInput === key && table.keys.order.reverse
                         }"
                     )
-                        div.pad-lr-double.pad-tb.width-full
+                        div.pad-lr-double.pad-tb.width-full.capitalize
                             span [[key]]
                             span.table-arrow
             tbody.bg-white
@@ -59,10 +62,10 @@ div.row.bg-gray-light
                     ng-repeat='
                         row in table.all |
                         filter : table.filter.apply |
-                        orderBy : table.order.value : table.order.reverse
+                        orderBy : table.keys.order.value : table.keys.order.reverse
                     '
                 )
-                    td(ng-repeat='key in table.keys')
+                    td(ng-repeat='key in table.keys.list')
                         a.pad-lr-double.pad-tb.width-full(
                             href="/"
                             ng-if="key !== 'Links'"
