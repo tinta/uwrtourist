@@ -26,8 +26,10 @@ class BaseMixin(object):
                 d[attr.key] = value.strftime("%H:%M %d-%m-%y")
             elif isinstance(value, (int, long, float, complex)):
                 d[attr.key] = str(value)
-            elif not isinstance(value, object):
+            elif isinstance(value, unicode):
                 d[attr.key] = value.encode("utf-8")
+            else:
+                pass
         return d
 
 class Team(db.Model, BaseMixin):
