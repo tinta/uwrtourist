@@ -1,4 +1,5 @@
-from uwrtourist.routes import db
+from uwrtourist.models import db
+from uwrtourist.routes import app
 import uwrtourist.models as um
 
 def init_db():
@@ -44,8 +45,9 @@ def populate_db():
 
 
 def main():
-    init_db()
-    populate_db()
+    with app.app_context():
+        init_db()
+        populate_db()
 
 if __name__ == "__main__":
     main()
