@@ -18,7 +18,7 @@ def add_pages():
 
 @app.route("/")
 def homepage():
-    title = gettext(DevConfig.SITE_NAME)
+    title = False
     return render_template("pages/home.jade", title=title)
 
 @app.route("/about")

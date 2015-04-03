@@ -46,8 +46,9 @@ angular.module('ControllerTeams', [
 
 
     $scope.followLink = function () {
-        console.log('LLLL')
-    }
+        console.log('LLLL');
+    };
+
     // Dev
     $window.logScope = function () {
         $window.$scope = $scope;
