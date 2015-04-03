@@ -20,6 +20,8 @@ class BaseMixin(object):
                 d[attr.key] = []
                 for elem in value:
                    d[attr.key].append(elem.as_dict())
+            elif value is None:
+                d[attr.key] = None
             else:
                 d[attr.key] = str(value)
         return d
@@ -28,6 +30,7 @@ class Team(db.Model, BaseMixin):
     __tablename__ = "teams"
     name = db.Column(db.String(128))
     blurb = db.Column(db.String(1024))
+    year_established = db.Column(db.Integer)
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
     location = db.Column(db.String(256))
