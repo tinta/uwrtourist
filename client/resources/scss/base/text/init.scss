@@ -3,30 +3,31 @@
     font-weight: 200;
     line-height: 1;
     letter-spacing: 0.05em;
-}
 
-p {
-    margin: 0;
-    line-height: 1.25;
-    font-size: inherit;
-    display: inline;
-}
+    p {
+        margin: 0;
+        line-height: 1.25;
+        font-size: inherit;
+        display: inline;
+    }
 
-.capitalize {
-    text-transform: capitalize;
-}
+    .capitalize {
+        text-transform: capitalize;
+    }
 
-.text-thin {
-    font-weight: 100;
-    letter-spacing: 0.08em;
-}
+    .text-thin {
+        font-weight: 100;
+        letter-spacing: 0.08em;
+    }
 
-.text-reg {
-    font-weight: 200;
-}
+    .text-reg {
+        font-weight: 200;
+    }
 
-.text-bold {
-    font-weight: 400;
+    .text-bold {
+        font-weight: 400;
+    }
+
 }
 
 @import "font-size";
