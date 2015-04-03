@@ -13,9 +13,16 @@ angular.module('ControllerTeams', [
     $window,
     Table
 ){
-    $scope.table = new Table(window.teams);
+    $scope.table = new Table(
+        window.teams,
+        [
+            'name',
+            'location',
+            'links'
+        ]
+    );
 
-    $scope.table.keys.order.set('name');
+    $scope.table.order.set('name');
 
     $scope.typeOf = function(input) {
         return typeof input;
@@ -49,31 +56,3 @@ angular.module('ControllerTeams', [
         console.log($scope);
     };
 });
-
-window.teams = [
-    {
-        "Name": "San Francisco Bears",
-        "Region": "San Francisco, CA, USA",
-        "Club Size": "8-12",
-        "Links": [
-            "https://www.facebook.com/sfuwr",
-            "http://www.meetup.com/San-Francisco-Underwater-Rugby-Meetup/"
-        ]
-    },
-    {
-        "Name": "Club CAMO",
-        "Region": "Montreal, QC, CAN",
-        "Club Size": "10-14",
-        "Links": [
-            "https://www.facebook.com/pages/Rugby-sous-marin-%C3%A0-Montr%C3%A9al-Underwater-Rugby-Montreal/813316622034684"
-        ]
-    },
-    {
-        "Name": "Quincy UWR",
-        "Region": "Quincy, MA, USA",
-        "Club Size": "10-14",
-        "Links": [
-            "http://www.underwaterrugby.org/"
-        ]
-    }
-];

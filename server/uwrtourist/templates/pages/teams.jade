@@ -47,11 +47,11 @@ div.row.bg-gray-light
             thead
                 tr.bg-gray-dark
                     th.text-white.text-thin.unselectable(
-                        ng-repeat="key in table.keys.list"
-                        ng-click="table.keys.order.set(key)"
+                        ng-repeat="key in table.keys"
+                        ng-click="table.order.set(key)"
                         ng-class="{
-                            'selected bg-green'    : table.keys.order.latestInput === key,
-                            'reversed'    : table.keys.order.latestInput === key && table.keys.order.reverse
+                            'selected bg-green'    : table.order.latestInput === key,
+                            'reversed'    : table.order.latestInput === key && table.order.reverse
                         }"
                     )
                         div.pad-lr-double.pad-tb.width-full.capitalize
@@ -60,15 +60,15 @@ div.row.bg-gray-light
             tbody.bg-white
                 tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
                     ng-repeat='
-                        row in table.all |
+                        row in table.rows |
                         filter : table.filter.apply |
-                        orderBy : table.keys.order.value : table.keys.order.reverse
+                        orderBy : table.order.value : table.order.reverse
                     '
                 )
-                    td(ng-repeat='key in table.keys.list')
+                    td(ng-repeat='key in table.keys')
                         a.pad-lr-double.pad-tb.width-full(
                             href="/"
-                            ng-if="key !== 'Links'"
+                            ng-if="key !== 'links'"
                         )
                             div.spacer-xs
                             div(ng-if="typeOf(row[key]) !== 'object'")
@@ -79,15 +79,15 @@ div.row.bg-gray-light
                                 ng-if="typeOf(row[key]) === 'object'"
                                 ng-repeat='val in row[key] track by $index'
                             )
-                                div(ng-if="key != 'Links'") [[val.text]]
-                        div(ng-if="key === 'Links'").width-full.pad-lr
+                                div(ng-if="key != 'links'") [[val.text]]
+                        div(ng-if="key === 'links'").width-full.pad-lr
                             div
                                 div(ng-repeat='val in row[key] track by $index').small-4.left.pad-lr
                                     a(href="[[val]]").text-xs.text-hover-gray-dark
                                         div.spacer-xs
                                         div.fa-stack
                                             i.fa.fa-stack-2x.fa-circle-thin
-                                            i.fa.fa-stack-1x(class="[[icons.getClass(val)]]")
+                                            i.fa.fa-stack-1x(class="[[icons.getClass(val.link)]]")
                                         div.spacer-xxs
                                 div(ng-if="row[key].length === 1").small-8.right
                                     a(href="/")
