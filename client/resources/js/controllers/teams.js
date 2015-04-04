@@ -1,6 +1,7 @@
 angular.module('ControllerTeams', [
 // Dependencies
-    'Table'
+    'Table',
+    'Filter:StartAt'
 ], function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
@@ -16,13 +17,25 @@ angular.module('ControllerTeams', [
     var tableOptions = {};
     tableOptions.rows = window.teams;
     tableOptions.keys = [
-        'name',
-        'location',
-        'links'
-    ];
-    tableOptions.filterKeys = [
-        'name',
-        'location'
+        {
+            display: 'Name',
+            value: 'name',
+            filter: true
+        },
+        {
+            display: 'Location',
+            value: 'location',
+            filter: true
+        },
+        {
+            display: 'Country',
+            value: 'country_code',
+            filter: true
+        },
+        {
+            display: 'Links',
+            value: 'links'
+        }
     ];
 
     $scope.table = new Table(tableOptions);

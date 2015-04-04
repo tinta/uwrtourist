@@ -11,10 +11,11 @@ link(
 script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js")
 script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
 script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js")
+script(src="/resources/js/filters/startAt.js")
 script(src="/resources/js/controllers/teams.js")
 script(src="/resources/js/table.js")
 script
-    window.teams = {{ teams }}
+    window.teams = {{ teams }};
 {% endblock %}
 
 {% block body %}
@@ -26,7 +27,7 @@ div.row.bg-gray-light
     )
         div.spacer-lg
         div.row.collapse.bg-green.text-white
-            div.column.small-4
+            div.column.small-6
                 input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
                     type="text"
                     placeholder="Search by Name or Region"
@@ -36,69 +37,71 @@ div.row.bg-gray-light
                 )
 
 
-            div.columns.small-3.height-medium(ng-click="table.paginate.previous()")
+            div.columns.small-2.height-medium(ng-click="table.paginate.previous()")
                 div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Previous Page
+                    div.text-valign Previous
 
             div.columns.small-2.height-medium
                 div.text-xxs.width-full.pad.text-center.bg-red
-                    div.text-valign [[ table.paginate.displayCurrent() ]] / [[ table.paginate.pages.length ]]
-            div.columns.small-3(ng-click="table.paginate.next()")
+                    div.text-valign Page [[ table.paginate.displayCurrent() ]] of [[ table.paginate.length ]]
+            div.columns.small-2(ng-click="table.paginate.next()")
                 div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Next Page
+                    div.text-valign Next
 
         div.spacer-sm
         table.text-left.text-gray-dark.text-xxs.valign-top
             thead
                 tr.bg-gray-dark
                     th.text-white.text-thin.unselectable(
-                        ng-repeat="key in table.keys"
-                        ng-click="table.order.set(key)"
+                        ng-repeat="keyObj in table.keys"
+                        ng-click="table.order.set(keyObj.value)"
                         ng-class="{
-                            'selected bg-green'    : table.order.latestInput === key,
-                            'reversed'    : table.order.latestInput === key && table.order.reverse
+                            'selected bg-green'    : table.order.latestInput === keyObj.value,
+                            'reversed'    : table.order.latestInput === keyObj.value && table.order.reverse
                         }"
                     )
-                        div.pad-lr-double.pad-tb.width-full.capitalize
-                            span [[key]]
+                        div.pad-lr-double.pad-tb.width-full
+                            span [[keyObj.display]]
                             span.table-arrow
             tbody.bg-white
                 tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
                     ng-repeat='
-                        row in table.rows.queried |
-                        orderBy : table.order.value : table.order.reverse
+                        row in table.rows.queried
+                        | orderBy : table.order.value : table.order.reverse
+                        | startAt   : table.paginate.firstRow
+                        | limitTo   : table.paginate.maxRows
                     '
                 )
-                    td(ng-repeat='key in table.keys')
+                    td(ng-repeat='keyObj in table.keys')
                         a.pad-lr-double.pad-tb.width-full(
                             href="/"
-                            ng-if="key !== 'links'"
+                            ng-if="keyObj.value !== 'links'"
                         )
                             div.spacer-xs
-                            div(ng-if="typeOf(row[key]) !== 'object'")
-                                div [[ row[key] ]]
+                            div(ng-if="typeOf(row[keyObj.value]) !== 'object'")
+                                div [[ row[keyObj.value] ]]
                                 div.spacer-sm
 
                             div.pull-left(
-                                ng-if="typeOf(row[key]) === 'object'"
-                                ng-repeat='val in row[key] track by $index'
+                                ng-if="typeOf(row[keyObj.value]) === 'object'"
+                                ng-repeat='val in row[keyObj.value] track by $index'
                             )
-                                div(ng-if="key != 'links'") [[val.text]]
-                        div(ng-if="key === 'links'").width-full.pad-lr
+                                div(ng-if="keyObj.value != 'links'") [[val.text]]
+                        div(ng-if="keyObj.value === 'links'").width-full.pad-lr
                             div
-                                div(ng-repeat='val in row[key] track by $index').small-4.left.pad-lr
+                                div(ng-repeat='val in row[keyObj.value] track by $index').small-4.left.pad-lr
                                     a(href="[[val]]").text-xs.text-hover-gray-dark
                                         div.spacer-xs
                                         div.fa-stack
                                             i.fa.fa-stack-2x.fa-circle-thin
                                             i.fa.fa-stack-1x(class="[[icons.getClass(val.link)]]")
                                         div.spacer-xxs
-                                div(ng-if="row[key].length === 1").small-8.right
+                                div(ng-if="row[keyObj.value].length === 1").small-8.right
                                     a(href="/")
                                         div.spacer-lg
                                         div.spacer-md
                                         div.spacer-xs
-                                div(ng-if="row[key].length === 2").small-4.right
+                                div(ng-if="row[keyObj.value].length === 2").small-4.right
                                     a(href="/")
                                         div.spacer-lg
                                         div.spacer-md

@@ -3,7 +3,8 @@ angular
     // Dependencies
 ])
 .factory("Table", function(
-    $http
+    $http,
+    $filter
 ){
     var Table = (function() {
         var Table = function (options) {
@@ -13,8 +14,17 @@ angular
 
             this.keys = options.keys;
 
+            // Create list of keys that filter affects
+            var filterKeys = (function() {
+                var keys = [];
+                _.each(options.keys, function(val) {
+                    if (val.filter) keys.push(val.value);
+                });
+                return keys;
+            })();
+
             this.order = order.bind(this)();
-            this.filter = filter.bind(this)(options.filterKeys);
+            this.filter = filter.bind(this)(filterKeys);
             this.paginate = paginate.bind(this)();
 
             this.filter.apply();
@@ -31,7 +41,10 @@ angular
                     var include = false;
                     // Create version of row that only contains properties in `filter.keys` list
                     var filterRow = _.pick(row, this.keys);
+
+                    // 
                     _.each(filterRow, function(rowValue, key) {
+                        rowValue = rowValue || '';
                         rowValue = rowValue.toLowerCase();
                         filterValue = this.value.toLowerCase();
                         shouldInclude = rowValue.indexOf(filterValue) > -1;
@@ -40,6 +53,7 @@ angular
                     return include;
                 }.bind(this));
                 root.paginate.update();
+                root.paginate.currentPage = 0;
             };
 
             return _filter;
@@ -71,51 +85,56 @@ angular
 
             _paginate.disabled = true;
 
-            _paginate.pages = {};
-            _paginate.pages.current = 0;
-            _paginate.pages.maxRows = 20;
-            _paginate.pages.length = 0;
+            _paginate.currentPage = 0;
+            _paginate.firstRow = 0;
+            _paginate.maxRows = 15;
+            _paginate.length = 0;
 
             // Total number of pages for current set of queried data
             determineNumOfPages = function() {
-                var pages = Math.ceil(root.rows.queried.length/this.pages.maxRows);
+                var pages = Math.ceil(root.rows.queried.length/this.maxRows);
                 return pages;
             };
 
             // `disableButtons` returns `true` if view's `previous` and `next` buttons should be disabled
             shouldNavBeDisabled = function() {
-                var shouldBeDisabled = this.pages.length <= 1;
+                var shouldBeDisabled = this.length <= 1;
                 return shouldBeDisabled;
             };
 
             _paginate.update = function () {
-                this.pages.length = determineNumOfPages.bind(this)();
+                this.length = determineNumOfPages.bind(this)();
                 this.disabled = shouldNavBeDisabled.bind(this)();
+                this.firstRow = this.currentPage * this.maxRows;
             };
 
             _paginate.displayCurrent = function() {
-                if (this.pages.length === 0) return 0;
-                var page = this.pages.current + 1;
-                if (page <= 0) page = this.pages.length + page;
+                if (this.length === 0) return 0;
+                var page = this.currentPage + 1;
+                if (page <= 0) page = this.length + page;
                 return page;
             };
 
             // Go back one page
             _paginate.previous = function () {
-                if (this.pages.current > 0) {
-                    this.pages.current -= 1;
+                if (this.currentPage > 0) {
+                    this.currentPage -= 1;
                 } else {
-                    this.pages.current = this.pages.length - 1;
+                    this.currentPage = this.length - 1;
                 }
+
+                this.update();
             };
 
             // Go forward one page
             _paginate.next = function () {
-                if (this.pages.current < this.pages.length - 1) {
-                    this.pages.current += 1;
+                if (this.currentPage < this.length - 1) {
+                    this.currentPage += 1;
                 } else {
-                    this.pages.current = 0;
+                    this.currentPage = 0;
                 }
+
+                this.update();
             };
 
             return _paginate;
