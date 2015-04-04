@@ -38,14 +38,14 @@ div.row.bg-gray-light
 
             div.columns.small-3.height-medium(ng-click="table.paginate.previous()")
                 div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Previous Page
+                    div.text-valign Previous
 
             div.columns.small-2.height-medium
-                div.text-xxs.width-full.pad.text-center.bg-red
-                    div.text-valign [[ table.paginate.displayCurrent() ]] / [[ table.paginate.pages.length ]]
+                div.text-xxs.width-full.pad.text-center.bg-gray-dark
+                    div.text-valign Page [[ table.paginate.displayCurrent() ]] of [[ table.paginate.pages.length ]]
             div.columns.small-3(ng-click="table.paginate.next()")
                 div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Next Page
+                    div.text-valign Next
 
         div.spacer-sm
         table.text-left.text-gray-dark.text-xxs.valign-top
@@ -55,7 +55,7 @@ div.row.bg-gray-light
                         ng-repeat="key in table.keys"
                         ng-click="table.order.set(key)"
                         ng-class="{
-                            'selected bg-green'    : table.order.latestInput === key,
+                            'selected bg-blue'    : table.order.latestInput === key,
                             'reversed'    : table.order.latestInput === key && table.order.reverse
                         }"
                     )
