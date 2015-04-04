@@ -17,8 +17,9 @@ def init_db():
 def populate_db():
     # iterate over fixtures and add to db
     for team in seed:
-        new_team = um.Team(team.get("name"), team.get("city"),
-                           team.get("country"))
+        new_team = um.Team(team.get("name").decode("utf-8"),
+                           team.get("city").decode("utf-8"),
+                           team.get("country").decode("utf-8"))
 
         for l in team["locations"]:
             new_team.practice_locations.append(
@@ -67,15 +68,15 @@ def populate_db():
             for data in geodata:
                 # bleh this whole section need a rework
                 if "country" in data["types"]:
-                    country = data["short_name"]
+                    country = data["long_name"]
                 elif "locality" in data["types"]:
                     city = data["short_name"]
                 elif "administrative_area_level_1" in data["types"]:
-                    state.append(data["short_name"])
+                    state.append(data["long_name"])
                 elif "administrative_area_level_2" in data["types"]:
-                    state.append(data["short_name"])
+                    state.append(data["long_name"])
                 elif "administrative_area_level_3" in data["types"]:
-                    state.append(data["short_name"])
+                    state.append(data["long_name"])
             if len(state) == 0:
                 print response.json()
             else:

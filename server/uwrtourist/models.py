@@ -40,7 +40,7 @@ class Team(db.Model, BaseMixin):
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
     location = db.Column(db.String(256))
-    country_code = db.Column(db.String(2))
+    country = db.Column(db.String(256))
 
     def __init__(self, club_name, city, country):
         self.name = club_name
