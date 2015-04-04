@@ -1,5 +1,7 @@
+# coding=utf-8
+
 all_teams = [
- ["TSG Kirchhellen", 51.603171, 6.917154, "http://uwr1.de/vereine/tsg-kirchhellen", ""],
+        ["TSG Kirchhellen", 51.603171, 6.917154, "http://uwr1.de/vereine/tsg-kirchhellen", ""],
         ["TSV Malsch", 48.8786745, 8.3373208, "http://uwr1.de/vereine/tsv-malsch", "http://www.uwr-malsch.de/"],
         ["TSC Shark Mannheim", 49.4848, 8.47609, "http://uwr1.de/vereine/tsc-shark-mannheim", "http://www.shark-mannheim.de/"],
         ["Bönnsche Sterntaucher e.V.", 50.73247, 7.09614, "http://uwr1.de/vereine/boennsche-sterntaucher", "http://www.boennsche-sterntaucher.de/"],

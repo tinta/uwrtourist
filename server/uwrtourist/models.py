@@ -22,8 +22,14 @@ class BaseMixin(object):
                    d[attr.key].append(elem.as_dict())
             elif value is None:
                 d[attr.key] = None
-            else:
+            elif isinstance(value, datetime.datetime):
+                d[attr.key] = value.strftime("%H:%M %d-%m-%y")
+            elif isinstance(value, (int, long, float, complex)):
                 d[attr.key] = str(value)
+            elif isinstance(value, unicode):
+                d[attr.key] = value.encode("utf-8")
+            else:
+                pass
         return d
 
 class Team(db.Model, BaseMixin):
@@ -34,10 +40,12 @@ class Team(db.Model, BaseMixin):
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
     location = db.Column(db.String(256))
+    country_code = db.Column(db.String(2))
 
-    def __init__(self, club_name, city):
+    def __init__(self, club_name, city, country):
         self.name = club_name
         self.location = city
+        self.country_code = country
 
     practice_locations = relationship("PracticeLocation",
                                       order_by="PracticeLocation.id",
