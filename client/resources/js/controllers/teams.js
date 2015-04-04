@@ -13,14 +13,19 @@ angular.module('ControllerTeams', [
     $window,
     Table
 ){
-    $scope.table = new Table(
-        window.teams,
-        [
-            'name',
-            'location',
-            'links'
-        ]
-    );
+    var tableOptions = {};
+    tableOptions.rows = window.teams;
+    tableOptions.keys = [
+        'name',
+        'location',
+        'links'
+    ];
+    tableOptions.filterKeys = [
+        'name',
+        'location'
+    ];
+
+    $scope.table = new Table(tableOptions);
 
     $scope.table.order.set('name');
 

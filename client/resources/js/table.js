@@ -3,29 +3,42 @@ angular
     // Dependencies
 ])
 .factory("Table", function(
-    $http,
-    $filter
+    $http
 ){
     var Table = (function() {
-        var Table = function (collection, whiteList) {
-            this.rows = collection;
-            this.queried = [];
-            this.keys = whiteList;
+        var Table = function (options) {
+            this.rows = {};
+            this.rows.all = options.rows;
+            this.rows.queried = [];
+
+            this.keys = options.keys;
 
             this.order = order.bind(this)();
-            this.filter = filter.bind(this)();
+            this.filter = filter.bind(this)(options.filterKeys);
             this.paginate = paginate.bind(this)();
 
             this.filter.apply();
         };
 
-        function filter () {
+        function filter (keys) {
             var root = this;
 
             var _filter = {};
+            _filter.keys = keys;
             _filter.value = '';
             _filter.apply = function () {
-                root.queried = $filter('filter')(root.rows, _filter.value);
+                root.rows.queried = _.filter(root.rows.all, function(row) {
+                    var include = false;
+                    // Create version of row that only contains properties in `filter.keys` list
+                    var filterRow = _.pick(row, this.keys);
+                    _.each(filterRow, function(rowValue, key) {
+                        rowValue = rowValue.toLowerCase();
+                        filterValue = this.value.toLowerCase();
+                        shouldInclude = rowValue.indexOf(filterValue) > -1;
+                        if (shouldInclude) include = shouldInclude;
+                    }.bind(this));
+                    return include;
+                }.bind(this));
                 root.paginate.update();
             };
 
@@ -65,7 +78,7 @@ angular
 
             // Total number of pages for current set of queried data
             determineNumOfPages = function() {
-                var pages = Math.ceil(root.queried.length/this.pages.maxRows);
+                var pages = Math.ceil(root.rows.queried.length/this.pages.maxRows);
                 return pages;
             };
 

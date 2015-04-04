@@ -65,7 +65,7 @@ div.row.bg-gray-light
             tbody.bg-white
                 tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
                     ng-repeat='
-                        row in table.queried |
+                        row in table.rows.queried |
                         orderBy : table.order.value : table.order.reverse
                     '
                 )
