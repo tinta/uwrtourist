@@ -8,6 +8,7 @@ from uwrtourist.fixtures.geo_data import all_teams
 
 # other libraries
 import requests
+import time
 
 def init_db():
     # do this import so that all models are create when create_all is called
@@ -58,27 +59,36 @@ def populate_db():
         team_links = team[3:]
         response = requests.get(base_url, params={"latlng": coordinates, "sensor": False})
         # simply grab first result
-        if response.json()["status"] == "OK":
+        if response.json()["status"] == u"OK":
             geodata = response.json()["results"][0]["address_components"]
             country = ""
             city = ""
-            state = ""
+            state = []
             for data in geodata:
+                # bleh this whole section need a rework
                 if "country" in data["types"]:
                     country = data["short_name"]
                 elif "locality" in data["types"]:
                     city = data["short_name"]
                 elif "administrative_area_level_1" in data["types"]:
-                    state = data["short_name"]
-
-            location = ", ".join([city, state])
-            new_team = um.Team(team_name, location, country)
-            for l in team_links:
-                if "uwr1.de" not in l:
-                    new_team.links.append(um.Link(l.decode("utf-8")))
-            db.session.add(new_team)
+                    state.append(data["short_name"])
+                elif "administrative_area_level_2" in data["types"]:
+                    state.append(data["short_name"])
+                elif "administrative_area_level_3" in data["types"]:
+                    state.append(data["short_name"])
+            if len(state) == 0:
+                print response.json()
+            else:
+                location = ", ".join([city, state[0]])
+                new_team = um.Team(team_name, location, country)
+                for l in team_links:
+                    if "uwr1.de" not in l:
+                        new_team.links.append(um.Link(l.decode("utf-8")))
+                db.session.add(new_team)
+                # do this to avoid hititng google maps api limit
+                time.sleep(.5)
         else:
-            print "error: ", team
+            print "error: ", response.json()["status"], team
 
     db.session.commit()
 
