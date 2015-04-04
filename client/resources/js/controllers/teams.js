@@ -40,7 +40,7 @@ angular.module('ControllerTeams', [
 
     $scope.table = new Table(tableOptions);
 
-    $scope.table.order.set('name');
+    $scope.table.order.set('country_code');
 
     $scope.typeOf = function(input) {
         return typeof input;
