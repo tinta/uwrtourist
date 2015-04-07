@@ -45,7 +45,7 @@ class Team(db.Model, BaseMixin):
     def __init__(self, club_name, city, country):
         self.name = club_name
         self.location = city
-        self.country_code = country
+        self.country = country
 
     practice_locations = relationship("PracticeLocation",
                                       order_by="PracticeLocation.id",
