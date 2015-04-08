@@ -1,7 +1,7 @@
 $alignments: (
-    right: "right",
-    left: "left",
-    center: "center",
+    right: right,
+    left: left,
+    center: center,
 );
 
 @include breakpoint($alignments, text-align, "text");

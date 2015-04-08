@@ -45,3 +45,11 @@ input[type=email] {
         box-shadow: none;
     }
 }
+
+form {
+
+    input {
+        @extend .text-thin;
+        @extend .round-md;
+    }
+}

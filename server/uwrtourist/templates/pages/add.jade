@@ -16,12 +16,54 @@ script(src="/resources/js/map.js")
 
 {% block body %}
 div.spacer-xs
-form(method="POST", action="/add-new-team", name="add-team")
-    input(type="text", name="name", label="Team Name")
-    input(type="text", name="city", label="Home Base")
-    input(type="text", name="size", label="Team Size")
-    input(type="text", name="practice-locations", label="Practice Locations")
-    input(type="text", name="urls", label="Team Links")
-    input(type="text", name="contacts", label="Contacts")
-    input(type="submit")
+form.text-xs(
+    method="POST"
+    action="/add-new-team"
+    name="add-team"
+)
+    input(
+        type="text"
+        name="name"
+        label="Team Name"
+        tabindex="1"
+    )
+
+    input(
+        type="text"
+        name="city"
+        label="Home Base"
+    )
+
+    input(
+        type="text"
+        name="size"
+        label="Team Size"
+    )
+
+    input(
+        type="text"
+        name="practice locations"
+        label="Practice Locations"
+    )
+
+    div.spacer-md
+
+    input(
+        type="text"
+        name="urls"
+        label="Team Links"
+    )
+
+    input(
+        type="text"
+        name="contacts"
+        label="Contacts"
+    )
+
+    div.spacer-md
+
+    input.pad.bg-blue.text-white(
+        type="submit"
+    )
+
 {% endblock %}
