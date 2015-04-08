@@ -80,7 +80,7 @@ class PracticeTime(db.Model, BaseMixin):
 class Link(db.Model, BaseMixin):
     __tablename__ = "links"
     # facebook, twitter, meetup, etc
-    link = db.Column(db.String(128))
+    link = db.Column(db.String(128), nullable=False)
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
 
     def __init__(self, url):

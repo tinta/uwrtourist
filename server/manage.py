@@ -83,7 +83,7 @@ def populate_db():
                 location = ", ".join([city, state[0]])
                 new_team = um.Team(team_name, location, country)
                 for l in team_links:
-                    if "uwr1.de" not in l:
+                    if "uwr1.de" not in l and l is not "":
                         new_team.links.append(um.Link(l.decode("utf-8")))
                 db.session.add(new_team)
                 # do this to avoid hititng google maps api limit
