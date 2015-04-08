@@ -40,12 +40,12 @@ class Team(db.Model, BaseMixin):
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
     location = db.Column(db.String(256))
-    country_code = db.Column(db.String(2))
+    country = db.Column(db.String(256))
 
     def __init__(self, club_name, city, country):
         self.name = club_name
         self.location = city
-        self.country_code = country
+        self.country = country
 
     practice_locations = relationship("PracticeLocation",
                                       order_by="PracticeLocation.id",
@@ -80,7 +80,7 @@ class PracticeTime(db.Model, BaseMixin):
 class Link(db.Model, BaseMixin):
     __tablename__ = "links"
     # facebook, twitter, meetup, etc
-    link = db.Column(db.String(128))
+    link = db.Column(db.String(128), nullable=False)
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
 
     def __init__(self, url):

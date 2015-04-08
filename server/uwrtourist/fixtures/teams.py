@@ -1,8 +1,10 @@
+# coding=utf-8
+
 seed = [
     {
         "name": "San Francisco Sea Bass",
         "city": "San Francisco, CA",
-        "country": "US",
+        "country": "United States",
         "locations": [
             {
                 "uid": 0,
@@ -46,8 +48,8 @@ seed = [
     },
     {
         "name": "Club CAMO",
-        "city": "Montreal, QC",
-        "country": "CA",
+        "city": "Montréal, Quebec",
+        "country": "Canada",
         "locations": [
             {
                 "uid": 0,
@@ -87,7 +89,7 @@ seed = [
     {
         "name": "New Jersey Hammerheads",
         "city": "Newark, NJ",
-        "country": "US",
+        "country": "United States",
         "locations": [
             {
                 "uid": 0,
@@ -145,7 +147,7 @@ seed = [
     {
         "name": "Quincy Narwhals",
         "city": "Quincy, MA",
-        "country": "US",
+        "country": "United States",
         "locations": [
             {
                 "uid": 0,
@@ -205,8 +207,8 @@ seed = [
     },
     {
         "name": "Club Liberation",
-        "city": "Brantford, ON",
-        "country": "CA",
+        "city": "Brantford, Ontario",
+        "country": "Canada",
         "locations": [
             {
                 "uid": 0,
