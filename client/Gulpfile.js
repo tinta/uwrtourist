@@ -6,18 +6,20 @@ var paths = {};
 paths.projectRoot = '../';
 paths.resources = './client/resources/';
 paths.build = paths.resources + 'build/';
-paths.scss = {};function logStd (data) {
-    var message = data.toString();
-    if (data) console.log(message);
-}
+
+paths.scss = {};
 paths.scss.root = paths.resources + 'scss/';
-paths.scss.src = [paths.scss.root + 'init.scss'];
+paths.scss.src = [
+    paths.scss.root + 'init.scss'
+];
 paths.scss.watch = [paths.scss.root + '**/*.scss'];
+
 paths.js = {};
 paths.js.root = paths.resources + 'js/';
 paths.js.build = 'build.js';
 paths.js.watch = [paths.resources + 'js/**/*.js'];
 
+// Change dir to project root. All paths in `paths` should reflect this.
 process.chdir(paths.projectRoot);
 
 gulp.task('js:lint', function() {

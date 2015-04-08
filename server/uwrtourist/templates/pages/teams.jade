@@ -8,9 +8,9 @@ link(
 {% endblock %}
 
 {% block javascript %}
-script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js")
-script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
-script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js")
+script(src="/node_modules/lodash/index.js")
+script(src="/node_modules/jquery/dist/jquery.min.js")
+script(src="/node_modules/angular/angular.min.js")
 script(src="/resources/js/filters/startAt.js")
 script(src="/resources/js/controllers/teams.js")
 script(src="/resources/js/table.js")
@@ -26,9 +26,9 @@ div.row.bg-gray-light
         ng-cloak
     )
         div.spacer-lg
-        div.row.collapse.bg-green.text-white
+        div.row.collapse
             div.column.small-6
-                input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad(
+                input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad.bg-white(
                     type="text"
                     placeholder="Search by Name or Region"
                     ng-model="table.filter.value"
@@ -36,17 +36,18 @@ div.row.bg-gray-light
                     tabindex="1"
                 )
 
+            div.column.small-6
+                div.row.collapse.text-white
+                    div.column.small-4.bg-green(ng-click="table.paginate.previous()")
+                        div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+                            div.text-valign Previous
 
-            div.columns.small-2.height-medium(ng-click="table.paginate.previous()")
-                div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Previous
-
-            div.columns.small-2.height-medium
-                div.text-xxs.width-full.pad.text-center.bg-gray-dark
-                    div.text-valign Page [[ table.paginate.displayCurrent() ]] of [[ table.paginate.length ]]
-            div.columns.small-2(ng-click="table.paginate.next()")
-                div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
-                    div.text-valign Next
+                    div.column.small-4
+                        div.text-xxs.width-full.pad.text-center.bg-gray-dark
+                            div.text-valign Page [[ table.paginate.displayCurrent() ]] of [[ table.paginate.length ]]
+                    div.column.small-4.height-medium.bg-green(ng-click="table.paginate.next()")
+                        div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+                            div.text-valign Next
 
         div.spacer-sm
         table.text-left.text-gray-dark.text-xxs.valign-top
@@ -89,7 +90,7 @@ div.row.bg-gray-light
                                 div(ng-if="keyObj.value != 'links'") [[val.text]]
                         div(ng-if="keyObj.value === 'links'").width-full.pad-lr
                             div
-                                div.small-4.left.pad-lr(
+                                div.left.pad-lr(
                                     ng-if="val.link"
                                     ng-repeat='val in row[keyObj.value] track by $index'
                                 )
@@ -100,15 +101,5 @@ div.row.bg-gray-light
                                             i.fa.fa-stack-2x.fa-circle-thin
                                             i.fa.fa-stack-1x(class="[[icons.getClass(val.link)]]")
                                         div.spacer-xxs
-                                div(ng-if="row[keyObj.value].length === 1").small-8.right
-                                    a(href="/")
-                                        div.spacer-lg
-                                        div.spacer-md
-                                        div.spacer-xs
-                                div(ng-if="row[keyObj.value].length === 2").small-4.right
-                                    a(href="/")
-                                        div.spacer-lg
-                                        div.spacer-md
-                                        div.spacer-xs
         div.spacer-xl
 {% endblock %}
