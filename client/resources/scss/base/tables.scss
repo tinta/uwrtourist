@@ -26,29 +26,32 @@ table {
     .table-arrow {
         font-size: 10px;
         position: absolute;
-        right: 10px;
-        top: 11px;
+        right: 7px;
+        top: 13px;
         display: none;
         width: 0;
         height: 0;
     }
 
+    $width: 0.5em;
+    $height: 0.8em;
+
     .selected {
 
         .table-arrow {
             display: inline-block;
-            border-left: .6em solid transparent;
-            border-right: .6em solid transparent;
+            border-left: $width solid transparent;
+            border-right: $width solid transparent;
             border-bottom: 0 solid transparent;
-            border-top: 1em solid map-get($colors, gray-light);
+            border-top: $height solid map-get($colors, gray-light);
         }
 
         &.reversed {
             .table-arrow {
                 display: inline-block;
-                border-left: .6em solid transparent;
-                border-right: .6em solid transparent;
-                border-bottom: 1em solid map-get($colors, gray-light);
+                border-left: $width solid transparent;
+                border-right: $width solid transparent;
+                border-bottom: $height solid map-get($colors, gray-light);
                 border-top: 0 solid transparent;
             }
         }
