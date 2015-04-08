@@ -29,7 +29,7 @@ angular.module('ControllerTeams', [
         },
         {
             display: 'Country',
-            value: 'country_code',
+            value: 'country',
             filter: true
         },
         {
@@ -40,7 +40,7 @@ angular.module('ControllerTeams', [
 
     $scope.table = new Table(tableOptions);
 
-    $scope.table.order.set('name');
+    $scope.table.order.set('country');
 
     $scope.typeOf = function(input) {
         return typeof input;

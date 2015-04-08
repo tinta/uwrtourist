@@ -89,8 +89,12 @@ div.row.bg-gray-light
                                 div(ng-if="keyObj.value != 'links'") [[val.text]]
                         div(ng-if="keyObj.value === 'links'").width-full.pad-lr
                             div
-                                div(ng-repeat='val in row[keyObj.value] track by $index').small-4.left.pad-lr
-                                    a(href="[[val]]").text-xs.text-hover-gray-dark
+                                div.small-4.left.pad-lr(
+                                    ng-if="val.link"
+                                    ng-repeat='val in row[keyObj.value] track by $index'
+                                )
+
+                                    a(href="[[val.link]]").text-xs.text-hover-gray-dark
                                         div.spacer-xs
                                         div.fa-stack
                                             i.fa.fa-stack-2x.fa-circle-thin
