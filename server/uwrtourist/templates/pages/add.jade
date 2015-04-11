@@ -27,7 +27,7 @@ div.row.collapse.bg-gray-light
                 div.row.uncollapse
                     div.column.small-2.text-right
                         div.spacer-xs
-                        div.text-xs Team Name
+                        div.text-xs.text-xbold Team Name
 
                     div.column.small-4.left
                         input.text-xs.round-md(
@@ -41,7 +41,7 @@ div.row.collapse.bg-gray-light
                 div.row.uncollapse
                     div.column.small-2.text-right
                         div.spacer-xs
-                        div.text-xs Location
+                        div.text-xs.text-xbold Location
 
                     div.column.small-4.left
                         input.text-xs.round-md(
@@ -78,7 +78,7 @@ div.row.collapse.bg-gray-light
                         textarea.round-md.text-xs(
                             name="blurb"
                             tabindex="4"
-                            placeholder="Introduce yourself!"
+                            placeholder="Introduce your team!"
                         )
 
         div.spacer-xl
@@ -92,9 +92,9 @@ div.row.collapse.bg-gray-light
 
                 div.row.uncollapse
                     div.column.small-2.text-right
-                        div.fa-stack.text-xs
-                            i.fa.fa-stack-2x.fa-circle-thin
-                            i.fa.fa-stack-1x 1
+                        div.fa-stack.text-xs.text-blue
+                            i.fa.fa-stack-2x.fa-square
+                            i.fa.fa-stack-1x.text-white.text-xbold 1
 
                     div.column.small-10
                         div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
@@ -102,7 +102,7 @@ div.row.collapse.bg-gray-light
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
                                     div.spacer-1
-                                    div URL
+                                    div.text-xbold URL
                             div.column.small-10.border-gray-dark-l
                                 div.text-xs.input-height
                                     input.pad.input-invis(
@@ -123,7 +123,7 @@ div.row.collapse.bg-gray-light
                                     div.spacer-1
                                     div
                                         i.fa.fa-plus
-                            div.column.small-3.left.border-green.border-none-l.bg-green.text-white.round-md-right
+                            div.column.small-4.left.border-green.border-none-l.bg-green.text-white.round-md-right
                                 div.text-xs.input-height.pad
                                     span Add New Link
 
@@ -139,9 +139,9 @@ div.row.collapse.bg-gray-light
 
                 div.row.uncollapse
                     div.column.small-2.text-right
-                        div.fa-stack.text-xs
-                            i.fa.fa-stack-2x.fa-circle-thin
-                            i.fa.fa-stack-1x 1
+                        div.fa-stack.text-xs.text-blue
+                            i.fa.fa-stack-2x.fa-square
+                            i.fa.fa-stack-1x.text-white.text-xbold 1
 
                     div.column.small-10
                         div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
@@ -149,7 +149,23 @@ div.row.collapse.bg-gray-light
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
                                     div.spacer-1
-                                    div Name
+                                    div.text-xbold Name
+                            div.column.small-10.border-gray-dark-l
+                                div.text-xs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                    )
+
+                        div.spacer-xs
+
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                            div.column.small-2.text-center
+                                div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div.text-xbold Email
                             div.column.small-10.border-gray-dark-l
                                 div.text-xs.input-height
                                     input.pad.input-invis(
@@ -166,22 +182,6 @@ div.row.collapse.bg-gray-light
                                     div.spacer-xs
                                     div.spacer-1
                                     div Title
-                            div.column.small-10.border-gray-dark-l
-                                div.text-xs.input-height
-                                    input.pad.input-invis(
-                                        type="text"
-                                        name="contact"
-                                        tabindex="5"
-                                    )
-
-                        div.spacer-xs
-
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
-                            div.column.small-2.text-center
-                                div.bg-gray-dark.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div Email
                             div.column.small-10.border-gray-dark-l
                                 div.text-xs.input-height
                                     input.pad.input-invis(

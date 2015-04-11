@@ -19,7 +19,7 @@ $palette: (
 
 $bg-colors: map-merge($base-colors, $palette);
 
-$text-colors: $base-colors;
+$text-colors: map-merge($base-colors, $palette);
 
 $border-colors: (
     "gray-dark": map-get($base-colors, "gray-dark"),
