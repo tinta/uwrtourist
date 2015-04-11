@@ -39,7 +39,7 @@ def addform():
         pass
     else:
         # show the login form
-        title = gettext("Add a new team")
+        title = gettext("Add a New Team")
         return render_template("pages/add.jade", title=title)
 
 @app.route("/competitions")

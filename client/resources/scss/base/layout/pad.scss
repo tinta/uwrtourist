@@ -16,7 +16,7 @@ html {
             @extend %pad;
         }
 
-        .pad-#{$key}-double {
+        .pad-#{$key}-2x {
             padding-#{$val}: $pad * 2;
             @extend %pad;
         }
@@ -37,18 +37,18 @@ html {
         @extend .pad-tb;
     }
 
-    .pad-tb-double {
-        @extend .pad-t-double;
-        @extend .pad-b-double;
+    .pad-tb-2x {
+        @extend .pad-t-2x;
+        @extend .pad-b-2x;
     }
 
-    .pad-lr-double {
-        @extend .pad-l-double;
-        @extend .pad-r-double;
+    .pad-lr-2x {
+        @extend .pad-l-2x;
+        @extend .pad-r-2x;
     }
 
-    .pad-double {
-        @extend .pad-lr-double;
-        @extend .pad-tb-double;
+    .pad-2x {
+        @extend .pad-lr-2x;
+        @extend .pad-tb-2x;
     }
 }

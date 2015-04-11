@@ -11,55 +11,81 @@ link(
 {% endblock %}
 
 {% block body %}
-div.spacer-xs
-form.text-xs(
-    method="POST"
-    action="/add-new-team"
-    name="add-team"
-)
-    input(
-        type="text"
-        name="name"
-        label="Team Name"
-        tabindex="1"
-    )
 
-    input(
-        type="text"
-        name="city"
-        label="Home Base"
-    )
+div.row.collapse.bg-gray-light
+    div.column.small-11.small-centered
+        div.spacer-lg
 
-    input(
-        type="text"
-        name="size"
-        label="Team Size"
-    )
+        div.row
+            div.column.small-12
+                div
+                    div.text-sm Basic Info
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-lg
 
-    input(
-        type="text"
-        name="practice locations"
-        label="Practice Locations"
-    )
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.spacer-xs
+                        div.text-xs Team Name
 
-    div.spacer-md
+                    div.column.small-4.left
+                        input.text-xs(
+                            type="text"
+                            name="name"
+                            tabindex="1"
+                        )
 
-    input(
-        type="text"
-        name="urls"
-        label="Team Links"
-    )
+                div.spacer-md
 
-    input(
-        type="text"
-        name="contacts"
-        label="Contacts"
-    )
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.spacer-xs
+                        div.text-xs Location
 
-    div.spacer-md
+                    div.column.small-4.left
+                        input.text-xs(
+                            type="text"
+                            name="city"
+                            tabindex="2"
+                            placeholder="Your team's metro area"
+                        )
 
-    input.pad.bg-blue.text-white(
-        type="submit"
-    )
+                div.spacer-md
+
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.spacer-xs
+                        div.text-xs Year Founded
+
+                    div.column.small-4.left
+                        select.text-xs(
+                            name="yearEstablished"
+                            tabindex="3"
+                        )
+                            option(default) I don't know
+                            option 2014
+                            option 2015
+
+                div.spacer-md
+
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.spacer-xs
+                        div.text-xs Blurb
+
+                    div.column.small-4.left
+                        textarea.text-xs(
+                            name="blurb"
+                            tabindex="4"
+                            placeholder="Introduce yourself!"
+                        )
+
+        div.spacer-lg
+        div.text-center
+            input.pad-tb.pad-lr-2x.bg-blue.text-white.text-xs(
+                type="submit"
+            )
+        div.spacer-lg
 
 {% endblock %}

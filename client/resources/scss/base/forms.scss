@@ -26,31 +26,30 @@ input[type=radio] {
     display: none;
 }
 
+select,
+textarea,
 input[type=text],
 input[type=email] {
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
     outline: none;
-    overflow: hidden;
+    border: 1px solid map-get($colors, gray-dark);
     margin: 0;
     padding: 5px 10px;
     color: inherit;
-    border: 1px solid map-get($colors, gray-dark);
+    background-color: #fff;
+    overflow: hidden;
 
-    &.invis {
-        background: transparent;
-        border: none;
-        padding: 0;
-        box-shadow: none;
-    }
+    width: 100%;
+    max-width: 100%;
+
+    -webkit-transition: background-color 0.30s ease-in-out;
+    -moz-transition: background-color 0.30s ease-in-out;
+    -ms-transition: background-color 0.30s ease-in-out;
+    -o-transition: background-color 0.30s ease-in-out;
+
+    @extend .round-md;
 }
 
-form {
-
-    input {
-        @extend .text-thin;
-        @extend .round-md;
-    }
+select {
+    height: 1.85em;
+    font-size: inherit;
 }
