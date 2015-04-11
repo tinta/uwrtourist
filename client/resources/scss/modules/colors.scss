@@ -1,20 +1,27 @@
-$colors: (
-    "gray-dark"   : #414141,
-    "gray-md" : #9F9FA0,
-    "gray-md-dark": #7f7f7f,
-    "gray-md-light": #CCCCCC,
-    "gray-light"  : #EDEDED,
-    "gray-xlight"  : #F6F6F6,
-    "white"   : #FFFFFF,
-    "black-overlay": rgba(0,0,0,0.75),
-    "none"    : transparent
+$base-colors: (
+    "gray-dark"     : #414141,
+    "gray-md"       : #9F9FA0,
+    "gray-md-dark"  : #7f7f7f,
+    "gray-md-light" : #CCCCCC,
+    "gray-light"    : #EDEDED,
+    "gray-xlight"   : #F6F6F6,
+    "white"         : #FFFFFF,
+    "black-overlay" : rgba(0,0,0,0.75),
+    "none"          : transparent
 );
 
-$palette1: (
-    "blue": #587A89,
+$palette: (
+    "blue"  : #587A89,
     "yellow": #FFB03B,
-    "green": #468966,
-    "red": #D06340
+    "green" : #468966,
+    "red"   : #D06340
 );
 
-$palette: $palette1;
+$bg-colors: map-merge($base-colors, $palette);
+
+$text-colors: $base-colors;
+
+$border-colors: (
+    "gray-dark": map-get($base-colors, "gray-dark"),
+    "green": map-get($palette, "green")
+);

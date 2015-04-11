@@ -30,7 +30,7 @@ div.row.collapse.bg-gray-light
                         div.text-xs Team Name
 
                     div.column.small-4.left
-                        input.text-xs(
+                        input.text-xs.round-md(
                             type="text"
                             name="name"
                             tabindex="1"
@@ -44,7 +44,7 @@ div.row.collapse.bg-gray-light
                         div.text-xs Location
 
                     div.column.small-4.left
-                        input.text-xs(
+                        input.text-xs.round-md(
                             type="text"
                             name="city"
                             tabindex="2"
@@ -75,13 +75,138 @@ div.row.collapse.bg-gray-light
                         div.text-xs Blurb
 
                     div.column.small-4.left
-                        textarea.text-xs(
+                        textarea.round-md.text-xs(
                             name="blurb"
                             tabindex="4"
                             placeholder="Introduce yourself!"
                         )
 
-        div.spacer-lg
+        div.spacer-xl
+        div.row
+            div.column.small-12
+                div
+                    div.text-sm Links
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-lg
+
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.fa-stack.text-xs
+                            i.fa.fa-stack-2x.fa-circle-thin
+                            i.fa.fa-stack-1x 1
+
+                    div.column.small-10
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                            div.column.small-2.text-center
+                                div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div URL
+                            div.column.small-10.border-gray-dark-l
+                                div.text-xs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="link"
+                                        tabindex="5"
+                                    )
+
+                div.spacer-md
+                div.row.uncollapse
+                    div.column.small-2 &nbsp;
+
+                    div.column.small-10.left
+                        div.row.collapse.text-center
+                            div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                                div.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div
+                                        i.fa.fa-plus
+                            div.column.small-3.left.border-green.border-none-l.bg-green.text-white.round-md-right
+                                div.text-xs.input-height.pad
+                                    span Add New Link
+
+        div.spacer-xl
+
+        div.row
+            div.column.small-12
+                div
+                    div.text-sm Contacts
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-lg
+
+                div.row.uncollapse
+                    div.column.small-2.text-right
+                        div.fa-stack.text-xs
+                            i.fa.fa-stack-2x.fa-circle-thin
+                            i.fa.fa-stack-1x 1
+
+                    div.column.small-10
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                            div.column.small-2.text-center
+                                div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div Name
+                            div.column.small-10.border-gray-dark-l
+                                div.text-xs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                    )
+
+                        div.spacer-xs
+
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                            div.column.small-2.text-center
+                                div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div Title
+                            div.column.small-10.border-gray-dark-l
+                                div.text-xs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                    )
+
+                        div.spacer-xs
+
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                            div.column.small-2.text-center
+                                div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div Email
+                            div.column.small-10.border-gray-dark-l
+                                div.text-xs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                    )
+
+                div.spacer-md
+                div.row.uncollapse
+                    div.column.small-2 &nbsp;
+
+                    div.column.small-10.left
+                        div.row.collapse.text-center
+                            div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                                div.input-height.text-white.text-xs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div
+                                        i.fa.fa-plus
+                            div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
+                                div.text-xs.input-height.pad
+                                    span Add New Contact
+
+        div.spacer-xl
         div.text-center
             input.pad-tb.pad-lr-2x.bg-blue.text-white.text-xs(
                 type="submit"

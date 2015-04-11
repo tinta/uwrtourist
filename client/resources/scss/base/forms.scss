@@ -28,10 +28,10 @@ input[type=radio] {
 
 select,
 textarea,
-input[type=text],
-input[type=email] {
+[type=text],
+[type=email] {
+    height: 2em;
     outline: none;
-    border: 1px solid map-get($colors, gray-dark);
     margin: 0;
     padding: 5px 10px;
     color: inherit;
@@ -46,10 +46,20 @@ input[type=email] {
     -ms-transition: background-color 0.30s ease-in-out;
     -o-transition: background-color 0.30s ease-in-out;
 
-    @extend .round-md;
+    border: 1px solid map-get($border-colors, gray-dark);
 }
 
-select {
-    height: 1.85em;
-    font-size: inherit;
+textarea {
+    padding: 8px 10px;
+}
+
+.input-height {
+    height: 2em;
+}
+
+.input-invis {
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
 }

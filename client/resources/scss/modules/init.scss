@@ -1,3 +1,10 @@
 // This directory should not include any SCSS that directly outputs CSS. - WHR
 @import "colors";
 @import "breakpoint";
+
+$dirs: (
+    "t": "top",
+    "r": "right",
+    "b": "bottom",
+    "l": "left"
+);

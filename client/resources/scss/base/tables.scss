@@ -43,7 +43,7 @@ table {
             border-left: $width solid transparent;
             border-right: $width solid transparent;
             border-bottom: 0 solid transparent;
-            border-top: $height solid map-get($colors, gray-light);
+            border-top: $height solid map-get($base-colors, gray-light);
         }
 
         &.reversed {
@@ -51,7 +51,7 @@ table {
                 display: inline-block;
                 border-left: $width solid transparent;
                 border-right: $width solid transparent;
-                border-bottom: $height solid map-get($colors, gray-light);
+                border-bottom: $height solid map-get($base-colors, gray-light);
                 border-top: 0 solid transparent;
             }
         }
