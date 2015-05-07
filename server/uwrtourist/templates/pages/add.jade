@@ -10,235 +10,236 @@ script(src="/node_modules/angular/angular.js")
 script(src="/resources/js/controllers/addTeam.js")
 {% endblock %}
 
+mixin addTeamFormHeader (text)
+    div.row.collapse.bg-gray-light
+        div.column.small-11.small-centered
+            div.row
+                div.column.small-12
+                    div.spacer-xs
+                    div.text-sm {{text}}
+                    div.spacer-xs
+
+
 {% block body %}
+form(
+    ng-app="ControllerAddTeam"
+    ng-controller="ControllerAddTeam"
+    ng-cloak
+    novalidate
+)
+    +addTeamFormHeader('Basic Info')
 
-div.row.collapse.bg-gray-light
-    div.column.small-11.small-centered(
-        ng-app="ControllerAddTeam"
-        ng-controller="ControllerAddTeam"
-        ng-cloak
-    )
-        div.spacer-lg
+    div.row.collapse
+        div.column.small-11.small-centered
+            div.spacer-lg
+            div.row
+                div.column.small-12
+                    div.row.uncollapse
+                        div.column.small-2.text-right
+                            div.spacer-xs
+                            div.text-xs.text-xbold Team Name
 
-        div.row
-            div.column.small-12
-                div
-                    div.text-sm Basic Info
-                    div.spacer-xxs
-                    div.spacer-1.bg-gray-dark
-                    div.spacer-lg
-
-                div.row.uncollapse
-                    div.column.small-2.text-right
-                        div.spacer-xs
-                        div.text-xs.text-xbold Team Name
-
-                    div.column.small-4.left
-                        input.text-xs.round-md(
-                            type="text"
-                            name="name"
-                            tabindex="1"
-                        )
-
-                div.spacer-md
-
-                div.row.uncollapse
-                    div.column.small-2.text-right
-                        div.spacer-xs
-                        div.text-xs.text-xbold Location
-
-                    div.column.small-4.left
-                        input.text-xs.round-md(
-                            type="text"
-                            name="city"
-                            tabindex="2"
-                            placeholder="Your team's metro area"
-                        )
-
-                div.spacer-md
-
-                div.row.uncollapse
-                    div.column.small-2.text-right
-                        div.spacer-xs
-                        div.text-xs Year Founded
-
-                    div.column.small-4.left
-                        select.text-xs(
-                            name="yearEstablished"
-                            tabindex="3"
-                        )
-                            option(default) I don't know
-                            option 2014
-                            option 2015
-
-                div.spacer-md
-
-                div.row.uncollapse
-                    div.column.small-2.text-right
-                        div.spacer-xs
-                        div.text-xs Blurb
-
-                    div.column.small-4.left
-                        textarea.round-md.text-xs(
-                            name="blurb"
-                            tabindex="4"
-                            placeholder="Introduce your team!"
-                        )
-
-        div.spacer-xl
-        div.row
-            div.column.small-12
-                div
-                    div.text-sm Links
-                    div.spacer-xxs
-                    div.spacer-1.bg-gray-dark
-                    div.spacer-lg
-
-                div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
-                    div.column.small-2.text-right
-                        div.fa-stack.text-xs.text-blue
-                            i.fa.fa-stack-2x.fa-square
-                            i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
-
-                    div.column.small-10
-                        div.row.collapse.bg-white.round-md
-                            div.column.small-2.text-center.border-gray-dark.border-none-r
-                                div.bg-gray-dark.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div.text-xbold URL
-                            div.column.small-9.border-gray-dark.border-none-l.border-none-r
-                                div.text-xs.input-height
-                                    input.pad.input-invis(
-                                        type="text"
-                                        name="link"
-                                        tabindex="5"
-                                        ng-model="urlInput.val"
-                                    )
-                            div.column.small-1.bg-red.border-red(
-                                ng-click="form.links.remove(index)"
+                        div.column.small-4.left
+                            input.text-xs.round-md(
+                                type="text"
+                                name="name"
+                                tabindex="1"
                             )
-                                div.text-xs.input-height.text-center
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div.text-xs
-                                        i.fa.fa-times.text-white
-                    div.column.smal-12
-                        div.spacer-md
 
-                div.row.uncollapse(ng-if="form.links.all.length < 3")
-                    div.column.small-2 &nbsp;
+                        div.column.small-2.small-offset-1.text-right
+                            div.spacer-xs
+                            div.text-xs Year Founded
 
-                    div.column.small-10.left
-                        div.row.collapse.text-center(ng-click="form.links.create()")
-                            div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                                div.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div
-                                        i.fa.fa-plus
-                            div.column.small-4.left.border-green.border-none-l.bg-green.text-white.round-md-right
-                                div.text-xs.input-height.pad
-                                    span Add New Link
+                        div.column.small-3.left
+                            select.text-xs(
+                                name="yearEstablished"
+                                tabindex="3"
+                            )
+                                option(default) I don't know
+                                option 2014
+                                option 2015
 
-        div.spacer-xl
+                    div.spacer-md
 
-        div.row
-            div.column.small-12
-                div
-                    div.text-sm Contacts
-                    div.spacer-xxs
-                    div.spacer-1.bg-gray-dark
-                    div.spacer-lg
+                    div.row.uncollapse
+                        div.column.small-2.text-right
+                            div.spacer-xs
+                            div.text-xs.text-xbold Location
 
-                div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
-                    div.column.small-2.text-right
-                        div.fa-stack.text-xs.text-blue
-                            i.fa.fa-stack-2x.fa-square
-                            i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+                        div.column.small-4.left
+                            input.text-xs.round-md(
+                                type="text"
+                                name="city"
+                                tabindex="2"
+                                placeholder="Your team's metro area"
+                            )
 
-                    div.column.small-9
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
-                            div.column.small-2.text-center
-                                div.bg-gray-dark.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div.text-xbold Name
-                            div.column.small-10.border-gray-dark-l
-                                div.text-xs.input-height
-                                    input.pad.input-invis(
-                                        type="text"
-                                        name="contact"
-                                        tabindex="5"
-                                        ng-model="contactInput.name"
-                                    )
+                    div.spacer-md
 
-                        div.spacer-xs
+                    div.row.uncollapse
+                        div.column.small-2.text-right
+                            div.spacer-xs
+                            div.text-xs Blurb
 
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white
-                            div.column.small-2.text-center
-                                div.bg-gray-dark.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div.text-xbold Email
-                            div.column.small-10.border-gray-dark-l
-                                div.text-xs.input-height
-                                    input.pad.input-invis(
-                                        type="text"
-                                        name="contact"
-                                        tabindex="5"
-                                        ng-model="contactInput.email"
-                                    )
+                        div.column.small-10.left
+                            textarea.round-md.text-xs(
+                                name="blurb"
+                                tabindex="4"
+                                placeholder="Introduce your team!"
+                                rows="10"
+                            )
+            div.spacer-xl
 
-                        div.spacer-xs
+    +addTeamFormHeader('Links')
 
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-bl
-                            div.column.small-2.text-center
-                                div.bg-gray-dark.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div Title
-                            div.column.small-10.border-gray-dark-l
-                                div.text-xs.input-height
-                                    input.pad.input-invis(
-                                        type="text"
-                                        name="contact"
-                                        tabindex="5"
-                                        ng-model="contactInput.title"
-                                    )
-                    div.column.small-1.bg-red.round-md-right(
-                        ng-click="form.contacts.remove(index)"
-                    )
-                        div.text-xs.text-center
-                            div.spacer-lg
-                            div.spacer-xl
-                            div
-                                i.fa.fa-times.text-white
-                            div.spacer-lg
-                            div.spacer-xl
+    div.row.collapse
+        div.column.small-11.small-centered
+            div.spacer-lg
+            div.row
+                    div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
+                        div.column.small-2.text-right
+                            div.fa-stack.text-xs.text-blue
+                                i.fa.fa-stack-2x.fa-square
+                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
 
-                    div.column.small-12
-                        div.spacer-md
-                div.row.uncollapse
-                    div.column.small-2 &nbsp;
+                        div.column.small-10
+                            div.row.collapse.bg-white.round-md
+                                div.column.small-2.text-center.border-gray-dark.border-none-r
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold URL
+                                div.column.small-9.border-gray-dark.border-none-l.border-none-r
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="link"
+                                            tabindex="5"
+                                            ng-model="urlInput.val"
+                                        )
+                                div.column.small-1.bg-red.border-red(
+                                    ng-click="form.links.remove(index)"
+                                )
+                                    div.text-xs.input-height.text-center
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xs
+                                            i.fa.fa-times.text-white
+                        div.column.smal-12
+                            div.spacer-md
 
-                    div.column.small-10.left
-                        div.row.collapse.text-center(ng-click="form.contacts.create()")
-                            div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                                div.input-height.text-white.text-xs
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div
-                                        i.fa.fa-plus
-                            div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
-                                div.text-xs.input-height.pad
-                                    span Add New Contact
+                    div.row.uncollapse(ng-if="form.links.all.length < 3")
+                        div.column.small-2 &nbsp;
 
-        div.spacer-xl
-        div.text-center
-            input.pad-tb.pad-lr-2x.bg-blue.text-white.text-xs(
-                type="submit"
-            )
-        div.spacer-lg
+                        div.column.small-10.left
+                            div.row.collapse.text-center(ng-click="form.links.create()")
+                                div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                                    div.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div
+                                            i.fa.fa-plus
+                                div.column.small-4.left.border-green.border-none-l.bg-green.text-white.round-md-right
+                                    div.text-xs.input-height.pad
+                                        span Add New Link
+
+            div.spacer-xl
+
+    +addTeamFormHeader('Contacts')
+
+    div.row.collapse
+        div.column.small-11.small-centered
+            div.spacer-lg
+            div.row
+                div.column.small-12
+                    div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
+                        div.column.small-2.text-right
+                            div.fa-stack.text-xs.text-blue
+                                i.fa.fa-stack-2x.fa-square
+                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+
+                        div.column.small-9
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Name
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="contactInput.name"
+                                        )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Email
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="contactInput.email"
+                                        )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-bl
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div Title
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="contactInput.title"
+                                        )
+                        div.column.small-1.bg-red.round-md-right(
+                            ng-click="form.contacts.remove(index)"
+                        )
+                            div.text-xs.text-center
+                                div.spacer-lg
+                                div.spacer-xl
+                                div
+                                    i.fa.fa-times.text-white
+                                div.spacer-lg
+                                div.spacer-xl
+
+                        div.column.small-12
+                            div.spacer-md
+                    div.row.uncollapse
+                        div.column.small-2 &nbsp;
+
+                        div.column.small-10.left
+                            div.row.collapse.text-center(ng-click="form.contacts.create()")
+                                div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                                    div.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div
+                                            i.fa.fa-plus
+                                div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
+                                    div.text-xs.input-height.pad
+                                        span Add New Contact
+
+            div.spacer-xl
+            div.text-center
+                input.pad-tb.pad-lr-2x.bg-blue.text-white.text-xs(
+                    type="submit"
+                )
+            div.spacer-lg
 
 {% endblock %}
