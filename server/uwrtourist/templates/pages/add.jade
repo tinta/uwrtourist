@@ -1,19 +1,23 @@
 {% extends "layout.jade" %}
 
 {% block css%}
-link(
-    href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css',
-    rel='stylesheet'
-)
 {% endblock %}
 
 {% block javascript %}
+script(src="/node_modules/lodash/index.js")
+script(src="/node_modules/jquery/dist/jquery.min.js")
+script(src="/node_modules/angular/angular.js")
+script(src="/resources/js/controllers/addTeam.js")
 {% endblock %}
 
 {% block body %}
 
 div.row.collapse.bg-gray-light
-    div.column.small-11.small-centered
+    div.column.small-11.small-centered(
+        ng-app="ControllerAddTeam"
+        ng-controller="ControllerAddTeam"
+        ng-cloak
+    )
         div.spacer-lg
 
         div.row
@@ -90,33 +94,43 @@ div.row.collapse.bg-gray-light
                     div.spacer-1.bg-gray-dark
                     div.spacer-lg
 
-                div.row.uncollapse
+                div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                     div.column.small-2.text-right
                         div.fa-stack.text-xs.text-blue
                             i.fa.fa-stack-2x.fa-square
-                            i.fa.fa-stack-1x.text-white.text-xbold 1
+                            i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
 
                     div.column.small-10
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
-                            div.column.small-2.text-center
+                        div.row.collapse.bg-white.round-md
+                            div.column.small-2.text-center.border-gray-dark.border-none-r
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
                                     div.spacer-1
                                     div.text-xbold URL
-                            div.column.small-10.border-gray-dark-l
+                            div.column.small-9.border-gray-dark.border-none-l.border-none-r
                                 div.text-xs.input-height
                                     input.pad.input-invis(
                                         type="text"
                                         name="link"
                                         tabindex="5"
+                                        ng-model="urlInput.val"
                                     )
+                            div.column.small-1.bg-red.border-red(
+                                ng-click="form.links.remove(index)"
+                            )
+                                div.text-xs.input-height.text-center
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div.text-xs
+                                        i.fa.fa-times.text-white
+                    div.column.smal-12
+                        div.spacer-md
 
-                div.spacer-md
-                div.row.uncollapse
+                div.row.uncollapse(ng-if="form.links.all.length < 3")
                     div.column.small-2 &nbsp;
 
                     div.column.small-10.left
-                        div.row.collapse.text-center
+                        div.row.collapse.text-center(ng-click="form.links.create()")
                             div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
                                 div.input-height.text-white.text-xs
                                     div.spacer-xs
@@ -137,14 +151,14 @@ div.row.collapse.bg-gray-light
                     div.spacer-1.bg-gray-dark
                     div.spacer-lg
 
-                div.row.uncollapse
+                div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
                     div.column.small-2.text-right
                         div.fa-stack.text-xs.text-blue
                             i.fa.fa-stack-2x.fa-square
-                            i.fa.fa-stack-1x.text-white.text-xbold 1
+                            i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
 
-                    div.column.small-10
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                    div.column.small-9
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
                             div.column.small-2.text-center
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
@@ -156,11 +170,12 @@ div.row.collapse.bg-gray-light
                                         type="text"
                                         name="contact"
                                         tabindex="5"
+                                        ng-model="contactInput.name"
                                     )
 
                         div.spacer-xs
 
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white
                             div.column.small-2.text-center
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
@@ -172,11 +187,12 @@ div.row.collapse.bg-gray-light
                                         type="text"
                                         name="contact"
                                         tabindex="5"
+                                        ng-model="contactInput.email"
                                     )
 
                         div.spacer-xs
 
-                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md
+                        div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-bl
                             div.column.small-2.text-center
                                 div.bg-gray-dark.input-height.text-white.text-xs
                                     div.spacer-xs
@@ -188,14 +204,26 @@ div.row.collapse.bg-gray-light
                                         type="text"
                                         name="contact"
                                         tabindex="5"
+                                        ng-model="contactInput.title"
                                     )
+                    div.column.small-1.bg-red.round-md-right(
+                        ng-click="form.contacts.remove(index)"
+                    )
+                        div.text-xs.text-center
+                            div.spacer-lg
+                            div.spacer-xl
+                            div
+                                i.fa.fa-times.text-white
+                            div.spacer-lg
+                            div.spacer-xl
 
-                div.spacer-md
+                    div.column.small-12
+                        div.spacer-md
                 div.row.uncollapse
                     div.column.small-2 &nbsp;
 
                     div.column.small-10.left
-                        div.row.collapse.text-center
+                        div.row.collapse.text-center(ng-click="form.contacts.create()")
                             div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
                                 div.input-height.text-white.text-xs
                                     div.spacer-xs

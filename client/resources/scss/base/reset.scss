@@ -14,13 +14,13 @@ body {
     -webkit-text-size-adjust: none;
 }
 
-body a {
+html body a {
     text-decoration: none;
     color: inherit;
 }
 
-body a:hover,
-body a:active {
+html body a:hover,
+html body a:active {
     color: inherit
 }
 

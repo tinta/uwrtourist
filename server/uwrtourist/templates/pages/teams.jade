@@ -12,7 +12,7 @@ script(src="/node_modules/lodash/index.js")
 script(src="/node_modules/jquery/dist/jquery.min.js")
 script(src="/node_modules/angular/angular.min.js")
 script(src="/resources/js/filters/startAt.js")
-script(src="/resources/js/controllers/teams.js")
+script(src="/resources/js/controllers/teamsList.js")
 script(src="/resources/js/table.js")
 script
     window.teams = {{ teams }};
@@ -21,8 +21,8 @@ script
 {% block body %}
 div.row.collapse.bg-gray-light
     div.column.small-11.small-centered(
-        ng-app="ControllerTeams"
-        ng-controller="ControllerTeams"
+        ng-app="ControllerTeamsList"
+        ng-controller="ControllerTeamsList"
         ng-cloak
     )
         div.spacer-lg

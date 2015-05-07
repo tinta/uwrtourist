@@ -12,41 +12,41 @@
     border-bottom-right-radius: map-get($radius-sizes, light);
 }
 
-%tl-md {
+.round-md-tl {
     border-top-left-radius: map-get($radius-sizes, md);
 }
 
-%tr-md {
+.round-md-tr {
     border-top-right-radius: map-get($radius-sizes, md);
 }
 
-%bl-md {
+.round-md-bl {
     border-bottom-left-radius: map-get($radius-sizes, md);
 }
 
-%br-md {
+.round-md-br {
     border-bottom-right-radius: map-get($radius-sizes, md);
 }
 
 
 .round-md-top {
-    @extend %tl-md;
-    @extend %tr-md;
+    @extend .round-md-tl;
+    @extend .round-md-tr;
 }
 
 .round-md-bottom {
-    @extend %bl-md;
-    @extend %br-md;
+    @extend .round-md-bl;
+    @extend .round-md-br;
 }
 
 .round-md-left {
-    @extend %tl-md;
-    @extend %bl-md;
+    @extend .round-md-tl;
+    @extend .round-md-bl;
 }
 
 .round-md-right {
-    @extend %tr-md;
-    @extend %br-md;
+    @extend .round-md-tr;
+    @extend .round-md-br;
 }
 
 @include breakpoint($radius-sizes, border-radius, "round");

@@ -1,4 +1,4 @@
-angular.module('ControllerTeams', [
+angular.module('ControllerTeamsList', [
 // Dependencies
     'Table',
     'Filter:StartAt'
@@ -6,7 +6,7 @@ angular.module('ControllerTeams', [
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 })
-.controller('ControllerTeams', function(
+.controller('ControllerTeamsList', function(
 // Dependency Injections
     $scope,
     $http,
