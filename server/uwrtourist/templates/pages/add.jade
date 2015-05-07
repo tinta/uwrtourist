@@ -129,9 +129,7 @@ form(
                             div.spacer-md
 
                     div.row.uncollapse(ng-if="form.links.all.length < 3")
-                        div.column.small-2 &nbsp;
-
-                        div.column.small-10.left
+                        div.column.small-10.small-offset-2
                             div.row.collapse.text-center(ng-click="form.links.create()")
                                 div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
                                     div.input-height.text-white.text-xs
@@ -221,9 +219,7 @@ form(
                         div.column.small-12
                             div.spacer-md
                     div.row.uncollapse
-                        div.column.small-2 &nbsp;
-
-                        div.column.small-10.left
+                        div.column.small-10.small-offset-2
                             div.row.collapse.text-center(ng-click="form.contacts.create()")
                                 div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
                                     div.input-height.text-white.text-xs
@@ -234,6 +230,218 @@ form(
                                 div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
                                     div.text-xs.input-height.pad
                                         span Add New Contact
+
+            div.spacer-xl
+
+    +addTeamFormHeader('Practice Locations')
+
+    div.row.collapse
+        div.column.small-11.small-centered
+            div.spacer-lg
+            div.row
+                div.column.small-12
+                    div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
+                        div.column.small-2.text-right
+                            div.fa-stack.text-xs.text-blue
+                                i.fa.fa-stack-2x.fa-square
+                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+                        div.column.small-9
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Name
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="practiceLocation.name"
+                                        )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Address
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="practiceLocation.address"
+                                        )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold City
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="practiceLocation.city"
+                                        )
+
+                            div.spacer-xs
+                            div.width-full
+                                div.row.collapse.bg-white
+                                    div.column.small-2
+                                        div.text-center.border-gray-dark.border-none-l.border-none-r
+                                            div.bg-gray-dark.input-height.text-white.text-xs
+                                                div.spacer-xs
+                                                div.spacer-1
+                                                div.text-xbold Region
+                                    div.column.small-5
+                                        div.border-gray-dark
+                                            div.text-xs.input-height
+                                                input.pad.input-invis(
+                                                    type="text"
+                                                    name="contact"
+                                                    tabindex="5"
+                                                    ng-model="practiceLocation.region"
+                                                )
+
+                                    div.column.small-2.small-offset-1
+                                        div.text-center.border-gray-dark.border-none-l.border-none-r
+                                            div.bg-gray-dark.input-height.text-white.text-xs
+                                                div.spacer-xs
+                                                div.spacer-1
+                                                div.text-xbold Zip
+                                    div.column.small-2
+                                        div.border-gray-dark
+                                            div.text-xs.input-height
+                                                input.pad.input-invis(
+                                                    type="text"
+                                                    name="contact"
+                                                    tabindex="5"
+                                                    ng-model="practiceLocation.postalCode"
+                                                )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark.border-none-l.bg-white
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Country
+                                div.column.small-10.border-gray-dark-l
+                                    div.text-xs.input-height
+                                        input.pad.input-invis(
+                                            type="text"
+                                            name="contact"
+                                            tabindex="5"
+                                            ng-model="practiceLocation.country"
+                                        )
+
+                            div.spacer-xs
+
+                            div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold Times
+                            div.spacer-xs
+
+                            div.row
+                                div.column.small-10.small-offset-2(ng-repeat="(index, time) in practiceLocation.times.all")
+                                    div.row.uncollapse
+
+                                        div.column.small-6
+                                            div.row.collapse
+                                                div.column.small-6
+                                                    div.text-center.border-gray-dark
+                                                        div.bg-gray-dark.input-height.text-white.text-xs
+                                                            div.spacer-xs
+                                                            div.spacer-1
+                                                            div.text-xbold Start
+                                                div.column.small-6
+                                                    div.border-gray-dark
+                                                        div.text-xs.input-height
+                                                            input.pad.input-invis(
+                                                                type="text"
+                                                                name="contact"
+                                                                tabindex="5"
+                                                                ng-model="time.startTime"
+                                                            )
+                                        div.column.small-6
+                                            div.row.collapse
+                                                div.column.small-6
+                                                    div.text-center.border-gray-dark
+                                                        div.bg-gray-dark.input-height.text-white.text-xs
+                                                            div.spacer-xs
+                                                            div.spacer-1
+                                                            div.text-xbold End
+                                                div.column.small-6
+                                                    div.border-gray-dark
+                                                        div.text-xs.input-height
+                                                            input.pad.input-invis(
+                                                                type="text"
+                                                                name="contact"
+                                                                tabindex="5"
+                                                                ng-model="time.endTime"
+                                                            )
+
+                                    div.spacer-xs
+                                    div.row.uncollapse
+                                        div.column.small-2
+                                            div.text-center.border-gray-dark
+                                                div.bg-gray-dark.input-height.text-white.text-xs
+                                                    div.spacer-xs
+                                                    div.spacer-1
+                                                    div.text-xbold Day
+                                        div.column.small-6.left
+                                            div.text-xs.input-height
+                                                select.text-xs(
+                                                    name="[[index + 'day']]"
+                                                    ng-model="time.day"
+                                                    tabindex="5"
+                                                )
+                                                    option(ng-repeat="day in form.practiceLocations.dayOptions") [[ day ]]
+
+                            div.spacer-md
+
+                            div.row.collapse.bg-white.round-md-bl.text-center
+                                div.column.small-1.small-offset-2.bg-gray-dark.round-md-left.border-gray-dark(ng-click="practiceLocation.times.create()")
+                                    div.input-height.text-white.text-xs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div
+                                            i.fa.fa-plus
+                                div.column.small-5.left.border-green.border-none-l.bg-green.text-white.round-md-right(ng-click="practiceLocation.times.create()")
+                                    div.text-xs.input-height.pad
+                                        span Add New Practice Time
+
+                        div.column.small-1.bg-red.round-md-right(
+                            ng-click="form.practiceLocations.remove(index)"
+                        )
+                            div.text-xs.text-center
+                                div.spacer-xl
+                                div.spacer-xl
+                                div.spacer-sm
+                                div.spacer-xxs
+                                div
+                                    i.fa.fa-times.text-white
+                                div.spacer-xl
+                                div.spacer-xl
+                                div.spacer-sm
+                                div.spacer-xxs
+
+
 
             div.spacer-xl
             div.text-center

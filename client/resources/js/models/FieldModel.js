@@ -33,7 +33,7 @@ angular
             this.initial = value;
         };
 
-        return Field
+        return Field;
     })();
 
     return Field;
