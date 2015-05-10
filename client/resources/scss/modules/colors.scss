@@ -23,6 +23,7 @@ $text-colors: map-merge($base-colors, $palette);
 
 $border-colors: (
     "gray-dark": map-get($base-colors, "gray-dark"),
+    "gray-md": map-get($base-colors, "gray-md"),
     "green": map-get($palette, "green"),
     "red": map-get($palette, "red"),
 );

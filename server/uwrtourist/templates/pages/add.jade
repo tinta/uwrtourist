@@ -10,7 +10,7 @@ script(src="/node_modules/angular/angular.js")
 script(src="/resources/js/controllers/addTeam.js")
 {% endblock %}
 
-mixin addTeamFormHeader (text)
+mixin TeamFormHeader (text)
     div.row.collapse.bg-gray-light
         div.column.small-11.small-centered
             div.row
@@ -19,6 +19,10 @@ mixin addTeamFormHeader (text)
                     div.text-sm {{text}}
                     div.spacer-xs
 
+mixin FASquareContent (text, squareColor, textColor)
+    div.fa-stack.text-xxs
+        i.fa.fa-stack-2x.fa-square(class=squareColor)
+        i.fa.fa-stack-1x.text-xbold(class=textColor)= text
 
 {% block body %}
 form(
@@ -27,7 +31,7 @@ form(
     ng-cloak
     novalidate
 )
-    +addTeamFormHeader('Basic Info')
+    +TeamFormHeader('Basic Info')
 
     div.row.collapse
         div.column.small-11.small-centered
@@ -37,21 +41,36 @@ form(
                     div.row.uncollapse
                         div.column.small-2.text-right
                             div.spacer-xs
-                            div.text-xs.text-xbold Team Name
+                            div.text-xxs.text-xbold Team Name
 
                         div.column.small-4.left
-                            input.text-xs.round-md(
+                            input.text-xxs.round-md(
                                 type="text"
                                 name="name"
                                 tabindex="1"
                             )
 
+                    div.spacer-md
+
+                    div.row.uncollapse
+                        div.column.small-2.text-right
+                            div.spacer-xs
+                            div.text-xxs.text-xbold Location
+
+                        div.column.small-4.left
+                            input.text-xxs.round-md(
+                                type="text"
+                                name="city"
+                                tabindex="2"
+                                placeholder="Your team's metro area"
+                            )
+
                         div.column.small-2.small-offset-1.text-right
                             div.spacer-xs
-                            div.text-xs Year Founded
+                            div.text-xxs Year Founded
 
                         div.column.small-3.left
-                            select.text-xs(
+                            select.text-xxs(
                                 name="yearEstablished"
                                 tabindex="3"
                             )
@@ -64,25 +83,10 @@ form(
                     div.row.uncollapse
                         div.column.small-2.text-right
                             div.spacer-xs
-                            div.text-xs.text-xbold Location
-
-                        div.column.small-4.left
-                            input.text-xs.round-md(
-                                type="text"
-                                name="city"
-                                tabindex="2"
-                                placeholder="Your team's metro area"
-                            )
-
-                    div.spacer-md
-
-                    div.row.uncollapse
-                        div.column.small-2.text-right
-                            div.spacer-xs
-                            div.text-xs Blurb
+                            div.text-xxs Blurb
 
                         div.column.small-10.left
-                            textarea.round-md.text-xs(
+                            textarea.round-md.text-xxs(
                                 name="blurb"
                                 tabindex="4"
                                 placeholder="Introduce your team!"
@@ -90,7 +94,7 @@ form(
                             )
             div.spacer-xl
 
-    +addTeamFormHeader('Links')
+    +TeamFormHeader('Links')
 
     div.row.collapse
         div.column.small-11.small-centered
@@ -98,52 +102,51 @@ form(
             div.row
                     div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                         div.column.small-2.text-right
-                            div.fa-stack.text-xs.text-blue
-                                i.fa.fa-stack-2x.fa-square
-                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
 
-                        div.column.small-10
-                            div.row.collapse.bg-white.round-md
-                                div.column.small-2.text-center.border-gray-dark.border-none-r
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                        div.column.small-9
+                            div.row.collapse.bg-white.round-md-left.border-gray-dark
+                                div.column.small-2.text-center
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold URL
-                                div.column.small-9.border-gray-dark.border-none-l.border-none-r
-                                    div.text-xs.input-height
+                                div.column.small-10.border-none-l
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="link"
                                             tabindex="5"
                                             ng-model="urlInput.val"
                                         )
-                                div.column.small-1.bg-red.border-red(
-                                    ng-click="form.links.remove(index)"
-                                )
-                                    div.text-xs.input-height.text-center
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div.text-xs
-                                            i.fa.fa-times.text-white
-                        div.column.smal-12
+                        div.column.small-1.bg-red.border-red.round-md-right(
+                            ng-click="form.links.remove(index)"
+                        )
+                            div.text-xxs.input-height.text-center
+                                div.spacer-xs
+                                div.spacer-1
+                                div.text-xxs
+                                    i.fa.fa-times.text-white
+
+                        div.column.small-12
                             div.spacer-md
 
                     div.row.uncollapse(ng-if="form.links.all.length < 3")
                         div.column.small-10.small-offset-2
                             div.row.collapse.text-center(ng-click="form.links.create()")
                                 div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                                    div.input-height.text-white.text-xs
+                                    div.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div
                                             i.fa.fa-plus
                                 div.column.small-4.left.border-green.border-none-l.bg-green.text-white.round-md-right
-                                    div.text-xs.input-height.pad
+                                    div.text-xxs.input-height.pad
                                         span Add New Link
 
             div.spacer-xl
 
-    +addTeamFormHeader('Contacts')
+    +TeamFormHeader('Contacts')
 
     div.row.collapse
         div.column.small-11.small-centered
@@ -152,19 +155,17 @@ form(
                 div.column.small-12
                     div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
                         div.column.small-2.text-right
-                            div.fa-stack.text-xs.text-blue
-                                i.fa.fa-stack-2x.fa-square
-                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
 
                         div.column.small-9
                             div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Name
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -176,12 +177,12 @@ form(
 
                             div.row.collapse.border-gray-dark.border-none-l.bg-white
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Email
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -193,12 +194,12 @@ form(
 
                             div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-bl
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div Title
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -208,13 +209,16 @@ form(
                         div.column.small-1.bg-red.round-md-right(
                             ng-click="form.contacts.remove(index)"
                         )
-                            div.text-xs.text-center
+                            div.text-xxs.text-center
                                 div.spacer-lg
-                                div.spacer-xl
+                                div.spacer-lg
+                                div.spacer-1
+                                div.spacer-1
                                 div
                                     i.fa.fa-times.text-white
                                 div.spacer-lg
-                                div.spacer-xl
+                                div.spacer-lg
+                                div.spacer-xxs
 
                         div.column.small-12
                             div.spacer-md
@@ -222,18 +226,18 @@ form(
                         div.column.small-10.small-offset-2
                             div.row.collapse.text-center(ng-click="form.contacts.create()")
                                 div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                                    div.input-height.text-white.text-xs
+                                    div.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div
                                             i.fa.fa-plus
                                 div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
-                                    div.text-xs.input-height.pad
+                                    div.text-xxs.input-height.pad
                                         span Add New Contact
 
             div.spacer-xl
 
-    +addTeamFormHeader('Practice Locations')
+    +TeamFormHeader('Practice Locations')
 
     div.row.collapse
         div.column.small-11.small-centered
@@ -242,18 +246,17 @@ form(
                 div.column.small-12
                     div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                         div.column.small-2.text-right
-                            div.fa-stack.text-xs.text-blue
-                                i.fa.fa-stack-2x.fa-square
-                                i.fa.fa-stack-1x.text-white.text-xbold [[ index + 1 ]]
+                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
+
                         div.column.small-9
                             div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Name
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -265,12 +268,12 @@ form(
 
                             div.row.collapse.border-gray-dark.border-none-l.bg-white
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Address
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -282,12 +285,12 @@ form(
 
                             div.row.collapse.border-gray-dark.border-none-l.bg-white
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold City
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -300,13 +303,13 @@ form(
                                 div.row.collapse.bg-white
                                     div.column.small-2
                                         div.text-center.border-gray-dark.border-none-l.border-none-r
-                                            div.bg-gray-dark.input-height.text-white.text-xs
+                                            div.bg-gray-dark.input-height.text-white.text-xxs
                                                 div.spacer-xs
                                                 div.spacer-1
                                                 div.text-xbold Region
                                     div.column.small-5
                                         div.border-gray-dark
-                                            div.text-xs.input-height
+                                            div.text-xxs.input-height
                                                 input.pad.input-invis(
                                                     type="text"
                                                     name="contact"
@@ -316,13 +319,13 @@ form(
 
                                     div.column.small-2.small-offset-1
                                         div.text-center.border-gray-dark.border-none-l.border-none-r
-                                            div.bg-gray-dark.input-height.text-white.text-xs
+                                            div.bg-gray-dark.input-height.text-white.text-xxs
                                                 div.spacer-xs
                                                 div.spacer-1
                                                 div.text-xbold Zip
                                     div.column.small-2
                                         div.border-gray-dark
-                                            div.text-xs.input-height
+                                            div.text-xxs.input-height
                                                 input.pad.input-invis(
                                                     type="text"
                                                     name="contact"
@@ -334,12 +337,12 @@ form(
 
                             div.row.collapse.border-gray-dark.border-none-l.bg-white
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Country
                                 div.column.small-10.border-gray-dark-l
-                                    div.text-xs.input-height
+                                    div.text-xxs.input-height
                                         input.pad.input-invis(
                                             type="text"
                                             name="contact"
@@ -351,44 +354,51 @@ form(
 
                             div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
                                 div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xs
+                                    div.bg-gray-dark.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div.text-xbold Times
                             div.spacer-xs
 
-                            div.row
-                                div.column.small-10.small-offset-2(ng-repeat="(index, time) in practiceLocation.times.all")
-                                    div.row.uncollapse
+                            div.row.collapse(
+                                ng-repeat="(index, time) in practiceLocation.times.all"
+                            )
+                                div.column.small-2
+                                    div.right.text-xxs
+                                        +FASquareContent('[[ index + 1 ]]', 'text-blue', 'text-white')
+                                        span &nbsp;&nbsp;
 
-                                        div.column.small-6
+                                div.column.small-10
+                                    div.row.collapse
+
+                                        div.column.small-5
                                             div.row.collapse
                                                 div.column.small-6
                                                     div.text-center.border-gray-dark
-                                                        div.bg-gray-dark.input-height.text-white.text-xs
+                                                        div.bg-gray-dark.input-height.text-white.text-xxs
                                                             div.spacer-xs
                                                             div.spacer-1
                                                             div.text-xbold Start
                                                 div.column.small-6
                                                     div.border-gray-dark
-                                                        div.text-xs.input-height
+                                                        div.text-xxs.input-height
                                                             input.pad.input-invis(
                                                                 type="text"
                                                                 name="contact"
                                                                 tabindex="5"
                                                                 ng-model="time.startTime"
                                                             )
-                                        div.column.small-6
+                                        div.column.small-5.right
                                             div.row.collapse
                                                 div.column.small-6
                                                     div.text-center.border-gray-dark
-                                                        div.bg-gray-dark.input-height.text-white.text-xs
+                                                        div.bg-gray-dark.input-height.text-white.text-xxs
                                                             div.spacer-xs
                                                             div.spacer-1
                                                             div.text-xbold End
                                                 div.column.small-6
                                                     div.border-gray-dark
-                                                        div.text-xs.input-height
+                                                        div.text-xxs.input-height
                                                             input.pad.input-invis(
                                                                 type="text"
                                                                 name="contact"
@@ -397,16 +407,16 @@ form(
                                                             )
 
                                     div.spacer-xs
-                                    div.row.uncollapse
+                                    div.row.collapse
                                         div.column.small-2
                                             div.text-center.border-gray-dark
-                                                div.bg-gray-dark.input-height.text-white.text-xs
+                                                div.bg-gray-dark.input-height.text-white.text-xxs
                                                     div.spacer-xs
                                                     div.spacer-1
                                                     div.text-xbold Day
                                         div.column.small-6.left
-                                            div.text-xs.input-height
-                                                select.text-xs(
+                                            div.text-xxs.border-gray-md
+                                                select.text-xxs.input-invis.input-height(
                                                     name="[[index + 'day']]"
                                                     ng-model="time.day"
                                                     tabindex="5"
@@ -417,19 +427,19 @@ form(
 
                             div.row.collapse.bg-white.round-md-bl.text-center
                                 div.column.small-1.small-offset-2.bg-gray-dark.round-md-left.border-gray-dark(ng-click="practiceLocation.times.create()")
-                                    div.input-height.text-white.text-xs
+                                    div.input-height.text-white.text-xxs
                                         div.spacer-xs
                                         div.spacer-1
                                         div
                                             i.fa.fa-plus
-                                div.column.small-5.left.border-green.border-none-l.bg-green.text-white.round-md-right(ng-click="practiceLocation.times.create()")
-                                    div.text-xs.input-height.pad
+                                div.column.small-5.left.border-green.border-none-l.bg-blue.text-white.round-md-right(ng-click="practiceLocation.times.create()")
+                                    div.text-xxs.input-height.pad
                                         span Add New Practice Time
 
                         div.column.small-1.bg-red.round-md-right(
                             ng-click="form.practiceLocations.remove(index)"
                         )
-                            div.text-xs.text-center
+                            div.text-xxs.text-center
                                 div.spacer-xl
                                 div.spacer-xl
                                 div.spacer-sm
@@ -440,12 +450,26 @@ form(
                                 div.spacer-xl
                                 div.spacer-sm
                                 div.spacer-xxs
+                        div.column.small-12
+                            div.spacer-md
 
-
+                    div.spacer-md
+                    div.row.uncollapse
+                        div.column.small-10.small-offset-2
+                            div.row.collapse.text-center(ng-click="form.practiceLocations.create()")
+                                div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                                    div.input-height.text-white.text-xxs
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div
+                                            i.fa.fa-plus
+                                div.column.small-6.left.border-green.border-none-l.bg-green.text-white.round-md-right
+                                    div.text-xxs.input-height.pad
+                                        span Add New Practice Location
 
             div.spacer-xl
             div.text-center
-                input.pad-tb.pad-lr-2x.bg-blue.text-white.text-xs(
+                input.pad-tb.pad-lr-2x.bg-green.text-white.text-sm(
                     type="submit"
                 )
             div.spacer-lg
