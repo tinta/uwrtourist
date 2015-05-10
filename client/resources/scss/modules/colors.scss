@@ -17,6 +17,11 @@ $palette: (
     "red"   : #D06340
 );
 
+@each $key, $color in $palette {
+    $darkenedColor: ("#{$key}-dark": darken($color, 10%));
+    $palette: map-merge($darkenedColor, $palette)
+}
+
 $bg-colors: map-merge($base-colors, $palette);
 
 $text-colors: map-merge($base-colors, $palette);

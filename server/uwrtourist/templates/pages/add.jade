@@ -451,14 +451,15 @@ form(
                             div.text-xxs.text-center
                                 div.spacer-xl
                                 div.spacer-xl
-                                div.spacer-sm
-                                div.spacer-xxs
+                                div.spacer-xl
+                                div.spacer-xs
+                                div.spacer-1
                                 div
                                     i.fa.fa-times.text-white
                                 div.spacer-xl
                                 div.spacer-xl
+                                div.spacer-xl
                                 div.spacer-sm
-                                div.spacer-xxs
                         div.column.small-12
                             div.spacer-md
 
@@ -478,10 +479,14 @@ form(
 
             div.spacer-xl
             div.spacer-md
-            div.text-center
-                input.pad-tb.pad-lr-2x.bg-green.text-white.text-xs(
-                    type="submit"
-                )
+            div.row
+                div.column.small-4.small-centered.text-center
+                    button.text-white.pad-tb.width-full.text-sm.bg-green(
+                        type="submit"
+                    )
+                        span Submit Team Info&nbsp;&nbsp;
+                        i.fa.fa-chevron-right
+
             div.spacer-lg
 
 {% endblock %}
