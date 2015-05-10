@@ -19,7 +19,7 @@ mixin TeamFormHeader (text)
                     div.text-sm {{text}}
                     div.spacer-xs
 
-mixin FASquareContent (text, squareColor, textColor)
+mixin FASquare (text, squareColor, textColor)
     div.fa-stack.text-xxs
         i.fa.fa-stack-2x.fa-square(class=squareColor)
         i.fa.fa-stack-1x.text-xbold(class=textColor)= text
@@ -31,6 +31,16 @@ form(
     ng-cloak
     novalidate
 )
+    div.row.collapse
+        div.column.small-11.small-centered
+            div.row
+                div.column.small-12
+                    div.spacer-xs
+                    div.text-xxs
+                        span.text-xbold Bold&nbsp;
+                        span fields are required
+                    div.spacer-sm
+
     +TeamFormHeader('Basic Info')
 
     div.row.collapse
@@ -102,7 +112,7 @@ form(
             div.row
                     div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                         div.column.small-2.text-right
-                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
+                            +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
 
                         div.column.small-9
                             div.row.collapse.bg-white.round-md-left.border-gray-dark
@@ -155,7 +165,7 @@ form(
                 div.column.small-12
                     div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
                         div.column.small-2.text-right
-                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
+                            +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
 
                         div.column.small-9
                             div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
@@ -172,52 +182,52 @@ form(
                                             tabindex="5"
                                             ng-model="contactInput.name"
                                         )
-
                             div.spacer-xs
 
-                            div.row.collapse.border-gray-dark.border-none-l.bg-white
-                                div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xxs
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div.text-xbold Email
-                                div.column.small-10.border-gray-dark-l
-                                    div.text-xxs.input-height
-                                        input.pad.input-invis(
-                                            type="text"
-                                            name="contact"
-                                            tabindex="5"
-                                            ng-model="contactInput.email"
-                                        )
+                            div.row.collapse.bg-white
+                                div.column.small-2
+                                    div.text-center.border-gray-dark.border-none-l.border-none-r.round-md-bl.bg-gray-dark
+                                        div.input-height.text-white.text-xxs
+                                            div.spacer-xs
+                                            div.spacer-1
+                                            div.text-xbold Email
+                                div.column.small-4
+                                    div.border-gray-dark
+                                        div.text-xxs.input-height
+                                            input.pad.input-invis(
+                                                type="text"
+                                                name="contact"
+                                                tabindex="5"
+                                                ng-model="contactInput.email"
+                                            )
 
-                            div.spacer-xs
+                                div.column.small-2.small-offset-1
+                                    div.text-center.border-gray-dark.border-none-l.border-none-r
+                                        div.bg-gray-dark.input-height.text-white.text-xxs
+                                            div.spacer-xs
+                                            div.spacer-1
+                                            div Title
+                                div.column.small-3
+                                    div.border-gray-dark
+                                        div.text-xxs.input-height
+                                            input.pad.input-invis(
+                                                type="text"
+                                                name="contact"
+                                                tabindex="5"
+                                                ng-model="contactInput.title"
+                                            )
 
-                            div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-bl
-                                div.column.small-2.text-center
-                                    div.bg-gray-dark.input-height.text-white.text-xxs
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div Title
-                                div.column.small-10.border-gray-dark-l
-                                    div.text-xxs.input-height
-                                        input.pad.input-invis(
-                                            type="text"
-                                            name="contact"
-                                            tabindex="5"
-                                            ng-model="contactInput.title"
-                                        )
                         div.column.small-1.bg-red.round-md-right(
                             ng-click="form.contacts.remove(index)"
                         )
                             div.text-xxs.text-center
                                 div.spacer-lg
-                                div.spacer-lg
-                                div.spacer-1
+                                div.spacer-xs
                                 div.spacer-1
                                 div
                                     i.fa.fa-times.text-white
                                 div.spacer-lg
-                                div.spacer-lg
+                                div.spacer-xs
                                 div.spacer-xxs
 
                         div.column.small-12
@@ -246,7 +256,7 @@ form(
                 div.column.small-12
                     div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                         div.column.small-2.text-right
-                            +FASquareContent('[[ index + 1 ]]', 'text-green', 'text-white')
+                            +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
 
                         div.column.small-9
                             div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
@@ -299,39 +309,38 @@ form(
                                         )
 
                             div.spacer-xs
-                            div.width-full
-                                div.row.collapse.bg-white
-                                    div.column.small-2
-                                        div.text-center.border-gray-dark.border-none-l.border-none-r
-                                            div.bg-gray-dark.input-height.text-white.text-xxs
-                                                div.spacer-xs
-                                                div.spacer-1
-                                                div.text-xbold Region
-                                    div.column.small-5
-                                        div.border-gray-dark
-                                            div.text-xxs.input-height
-                                                input.pad.input-invis(
-                                                    type="text"
-                                                    name="contact"
-                                                    tabindex="5"
-                                                    ng-model="practiceLocation.region"
-                                                )
+                            div.row.collapse.bg-white
+                                div.column.small-2
+                                    div.text-center.border-gray-dark.border-none-l.border-none-r
+                                        div.bg-gray-dark.input-height.text-white.text-xxs
+                                            div.spacer-xs
+                                            div.spacer-1
+                                            div.text-xbold Region
+                                div.column.small-5
+                                    div.border-gray-dark
+                                        div.text-xxs.input-height
+                                            input.pad.input-invis(
+                                                type="text"
+                                                name="contact"
+                                                tabindex="5"
+                                                ng-model="practiceLocation.region"
+                                            )
 
-                                    div.column.small-2.small-offset-1
-                                        div.text-center.border-gray-dark.border-none-l.border-none-r
-                                            div.bg-gray-dark.input-height.text-white.text-xxs
-                                                div.spacer-xs
-                                                div.spacer-1
-                                                div.text-xbold Zip
-                                    div.column.small-2
-                                        div.border-gray-dark
-                                            div.text-xxs.input-height
-                                                input.pad.input-invis(
-                                                    type="text"
-                                                    name="contact"
-                                                    tabindex="5"
-                                                    ng-model="practiceLocation.postalCode"
-                                                )
+                                div.column.small-2.small-offset-1
+                                    div.text-center.border-gray-dark.border-none-l.border-none-r
+                                        div.bg-gray-dark.input-height.text-white.text-xxs
+                                            div.spacer-xs
+                                            div.spacer-1
+                                            div.text-xbold Zip
+                                div.column.small-2
+                                    div.border-gray-dark
+                                        div.text-xxs.input-height
+                                            input.pad.input-invis(
+                                                type="text"
+                                                name="contact"
+                                                tabindex="5"
+                                                ng-model="practiceLocation.postalCode"
+                                            )
 
                             div.spacer-xs
 
@@ -365,21 +374,21 @@ form(
                             )
                                 div.column.small-2
                                     div.right.text-xxs
-                                        +FASquareContent('[[ index + 1 ]]', 'text-blue', 'text-white')
+                                        +FASquare('[[ index + 1 ]]', 'text-blue', 'text-white')
                                         span &nbsp;&nbsp;
 
                                 div.column.small-10
                                     div.row.collapse
 
-                                        div.column.small-5
+                                        div.column.small-4
                                             div.row.collapse
-                                                div.column.small-6
+                                                div.column.small-4
                                                     div.text-center.border-gray-dark
                                                         div.bg-gray-dark.input-height.text-white.text-xxs
                                                             div.spacer-xs
                                                             div.spacer-1
                                                             div.text-xbold Start
-                                                div.column.small-6
+                                                div.column.small-7.left
                                                     div.border-gray-dark
                                                         div.text-xxs.input-height
                                                             input.pad.input-invis(
@@ -388,15 +397,15 @@ form(
                                                                 tabindex="5"
                                                                 ng-model="time.startTime"
                                                             )
-                                        div.column.small-5.right
+                                        div.column.small-4
                                             div.row.collapse
-                                                div.column.small-6
+                                                div.column.small-4
                                                     div.text-center.border-gray-dark
                                                         div.bg-gray-dark.input-height.text-white.text-xxs
                                                             div.spacer-xs
                                                             div.spacer-1
                                                             div.text-xbold End
-                                                div.column.small-6
+                                                div.column.small-7.left
                                                     div.border-gray-dark
                                                         div.text-xxs.input-height
                                                             input.pad.input-invis(
@@ -406,22 +415,22 @@ form(
                                                                 ng-model="time.endTime"
                                                             )
 
-                                    div.spacer-xs
-                                    div.row.collapse
-                                        div.column.small-2
-                                            div.text-center.border-gray-dark
-                                                div.bg-gray-dark.input-height.text-white.text-xxs
-                                                    div.spacer-xs
-                                                    div.spacer-1
-                                                    div.text-xbold Day
-                                        div.column.small-6.left
-                                            div.text-xxs.border-gray-md
-                                                select.text-xxs.input-invis.input-height(
-                                                    name="[[index + 'day']]"
-                                                    ng-model="time.day"
-                                                    tabindex="5"
-                                                )
-                                                    option(ng-repeat="day in form.practiceLocations.dayOptions") [[ day ]]
+                                        div.column.small-4
+                                            div.row.collapse
+                                                div.column.small-3
+                                                    div.text-center.border-gray-dark
+                                                        div.bg-gray-dark.input-height.text-white.text-xxs
+                                                            div.spacer-xs
+                                                            div.spacer-1
+                                                            div.text-xbold Day
+                                                div.column.small-9.left
+                                                    div.text-xxs.border-gray-dark
+                                                        select.text-xxs.input-invis.input-height(
+                                                            name="[[index + 'day']]"
+                                                            ng-model="time.day"
+                                                            tabindex="5"
+                                                        )
+                                                            option(ng-repeat="day in form.practiceLocations.dayOptions") [[ day ]]
 
                             div.spacer-md
 
@@ -468,8 +477,9 @@ form(
                                         span Add New Practice Location
 
             div.spacer-xl
+            div.spacer-md
             div.text-center
-                input.pad-tb.pad-lr-2x.bg-green.text-white.text-sm(
+                input.pad-tb.pad-lr-2x.bg-green.text-white.text-xs(
                     type="submit"
                 )
             div.spacer-lg
