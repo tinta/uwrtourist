@@ -8,11 +8,17 @@ i.fa {
     line-height: 2em;
 }
 
-.fa-plus:before,
-.fa-minus:before
-{
+.fa-stack-1x {
     margin-top: 1px;
     display: inline-block;
+}
+
+.fa-google {
+    margin-top: 2px;
+}
+
+.fa-meetup {
+    font-size: 1.4em;
 }
 
 .fa-chevron-up:before {

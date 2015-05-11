@@ -49,7 +49,12 @@ angular.module('ControllerTeamsList', [
     var icons = {
         default: 'fa-globe',
         map: {
-            '.facebook.': 'fa-facebook'
+            '.facebook.': 'fa-facebook',
+            '.wordpress.': 'fa-wordpress',
+            '.tumblr.': 'fa-tumblr',
+            '.google.': 'fa-google',
+            '.youtube.': 'fa-youtube',
+            '.meetup.': 'fa-meetup'
         },
         getClass: function (url) {
             if (!url) return false;

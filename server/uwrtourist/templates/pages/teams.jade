@@ -87,7 +87,7 @@ div.row.collapse.bg-gray-light
 
                                     div.pull-left(
                                         ng-if="typeOf(row[keyObj.value]) === 'object'"
-                                        ng-repeat='val in row[keyObj.value] track by $index'
+                                        ng-repeat='val in :: row[keyObj.value] track by $index'
                                     )
                                         div(ng-if="keyObj.value != 'links'") [[val.text]]
                                 div(ng-if="keyObj.value === 'links'").width-full.pad-lr
@@ -97,11 +97,13 @@ div.row.collapse.bg-gray-light
                                             ng-repeat='val in row[keyObj.value] track by $index'
                                         )
 
-                                            a(href="[[val.link]]").text-xs.text-hover-gray-dark
+                                            a(href="[[ :: val.link ]]").text-xs.text-hover-gray-dark
                                                 div.spacer-xs
                                                 div.fa-stack
-                                                    i.fa.fa-stack-2x.fa-circle-thin
-                                                    i.fa.fa-stack-1x(class="[[icons.getClass(val.link)]]")
+                                                    i.fa.fa-stack-2x.fa-circle-thin(
+                                                        ng-class="{'text-none': icons.getClass(val.link) == 'fa-meetup'}"
+                                                    )
+                                                    i.fa.fa-stack-1x(class="[[ :: icons.getClass(val.link) ]]")
                                                 div.spacer-xxs
         div.spacer-xl
 {% endblock %}
