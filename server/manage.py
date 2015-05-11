@@ -60,7 +60,7 @@ def populate_db():
         team_links = team[3:]
         response = requests.get(base_url, params={"latlng": coordinates, "sensor": False})
         # simply grab first result
-        if response.json()["status"] == u"OK":
+        if response and response.json()["status"] == u"OK":
             geodata = response.json()["results"][0]["address_components"]
             country = ""
             city = ""
