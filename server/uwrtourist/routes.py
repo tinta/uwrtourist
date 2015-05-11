@@ -42,10 +42,10 @@ def addform():
         title = gettext("Add a New Team")
         return render_template("pages/add.jade", title=title)
 
-@app.route("/competitions")
-def competitions():
-    title = gettext("Competitions")
-    return render_template("pages/competitions.jade", title=title)
+# @app.route("/competitions")
+# def competitions():
+#     title = gettext("Competitions")
+#     return render_template("pages/competitions.jade", title=title)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -66,10 +66,6 @@ class Navbar:
             {
                 "url": "/teams",
                 "title": "Teams",
-            },
-            {
-                "url": "/competitions",
-                "title": "Competitions",
             },
             {
                 "url": "/add-new-team",
