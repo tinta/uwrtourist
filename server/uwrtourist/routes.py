@@ -1,14 +1,21 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
-from configs.dev import DevConfig
 from models import db, get_teams
+import os
 
 # set up app
 app = Flask(__name__)
 db.init_app(app)
 
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
-app.config.from_object(DevConfig)
+
+environment = os.environ.get("UWR_ENVIRONMENT")
+if environment == "prod":
+    from configs.prod import ProdConfig
+    app.config.from_object(ProdConfig)
+else:
+    from configs.dev import DevConfig
+    app.config.from_object(DevConfig)
 
 babel = Babel(app)
 
