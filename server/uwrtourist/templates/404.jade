@@ -2,10 +2,20 @@
 
 {% block body %}
 div.content
-    div.text-block
-        div.content-title Page Not Found
-        p
-            span Go
-            a(href="/") home
-            span ?
+    div.text-block.text-center
+        div.spacer-xl
+        div.text-sm Lost?
+        div.spacer-sm
+        div
+            a.pad.bg-blue.text-xs(href="/")
+                span.text-white Go to Home
+        div.spacer-xxl
+        div.text-sm Is Something Wrong?
+        div.spacer-xs
+        div.text-xs
+            span Email us at 
+            a.bg-green.pad(href="mailto:cristina@uwrtourist.org")
+                span.text-white cristina@uwrtourist.org
+
+        div.spacer-xxl
 {% endblock %}

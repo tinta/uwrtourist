@@ -41,9 +41,10 @@ def teams():
 
 @app.route("/team/<tid>")
 def team(tid):
-    team, name = get_team(tid, format="json")
-    title = name 
-    return render_template("pages/team.jade", title=title, team=team)
+    team_data = get_team(tid, format="json")
+    if not team_data:
+        abort(404)
+    return render_template("pages/team.jade", title=team_data["name"], team=team_data["json"])
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
@@ -62,7 +63,8 @@ def addform():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.jade"), 404
+    title = gettext("Page Not Found")
+    return render_template("404.jade", title=title), 404
 
 @app.errorhandler(500)
 def site_down(e):

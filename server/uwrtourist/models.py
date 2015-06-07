@@ -129,6 +129,10 @@ def get_teams(format=None):
 
 def get_team(tid, format=None):
     team = db.session.query(Team).filter_by(id=tid).first()
+    if not team:
+        return None
     if format == "json":
-        return (json.dumps(team.as_dict()), team.name)
-    return (team, team.name)
+        json_data = json.dumps(team.as_dict())
+        return {"name" : team.name, "json": json_data}
+    else:
+        return team
