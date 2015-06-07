@@ -41,10 +41,10 @@ def teams():
 
 @app.route("/team/<tid>")
 def team(tid):
-    team_data = get_team(tid, format="json")
-    if not team_data:
+    team = get_team(tid)
+    if not team:
         return pnf()
-    return render_template("pages/team.jade", title=team_data["name"], team=team_data["json"])
+    return render_template("pages/team.jade", title=team.name, team=team)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
