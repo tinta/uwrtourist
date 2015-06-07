@@ -8,4 +8,8 @@ script(src="/node_modules/angular/angular.min.js")
 
 {% block body %}
 {{team}}
+
+each contact in team.links
+    div= contact
+
 {% endblock %}

@@ -43,7 +43,7 @@ def teams():
 def team(tid):
     team_data = get_team(tid, format="json")
     if not team_data:
-        abort(404)
+        return pnf()
     return render_template("pages/team.jade", title=team_data["name"], team=team_data["json"])
 
 @app.route("/add-new-team", methods=["GET", "POST"])
@@ -56,6 +56,10 @@ def addform():
         title = gettext("Add a New Team")
         return render_template("pages/add.jade", title=title)
 
+@app.route("/oauth2callback")
+def oauthcallback():
+    return None
+
 # @app.route("/competitions")
 # def competitions():
 #     title = gettext("Competitions")
@@ -63,14 +67,17 @@ def addform():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    title = gettext("Page Not Found")
-    return render_template("404.jade", title=title), 404
+    return pnf()
 
 @app.errorhandler(500)
 def site_down(e):
     return render_template("500.jade", error=e), 500
 
 # helper methods
+def pnf():
+    title = gettext("Page Not Found")
+    return render_template("404.jade", title=title), 404
+
 class Navbar:
     def __init__(self, other_routes=[]):
         self.routes = [

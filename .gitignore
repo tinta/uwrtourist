@@ -1,6 +1,9 @@
 ## mysql ##
 .my.cnf
 
+## vim ##
+*.swp
+
 ## NODEJS GITIGNORE ##
 # Logs
 logs

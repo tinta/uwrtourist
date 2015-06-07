@@ -77,7 +77,7 @@ div.row.collapse.bg-gray-light
                         )
                             td(ng-repeat='keyObj in table.keys')
                                 a.pad-lr-2x.pad-tb.width-full(
-                                    href="/"
+                                    href="/team/[[row.id]]"
                                     ng-if="keyObj.value !== 'links'"
                                 )
                                     div.spacer-xs
