@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
-from models import db, get_teams
+from models import db, get_teams, get_team
 import os
 
 # set up app
@@ -38,6 +38,12 @@ def teams():
     title = gettext("Teams")
     teams = get_teams(format="json")
     return render_template("pages/teams.jade", title=title, teams=teams)
+
+@app.route("/team/<tid>")
+def team(tid):
+    team, name = get_team(tid, format="json")
+    title = name 
+    return render_template("pages/team.jade", title=title, team=team)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
