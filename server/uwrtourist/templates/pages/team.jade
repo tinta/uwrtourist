@@ -1,4 +1,5 @@
-- from  './mixins/titleBanner.jade' import titleBanner
+- from './mixins/titleBanner.jade' import titleBanner
+- from './mixins/mainColumn.jade' import mainColumn
 
 {% extends "layout.jade" %}
 
@@ -10,12 +11,56 @@ script(src="/node_modules/angular/angular.min.js")
 
 {% block body %}
 
-+titleBanner("Links")
+//- +mainColumn()
+div.row.collapse
+    div.column.small-12.small-centered
+        div.row.uncollapse
+            if team.links
+                div.small-6.column
+                    +titleBanner("Links")
+                    +mainColumn()
+                        div.text-xxs
+                            {% for link in team.links %}
+                            div.spacer-xs
+                            div
+                                a.text-hover-green(href="#{link.link}"){{link.link}}
+                            {% endfor %}
 
-div.text-xs
-    {% for link in team.links %}
-    div.spacer-xxs
-    div {{link.link}}
-    {% endfor %}
+            if team.contacts
+                div.small-6.column
+                    +titleBanner("Contacts")
+                    +mainColumn()
+                        div.row
+                            {% for contact in team.contacts %}
+                            if contact.title
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Title: {{contact.title}}
+                            if contact.name
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Name: {{contact.name}}
+                            if contact.email
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Email: {{contact.email}}
+                            if contact.phone
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Phone: {{contact.phone}}
+                            if contact.facebook
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Facebook: {{contact.facebook}}
+                            if contact.twitter
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Twitter: {{contact.twitter}}
+                            if contact.whatsapp
+                                div.column.small-6
+                                    div.spacer-xs
+                                    div.text-xxs Whatsapp: {{contact.whatsapp}}
+                            {% endfor %}
+div.spacer-lg
 
 {% endblock %}
