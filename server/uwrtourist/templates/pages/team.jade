@@ -1,3 +1,5 @@
+- from  './mixins/titleBanner.jade' import titleBanner
+
 {% extends "layout.jade" %}
 
 {% block javascript %}
@@ -7,9 +9,13 @@ script(src="/node_modules/angular/angular.min.js")
 {% endblock %}
 
 {% block body %}
-{{team}}
 
-each contact in team.links
-    div= contact
++titleBanner("Links")
+
+div.text-xs
+    {% for link in team.links %}
+    div.spacer-xxs
+    div {{link.link}}
+    {% endfor %}
 
 {% endblock %}
