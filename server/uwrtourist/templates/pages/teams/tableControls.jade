@@ -1,0 +1,10 @@
+div.column.small-4.bg-green(ng-click="table.paginate.previous()")
+    div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+        div.text-valign Previous
+
+div.column.small-4
+    div.text-xxs.width-full.pad.text-center.bg-gray-dark
+        div.text-valign Page [[ table.paginate.displayCurrent() ]] of [[ table.paginate.length ]]
+div.column.small-4.height-medium.bg-green(ng-click="table.paginate.next()")
+    div.text-xxs.width-full.pad.text-center(ng-class="{disabled : table.paginate.disableButtons()}")
+        div.text-valign Next

@@ -37,7 +37,7 @@ def about():
 def teams():
     title = gettext("Teams")
     teams = get_teams(format="json")
-    return render_template("pages/teams.jade", title=title, teams=teams)
+    return render_template("pages/teams/index.jade", title=title, teams=teams)
 
 @app.route("/team/<tid>")
 def team(tid):
