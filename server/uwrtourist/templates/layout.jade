@@ -1,8 +1,7 @@
 doctype html
 head
     meta(http-equiv='content-type', content='text/html; charset=utf-8')
-    meta(name='google-signin-scope', content='profile emai')
-    meta(name='google-signin-client_id', content='805786073538-u3s0hdanqvhsgp007dv76t2kg8le8vv2.apps.googleusercontent.com')
+    meta(name='google-signin-client_id', content='805786073538-4mvlks7ttg7ghfjk6lo3rvod6kui0vgb.apps.googleusercontent.com')
 
     if title
         title UWR Tourist - {{ title }}
@@ -27,6 +26,7 @@ head
     {% endblock %}
 
     script(src="https://apis.google.com/js/platform.js", async, defer)
+    script(src="/resources/js/oauth.js")
     {% block javascript %}
     {% endblock %}
 
