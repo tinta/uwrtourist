@@ -12,9 +12,9 @@ div.row.text-center.collapse
             div.column.small-11.small-centered
                 div.row
                     div.column.small-11.small-centered
-                        ul.text-xxxs.text-thin
+                        ul.text-xxxs.text-thin(style="margin-left: -10px;")
                             {% for route in pages %}
-                            li.show
+                            li.show.pull-left
                                 {% set navClass = 'text-hover-gray-md-dark' %}
                                 a.pad-lr-2x.pad-tb(
                                     href=route.url
