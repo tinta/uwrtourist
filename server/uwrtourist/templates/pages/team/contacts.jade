@@ -8,10 +8,11 @@ if team.contacts
             {% for contact in team.contacts %}
             div.row.collapse
                 if contact.name
-                    div.column.small-6
-                        div.text-xxs.text-bold {{contact.name}}
-                        div.spacer-xs
-                div.column.small-6
+                    div.column.small-4
+                        div.pad-r.text-xxs
+                            div.text-bold {{contact.name}}
+                            div.spacer-xs
+                div.column.small-8
                     if contact.title
                         div.text-xxs
                             span {{contact.title}}
