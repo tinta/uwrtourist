@@ -1,8 +1,14 @@
-mixin titleBanner (text)
+mixin titleBanner (width, text)
     div.row.collapse.bg-gray-light
-        div.column.small-11.small-centered
-            div.row
+        div.column.small-centered(class="small-#{width}")
+            div.row.collapse
                 div.column.small-12
                     div.spacer-xs
                     div.text-sm {{text}}
                     div.spacer-xs
+
+mixin titleBanner11 (text)
+    +titleBanner(11, text)
+
+mixin titleBanner10 (text)
+    +titleBanner(10, text)

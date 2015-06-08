@@ -1,5 +1,9 @@
 $gutter: 0.9375em;
 
+html [class*="column"]+[class*="column"]:last-child {
+    float: left;
+}
+
 // Using mixins rather than placeholder classes due to use in media queries
 @mixin collapse () {
     margin-left: 0;
