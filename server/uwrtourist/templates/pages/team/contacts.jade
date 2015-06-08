@@ -13,23 +13,28 @@ if team.contacts
                         div.spacer-xs
                 div.column.small-6
                     if contact.title
-                        div.text-xxs Title: {{contact.title}}
-                        div.spacer-xs
+                        div.text-xxs
+                            span {{contact.title}}
+                        div.spacer-sm
                     if contact.email
-                        div.text-xxs Email: {{contact.email}}
-                        div.spacer-xs
+                        div.text-xxs
+                            i.fa.fa-envelope
+                            span &nbsp; {{contact.email}}
+                        div.spacer-sm
                     if contact.phone
-                        div.text-xxs Phone: {{contact.phone}}
-                        div.spacer-xs
+                        div.text-xxs
+                            i.valign-mid.fa.fa-phone
+                            span.valign-mid  &nbsp; {{contact.phone}}
+                        div.spacer-sm
                     if contact.facebook
                         div.text-xxs Facebook: {{contact.facebook}}
-                        div.spacer-xs
+                        div.spacer-sm
                     if contact.twitter
                         div.text-xxs Twitter: {{contact.twitter}}
-                        div.spacer-xs
+                        div.spacer-sm
                     if contact.whatsapp
                         div.text-xxs Whatsapp: {{contact.whatsapp}}
-                        div.spacer-xs
+                        div.spacer-sm
             div.spacer-sm
             {% endfor %}
         div.spacer-xl
