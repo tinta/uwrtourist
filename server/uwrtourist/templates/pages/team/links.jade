@@ -8,7 +8,20 @@ if team.links
             div.text-xxs
                 {% for link in team.links %}
                 div
-                    a.text-hover-green(href="#{link.link}"){{link.link}}
+                    - set prettyLink = link.link
+                    - if (prettyLink.find('https://') > -1)
+                        - set end = prettyLink|length
+                        - set prettyLink = prettyLink[8:end]
+
+                    - if (prettyLink.find('http://') > -1)
+                        - set end = prettyLink|length
+                        - set prettyLink = prettyLink[7:end]
+
+                    - if (prettyLink[prettyLink|length - 1:] == '/')
+                        - set prettyLink = prettyLink[:prettyLink|length - 1]
+
+                    a.text-hover-green(href="#{link.link}")
+                        span {{prettyLink}}
                 div.spacer-xs
                 {% endfor %}
         div.spacer-xl
