@@ -15,21 +15,64 @@ script(src="/node_modules/angular/angular.min.js")
 div.row.collapse
     div.column.small-12.small-centered
         div.row.uncollapse
+            if team.practice_locations
+                div.small-6.column
+                    +titleBanner("Practice Locations")
+                    +mainColumn()
+                        div.text-xxs
+                            {% for loc in team.practice_locations %}
+                            div.spacer-lg
+                            div.text-bold
+                                if loc.name
+                                    span {{loc.name}}
+                                else
+                                    span Location {{loop.index}}
+
+                            if loc.street_address and loc.city and loc.region and loc.postal_code and loc.country
+                                div.spacer-xs
+                                div {{loc.street_address}}&nbsp;&nbsp;
+                                div.spacer-xs
+                                div
+                                    span {{loc.city}},&nbsp;
+                                    span {{loc.region}}&nbsp;&nbsp;
+                                    span {{loc.postal_code}}&nbsp;&nbsp;
+                                    span {{loc.country}}
+                            else
+                                if loc.street_address
+                                    div.spacer-xs
+                                    div Address: {{loc.street_address}}
+                                if loc.city
+                                    div.spacer-xs
+                                    div City: {{loc.city}}
+                                if loc.region
+                                    div.spacer-xs
+                                    div Region: {{loc.region}}
+                                if loc.country
+                                    div.spacer-xs
+                                    div Country: {{loc.country}}
+                            if loc.permalink
+                                div.spacer-xs
+                                div Link: {{loc.permalink}}
+                            {% endfor %}
+
             if team.links
                 div.small-6.column
                     +titleBanner("Links")
                     +mainColumn()
+                        div.spacer-lg
                         div.text-xxs
                             {% for link in team.links %}
-                            div.spacer-xs
                             div
                                 a.text-hover-green(href="#{link.link}"){{link.link}}
+                            div.spacer-xs
                             {% endfor %}
+                    div.spacer-xl
 
             if team.contacts
                 div.small-6.column
                     +titleBanner("Contacts")
                     +mainColumn()
+                        div.spacer-lg
                         div.row
                             {% for contact in team.contacts %}
                             if contact.title
@@ -61,6 +104,8 @@ div.row.collapse
                                     div.spacer-xs
                                     div.text-xxs Whatsapp: {{contact.whatsapp}}
                             {% endfor %}
+                    div.spacer-xl
+
 div.spacer-lg
 
 {% endblock %}
