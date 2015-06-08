@@ -5,5 +5,19 @@ $radius-sizes: (
     full: 10000px,
 );
 
+$square-sizes: (
+    sm: 40px,
+    md: 50px,
+    lg: 60px,
+    xl: 70px
+);
+
+.bg-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
 @import "round";
+@import "square";
 @import "circle";

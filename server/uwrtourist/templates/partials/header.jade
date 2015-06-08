@@ -1,37 +1,53 @@
 div.row.text-center.collapse
     div.column.small-12
-        div.spacer-md
+        div.spacer-xs
         div.row.collapse
             div.column.small-11.small-centered
-                a(href="/").pull-left.text-lg.text-thin.valign-top Underwater Rugby Tourist
-                div(data-onsuccess='onSignIn').pull-right.text-xxs.valign-top.g-signin2
-                    span.text-white Sign in
+                div.row.uncollapse
+                    div.column.small-12.text-left
+                        a(href="/").pull-left.text-md.clearfix
+                            div.pad-r.valign-top
+                                div.bg-image.square-sm(style="background-image: url('/resources/images/svg/diving-mask.svg')")
+                            div.pad-r.valign-top
+                                div.spacer-xs
+                                div.text-thin Underwater Rugby Tourist
+
+                        div.pull-right
+                            div.spacer-xxs
+                            div(data-onsuccess='onSignIn').text-xxs.valign-top.g-signin2
+                                span.text-white Sign in
+
         div.spacer-sm
 
         div.row.collapse.bg-blue.text-white
             div.column.small-11.small-centered
-                div.row
-                    div.column.small-11.small-centered
-                        ul.text-xxxs.text-thin(style="margin-left: -10px;")
-                            {% for route in pages %}
-                            li.show.pull-left
-                                {% set navClass = 'text-hover-gray-md-dark' %}
-                                a.pad-lr-2x.pad-tb(
-                                    href=route.url
-                                )
-                                    div.spacer-xxs
-                                    div=route.title
-                                    div.spacer-xxs
-                            {% endfor %}
+                div.row.uncollapse
+                    div.column.small-12
+                        div.row.double-gutter
+                            div.column.small-12
+
+                                ul.text-xxxs.text-thin(style="margin-left: -10px;")
+                                    {% for route in pages %}
+                                    li.show.pull-left
+                                        {% set navClass = 'text-hover-gray-md-dark' %}
+                                        a.pad-lr-2x.pad-tb(
+                                            href=route.url
+                                        )
+                                            div.spacer-xxs
+                                            div=route.title
+                                            div.spacer-xxs
+                                    {% endfor %}
 
         {% if title %}
         div.spacer-xs
         div.row.collapse.text-white.text-left
-            div.column.small-11.small-centered.bg-red
-                div.row
-                    div.column.small-11.small-centered
-                        div.spacer-sm
-                        div.text-md.text-thin= title
-                        div.spacer-xs
+            div.column.small-11.small-centered
+                div.row.uncollapse
+                    div.column.small-12
+                        div.row.double-gutter.bg-red
+                            div.column.small-12
+                                div.spacer-sm
+                                div.text-sm.text-thin= title
+                                div.spacer-xs
         div.spacer-md
         {%  endif %}

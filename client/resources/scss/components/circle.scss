@@ -1,15 +1,7 @@
 [class*="circle-"] {
     border-radius: map-get($radius-sizes, full);
-    display: inline-block;
-    vertical-align: top;
-    overflow: auto;
-
+    @extend %square;
 }
 
-$circle-sizes: (
-    md: 50px,
-    lg: 60px,
-    xl: 70px
-);
+@include breakpoint($square-sizes, (width, height), "circle");
 
-@include breakpoint($circle-sizes, (width, height), "circle");
