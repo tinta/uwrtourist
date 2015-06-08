@@ -4,19 +4,32 @@ if team.location or team.country or team.year_established
     div.small-6.column
         +titleBanner10("Info")
         div.column.small-10.small-centered
+            div.spacer-md
             div.text-xxs
-                div.spacer-lg
 
-                if team.location
-                    div Metro Area: {{team.location}}
-                    div.spacer-xs
+                div.text-bold Metro Area
+                div.spacer-xxs
+                div.spacer-1.bg-gray-dark
+                div.spacer-xs
+                if team.location and team.country
+                    div
+                        span {{team.location}}&nbsp;&nbsp;{{team.country}}
+                else
+                    if team.location
+                        div Metro Area: {{team.location}}
+                        div.spacer-xs
 
-                if team.country
-                    div Country: {{team.country}}
-                    div.spacer-xs
+                    if team.country
+                        div Country: {{team.country}}
+                        div.spacer-xs
 
                 if team.year_established
-                    div Established in {{team.year_established}}
+
+                    div.text-bold Year Established
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-xs
+                    div {{team.year_established}}
                     div.spacer-xs
 
         div.spacer-xl

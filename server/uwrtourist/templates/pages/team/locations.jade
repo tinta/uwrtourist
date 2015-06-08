@@ -6,12 +6,15 @@ if team.practice_locations
         div.column.small-10.small-centered
             div.text-xxs
                 {% for loc in team.practice_locations %}
-                div.spacer-lg
+                div.spacer-md
                 div.text-bold
                     if loc.name
                         span {{loc.name}}
                     else
                         span Location {{loop.index}}
+
+                div.spacer-xxs
+                div.spacer-1.bg-gray-dark
 
                 if loc.street_address and loc.city and loc.region and loc.postal_code and loc.country
                     div.spacer-xs
