@@ -1,0 +1,14 @@
+- from './mixins/titleBanner.jade' import titleBanner10
+
+if team.links
+    div.small-6.column
+        +titleBanner10("Links")
+        div.column.small-10.small-centered
+            div.spacer-lg
+            div.text-xxs
+                {% for link in team.links %}
+                div
+                    a.text-hover-green(href="#{link.link}"){{link.link}}
+                div.spacer-xs
+                {% endfor %}
+        div.spacer-xl

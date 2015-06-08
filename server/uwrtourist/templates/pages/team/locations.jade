@@ -1,0 +1,42 @@
+- from './mixins/titleBanner.jade' import titleBanner10
+
+if team.practice_locations
+    div.small-6.column
+        +titleBanner10("Practice Locations")
+        div.column.small-10.small-centered
+            div.text-xxs
+                {% for loc in team.practice_locations %}
+                div.spacer-lg
+                div.text-bold
+                    if loc.name
+                        span {{loc.name}}
+                    else
+                        span Location {{loop.index}}
+
+                if loc.street_address and loc.city and loc.region and loc.postal_code and loc.country
+                    div.spacer-xs
+                    div {{loc.street_address}}&nbsp;&nbsp;
+                    div.spacer-xs
+                    div
+                        span {{loc.city}},&nbsp;
+                        span {{loc.region}}&nbsp;&nbsp;
+                        span {{loc.postal_code}}&nbsp;&nbsp;
+                        span {{loc.country}}
+                else
+                    if loc.street_address
+                        div.spacer-xs
+                        div Address: {{loc.street_address}}
+                    if loc.city
+                        div.spacer-xs
+                        div City: {{loc.city}}
+                    if loc.region
+                        div.spacer-xs
+                        div Region: {{loc.region}}
+                    if loc.country
+                        div.spacer-xs
+                        div Country: {{loc.country}}
+                if loc.permalink
+                    div.spacer-xs
+                    div Link: {{loc.permalink}}
+                {% endfor %}
+        div.spacer-xl

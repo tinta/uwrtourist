@@ -1,0 +1,31 @@
+- from './mixins/titleBanner.jade' import titleBanner10
+- from './mixins/mainColumn.jade' import mainColumn
+
+{% extends "layout.jade" %}
+
+{% block javascript %}
+script(src="/node_modules/lodash/index.js")
+script(src="/node_modules/jquery/dist/jquery.min.js")
+script(src="/node_modules/angular/angular.min.js")
+{% endblock %}
+
+{% block body %}
+
+div.row.collapse
+    div.column.small-12.small-centered
+        div#team.row.uncollapse
+
+            include pages/team/info
+
+            include pages/team/contacts
+
+            include pages/team/locations
+
+            include pages/team/times
+
+            include pages/team/links
+
+div.spacer-lg
+
+div.spacer-xs
+{% endblock %}

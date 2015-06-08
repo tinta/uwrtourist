@@ -1,0 +1,35 @@
+- from './mixins/titleBanner.jade' import titleBanner10
+
+if team.contacts
+    div.small-6.column
+        +titleBanner10("Contacts")
+        div.column.small-10.small-centered
+            div.spacer-lg
+            {% for contact in team.contacts %}
+            div.row.collapse
+                if contact.name
+                    div.column.small-6
+                        div.text-xxs.text-bold {{contact.name}}
+                        div.spacer-xs
+                div.column.small-6
+                    if contact.title
+                        div.text-xxs Title: {{contact.title}}
+                        div.spacer-xs
+                    if contact.email
+                        div.text-xxs Email: {{contact.email}}
+                        div.spacer-xs
+                    if contact.phone
+                        div.text-xxs Phone: {{contact.phone}}
+                        div.spacer-xs
+                    if contact.facebook
+                        div.text-xxs Facebook: {{contact.facebook}}
+                        div.spacer-xs
+                    if contact.twitter
+                        div.text-xxs Twitter: {{contact.twitter}}
+                        div.spacer-xs
+                    if contact.whatsapp
+                        div.text-xxs Whatsapp: {{contact.whatsapp}}
+                        div.spacer-xs
+            div.spacer-sm
+            {% endfor %}
+        div.spacer-xl

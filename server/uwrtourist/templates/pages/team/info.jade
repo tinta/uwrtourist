@@ -1,0 +1,22 @@
+- from './mixins/titleBanner.jade' import titleBanner10
+
+if team.location or team.country or team.year_established
+    div.small-6.column
+        +titleBanner10("Info")
+        div.column.small-10.small-centered
+            div.text-xxs
+                div.spacer-lg
+
+                if team.location
+                    div Metro Area: {{team.location}}
+                    div.spacer-xs
+
+                if team.country
+                    div Country: {{team.country}}
+                    div.spacer-xs
+
+                if team.year_established
+                    div Established in {{team.year_established}}
+                    div.spacer-xs
+
+        div.spacer-xl

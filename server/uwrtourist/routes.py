@@ -44,8 +44,8 @@ def team(tid):
     team = get_team(tid)
     if not team:
         return pnf()
-    print(team.links[0].link)
-    return render_template("pages/team.jade", title=team.name, team=team)
+
+    return render_template("pages/team/index.jade", title=team.name, team=team)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
