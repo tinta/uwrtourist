@@ -28,22 +28,24 @@ div.row.uncollapse
                 ng-cloak
             )
                 div.spacer-lg
-                div.row
-                    div.column.small-6
-                        input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad.bg-white(
-                            type="text"
-                            placeholder="Search by Name or Region"
-                            ng-model="table.filter.value"
-                            ng-change="table.filter.apply()"
-                            tabindex="1"
-                        )
+                div.row.collapse
+                    div.column.small-12
+                        div.row.uncollapse
+                            div.column.small-6
+                                input.text-xxs.text-gray-dark.text-thin.width-full.spacer-xl.pad.bg-white(
+                                    type="text"
+                                    placeholder="Search by Name or Region"
+                                    ng-model="table.filter.value"
+                                    ng-change="table.filter.apply()"
+                                    tabindex="1"
+                                )
 
-                    div.column.small-6
-                        div.row.collapse.text-white
-                            include pages/teams/tableControls
+                            div.column.small-6
+                                div.row.collapse.text-white
+                                    include pages/teams/tableControls
 
                 div.spacer-sm
-                div.row
+                div.row.uncollapse
                     div.column.small-12
                         include pages/teams/table
 
