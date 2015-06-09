@@ -1,9 +1,87 @@
+- from './mixins/titleBanner.jade' import titleBanner
+
 {% extends "layout.jade" %}
 {% block body %}
-div.spacer-sm
-div.row
-    div.column.small-11.small-centered
-        div.text-xs
-            p.text-thin Underwater rugby is a fun, fast-paced breath hold sport that is played with mask, snorkel, fins, a negatively bouyant ball, and 2 baskets, one at either end of a 6-10 foot deep section of pool. It's kind of a fun mix of free diving, polo and wrestling, but played entirely underwater!
-            p.text-thin Underwater Rugby Tourist is a website for underwater rugby aficionados, from sharks to minnows. Find a team near you and get playing. We'll meet you at the bottom!
+div.row.collapse
+    div.column.small-12
+        div.row.uncollapse
+            div.column.small-11.small-centered
+                div.text-xs
+                    p
+                        span Underwater Rugby Tourist is a website for underwater rugby aficionados, from sharks to minnows.
+                        span &nbsp;Use it to
+                        h2.pad-r.text-xs find a team near you
+                        span and get playing. We'll meet you at the bottom!
+
+div.spacer-md
+
+div.row.uncollapse
+    div.column.small-12
+        +titleBanner(11)
+            h2.text-sm What is Underwater Rugby?
+
+        div.spacer-md
+        div.row.collapse
+            div.column.small-11.small-centered
+                div.text-xxs
+                    p Underwater rugby is a fun, fast-paced breath hold sport that is played with mask, snorkel, fins, a negatively bouyant ball, and 2 baskets, one at either end of a 6-10 foot deep section of pool. It's kind of a fun mix of free diving, polo and wrestling, but played entirely underwater!
+        div.spacer-lg
+
+        +titleBanner(11)
+            h2.text-sm What do I need to play?
+
+        div.spacer-md
+        div.row.collapse
+            div.column.small-11.small-centered
+                div.text-xxs
+                    div.text-bold As an Individual
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-xs
+
+                    div
+                        p ─ Water Polo Cap
+                    div
+                        p ─ Snorkel
+                    div
+                        p ─ Snorkeling Mask
+                    div
+                        p ─ Solid Fins (no holes)
+                    div
+                        p &nbsp;&nbsp;&nbsp;&nbsp;└ Fins with holes are notorious for catching the fingers and toes of others. Watch out!
+
+                    div.spacer-md
+
+                    p If you lack the equipment listed above, try asking the team that you'll be playing with if they have a spare of what you need.
+                    p Some teams have a communal, donation-based collection of spare equipment.
+
+                    div.spacer-md
+
+                    div.text-bold As a Team
+                    div.spacer-xxs
+                    div.spacer-1.bg-gray-dark
+                    div.spacer-xs
+
+                    div
+                        p ─  One Negatively-Bouyant Ball
+
+                    div
+                        p ─ Two Baskets/Goals
+
+        div.spacer-lg
+
+        +titleBanner(11)
+            h2.text-sm CMAS
+        div.spacer-sm
+        div.row.collapse
+            div.column.small-11.small-centered
+                div.text-xxs
+                    div
+                        p Short for "Confédération Mondiale des Activités Subaquatiques", CMAS is the highest governing body of UWR and other fun underwater sports as well. They organize championships around the world.
+
+                    div.spacer-md
+                    div
+                        a.pad.bg-blue.bg-hover-gray-md-dark(href="http://www.cmas.org/underwater-rugby")
+                            span.text-white Go to the CMAS website
+div.spacer-xxl
 {% endblock %}

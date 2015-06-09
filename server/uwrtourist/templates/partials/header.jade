@@ -1,3 +1,5 @@
+- from './mixins/titleBanner.jade' import titleBannerFull
+
 div.row.text-center.collapse
     div.column.small-12
         div.spacer-xs
@@ -10,7 +12,7 @@ div.row.text-center.collapse
                                 div.bg-image.square-sm(style="background-image: url('/resources/images/svg/diving-mask.svg')")
                             div.pad-r.valign-top
                                 div.spacer-xs
-                                div.text-thin Underwater Rugby Tourist
+                                h1.text-md.text-thin Underwater Rugby Tourist
 
                         div.pull-right
                             div.spacer-xxs
@@ -42,12 +44,17 @@ div.row.text-center.collapse
         div.spacer-xs
         div.row.collapse.text-white.text-left
             div.column.small-11.small-centered
-                div.row.uncollapse
-                    div.column.small-12
-                        div.row.double-gutter.bg-red
-                            div.column.small-12
-                                div.spacer-sm
-                                div.text-sm.text-thin= title
-                                div.spacer-xs
+                +titleBannerFull("bg-red")
+                    div.spacer-sm
+                    div.text-sm.text-thin= title
+                    div.spacer-xs
+
+                //- div.row.uncollapse
+                //-     div.column.small-12
+                //-         div.row.double-gutter.bg-red
+                //-             div.column.small-12
+                //-                 div.spacer-sm
+                //-                 div.text-sm.text-thin= title
+                //-                 div.spacer-xs
         div.spacer-md
         {%  endif %}

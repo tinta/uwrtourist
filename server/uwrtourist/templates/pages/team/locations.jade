@@ -1,8 +1,9 @@
-- from './mixins/titleBanner.jade' import titleBanner10
+- from './mixins/titleBanner.jade' import titleBanner
 
 if team.practice_locations
     div.small-6.column
-        +titleBanner10("Practice Locations")
+        +titleBanner(10)
+            div.text-xs Practice Locations
         div.column.small-10.small-centered
             div.text-xxs
                 {% for loc in team.practice_locations %}
