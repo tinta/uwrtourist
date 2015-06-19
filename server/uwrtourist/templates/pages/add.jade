@@ -13,10 +13,11 @@ script(src="/node_modules/angular/angular.js")
 script(src="/resources/js/controllers/addTeam.js")
 {% endblock %}
 
-mixin FASquare (text, squareColor, textColor)
-    div.fa-stack.text-xxs
-        i.fa.fa-stack-2x.fa-square(class=squareColor)
-        i.fa.fa-stack-1x.text-xbold(class=textColor)= text
+mixin SquareCounter (text, bgClass)
+    div.right.round-md-bl(class='border-#{bgClass}')
+        div.text-xxs.input-height.input-width.text-white.text-center(class='bg-#{bgClass}')
+            div.spacer-xs
+            div= text
 
 {% block body %}
 
@@ -109,10 +110,10 @@ div.row.uncollapse
                 div.row
                         div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                             div.column.small-2.text-right
-                                +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
+                                +SquareCounter('[[ index + 1 ]]', 'green')
 
                             div.column.small-9
-                                div.row.collapse.bg-white.round-md-left.border-gray-dark
+                                div.row.collapse.bg-white.border-gray-dark
                                     div.column.small-2.text-center
                                         div.bg-gray-dark.input-height.text-white.text-xxs
                                             div.spacer-xs
@@ -162,10 +163,10 @@ div.row.uncollapse
                     div.column.small-12
                         div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
                             div.column.small-2.text-right
-                                +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
+                                +SquareCounter('[[ index + 1 ]]', 'green')
 
                             div.column.small-9
-                                div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
+                                div.row.collapse.border-gray-dark.border-none-l.bg-white
                                     div.column.small-2.text-center
                                         div.bg-gray-dark.input-height.text-white.text-xxs
                                             div.spacer-xs
@@ -253,10 +254,10 @@ div.row.uncollapse
                     div.column.small-12
                         div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                             div.column.small-2.text-right
-                                +FASquare('[[ index + 1 ]]', 'text-green', 'text-white')
+                                +SquareCounter('[[ index + 1 ]]', 'green')
 
                             div.column.small-9
-                                div.row.collapse.border-gray-dark.border-none-l.bg-white.round-md-tl
+                                div.row.collapse.border-gray-dark.border-none-l.bg-white
                                     div.column.small-2.text-center
                                         div.bg-gray-dark.input-height.text-white.text-xxs
                                             div.spacer-xs
@@ -371,8 +372,8 @@ div.row.uncollapse
                                 )
                                     div.column.small-2
                                         div.right.text-xxs
-                                            +FASquare('[[ index + 1 ]]', 'text-blue', 'text-white')
-                                            span &nbsp;&nbsp;
+                                            div.right &nbsp;&nbsp;
+                                            +SquareCounter('[[ index + 1 ]]', 'blue')
 
                                     div.column.small-10
                                         div.row.collapse
