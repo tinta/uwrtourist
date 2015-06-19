@@ -6,10 +6,12 @@
     div.text-sm Practice Locations
 
 +mainColumn()
-    div.spacer-lg
     div.row
         div.column.small-12
             div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
+                div.column.small-12
+                    div.spacer-lg
+
                 div.column.small-2.text-right
                     +squareCounter('[[ index + 1 ]]', 'green')
 
@@ -32,12 +34,12 @@
                         div.spacer-xl
                         div.spacer-sm
                 div.column.small-12
-                    div.spacer-md
+                    div.spacer-lg
 
             div.spacer-md
             div.row.uncollapse
                 div.column.small-10.small-offset-2
-                    div.row.collapse.text-center(ng-click="form.practiceLocations.create()")
+                    div.row.collapse.text-center(ng-click="form.newPractice()")
                         div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
                             div.input-height.text-white.text-xxs
                                 div.spacer-xs

@@ -2,32 +2,45 @@
 
 div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
     div.column.small-2.text-center
-        div.bg-gray-dark.input-height.text-white.text-xxs
+        div.bg-gray-dark.input-height.text-white.text-xxs.round-md-bl
             div.spacer-xs
             div.spacer-1
             div.text-xbold Times
+
+    div.column.small-10
+        div(
+            ng-repeat="(index, time) in practiceLocation.times.all"
+        )
+            div.row.collapse
+                div.column.small-1
+                    div.right.text-xxs
+                        div.right &nbsp;&nbsp;
+                        +squareCounter('[[ index + 1 ]]', 'blue')
+
+                div.column.small-10
+                    div.row.collapse
+
+                        div.column.small-4
+                            include pages/add-team/practices/times/start
+
+                        div.column.small-4
+                            include pages/add-team/practices/times/end
+
+                        div.column.small-4
+                            include pages/add-team/practices/times/day-of-week
+
+                div.column.small-1.bg-red.round-md-right(
+                    ng-click="form.practiceLocations.remove(index)"
+                )
+                    div.text-xxs.text-center
+                        div.spacer-xs
+                        div
+                            i.fa.fa-times.text-white
+                        div.spacer-sm
+
+            div.spacer-xs
+
 div.spacer-xs
 
-div(
-    ng-repeat="(index, time) in practiceLocation.times.all"
-)
-    div.row.collapse
-        div.column.small-2
-            div.right.text-xxs
-                div.right &nbsp;&nbsp;
-                +squareCounter('[[ index + 1 ]]', 'blue')
-
-        div.column.small-10
-            div.row.collapse
-
-                div.column.small-4
-                    include pages/add-team/practices/times/start
-
-                div.column.small-4
-                    include pages/add-team/practices/times/end
-
-                div.column.small-4
-                    include pages/add-team/practices/times/day-of-week
-    div.spacer-xs
 
 include pages/add-team/practices/times/add-new-time
