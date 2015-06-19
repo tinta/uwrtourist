@@ -1,0 +1,31 @@
+- from './mixins/squareCounter.jade' import squareCounter
+
+div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
+    div.column.small-2.text-center
+        div.bg-gray-dark.input-height.text-white.text-xxs
+            div.spacer-xs
+            div.spacer-1
+            div.text-xbold Times
+div.spacer-xs
+
+div.row.collapse(
+    ng-repeat="(index, time) in practiceLocation.times.all"
+)
+    div.column.small-2
+        div.right.text-xxs
+            div.right &nbsp;&nbsp;
+            +squareCounter('[[ index + 1 ]]', 'blue')
+
+    div.column.small-10
+        div.row.collapse
+
+            div.column.small-4
+                include pages/add-team/practices/times/start
+
+            div.column.small-4
+                include pages/add-team/practices/times/end
+
+            div.column.small-4
+                include pages/add-team/practices/times/day-of-week
+
+include pages/add-team/practices/times/add-new-time

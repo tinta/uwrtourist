@@ -1,0 +1,55 @@
+mixin textInput (modelName)
+    div.text-xxs.input-height
+        input.pad.input-invis(
+            type="text"
+            ng-model="#{modelName}"
+        )
+
+mixin title (text)
+    div.bg-gray-dark.input-height.text-white.text-xxs
+        div.spacer-xs
+        div.spacer-1
+        div.text-xbold= text
+
+mixin textInputBlock (titleText, modelName)
+    div.row.collapse.border-gray-dark.border-none-l.bg-white
+        div.column.small-2.text-center
+            +title(titleText)
+
+        div.column.small-10.border-gray-dark-l
+            +textInput(modelName)
+
++textInputBlock("Name", "practiceLocation.name")
+
+div.spacer-xs
+
++textInputBlock("Address", "practiceLocation.address")
+
+div.spacer-xs
+
++textInputBlock("City", "practiceLocation.city")
+
+div.spacer-xs
+div.row.collapse.bg-white
+    div.column.small-2
+        div.text-center.border-gray-dark.border-none-l.border-none-r
+            +title("Region")
+    div.column.small-5
+        div.border-gray-dark
+            +textInput("practiceLocation.region")
+
+    div.column.small-2.small-offset-1
+        div.text-center.border-gray-dark.border-none-l.border-none-r
+            +title("Zip")
+
+    div.column.small-2
+        div.border-gray-dark
+            +textInput("practiceLocation.postalCode")
+
+div.spacer-xs
+
++textInputBlock("Country", "practiceLocation.country")
+
+div.spacer-xs
+
+include pages/add-team/practices/times/index
