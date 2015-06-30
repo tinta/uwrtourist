@@ -1,13 +1,19 @@
 #!/bin/sh
 
 root_dir="${PWD%/bin}"
+
+# setup python virtualenv and install requirements
 virtualenv "$root_dir/server/venv_uwrtourist"
 source "$root_dir/server/venv_uwrtourist/bin/activate"
 pip install -r "$root_dir/server/requirements-dev.txt"
+
 # seed database
 if [ -e "$root_dir/server/uwrtourist/uwrtourist.db" ]
 then
     rm "$root_dir/server/uwrtourist/uwrtourist.db"
 fi
 python "$root_dir/server/manage.py"
+
+# install node requirements
+cd $root_dir/client && npm install
 
