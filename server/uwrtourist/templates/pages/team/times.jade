@@ -15,11 +15,13 @@ if team.practice_times
                 div.spacer-1.bg-gray-dark
 
                 div.spacer-xs
-                div
+                div.row.uncollapse
                     if time.start_time
-                        span Start Time: {{time.start_time}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        div.column.small-6
+                            span.text-xxs Start Time: {{time.start_time}}&nbsp;&nbsp;&nbsp;&nbsp;
                     if time.end_time
-                        span End Time: {{time.end_time}}
+                        div.column.small-6
+                            span.text-xxs End Time: {{time.end_time}}
 
                 if time.note
                     div.spacer-xs
