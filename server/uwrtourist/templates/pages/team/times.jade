@@ -18,10 +18,10 @@ if team.practice_times
                 div.row.uncollapse
                     if time.start_time
                         div.column.small-6
-                            span.text-xxs Start Time: {{time.start_time}}&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.text-xxs Start Time: {{time.start_time.strftime("%H:%M")}}&nbsp;&nbsp;&nbsp;&nbsp;
                     if time.end_time
                         div.column.small-6
-                            span.text-xxs End Time: {{time.end_time}}
+                            span.text-xxs End Time: {{time.end_time.strftime("%H:%M")}}
 
                 if time.note
                     div.spacer-xs
