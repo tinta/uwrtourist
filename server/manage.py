@@ -21,6 +21,8 @@ def populate_db():
                            team.get("city").decode("utf-8"),
                            team.get("country").decode("utf-8"))
 
+        db.session.add(new_team)
+        db.session.flush()
         for l in team["locations"]:
             new_team.practice_locations.append(
                um.PracticeLocation(name=l.get("name"),
@@ -36,7 +38,8 @@ def populate_db():
                         um.PracticeTime(day=t.get("day"),
                                         start_time=t.get("start"),
                                         end_time=t.get("end"),
-                                        notes=t.get("note")
+                                        notes=t.get("note"),
+                                        team_id = new_team.id
                                         )
                     )
 
