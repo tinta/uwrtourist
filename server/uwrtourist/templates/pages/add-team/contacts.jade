@@ -1,0 +1,94 @@
+- from './mixins/titleBanner.jade' import titleBanner
+- from './mixins/mainColumn.jade' import mainColumn
+- from './mixins/squareCounter.jade' import squareCounter
+
++titleBanner(11)
+    div.text-sm Contacts
+
++mainColumn
+    div.spacer-lg
+    div.row
+        div.column.small-12
+            div.row.uncollapse(ng-repeat="(index, contactInput) in form.contacts.all")
+                div.column.small-2.text-right
+                    +squareCounter('[[ index + 1 ]]', 'green')
+
+                div.column.small-9
+                    div.row.collapse.border-gray-dark.border-none-l.bg-white
+                        div.column.small-2.text-center
+                            div.bg-gray-dark.input-height.text-white.text-xxs
+                                div.spacer-xs
+                                div.spacer-1
+                                div.text-xbold Name
+                        div.column.small-10.border-gray-dark-l
+                            div.text-xxs.input-height
+                                input.pad.input-invis(
+                                    type="text"
+                                    name="contact"
+                                    tabindex="5"
+                                    ng-model="contactInput.name"
+                                )
+                    div.spacer-xs
+
+                    div.row.collapse.bg-white
+                        div.column.small-2
+                            div.text-center.border-gray-dark.border-none-l.border-none-r.round-md-bl.bg-gray-dark
+                                div.input-height.text-white.text-xxs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div.text-xbold Email
+                        div.column.small-4
+                            div.border-gray-dark
+                                div.text-xxs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                        ng-model="contactInput.email"
+                                    )
+
+                        div.column.small-2.small-offset-1
+                            div.text-center.border-gray-dark.border-none-l.border-none-r
+                                div.bg-gray-dark.input-height.text-white.text-xxs
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div Title
+                        div.column.small-3
+                            div.border-gray-dark
+                                div.text-xxs.input-height
+                                    input.pad.input-invis(
+                                        type="text"
+                                        name="contact"
+                                        tabindex="5"
+                                        ng-model="contactInput.title"
+                                    )
+
+                div.column.small-1.bg-red.round-md-right(
+                    ng-click="form.contacts.remove(index)"
+                )
+                    div.text-xxs.text-center
+                        div.spacer-lg
+                        div.spacer-xs
+                        div.spacer-1
+                        div
+                            i.fa.fa-times.text-white
+                        div.spacer-lg
+                        div.spacer-xs
+                        div.spacer-xxs
+
+                div.column.small-12
+                    div.spacer-md
+            div.row.uncollapse
+                div.column.small-10.small-offset-2
+                    div.row.collapse.text-center(ng-click="form.contacts.create()")
+                        div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                            div.input-height.text-white.text-xxs
+                                div.spacer-xs
+                                div.spacer-1
+                                div
+                                    i.fa.fa-plus
+                        div.column.small-4.left.border-green.border-none-l.bg-green.round-md-right.text-white
+                            div.text-xxs.input-height.pad
+                                span Add New Contact
+
+    div.spacer-xl

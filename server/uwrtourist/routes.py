@@ -55,7 +55,7 @@ def addform():
     else:
         # show the login form
         title = gettext("Add a New Team")
-        return render_template("pages/add.jade", title=title)
+        return render_template("pages/add-team/index.jade", title=title)
 
 @app.route("/oauth2callback")
 def oauthcallback():

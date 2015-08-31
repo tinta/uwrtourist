@@ -14,12 +14,7 @@ table.text-left.text-gray-dark.text-xxs.valign-top
                     span.table-arrow
     tbody.bg-white
         tr.bg-hover-gray-md-dark.text-hover-white.text-thin(
-            ng-repeat='
-                row in table.rows.queried
-                | orderBy : table.order.value : table.order.reverse
-                | startAt   : table.paginate.firstRow
-                | limitTo   : table.paginate.maxRows
-            '
+            ng-repeat='row in table.paginate.rows'
         )
             td(ng-repeat='keyObj in table.keys')
                 a.pad-lr-2x.pad-tb.width-full(

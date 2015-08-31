@@ -1,0 +1,51 @@
+- from './mixins/titleBanner.jade' import titleBanner
+- from './mixins/mainColumn.jade' import mainColumn
+- from './mixins/squareCounter.jade' import squareCounter
+
++titleBanner(11)
+    div.text-sm Practice Locations
+
++mainColumn()
+    div.row
+        div.column.small-12
+            div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
+                div.column.small-12
+                    div.spacer-lg
+
+                div.column.small-2.text-right
+                    +squareCounter('[[ index + 1 ]]', 'green')
+
+                div.column.small-9
+                    include pages/add-team/practices/content
+
+                div.column.small-1.bg-red.round-md-right(
+                    ng-click="form.practiceLocations.remove(index)"
+                )
+                    div.text-xxs.text-center
+                        div.spacer-xl
+                        div.spacer-xl
+                        div.spacer-xl
+                        div.spacer-xs
+                        div.spacer-1
+                        div
+                            i.fa.fa-times.text-white
+                        div.spacer-xl
+                        div.spacer-xl
+                        div.spacer-xl
+                        div.spacer-sm
+                div.column.small-12
+                    div.spacer-lg
+
+            div.spacer-md
+            div.row.uncollapse
+                div.column.small-10.small-offset-2
+                    div.row.collapse.text-center(ng-click="form.newPractice()")
+                        div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
+                            div.input-height.text-white.text-xxs
+                                div.spacer-xs
+                                div.spacer-1
+                                div
+                                    i.fa.fa-plus
+                        div.column.small-6.left.border-green.border-none-l.bg-green.text-white.round-md-right
+                            div.text-xxs.input-height.pad
+                                span Add New Practice Location

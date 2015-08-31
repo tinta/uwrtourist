@@ -42,6 +42,11 @@ angular.module('ControllerTeamsList', [
 
     $scope.table.order.set('country');
 
+    $scope.applyTableFilter = function () {
+        this.table.paginate.currentPage = 0;
+        this.table.apply();
+    };
+
     $scope.typeOf = function(input) {
         return typeof input;
     };

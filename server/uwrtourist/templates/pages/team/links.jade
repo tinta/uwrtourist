@@ -10,13 +10,17 @@ if team.links
                 {% for link in team.links %}
                 div
                     - set prettyLink = link.link
-                    - if (prettyLink.find('https://') > -1)
+                    - if (prettyLink.find('https://') == 0)
                         - set end = prettyLink|length
                         - set prettyLink = prettyLink[8:end]
 
-                    - if (prettyLink.find('http://') > -1)
+                    - if (prettyLink.find('http://') == 0)
                         - set end = prettyLink|length
                         - set prettyLink = prettyLink[7:end]
+
+                    - if (prettyLink.find('www.') == 0)
+                        - set end = prettyLink|length
+                        - set prettyLink = prettyLink[4:end]
 
                     - if (prettyLink[prettyLink|length - 1:] == '/')
                         - set prettyLink = prettyLink[:prettyLink|length - 1]

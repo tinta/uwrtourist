@@ -30,5 +30,6 @@ $border-colors: (
     "gray-dark": map-get($base-colors, "gray-dark"),
     "gray-md": map-get($base-colors, "gray-md"),
     "green": map-get($palette, "green"),
+    "blue": map-get($palette, "blue"),
     "red": map-get($palette, "red"),
 );

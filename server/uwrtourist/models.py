@@ -64,11 +64,11 @@ class PracticeTime(db.Model, BaseMixin):
     end_time = db.Column(db.Time())
     notes = db.Column(db.String(512))
 
-    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
+    team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True, nullable=False)
     practice_location_id = db.Column(db.Integer, db.ForeignKey(
-                                     "practice_locations.id"), index=True)
+                                     "practice_locations.id"), index=True, nullable=False)
 
-    def __init__(self, day=None, start_time=None, end_time=None, notes=None):
+    def __init__(self, day=None, start_time=None, end_time=None, notes=None, team_id=None):
         '''
         Make str to datetime conversions seamless when this obj is created.
         '''
@@ -76,6 +76,8 @@ class PracticeTime(db.Model, BaseMixin):
         self.end_time = format_time_strings(end_time)
         self.day = day
         self.notes = notes
+        if team_id:
+            self.team_id = team_id
 
 class Link(db.Model, BaseMixin):
     __tablename__ = "links"

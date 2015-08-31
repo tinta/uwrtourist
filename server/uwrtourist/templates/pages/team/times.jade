@@ -7,18 +7,26 @@ if team.practice_times
         div.column.small-10.small-centered
             div.text-xxs
                 {% for time in team.practice_times %}
-                if time.street_address
-                    div.spacer-xs
-                    div Day: {{time.day}}
-                if time.city
-                    div.spacer-xs
-                    div Start Time: {{time.start_time}}
-                if time.region
-                    div.spacer-xs
-                    div End Time: {{time.end_time}}
+                div.spacer-md
+                div.text-bold
+                    div {{time.day}}
+
+                div.spacer-xxs
+                div.spacer-1.bg-gray-dark
+
+                div.spacer-xs
+                div.row.uncollapse
+                    if time.start_time
+                        div.column.small-6
+                            span.text-xxs Start Time: {{time.start_time.strftime("%H:%M")}}&nbsp;&nbsp;&nbsp;&nbsp;
+                    if time.end_time
+                        div.column.small-6
+                            span.text-xxs End Time: {{time.end_time.strftime("%H:%M")}}
+
                 if time.note
                     div.spacer-xs
-                    div Notw: {{time.note}}
+                    div Note
+                    div &nbsp;&nbsp;&nbsp;&nbsp;{{time.note}}
 
                 {% endfor %}
         div.spacer-xl
