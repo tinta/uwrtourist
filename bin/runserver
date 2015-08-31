@@ -1,5 +1,5 @@
 #!/bin/sh
 
 root_dir="${PWD%/bin}"
-source "$root_dir/server/venv_uwrtourist/bin/activate"
-uwsgi --http :8001 --wsgi-file server/uwrtourist-dev.wsgi --pythonpath server/ --static-check client/
+cd "$root_dir"
+uwsgi --http 127.0.0.1:30311 --wsgi-file server/uwrtourist.wsgi --pythonpath server/ --static-check client/ --venv server/venv_uwrtourist
