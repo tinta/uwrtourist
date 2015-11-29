@@ -44,14 +44,13 @@ table {
     border-spacing: 0;
 }
 
-input,
-textarea {
-    font-size: inherit;
-    -webkit-appearance: none;
-    border-radius: 0;
-    width: auto;
-    background: none;
-    padding: 0;
+#uwr {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        border-radius: 0;
+        margin: 0;
+    }
 }
 
 input:focus {

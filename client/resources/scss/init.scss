@@ -19,4 +19,8 @@ html {
     #team > .column:nth-child(2n + 1) {
         clear: both;
     }
+
+    #uwr .paginate > .column > * {
+        padding: 9px;
+    }
 }

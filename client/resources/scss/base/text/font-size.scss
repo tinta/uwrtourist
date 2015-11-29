@@ -9,4 +9,6 @@ $sizes: (
     xl: 48px
 );
 
-@include breakpoint($sizes, font-size, "text");
+#uwr {
+  @include breakpoint($sizes, font-size, "text");
+}
