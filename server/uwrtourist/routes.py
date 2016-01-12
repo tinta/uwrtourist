@@ -99,10 +99,10 @@ class Navbar:
                 "url": "/teams",
                 "title": "Teams",
             },
-            # {
-            #     "url": "/add-new-team",
-            #     "title": "Add Your Team",
-            # },
+            {
+                "url": "/add-new-team",
+                "title": "Add Your Team",
+            },
         ]
 
         if other_routes:
