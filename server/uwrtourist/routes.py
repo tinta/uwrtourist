@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
+from flask_mail import Mail, Message
+
 from models import db, get_teams, get_team
 import os
+
+mail = Mail()
 
 # set up app
 app = Flask(__name__)
 db.init_app(app)
+mail.init_app(app)
 
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
@@ -51,7 +56,11 @@ def team(tid):
 def addform():
     if request.method == "POST":
         # process the submission
-        pass
+        msg = Message("New team")
+        msg.body = "testing"
+        msg.recipients = ["bananaunderpants@googlegroups.com"]
+        msg.sender = "no-reply@uwrtourist.org"
+        mail.send(msg)
     else:
         # show the login form
         title = gettext("Add a New Team")
