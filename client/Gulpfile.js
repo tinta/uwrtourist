@@ -41,12 +41,13 @@ gulp.task('scss:compile', function() {
 });
 
 gulp.task('server', function() {
-    var child = spawn('bin/runserver');
+    var child = spawn('./bin/runserver');
     child.stdout.on('data', logStd);
     child.stderr.on('data', logStd);
 
     function logStd (data) {
         var message = data.toString();
+        console.log(process.cwd());
         if (data) console.log(message);
     }
 });
@@ -58,13 +59,13 @@ gulp.task('watch', function() {
 
 gulp.task('build', [
     'scss:compile',
-    'js:lint',
+    // 'js:lint'
 ])
 
 gulp.task('dev', [
     'server',
     'build',
-    'watch',
+    'watch'
 ]);
 
 gulp.task('default', ['dev']);
