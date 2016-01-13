@@ -55,12 +55,15 @@ def team(tid):
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
     if request.method == "POST":
-        # process the submission
+        # synchronous mail sending is totally slow, considering putting this in a queue
         msg = Message("New team")
         msg.body = "testing"
         msg.recipients = ["bananaunderpants@googlegroups.com"]
-        msg.sender = "no-reply@uwrtourist.org"
+        msg.sender = "no-reply@validation.uwrtourist.org"
         mail.send(msg)
+
+        title = gettext("Add a New Team")
+        return render_template("pages/add-team/submission-confirmation.jade", title=title)
     else:
         # show the login form
         title = gettext("Add a New Team")
