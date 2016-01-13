@@ -22,9 +22,9 @@ angular
                 return keys;
             })();
 
-            this.order = order.bind(this)();
-            this.filter = filter.bind(this)(filterKeys);
-            this.paginate = paginate.bind(this)();
+            this.order = order.call(this);
+            this.filter = filter.call(this, filterKeys);
+            this.paginate = paginate.call(this);
 
             this.apply();
         };
@@ -33,18 +33,19 @@ angular
             this.filter.apply();
             this.order.apply();
             this.paginate.apply();
-            console.log(this)
         };
 
         function filter (keys) {
-            var root = this;
+            var self = this;
 
-            var _filter = {};
-            _filter.keys = keys;
-            _filter.value = '';
-            _filter.rows = [];
-            _filter.apply = function () {
-                this.rows = _.filter(root.rows.all, function(row) {
+            var filterModel = {
+                keys: keys,
+                value: '',
+                rows: []
+            };
+            
+            filterModel.apply = function () {
+                this.rows = _.filter(self.rows.all, function(row) {
                     var include = false;
                     // Create version of row that only contains properties in `filter.keys` list
                     var filterRow = _.pick(row, this.keys);
@@ -61,17 +62,19 @@ angular
                 }.bind(this));
             };
 
-            return _filter;
+            return filterModel;
         }
 
         function order () {
-            var root = this;
-            var _order = {};
-            _order.value =  null;
-            _order.latestInput = null;
-            _order.reverse = false;
-            _order.rows = [];
-            _order.set     = function (key) {
+            var self = this;
+            var orderModel = {
+                latestInput: null,
+                value:  null,
+                reverse: false,
+                rows: []
+            };
+
+            orderModel.set = function (key) {
                 this.latestInput = key;
                 doubleQuotedKey = "'" + key + "'";
                 if (this.value === doubleQuotedKey) {
@@ -80,33 +83,33 @@ angular
                     this.value = doubleQuotedKey;
                 }
 
-                root.apply();
+                self.apply();
                 return this;
             };
 
-            _order.apply = function () {
-                this.rows = _.sortByOrder(root.filter.rows, [this.latestInput], [!this.reverse]);
-            }
+            orderModel.apply = function () {
+                this.rows = _.sortBy(self.filter.rows,this.latestInput);
+                if (this.reverse) this.rows = this.rows.reverse();
+            };
 
-            return _order;
+            return orderModel;
         }
 
         function paginate () {
-            var root = this;
+            var self = this;
 
-            var _paginate = {};
-
-            _paginate.disabled = true;
-
-            _paginate.currentPage = 0;
-            _paginate.firstRow = 0;
-            _paginate.maxRows = 15;
-            _paginate.length = 0;
-            _paginate.rows = [];
+            var paginateModel = {
+                disabled: true,
+                currentPage: 0,
+                firstRow: 0,
+                maxRows: 15,
+                length: 0,
+                rows: []
+            };
 
             // Total number of pages for current set of queried data
             determineNumOfPages = function() {
-                var pages = Math.ceil(root.order.rows.length / this.maxRows);
+                var pages = Math.ceil(self.order.rows.length / this.maxRows);
                 return pages;
             };
 
@@ -116,48 +119,44 @@ angular
                 return shouldBeDisabled;
             };
 
-            _paginate.apply = function () {
-                console.log(this.currentPage);
-                this.length = determineNumOfPages.bind(this)();
-                this.disabled = shouldNavBeDisabled.bind(this)();
+            paginateModel.apply = function () {
+                this.length = determineNumOfPages.call(this);
+                this.disabled = shouldNavBeDisabled.call(this);
                 this.firstRow = this.currentPage * this.maxRows;
 
-                this.rows = _.slice(root.order.rows, this.firstRow, this.firstRow + this.maxRows);
+                var lastRow = this.firstRow + this.maxRows;
+                this.rows = self.order.rows.slice(this.firstRow, lastRow);
             };
 
-            _paginate.displayCurrent = function() {
+            paginateModel.displayCurrent = function() {
                 if (this.length === 0) return 0;
                 var page = this.currentPage + 1;
-                // if (page <= 0) page = this.length + page;
                 return page;
             };
 
             // Go back one page
-            _paginate.previous = function () {
+            paginateModel.previous = function () {
                 if (this.currentPage > 0) {
                     this.currentPage -= 1;
                 } else {
                     this.currentPage = this.length - 1;
                 }
 
-                root.apply();
+                self.apply();
             };
 
             // Go forward one page
-            _paginate.next = function () {
-                console.log(this.currentPage, this.length)
+            paginateModel.next = function () {
                 if (this.currentPage < this.length - 1) {
                     this.currentPage += 1;
                 } else {
                     this.currentPage = 0;
                 }
 
-                console.log(this.currentPage)
-
-                root.apply();
+                self.apply();
             };
 
-            return _paginate;
+            return paginateModel;
         }
 
         return Table;
