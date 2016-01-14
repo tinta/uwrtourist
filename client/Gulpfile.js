@@ -1,5 +1,6 @@
 var gulp = require('gulp');
-var tasks = require('./tasks');
+var gp = require('gulp-load-plugins')();
+
 var spawn = require('child_process').spawn;
 
 var paths = {};
@@ -23,21 +24,29 @@ paths.js.watch = [paths.resources + 'js/**/*.js'];
 process.chdir(paths.projectRoot);
 
 gulp.task('js:lint', function() {
-    var options = {
-        "predef": [
-            'window',
-            'L'
-        ]
-    };
-    return tasks.jsLint(paths.js.watch, options);
+    return gp.eslint(paths.js.watch);
 });
 
 gulp.task('scss:compile', function() {
-    var options = options || {
-        outputStyle: 'compressed',
-        errLogToConsole: true
-    };
-    return tasks.scssCompile(paths.scss.src, paths.build, options);
+    var stream = gulp.src(paths.scss.src);
+
+    stream.pipe(gp.sourcemaps.init())
+    // Compile scss
+        .pipe(gp.sass({
+            outputStyle: 'compressed',
+            errLogToConsole: true
+        }))
+    // Rename scss file
+        .pipe(gp.rename('build.css'))
+    // Write sourcemap
+        .pipe(gp.sourcemaps.write('./', {
+            includeContent: false,
+            sourceRoot: '../scss'
+        }))
+    // Dump css build file
+        .pipe(gulp.dest(paths.build));
+
+    return stream;
 });
 
 gulp.task('server', function() {
