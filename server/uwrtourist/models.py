@@ -34,18 +34,23 @@ class BaseMixin(object):
 
 class Team(db.Model, BaseMixin):
     __tablename__ = "teams"
-    name = db.Column(db.String(128))
+    name = db.Column(db.String(128), nullable=False)
     blurb = db.Column(db.String(1024))
     year_established = db.Column(db.Integer)
+    year_disbanded = db.Column(db.Integer)
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
-    location = db.Column(db.String(256))
-    country = db.Column(db.String(256))
+    location = db.Column(db.String(256), nullable=False)
+    country = db.Column(db.String(256), nullable=False)
+    latitude = db.Column(db.Float())
+    longitude = db.Column(db.Float())
+    status = db.Column(db.Enum("active", "pending", "inactive"), default="pending", nullable=False)
 
-    def __init__(self, club_name, city, country):
+    def __init__(self, club_name, city, country, status):
         self.name = club_name
         self.location = city
         self.country = country
+        self.status = status
 
     practice_locations = relationship("PracticeLocation",
                                       order_by="PracticeLocation.id",
@@ -123,18 +128,14 @@ def format_time_strings(time_str):
     else:
        return None
 
-def get_teams(format=None):
-    teams = db.session.query(Team).all()
+def get_teams(format=None, **kwargs):
+    # if no keyword args, don't do any filtering
+    if not kwargs:
+        teams = db.session.query(Team).all()
+    else:
+        teams = db.session.query(Team).filter_by(**kwargs).all()
+
     if format == "json":
         return json.dumps([team.as_dict() for team in teams])
-    return teams
 
-def get_team(tid, format=None):
-    team = db.session.query(Team).filter_by(id=tid).first()
-    if not team:
-        return None
-    if format == "json":
-        json_data = json.dumps(team.as_dict())
-        return {"name" : team.name, "json": json_data}
-    else:
-        return team
+    return teams

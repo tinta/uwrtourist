@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request
 from flask.ext.babel import Babel, gettext
-from models import db, get_teams, get_team
+from flask_mail import Mail, Message
+
+from models import db, get_teams
 import os
+
+mail = Mail()
 
 # set up app
 app = Flask(__name__)
 db.init_app(app)
+mail.init_app(app)
 
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
@@ -36,30 +41,52 @@ def about():
 @app.route("/teams")
 def teams():
     title = gettext("Teams")
-    teams = get_teams(format="json")
+    teams = get_teams(format="json", status="active")
     return render_template("pages/teams/index.jade", title=title, teams=teams)
 
 @app.route("/team/<tid>")
 def team(tid):
-    team = get_team(tid)
-    if not team:
+    team = get_teams(id=tid, status="active")
+    num_teams = len(team)
+    if not team or num_teams != 1:
         return pnf()
+
+    team = team[0]
 
     return render_template("pages/team/index.jade", title=team.name, team=team)
 
 @app.route("/add-new-team", methods=["GET", "POST"])
 def addform():
     if request.method == "POST":
-        # process the submission
-        pass
+        # synchronous mail sending is totally slow, considering putting this in a queue
+        msg = Message("New team")
+        msg.body = "testing"
+        msg.recipients = ["bananaunderpants@googlegroups.com"]
+        msg.sender = "no-reply@validation.uwrtourist.org"
+        mail.send(msg)
+
+        title = gettext("Add a New Team")
+        return render_template("pages/add-team/submission-confirmation.jade", title=title)
     else:
         # show the login form
         title = gettext("Add a New Team")
         return render_template("pages/add-team/index.jade", title=title)
 
-@app.route("/oauth2callback")
-def oauthcallback():
-    return None
+@app.route("/admin")
+def admin():
+    title = gettext("Pending Teams")
+    teams = get_teams(status="pending")
+    return render_template("pages/teams/pending-teams.jade", title=title, teams=teams)
+
+@app.route("/admin/edit/team/<tid>", methods=["GET", "POST"])
+def admin_edit():
+    title = gettext("Edit Team")
+    if request.method == "POST":
+        # process post data and display a success message
+        msg = "Success!"
+        return render_template("pages/team/edit-team.jade", title=title, team=team, msg=msg)
+    else:
+        return render_template("pages/team/edit-team.jade", title=title, team=team)
 
 # @app.route("/competitions")
 # def competitions():
@@ -90,10 +117,10 @@ class Navbar:
                 "url": "/teams",
                 "title": "Teams",
             },
-            # {
-            #     "url": "/add-new-team",
-            #     "title": "Add Your Team",
-            # },
+            {
+                "url": "/add-new-team",
+                "title": "Add Your Team",
+            },
         ]
 
         if other_routes:
