@@ -1,3 +1,9 @@
+require("jquery");
+var angular = require("angular");
+
+require("./../../models/AddTeamFormModel");
+
+
 angular.module('ControllerAddTeam', [
 // Dependencies
     'AddTeamFormModel'

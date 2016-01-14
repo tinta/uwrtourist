@@ -1,3 +1,6 @@
+var angular = require("angular");
+var _ = require("underscore");
+
 angular
 .module('Table', [
     // Dependencies

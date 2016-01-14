@@ -1,3 +1,9 @@
+require("jquery");
+var angular = require("angular");
+
+require("./../../models/TableModel.js");
+require("./../../filters/startAt.js");
+
 angular.module('ControllerTeamsList', [
 // Dependencies
     'Table',
@@ -14,6 +20,7 @@ angular.module('ControllerTeamsList', [
     $window,
     Table
 ){
+
     var tableOptions = {};
     tableOptions.rows = window.teams;
     tableOptions.keys = [
