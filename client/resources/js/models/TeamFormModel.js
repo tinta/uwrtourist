@@ -43,25 +43,25 @@ var TeamFormModel = (function() {
             'Saturday'
         ];
 
-        if (team.links && team.links.length) {
-            _.each(team.links, function (linkObj) {
+        if (team.links) {
+            _.each(team.links, function (linkData) {
                 this.links.create(function (field) {
-                    field.val = linkObj.link;
+                    field.val = linkData.link;
                 });
             }.bind(this));
         }
 
         if (team.practice_locations) {
-            _.each(team.practice_locations, function (location) {
+            _.each(team.practice_locations, function (locData) {
                 this.practiceLocations.create(function (locField) {
-                    locField.city = location.city;
-                    locField.country = location.country;
-                    locField.name = location.name;
-                    locField.zip = location.postal_code;
-                    locField.region = location.region;
-                    locField.address = location.street_address;
+                    locField.city = locData.city;
+                    locField.country = locData.country;
+                    locField.name = locData.name;
+                    locField.zip = locData.postal_code;
+                    locField.region = locData.region;
+                    locField.address = locData.street_address;
 
-                    var times = location.practice_times;
+                    var times = locData.practice_times;
                     if (times) {
                         _.each(times, function (time) {
                             locField.times.create(function(timeField) {
@@ -73,7 +73,15 @@ var TeamFormModel = (function() {
             }.bind(this));
         }
 
-        console.log(team, this.practiceLocations);
+        if (team.contacts) {
+            _.each(team.contacts, function (contactData) {
+                this.contacts.create(function (field) {
+                    field.name = contactData.name;
+                    field.email = contactData.email;
+                    field.title = contactData.title;
+                });
+            }.bind(this));
+        }
 
         this.yearEstablishedOptions = ["n/a"];
         var firstYear = 1989;
@@ -81,8 +89,6 @@ var TeamFormModel = (function() {
         while (firstYear++ < currentYear) {
             this.yearEstablishedOptions.push(firstYear);
         }
-
-        this.contacts.create();
     };
 
     TeamFormModel.prototype.newPractice = function () {
