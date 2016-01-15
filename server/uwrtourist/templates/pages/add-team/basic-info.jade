@@ -44,6 +44,7 @@
                 div.column.small-2.left
                     select.text-xxs(
                         ng-model="form.yearEstablished"
+                        foo="[[form.yearEstablished]]"
                         name="yearEstablished"
                         tabindex="3"
                         ng-options="year for year in form.yearEstablishedOptions"

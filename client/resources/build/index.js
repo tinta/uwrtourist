@@ -48124,7 +48124,7 @@ L.Map.include({
 
 }(window, document));
 },{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
   "_args": [
     [
       "mapbox.js",
@@ -55540,7 +55540,7 @@ var TeamFormModel = (function() {
 
         this.name = team.name || '';
         this.location = team.location || '';
-        this.yearEstablished = team.year_established || '';
+        this.yearEstablished = team.year_established || 'n/a';
         this.blurb = team.blurb || '';
 
         this.links = new DynamicFields({val: ''});
@@ -55583,6 +55583,21 @@ var TeamFormModel = (function() {
             }.bind(this));
         }
 
+        if (team.practice_locations && team.practice_locations.length) {
+            _.each(team.practice_locations, function (practiceLocation) {
+                this.practiceLocations.create(function(fields) {
+                    fields.city = practiceLocation.city;
+                    fields.country = practiceLocation.country;
+                    fields.name = practiceLocation.name;
+                    fields.zip = practiceLocation.postal_code;
+                    fields.region = practiceLocation.region;
+                    fields.address = practiceLocation.street_address;
+                });
+            }.bind(this));
+        }
+
+        console.log(team, this.practiceLocations);
+
         this.yearEstablishedOptions = ["n/a"];
         var firstYear = 1989;
         var currentYear = new Date().getFullYear();
@@ -55591,7 +55606,6 @@ var TeamFormModel = (function() {
         }
 
         this.contacts.create();
-        this.newPractice();
     };
 
     TeamFormModel.prototype.newPractice = function () {
