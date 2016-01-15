@@ -2,29 +2,39 @@
     overflow: auto;
 }
 
+%none {
+    border-radius: none;
+}
+
 @include breakpoint(round-top-light) {
+    @extend %none;
     border-top-left-radius: map-get($radius-sizes, light);
     border-top-right-radius: map-get($radius-sizes, light);
 }
 
 @include breakpoint(round-bottom-light) {
+    @extend %none;
     border-bottom-left-radius: map-get($radius-sizes, light);
     border-bottom-right-radius: map-get($radius-sizes, light);
 }
 
 .round-md-tl {
+    @extend %none;
     border-top-left-radius: map-get($radius-sizes, md);
 }
 
 .round-md-tr {
+    @extend %none;
     border-top-right-radius: map-get($radius-sizes, md);
 }
 
 .round-md-bl {
+    @extend %none;
     border-bottom-left-radius: map-get($radius-sizes, md);
 }
 
 .round-md-br {
+    @extend %none;
     border-bottom-right-radius: map-get($radius-sizes, md);
 }
 

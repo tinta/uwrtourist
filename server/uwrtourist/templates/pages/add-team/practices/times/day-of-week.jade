@@ -1,12 +1,13 @@
-div.row.collapse
+div.row
     div.column.small-3
-        div.text-center.bg-gray-md.input-height.text-white.text-xxs
+        div.text-right.input-height.text-xxs
             div.spacer-xs
             div.spacer-1
-            div.text-xbold Day
+            div Day
+
     div.column.small-8
         div.text-xxs(style="margin-right: 1px;")
-            select.text-xxs.input-height.border-gray-md(
+            select.text-xxs.input-height.border-gray-dark(
                 name="[[index + 'day']]"
                 ng-model="time.day"
             )

@@ -1,14 +1,16 @@
 div.spacer-md
 
-div.row.uncollapse.text-center
-
-    div.column.small-4.small-offset-2.left.text-white.round-md.bg-gray-md(ng-click="practiceLocation.times.create()")
-        div.input-height.text-xxs.column.small-10.small-centered.text-left
-            div.pull-left
-                div.spacer-xs
-                div.spacer-1
-                div Add New Practice Time
-            div.pull-right
-                div.spacer-xs
-                div
-                    i.fa.fa-plus
+div.row
+    div.column.small-10.small-offset-2
+        div.row
+            div.column.small-5(ng-click="practiceLocation.times.create()")
+                div.btn-gray-dark.text-xxs
+                    div.input-height
+                        div.pull-left
+                            div.spacer-xs
+                            div.spacer-1
+                            div Add Practice Time
+                        div.pull-right
+                            div.spacer-xs
+                            div
+                                i.fa.fa-plus

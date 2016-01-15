@@ -1,11 +1,12 @@
-label.row.collapse(for="[['time-start' + index]]")
-    div.column.small-4
-        div.text-center.bg-gray-md.input-height.text-white.text-xxs
+label.row(for="[['time-start' + index]]")
+    div.column.small-6
+        div.text-right.input-height.text-xxs
             div.spacer-xs
             div.spacer-1
-            div Start
-    div.column.small-7.left
-        input.text-xxs.input-height.border-gray-md(
+            div Start Time
+
+    div.column.small-6
+        input.text-xxs.input-height.border-gray-dark(
             id="[['time-start' + index]]"
             type="text"
             name="contact"

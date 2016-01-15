@@ -60,13 +60,12 @@
                 div.column.small-1.bg-red.round-md-right(
                     ng-click="form.contacts.remove(index)"
                 )
-                    div.text-xxs.text-center
-                        div.spacer-xl
-                        div.spacer-xxs
-                        div
-                            i.fa.fa-times.text-white
+                    div.text-xs.text-center
                         div.spacer-xl
                         div.spacer-1
+                        div
+                            i.fa.fa-trash-o.text-white
+                        div.spacer-xl
 
                 div.column.small-12
                     div.spacer-xl
@@ -74,16 +73,17 @@
             div.row.uncollapse
                 div.column.small-10.small-offset-2
                     div.row.collapse
-                        div.column.small-4.left.text-white.round-md.bg-blue(ng-click="form.contacts.create()")
-                            div.input-height.text-xxs.column.small-10.small-centered.text-left
-                                div.pull-left
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div Add New Contact
-                                div.pull-right
-                                    div.spacer-xs
-                                    div
-                                        i.fa.fa-plus
+                        div.column.small-4
+                            div.btn-blue.text-xxs(ng-click="form.contacts.create()")
+                                div.input-height
+                                    div.pull-left
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div Add New Contact
+                                    div.pull-right
+                                        div.spacer-xs
+                                        div
+                                            i.fa.fa-plus
 
 
     div.spacer-xl

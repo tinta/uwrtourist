@@ -27,10 +27,10 @@
                 div.column.small-1.bg-red.round-md-right(
                     ng-click="form.links.remove(index)"
                 )
-                    div.text-xxs.input-height.text-center
-                        div.spacer-xs
-                        div.text-xxs
-                            i.fa.fa-times.text-white
+                    div.text-xxs.text-center.input-height
+                        div.spacer-xxs
+                        div.text-xs
+                            i.fa.fa-trash-o.text-white
 
                 div.column.small-12
                     div.spacer-lg
@@ -38,16 +38,17 @@
             div.row.uncollapse(ng-if="form.links.all.length < 3")
                 div.column.small-10.small-offset-2
                     div.row.collapse
-                        div.column.small-4.text-center.bg-blue.text-white.round-md(ng-click="form.links.create()")
-                            div.input-height.text-xxs.column.small-10.small-centered.text-left
-                                div.pull-left
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div Add New Link
-                                div.pull-right
-                                    div.spacer-xs
-                                    div
-                                        i.fa.fa-plus
+                        div.column.small-4
+                            div.btn-blue.text-xxs(ng-click="form.links.create()")
+                                div.input-height
+                                    div.pull-left
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div Add New Link
+                                    div.pull-right
+                                        div.spacer-xs
+                                        div
+                                            i.fa.fa-plus
 
 
     div.spacer-xl

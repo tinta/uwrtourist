@@ -31,15 +31,18 @@ div.row.uncollapse
             include pages/add-team/practices/index
 
             div.spacer-xl
-            div.spacer-md
+            div.spacer-xl
             div.row
-                div.column.small-4.small-centered.text-center
-                    button.text-white.pad-tb.width-full.text-sm.bg-green(
-                        type="submit"
-                    )
-                        span Submit Team Info&nbsp;&nbsp;
-                        i.fa.fa-chevron-right
+                div.column.small-11.small-centered
+                    div.row.uncollapse
+                        div.column.small-5.small-offset-2
+                            button.pad-tb.width-full.text-sm.btn-green(
+                                type="submit"
+                            )
+                                div.pull-left Submit Team Info
+                                i.pull-right.fa.fa-chevron-right
 
-            div.spacer-lg
+            div.spacer-xl
+            div.spacer-xl
 
 {% endblock %}

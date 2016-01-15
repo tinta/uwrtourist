@@ -6,7 +6,7 @@
     div.text-sm Practice Locations
 
 +mainColumn()
-    div.row
+    div.row.uncollapse.double-gutter
         div.column.small-12
             div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                 div.column.small-12
@@ -18,13 +18,12 @@
                 div.column.small-1.bg-red.round-md-right(
                     ng-click="form.practiceLocations.remove(index)"
                 )
-                    div.text-xxs.text-center
+                    div.text-xs.text-center
                         div.spacer-xl
                         div.spacer-lg
-                        div.spacer-xxs
                         div.spacer-1
                         div
-                            i.fa.fa-times.text-white
+                            i.fa.fa-trash-o.text-white
                         div.spacer-xl
                         div.spacer-lg
                         div.spacer-xxs
@@ -33,14 +32,15 @@
             div.spacer-xl
             div.row.uncollapse
                 div.column.small-11
-                    div.row.uncollapse
-                        div.column.small-5.small-offset-2.left.text-white.round-md.bg-blue(ng-click="form.newPractice()")
-                            div.input-height.text-xxs.column.small-10.small-centered.text-left
-                                div.pull-left
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div Add New Practice Location
-                                div.pull-right
-                                    div.spacer-xs
-                                    div
-                                        i.fa.fa-plus
+                    div.row
+                        div.column.small-5.small-offset-2
+                            div.btn-blue.text-xxs(ng-click="form.newPractice()")
+                                div.input-height
+                                    div.pull-left
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div Add New Practice Location
+                                    div.pull-right
+                                        div.spacer-xs
+                                        div
+                                            i.fa.fa-plus

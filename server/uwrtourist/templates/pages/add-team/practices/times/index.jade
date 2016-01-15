@@ -1,6 +1,6 @@
 - from './mixins/squareCounter.jade' import squareCounter
 
-div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
+div.row.border-gray-dark-bottom.bg-white
     div.column.small-10.small-offset-2
         div(
             ng-repeat="(index, time) in practiceLocation.times.all"
@@ -22,10 +22,10 @@ div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
                 div.column.small-1.bg-red.round-md-right(
                     ng-click="practiceLocation.times.remove(index)"
                 )
-                    div.text-xxs.text-center
-                        div.spacer-xs
+                    div.text-xs.text-center
+                        div.spacer-xxs
                         div
-                            i.fa.fa-times.text-white
+                            i.fa.fa-trash-o.text-white
                         div.spacer-xs
 
             div.spacer-md
