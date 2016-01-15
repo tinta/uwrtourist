@@ -15,6 +15,7 @@
 
                 div.column.small-4.left
                     input.text-xxs(
+                        ng-model="form.name"
                         type="text"
                         name="name"
                         tabindex="1"
@@ -29,6 +30,7 @@
 
                 div.column.small-3.left
                     input.text-xxs(
+                        ng-model="form.location"
                         type="text"
                         name="city"
                         tabindex="2"
@@ -41,11 +43,11 @@
 
                 div.column.small-2.left
                     select.text-xxs(
+                        ng-model="form.yearEstablished"
                         name="yearEstablished"
                         tabindex="3"
+                        ng-options="year for year in form.yearEstablishedOptions"
                     )
-                        option 2014
-                        option 2015
 
             div.spacer-md
 

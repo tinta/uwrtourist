@@ -18,11 +18,12 @@
                 div.column.small-6
                     div.row.collapse
                         div.column.small-12
-                            div.input-height.text-xxs(
+                            input.input-height.text-xxs(
                                 type="text"
                                 name="link"
                                 tabindex="5"
                                 ng-model="urlInput.val"
+                                foo="[[urlInput.val]]"
                             )
                 div.column.small-1.bg-red.round-md-right(
                     ng-click="form.links.remove(index)"

@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 
 from models import db, get_teams
 import os
+import json
 
 mail = Mail()
 
@@ -46,7 +47,7 @@ def teams():
 
 @app.route("/team/<tid>")
 def team(tid):
-    team = get_teams(id=tid, status="active")
+    team = get_teams(id=tid, status="active", format="json")
     num_teams = len(team)
     if not team or num_teams != 1:
         return pnf()
@@ -55,7 +56,7 @@ def team(tid):
 
     return render_template("pages/team/index.jade", title=team.name, team=team)
 
-@app.route("/add-new-team", methods=["GET", "POST"])
+@app.route("/team/add", methods=["GET", "POST"])
 def addform():
     if request.method == "POST":
         # synchronous mail sending is totally slow, considering putting this in a queue
@@ -72,21 +73,28 @@ def addform():
         title = gettext("Add a New Team")
         return render_template("pages/add-team/index.jade", title=title)
 
-@app.route("/admin")
+@app.route("/admin/teams/pending")
 def admin():
     title = gettext("Pending Teams")
-    teams = get_teams(status="pending")
-    return render_template("pages/teams/pending-teams.jade", title=title, teams=teams)
+    teams = get_teams(status="active", format="json")
+    return render_template("pages/teams/index.jade", title=title, teams=teams)
 
-@app.route("/admin/edit/team/<tid>", methods=["GET", "POST"])
-def admin_edit():
+@app.route("/admin/team/edit/<tid>", methods=["GET", "POST"])
+def admin_edit(tid):
     title = gettext("Edit Team")
     if request.method == "POST":
         # process post data and display a success message
         msg = "Success!"
-        return render_template("pages/team/edit-team.jade", title=title, team=team, msg=msg)
+        return render_template("pages/team/index.jade", title=title, team=team, msg=msg)
     else:
-        return render_template("pages/team/edit-team.jade", title=title, team=team)
+        teams = get_teams(id=tid)
+        team_is_found = len(teams) is 1
+        if (team_is_found):
+            team = json.dumps(teams[0].as_dict())
+            return render_template("pages/add-team/index.jade", title=title, team=team)
+        else:
+            return pnf()
+
 
 # @app.route("/competitions")
 # def competitions():
@@ -118,7 +126,7 @@ class Navbar:
                 "title": "Teams",
             },
             {
-                "url": "/add-new-team",
+                "url": "/team/add",
                 "title": "Add Your Team",
             },
         ]

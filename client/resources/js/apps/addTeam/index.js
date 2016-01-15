@@ -1,12 +1,10 @@
 require("jquery");
 var angular = require("angular");
 
-require("./../../models/AddTeamFormModel");
-
+var TeamFormModel = require("./../../models/TeamFormModel.js");
 
 angular.module('ControllerAddTeam', [
 // Dependencies
-    'AddTeamFormModel'
 ], function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
@@ -16,10 +14,9 @@ angular.module('ControllerAddTeam', [
     $scope,
     $http,
     $timeout,
-    $window,
-    AddTeamFormModel
+    $window
 ){
-    $scope.form = new AddTeamFormModel();
+    $scope.form = new TeamFormModel(window.team);
 
     // Dev
     $window.logScope = function () {

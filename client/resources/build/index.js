@@ -48124,7 +48124,7 @@ L.Map.include({
 
 }(window, document));
 },{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports={
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
   "_args": [
     [
       "mapbox.js",
@@ -54920,12 +54920,10 @@ if (typeof module !== 'undefined') {
 require("jquery");
 var angular = require("angular");
 
-require("./../../models/AddTeamFormModel");
-
+var TeamFormModel = require("./../../models/TeamFormModel.js");
 
 angular.module('ControllerAddTeam', [
 // Dependencies
-    'AddTeamFormModel'
 ], function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
@@ -54935,10 +54933,9 @@ angular.module('ControllerAddTeam', [
     $scope,
     $http,
     $timeout,
-    $window,
-    AddTeamFormModel
+    $window
 ){
-    $scope.form = new AddTeamFormModel();
+    $scope.form = new TeamFormModel(window.team);
 
     // Dev
     $window.logScope = function () {
@@ -54946,7 +54943,7 @@ angular.module('ControllerAddTeam', [
     };
 });
 
-},{"./../../models/AddTeamFormModel":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/AddTeamFormModel.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js":[function(require,module,exports){
+},{"./../../models/TeamFormModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TeamFormModel.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js":[function(require,module,exports){
 var _ = require("underscore");
 var $ = require("jquery");
 require('mapbox.js'); // <-- auto-attaches to window.L
@@ -55338,87 +55335,30 @@ angular
         return filteredInput;
     };
 });
-},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/AddTeamFormModel.js":[function(require,module,exports){
+},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js":[function(require,module,exports){
 var angular = require("angular");
 
-angular
-.module('AddTeamFormModel', [
-// Dependencies
-])
-.factory('AddTeamFormModel', function(
-// Dependency Injections
-    $rootScope
-){
-    var DynamicFields = (function () {
-        var DynamicFields = function (defaults) {
-            this.all = [];
-            this.defaults = defaults;
-        };
+var DynamicFieldsCollection = (function () {
+    var DynamicFieldsCollection = function (defaults) {
+        this.all = [];
+        this.defaults = defaults;
+    };
 
-        DynamicFields.prototype.create = function (cb) {
-            var newField = angular.copy(this.defaults);
-            this.all.push(newField);
-            if (cb) cb(newField);
-            return newField;
-        };
+    DynamicFieldsCollection.prototype.create = function (cb) {
+        var newField = angular.copy(this.defaults);
+        if (cb) cb(newField);
+        this.all.push(newField);
+        return newField;
+    };
 
-        DynamicFields.prototype.remove = function (index) {
-            this.all.splice(index, 1);
-        };
+    DynamicFieldsCollection.prototype.remove = function (index) {
+        this.all.splice(index, 1);
+    };
 
-        return DynamicFields;
-    })();
+    return DynamicFieldsCollection;
+})();
 
-    var FormClass = (function() {
-        var Form = function () {
-            this.links = new DynamicFields({val: ''});
-
-            this.contacts = new DynamicFields({
-                name: '',
-                email: '',
-                title: ''
-            });
-
-            this.practiceLocations = new DynamicFields({
-                name: '',
-                city: '',
-                region: '',
-                country: '',
-                postalCode: '',
-                times: new DynamicFields({
-                    startTime: '',
-                    endTime: '',
-                    day: '',
-                    notes: ''
-                })
-            });
-
-            this.practiceLocations.dayOptions = [
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-            ];
-
-            this.links.create();
-            this.contacts.create();
-            this.newPractice();
-        };
-
-        Form.prototype.newPractice = function () {
-            this.practiceLocations.create(function(newlyCreatedField) {
-                // newlyCreatedField.times.create();
-            });
-        };
-
-        return Form;
-    })();
-
-    return FormClass;
-});
+module.exports = DynamicFieldsCollection;
 },{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TableModel.js":[function(require,module,exports){
 var angular = require("angular");
 var _ = require("underscore");
@@ -55589,7 +55529,82 @@ angular
 
     return Table;
 });
-},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js":[function(require,module,exports){
+},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TeamFormModel.js":[function(require,module,exports){
+var _ = require("underscore");
+var DynamicFields = require("./DynamicFieldsCollection.js");
+
+var TeamFormModel = (function() {
+    var TeamFormModel = function (team) {
+        console.log(team)
+        team = team || {};
+
+        this.name = team.name || '';
+        this.location = team.location || '';
+        this.yearEstablished = team.year_established || '';
+        this.blurb = team.blurb || '';
+
+        this.links = new DynamicFields({val: ''});
+
+        this.contacts = new DynamicFields({
+            name: '',
+            email: '',
+            title: ''
+        });
+
+        this.practiceLocations = new DynamicFields({
+            name: '',
+            city: '',
+            region: '',
+            country: '',
+            postalCode: '',
+            times: new DynamicFields({
+                startTime: '',
+                endTime: '',
+                day: '',
+                notes: ''
+            })
+        });
+
+        this.practiceLocations.dayOptions = [
+            'Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday'
+        ];
+
+        if (team.links && team.links.length) {
+            _.each(team.links, function (linkObj) {
+                this.links.create(function(field) {
+                    field.val = linkObj.link;
+                });
+            }.bind(this));
+        }
+
+        this.yearEstablishedOptions = ["n/a"];
+        var firstYear = 1989;
+        var currentYear = new Date().getFullYear();
+        while (firstYear++ < currentYear) {
+            this.yearEstablishedOptions.push(firstYear);
+        }
+
+        this.contacts.create();
+        this.newPractice();
+    };
+
+    TeamFormModel.prototype.newPractice = function () {
+        this.practiceLocations.create(function(newlyCreatedField) {
+            newlyCreatedField.times.create();
+        });
+    };
+
+    return TeamFormModel;
+})();
+
+module.exports = TeamFormModel;
+},{"./DynamicFieldsCollection.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js":[function(require,module,exports){
 (function () {
     var apps = {
         "addTeam": require("./apps/addTeam/index.js"),

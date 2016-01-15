@@ -23,7 +23,6 @@ paths.js = {
 
 var logStd = function (data) {
     var message = data.toString();
-    console.log(process.cwd());
     if (data) console.log(message);
 };
 
@@ -31,7 +30,6 @@ var exec = function (command) {
     command = command.split(" ");
     var args = command.length > 1 ? command.slice(1, command.length) : [];
     var child = spawn(command[0], args, {stdio: "inherit"});
-    console.log(args)
 };
 
 // Change dir to project root. All paths in `paths` should reflect this.
