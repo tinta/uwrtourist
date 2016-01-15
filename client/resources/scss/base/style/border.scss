@@ -1,5 +1,5 @@
 @each $key, $color in $border-colors {
-    .border-#{$key} {
+    body .border-#{$key} {
         border-width: 1px;
         border-style: solid;
         border-color: $color

@@ -1,55 +1,79 @@
 mixin textInput (modelName)
-    div.text-xxs.input-height
-        input.pad.input-invis(
-            type="text"
-            ng-model="#{modelName}"
-        )
+    input.text-xxs.input-height(
+        type="text"
+        id=modelName
+        ng-model="#{modelName}"
+    )
 
 mixin title (text)
-    div.bg-gray-dark.input-height.text-white.text-xxs
+    div.text-xxs.text-right
         div.spacer-xs
         div.spacer-1
         div.text-xbold= text
 
 mixin textInputBlock (titleText, modelName)
-    div.row.collapse.border-gray-dark.border-none-l.bg-white
+    div.row
         div.column.small-2.text-center
             +title(titleText)
 
-        div.column.small-10.border-gray-dark-l
+        div.column.small-10
             +textInput(modelName)
 
-+textInputBlock("Name", "practiceLocation.name")
-
-div.spacer-xs
-
-+textInputBlock("Address", "practiceLocation.address")
-
-div.spacer-xs
-
-+textInputBlock("City", "practiceLocation.city")
-
-div.spacer-xs
-div.row.collapse.bg-white
+div.row.bg-white
     div.column.small-2
-        div.text-center.border-gray-dark.border-none-l.border-none-r
+        label.text-center(for="practiceLocation.name")
+            +title("Name")
+    div.column.small-4
+        div
+            +textInput("practiceLocation.name")
+
+    div.column.small-2
+        label.text-center(for="practiceLocation.address")
+            +title("Address")
+
+    div.column.small-4
+        div
+            +textInput("practiceLocation.address")
+
+div.spacer-md
+
+div.row.bg-white
+    div.column.small-2
+        label.text-center(for="practiceLocation.city")
+            +title("City")
+
+    div.column.small-4
+        div
+            +textInput("practiceLocation.city")
+
+    div.column.small-2
+        label.text-center(for="practiceLocation.region")
             +title("Region")
-    div.column.small-5
-        div.border-gray-dark
+
+    div.column.small-4
+        div
             +textInput("practiceLocation.region")
 
-    div.column.small-2.small-offset-1
-        div.text-center.border-gray-dark.border-none-l.border-none-r
-            +title("Zip")
+div.spacer-md
+
+div.row.bg-white
 
     div.column.small-2
-        div.border-gray-dark
-            +textInput("practiceLocation.postalCode")
+        label.text-center(for="practiceLocation.zip")
+            +title("Postal Code")
 
-div.spacer-xs
+    div.column.small-2
+        div
+            +textInput("practiceLocation.zip")
 
-+textInputBlock("Country", "practiceLocation.country")
+    div.column.small-2.small-offset-2
+        label.text-center(for="practiceLocation.country")
+            +title("Country")
 
-div.spacer-xs
+    div.column.small-4
+        div
+            +textInput("practiceLocation.country")
+
+div.spacer-md
 
 include pages/add-team/practices/times/index

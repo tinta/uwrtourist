@@ -10,12 +10,9 @@
         div.column.small-12
             div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                 div.column.small-12
-                    div.spacer-lg
+                    div.spacer-xl
 
-                div.column.small-2.text-right
-                    +squareCounter('[[ index + 1 ]]', 'green')
-
-                div.column.small-9
+                div.column.small-11
                     include pages/add-team/practices/content
 
                 div.column.small-1.bg-red.round-md-right(
@@ -23,29 +20,27 @@
                 )
                     div.text-xxs.text-center
                         div.spacer-xl
-                        div.spacer-xl
-                        div.spacer-xl
-                        div.spacer-xs
+                        div.spacer-lg
+                        div.spacer-xxs
                         div.spacer-1
                         div
                             i.fa.fa-times.text-white
                         div.spacer-xl
-                        div.spacer-xl
-                        div.spacer-xl
-                        div.spacer-sm
-                div.column.small-12
-                    div.spacer-lg
+                        div.spacer-lg
+                        div.spacer-xxs
+                        div.spacer-1
 
-            div.spacer-md
+            div.spacer-xl
             div.row.uncollapse
-                div.column.small-10.small-offset-2
-                    div.row.collapse.text-center(ng-click="form.newPractice()")
-                        div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                            div.input-height.text-white.text-xxs
-                                div.spacer-xs
-                                div.spacer-1
-                                div
-                                    i.fa.fa-plus
-                        div.column.small-6.left.border-green.border-none-l.bg-green.text-white.round-md-right
-                            div.text-xxs.input-height.pad
-                                span Add New Practice Location
+                div.column.small-11
+                    div.row.uncollapse
+                        div.column.small-5.small-offset-2.left.text-white.round-md.bg-blue(ng-click="form.newPractice()")
+                            div.input-height.text-xxs.column.small-10.small-centered.text-left
+                                div.pull-left
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div Add New Practice Location
+                                div.pull-right
+                                    div.spacer-xs
+                                    div
+                                        i.fa.fa-plus
