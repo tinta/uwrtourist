@@ -45,21 +45,30 @@ var TeamFormModel = (function() {
 
         if (team.links && team.links.length) {
             _.each(team.links, function (linkObj) {
-                this.links.create(function(field) {
+                this.links.create(function (field) {
                     field.val = linkObj.link;
                 });
             }.bind(this));
         }
 
-        if (team.practice_locations && team.practice_locations.length) {
-            _.each(team.practice_locations, function (practiceLocation) {
-                this.practiceLocations.create(function(fields) {
-                    fields.city = practiceLocation.city;
-                    fields.country = practiceLocation.country;
-                    fields.name = practiceLocation.name;
-                    fields.zip = practiceLocation.postal_code;
-                    fields.region = practiceLocation.region;
-                    fields.address = practiceLocation.street_address;
+        if (team.practice_locations) {
+            _.each(team.practice_locations, function (location) {
+                this.practiceLocations.create(function (locField) {
+                    locField.city = location.city;
+                    locField.country = location.country;
+                    locField.name = location.name;
+                    locField.zip = location.postal_code;
+                    locField.region = location.region;
+                    locField.address = location.street_address;
+
+                    var times = location.practice_times;
+                    if (times) {
+                        _.each(times, function (time) {
+                            locField.times.create(function(timeField) {
+                                timeField.day = time.day
+                            });
+                        }); 
+                    }
                 });
             }.bind(this));
         }
