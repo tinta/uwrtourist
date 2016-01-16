@@ -1,7 +1,0 @@
-[class*="circle-"] {
-    border-radius: map-get($radius-sizes, full);
-    @extend %square;
-}
-
-@include breakpoint($square-sizes, (width, height), "circle");
-

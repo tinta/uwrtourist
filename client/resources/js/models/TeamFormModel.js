@@ -43,6 +43,15 @@ var TeamFormModel = (function() {
             'Saturday'
         ];
 
+        this.status = team.status;
+        this.isAdmin = Boolean(this.status);
+
+        this.statusOptions = [
+            "active",
+            "suspended",
+            "pending"
+        ];
+
         if (team.links) {
             _.each(team.links, function (linkData) {
                 this.links.create(function (field) {

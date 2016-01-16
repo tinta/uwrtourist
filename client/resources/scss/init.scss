@@ -1,5 +1,11 @@
 @import "../../node_modules/foundation-sites/scss/foundation";
-@include foundation-everything;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-label;
+@include foundation-table;
 
 @import "modules/init";
 @import "base/init";
@@ -8,26 +14,30 @@
 
 html {
     font-size: 8px;
+}
 
-    .image-wrapper {
-        background-size: cover;
-        background-position: center;
-    }
+.image-wrapper {
+    background-size: cover;
+    background-position: center;
+}
 
-    #map {
-        height: 500px;
-        width: 100%;
-    }
+#map {
+    height: 500px;
+    width: 100%;
+}
 
-    #nav-items {
-        margin-left: -10px;
-    }
+#nav-items {
+    margin-left: -10px;
+}
 
-    #team > .column:nth-child(2n + 1) {
-        clear: both;
-    }
+#team > .column:nth-child(2n + 1) {
+    clear: both;
+}
 
-    #uwr .paginate > .column > * {
-        padding: 9px;
-    }
+#uwr .paginate > .column > * {
+    padding: 9px;
+}
+
+#uwr form .ng-dirty {
+    background-color: lighten(map-get($bg-colors, "green"), 50%);
 }

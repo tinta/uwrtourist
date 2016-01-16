@@ -15,7 +15,7 @@
                 div.column.small-11
                     include pages/add-team/practices/content
 
-                div.column.small-1.bg-red.round-md-right(
+                div.column.small-1.btn-red.round-md-right(
                     ng-click="form.practiceLocations.remove(index)"
                 )
                     div.text-xs.text-center
@@ -34,7 +34,7 @@
                 div.column.small-11
                     div.row
                         div.column.small-5.small-offset-2
-                            div.btn-blue.text-xxs(ng-click="form.newPractice()")
+                            div.btn-blue.pressable.text-xxs(ng-click="form.newPractice()")
                                 div.input-height
                                     div.pull-left
                                         div.spacer-xs

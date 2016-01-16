@@ -1,8 +1,13 @@
-[class*="text-"] {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+%text {
     font-weight: 400;
     line-height: 1;
+}
 
+body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+#uwr {
     p {
         margin: 0;
         line-height: 1.25;
@@ -14,20 +19,23 @@
         text-transform: capitalize;
     }
 
-
     .text-thin {
+        @extend %text;
         font-weight: 200;
     }
 
     .text-bold {
+        @extend %text;
         font-weight: 600;
     }
 
     .text-xbold {
+        @extend %text;
         font-weight: 800;
     }
 
     .text-hover-underline:hover {
+        @extend %text;
         text-decoration: underline;
     }
 }

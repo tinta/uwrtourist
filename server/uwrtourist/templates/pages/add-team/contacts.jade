@@ -57,7 +57,7 @@
                                 placeholder="e.g. Coach"
                             )
 
-                div.column.small-1.bg-red.round-md-right(
+                div.column.small-1.btn-red.round-md-right(
                     ng-click="form.contacts.remove(index)"
                 )
                     div.text-xs.text-center
@@ -74,7 +74,7 @@
                 div.column.small-10.small-offset-2
                     div.row.collapse
                         div.column.small-4
-                            div.btn-blue.text-xxs(ng-click="form.contacts.create()")
+                            div.btn-blue.pressable.text-xxs(ng-click="form.contacts.create()")
                                 div.input-height
                                     div.pull-left
                                         div.spacer-xs

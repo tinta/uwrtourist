@@ -14,13 +14,3 @@
         }
     }
 }
-
-.border-none {
-    border-width: 0;
-}
-
-@each $dirKey, $dirVal in $dirs {
-    .border-none-#{$dirKey} {
-        border-#{$dirVal}-width: 0;
-    }
-}

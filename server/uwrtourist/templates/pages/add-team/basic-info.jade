@@ -13,12 +13,22 @@
                     div.spacer-xs
                     div.text-xxs.text-xbold Team Name
 
-                div.column.small-4.left
+                div.column.small-4
                     input.text-xxs(
                         ng-model="form.name"
                         type="text"
                         name="name"
-                        tabindex="1"
+                    )
+
+                div.column.small-2.text-right(ng-if="form.status")
+                    div.spacer-xs
+                    div.text-xxs.text-xbold Status
+
+                div.column.small-2(ng-if="form.isAdmin")
+                    select.text-xxs(
+                        ng-model="form.status"
+                        ng-options="status for status in form.statusOptions"
+                        name="status"
                     )
 
                 div.column.small-12
@@ -44,7 +54,6 @@
                 div.column.small-2.left
                     select.text-xxs(
                         ng-model="form.yearEstablished"
-                        foo="[[form.yearEstablished]]"
                         name="yearEstablished"
                         tabindex="3"
                         ng-options="year for year in form.yearEstablishedOptions"
@@ -57,7 +66,7 @@
                     div.spacer-xs
                     div.text-xxs Blurb
 
-                div.column.small-10.left
+                div.column.small-8.left
                     textarea.text-xxs(
                         name="blurb"
                         tabindex="4"

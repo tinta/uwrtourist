@@ -1,35 +1,61 @@
 %btn {
-    @extend .round-md;
     @extend .text-bold;
     color: map-get($bg-colors, "white");
     padding: 0 4rem;
 
-    // Pressable
-    border-style: solid;
-    border-width: 0 0 4px 0;
-    margin-bottom: 0;
+    transition: 0.2s background-color;
 
-    &:active {
-        border-bottom-width: 2px;
-        margin-bottom: 2px;
+    &.pressable {
+        @extend .round-md;
+        border-style: solid;
+        border-width: 0 0 4px 0;
+        margin-bottom: 0;
+
+        &:active {
+            border-bottom-width: 2px;
+            margin-bottom: 2px;
+        }
     }
 
+}
+
+.btn-red {
+    @extend %btn;
+    @extend .bg-red;
+    border-color: map-get($bg-colors, "gray-dark");
+
+    &:hover {
+        background-color: darken(map-get($bg-colors, "red"), 5%)
+    }
 }
 
 .btn-blue {
     @extend %btn;
     @extend .bg-blue;
     border-color: map-get($bg-colors, "gray-dark");
+
+
+    &:hover {
+        background-color: darken(map-get($bg-colors, "blue"), 5%)
+    }
 }
 
 .btn-gray-dark {
     @extend %btn;
     @extend .bg-gray-dark;
     border-color: #000;
+
+    &:hover {
+        background-color: darken(map-get($bg-colors, "gray-dark"), 5%)
+    }
 }
 
 .btn-green {
     @extend %btn;
     @extend .bg-green;
     border-color: map-get($bg-colors, "gray-dark");
+
+    &:hover {
+        background-color: darken(map-get($bg-colors, "green"), 5%)
+    }
 }
