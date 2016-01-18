@@ -105,8 +105,8 @@ def populate_db():
             state = state[0] if len(state) else city
             location = ", ".join([city, state])
             new_team = um.Team(team_name, location, country, "active")
-            new_team.longitude = team[1]
-            new_team.latitude = team[2]
+            new_team.longitude = team[2]
+            new_team.latitude = team[1]
             for l in team_links:
                 if "uwr1.de" not in l and l is not "":
                     new_team.links.append(um.Link(l.decode("utf-8")))
