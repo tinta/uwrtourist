@@ -6,6 +6,10 @@ var DynamicFieldsCollection = (function () {
         this.defaults = defaults;
     };
 
+    DynamicFieldsCollection.prototype.getOutput = function () {
+        return angular.copy(this.all);
+    };
+
     DynamicFieldsCollection.prototype.create = function (cb) {
         var newField = angular.copy(this.defaults);
         if (cb) cb(newField);

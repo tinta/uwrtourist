@@ -5,7 +5,7 @@
     div.text-sm Basic Info
 
 +mainColumn()
-    div.spacer-lg
+    div.spacer-xl
     div.row
         div.column.small-12
             div.row.uncollapse
@@ -43,7 +43,6 @@
                         ng-model="form.location"
                         type="text"
                         name="city"
-                        tabindex="2"
                         placeholder="Your team's metro area"
                     )
 
@@ -55,7 +54,6 @@
                     select.text-xxs(
                         ng-model="form.yearEstablished"
                         name="yearEstablished"
-                        tabindex="3"
                         ng-options="year for year in form.yearEstablishedOptions"
                     )
 
@@ -69,7 +67,6 @@
                 div.column.small-8.left
                     textarea.text-xxs(
                         name="blurb"
-                        tabindex="4"
                         placeholder="Introduce your team!"
                         rows="4"
                     )

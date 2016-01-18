@@ -18,9 +18,10 @@ head
     {% block css %}
     {% endblock %}
 
-    script(src="/resources/build/index.js")
     {% block javascript %}
     {% endblock %}
+
+    script(src="/resources/build/index.js")
 
 body#uwr.text-gray-dark
     include partials/header

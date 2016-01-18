@@ -6,7 +6,7 @@
     div.text-sm Contacts
 
 +mainColumn
-    div.spacer-lg
+    div.spacer-xl
     div.row
         div.column.small-12
             div.row.collapse(ng-repeat="(index, contactInput) in form.contacts.all")
@@ -24,7 +24,6 @@
                                     input.input-height.text-xxs(
                                         type="text"
                                         name="contact"
-                                        tabindex="5"
                                         ng-model="contactInput.name"
                                     )
                         div.column.small-12
@@ -39,7 +38,6 @@
                             input.text-xxs.input-height(
                                 type="text"
                                 name="contact"
-                                tabindex="5"
                                 ng-model="contactInput.email"
                             )
 
@@ -52,7 +50,6 @@
                             input.text-xxs.input-height(
                                 type="text"
                                 name="contact"
-                                tabindex="5"
                                 ng-model="contactInput.title"
                                 placeholder="e.g. Coach"
                             )

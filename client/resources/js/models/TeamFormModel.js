@@ -6,11 +6,6 @@ var TeamFormModel = (function() {
         console.log(team)
         team = team || {};
 
-        this.name = team.name || '';
-        this.location = team.location || '';
-        this.yearEstablished = team.year_established || 'n/a';
-        this.blurb = team.blurb || '';
-
         this.links = new DynamicFields({val: ''});
 
         this.contacts = new DynamicFields({
@@ -33,6 +28,10 @@ var TeamFormModel = (function() {
             })
         });
 
+        this.populate(team);
+    };
+
+    TeamFormModel.prototype.populate = function (team) {
         this.practiceLocations.dayOptions = [
             'Sunday',
             'Monday',
@@ -42,6 +41,11 @@ var TeamFormModel = (function() {
             'Friday',
             'Saturday'
         ];
+
+        this.name = team.name || '';
+        this.location = team.location || '';
+        this.yearEstablished = team.year_established || 'n/a';
+        this.blurb = team.blurb || '';
 
         this.status = team.status;
         this.isAdmin = Boolean(this.status);
@@ -98,6 +102,31 @@ var TeamFormModel = (function() {
         while (firstYear++ < currentYear) {
             this.yearEstablishedOptions.push(firstYear);
         }
+    };
+
+    TeamFormModel.prototype.getOutput = function () {
+        var output = {
+            name: this.name || '',
+            location: this.location || '',
+            year_established: '',
+            blurb: this.blurb || '',
+            status: this.status || '',
+            links: this.links.getOutput(),
+            practice_locations: this.practiceLocations.getOutput(),
+            contacts: this.contacts.getOutput(),
+        };
+
+        _.each(output.practice_locations, function (location) {
+            location.postal_code = location.postalCode;
+            delete location.postalCode;
+            location.street_address = location.address;
+            delete location.address;
+            location.times = location.times.getOutput();
+        });
+
+        if (this.yearEstablished !== 'n/a') output.year_established = this.yearEstablished;
+
+        return output;
     };
 
     TeamFormModel.prototype.newPractice = function () {

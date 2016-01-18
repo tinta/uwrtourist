@@ -1,4 +1,5 @@
-require("jquery");
+var $ = require("jquery");
+var _ = require("underscore");
 var angular = require("angular");
 
 var TeamFormModel = require("./../../models/TeamFormModel.js");
@@ -17,6 +18,10 @@ angular.module('ControllerAddTeam', [
     $window
 ){
     $scope.form = new TeamFormModel(window.team);
+
+    $scope.submit = function () {
+        console.log(this.form.getOutput());
+    };
 
     // Dev
     $window.logScope = function () {

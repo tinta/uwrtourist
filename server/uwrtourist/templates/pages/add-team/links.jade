@@ -6,7 +6,7 @@
     div.text-sm Links
 
 +mainColumn()
-    div.spacer-lg
+    div.spacer-xl
     div.row
         div.column.small-12
             div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
@@ -21,7 +21,6 @@
                             input.input-height.text-xxs(
                                 type="text"
                                 name="link"
-                                tabindex="5"
                                 ng-model="urlInput.val"
                             )
 
