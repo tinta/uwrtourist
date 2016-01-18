@@ -1,14 +1,8 @@
 {% extends "layout.jade" %}
 
-{% block css%}
-{% endblock %}
-
 {% block javascript %}
-script(src="/node_modules/lodash/index.js")
-script(src="/node_modules/jquery/dist/jquery.min.js")
-script(src="/node_modules/angular/angular.js")
-script(src="/resources/js/controllers/addTeam.js")
-script(src="/resources/js/models/AddTeamFormModel.js")
+script
+    window.team = {{ team }};
 {% endblock %}
 
 {% block body %}
@@ -28,26 +22,32 @@ div.row.uncollapse
                             div.text-xxs
                                 span.text-xbold Bold&nbsp;
                                 span fields are required
-                            div.spacer-sm
+                            div.spacer-lg
 
             include pages/add-team/basic-info
-
             include pages/add-team/links
-
             include pages/add-team/contacts
-
             include pages/add-team/practices/index
 
             div.spacer-xl
-            div.spacer-md
+            div.spacer-xl
             div.row
-                div.column.small-4.small-centered.text-center
-                    button.text-white.pad-tb.width-full.text-sm.bg-green(
-                        type="submit"
-                    )
-                        span Submit Team Info&nbsp;&nbsp;
-                        i.fa.fa-chevron-right
+                div.column.small-11.small-centered
+                    div.row.uncollapse
+                        div.column.small-5.small-offset-2(ng-if="!form.isAdmin")
+                            button.pad-tb.width-full.text-sm.btn-green.pressable(
+                                type="submit"
+                            )
+                                div.text-sm.pull-left Submit Team Info
+                                i.pull-right.fa.fa-chevron-right
 
-            div.spacer-lg
+                        div.column.small-3.small-offset-2(ng-if="form.isAdmin")
+                            button.pad-tb.width-full.text-sm.btn-green.pressable(
+                                type="submit"
+                            )
+                                div.text-sm.pull-left Save
+                                i.pull-right.fa.fa-chevron-right
+            div.spacer-xl
+            div.spacer-xl
 
 {% endblock %}

@@ -1,5 +1,5 @@
 @each $key, $color in $border-colors {
-    .border-#{$key} {
+    body .border-#{$key} {
         border-width: 1px;
         border-style: solid;
         border-color: $color
@@ -12,15 +12,5 @@
             border-style: solid;
             border-color: $color
         }
-    }
-}
-
-.border-none {
-    border-width: 0;
-}
-
-@each $dirKey, $dirVal in $dirs {
-    .border-none-#{$dirKey} {
-        border-#{$dirVal}-width: 0;
     }
 }

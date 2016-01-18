@@ -8,48 +8,48 @@
 +mainColumn()
     div.spacer-lg
     div.row
+        div.column.small-12
             div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                 div.column.small-2.text-right
-                    +squareCounter('[[ index + 1 ]]', 'green')
+                    div.spacer-xs
+                    div.spacer-1
+                    div.text-xbold.text-xxs URL
 
-                div.column.small-9
-                    div.row.collapse.bg-white.border-gray-dark
-                        div.column.small-2.text-center
-                            div.bg-gray-dark.input-height.text-white.text-xxs
-                                div.spacer-xs
-                                div.spacer-1
-                                div.text-xbold URL
-                        div.column.small-10.border-none-l
-                            div.text-xxs.input-height
-                                input.pad.input-invis(
-                                    type="text"
-                                    name="link"
-                                    tabindex="5"
-                                    ng-model="urlInput.val"
-                                )
-                div.column.small-1.bg-red.border-red.round-md-right(
+                div.column.small-6
+                    div.row.collapse
+                        div.column.small-12
+                            input.input-height.text-xxs(
+                                type="text"
+                                name="link"
+                                tabindex="5"
+                                ng-model="urlInput.val"
+                            )
+
+                div.column.small-1.btn-red.round-md-right(
                     ng-click="form.links.remove(index)"
                 )
-                    div.text-xxs.input-height.text-center
-                        div.spacer-xs
-                        div.spacer-1
-                        div.text-xxs
-                            i.fa.fa-times.text-white
+                    div.text-xxs.text-center.input-height
+                        div.spacer-xxs
+                        div.text-xs
+                            i.fa.fa-trash-o.text-white
 
                 div.column.small-12
-                    div.spacer-md
+                    div.spacer-lg
 
             div.row.uncollapse(ng-if="form.links.all.length < 3")
                 div.column.small-10.small-offset-2
-                    div.row.collapse.text-center(ng-click="form.links.create()")
-                        div.column.small-1.border-gray-dark.bg-gray-dark.round-md-left
-                            div.input-height.text-white.text-xxs
-                                div.spacer-xs
-                                div.spacer-1
-                                div
-                                    i.fa.fa-plus
-                        div.column.small-4.left.border-green.border-none-l.bg-green.text-white.round-md-right
-                            div.text-xxs.input-height.pad
-                                span Add New Link
+                    div.row.collapse
+                        div.column.small-4
+                            div.btn-blue.pressable.text-xxs(ng-click="form.links.create()")
+                                div.input-height
+                                    div.pull-left
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div Add New Link
+                                    div.pull-right
+                                        div.spacer-xs
+                                        div
+                                            i.fa.fa-plus
+
 
     div.spacer-xl

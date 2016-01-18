@@ -5,19 +5,13 @@ $radius-sizes: (
     full: 10000px,
 );
 
-$square-sizes: (
-    sm: 40px,
-    md: 50px,
-    lg: 60px,
-    xl: 70px
-);
-
-.bg-image {
+#logo {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 @import "round";
-@import "square";
-@import "circle";
+@import "btn";

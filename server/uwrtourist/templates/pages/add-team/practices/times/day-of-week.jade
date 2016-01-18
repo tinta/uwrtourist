@@ -1,15 +1,14 @@
-div.row.collapse
+div.row
     div.column.small-3
-        div.text-center.border-gray-dark
-            div.bg-gray-dark.input-height.text-white.text-xxs
-                div.spacer-xs
-                div.spacer-1
-                div.text-xbold Day
+        div.text-right.input-height.text-xxs
+            div.spacer-xs
+            div.spacer-1
+            div Day
+
     div.column.small-8
-        div.text-xxs.border-gray-dark(style="margin-right: 1px;")
-            select.text-xxs.input-invis.input-height(
+        div.text-xxs(style="margin-right: 1px;")
+            select.text-xxs.input-height.border-gray-dark(
                 name="[[index + 'day']]"
                 ng-model="time.day"
-                tabindex="5"
             )
                 option(ng-repeat="day in form.practiceLocations.dayOptions") [[ day ]]

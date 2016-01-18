@@ -1,23 +1,13 @@
 - from './mixins/squareCounter.jade' import squareCounter
 
-div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
-    div.column.small-2.text-center
-        div.bg-gray-dark.input-height.text-white.text-xxs.round-md-bl
-            div.spacer-xs
-            div.spacer-1
-            div.text-xbold Times
-
-    div.column.small-10
+div.row.border-gray-dark-bottom.bg-white
+    div.column.small-10.small-offset-2
         div(
             ng-repeat="(index, time) in practiceLocation.times.all"
         )
             div.row.collapse
-                div.column.small-1
-                    div.right.text-xxs
-                        div.right &nbsp;&nbsp;
-                        +squareCounter('[[ index + 1 ]]', 'blue')
 
-                div.column.small-10
+                div.column.small-11
                     div.row.collapse
 
                         div.column.small-4
@@ -29,18 +19,15 @@ div.row.collapse.border-gray-dark-bottom.bg-white.round-md-bl
                         div.column.small-4
                             include pages/add-team/practices/times/day-of-week
 
-                div.column.small-1.bg-red.round-md-right(
+                div.column.small-1.btn-red.round-md-right(
                     ng-click="practiceLocation.times.remove(index)"
                 )
-                    div.text-xxs.text-center
-                        div.spacer-xs
+                    div.text-xs.text-center
+                        div.spacer-xxs
                         div
-                            i.fa.fa-times.text-white
-                        div.spacer-sm
+                            i.fa.fa-trash-o.text-white
+                        div.spacer-xs
 
-            div.spacer-xs
-
-div.spacer-xs
-
+            div.spacer-md
 
 include pages/add-team/practices/times/add-new-time

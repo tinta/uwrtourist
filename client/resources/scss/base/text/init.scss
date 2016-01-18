@@ -1,9 +1,13 @@
-[class*="text-"] {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 200;
+%text {
+    font-weight: 400;
     line-height: 1;
-    letter-spacing: 0.05em;
+}
 
+body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+#uwr {
     p {
         margin: 0;
         line-height: 1.25;
@@ -16,23 +20,22 @@
     }
 
     .text-thin {
-        font-weight: 100;
-        letter-spacing: 0.08em;
-    }
-
-    .text-reg {
+        @extend %text;
         font-weight: 200;
     }
 
     .text-bold {
-        font-weight: 400;
+        @extend %text;
+        font-weight: 600;
     }
 
     .text-xbold {
-        font-weight: 500;
+        @extend %text;
+        font-weight: 800;
     }
 
     .text-hover-underline:hover {
+        @extend %text;
         text-decoration: underline;
     }
 }

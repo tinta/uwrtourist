@@ -1,6 +1,8 @@
-(function() {
-    "use strict";
+var _ = require("underscore");
+var $ = require("jquery");
+require('mapbox.js'); // <-- auto-attaches to window.L
 
+module.exports = function () {
     var clubs = [
         ["TSG Kirchhellen", 51.603171, 6.917154, "http://uwr1.de/vereine/tsg-kirchhellen", ""],
         ["TSV Malsch", 48.8786745, 8.3373208, "http://uwr1.de/vereine/tsv-malsch", "http://www.uwr-malsch.de/"],
@@ -276,4 +278,4 @@
 
     Mapbox.init(geojson);
 
-})();
+};

@@ -2,5 +2,6 @@
     html body .text-#{$key},
     html body .text-hover-#{$key}:hover {
         color: $color;
+        @extend %text;
     }
 }

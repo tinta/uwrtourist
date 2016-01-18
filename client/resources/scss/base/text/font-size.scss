@@ -9,6 +9,9 @@ $sizes: (
     xl: 48px
 );
 
-#uwr {
-  @include breakpoint($sizes, font-size, "text");
+@each $key, $size in $sizes {
+    html body .text-#{$key} {
+        font-size: $size;
+        @extend %text;        
+    }
 }
