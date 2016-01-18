@@ -7,6 +7,11 @@ link(
 )
 {% endblock %}
 
+{% block javascript %}
+script
+    window.teams = {{ teams }};
+{% endblock %}
+
 {% block body %}
 div.spacer-xs
 div.row.double-gutter
