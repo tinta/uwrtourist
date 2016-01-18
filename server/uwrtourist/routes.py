@@ -32,7 +32,8 @@ def add_pages():
 @app.route("/")
 def homepage():
     title = False
-    return render_template("pages/home.jade", title=title)
+    teams = get_teams(format="json", status="active")
+    return render_template("pages/home.jade", title=title, teams=teams)
 
 @app.route("/about")
 def about():
