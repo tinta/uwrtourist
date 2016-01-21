@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.ext.babel import Babel, gettext
 from flask_mail import Mail, Message
 
@@ -77,8 +77,19 @@ def addform():
 @app.route("/admin")
 def admin():
     title = gettext("Pending Teams")
-    teams = get_teams(status="active", format="json")
+    teams = get_teams(status="pending", format="json")
     return render_template("pages/teams/index.jade", title=title, teams=teams)
+
+@app.route("/admin/team/add", methods=["GET", "POST"])
+def admin_add():
+    title = gettext("Add a new team")
+    if request.method == "POST":
+        # add the team
+        flash("The {} have been successfully added!".format("Mississippi Starfishes")
+        return redirect(url_for('.admin'))
+    else:
+        # show the add team form
+        return render_template("pages/add-team/index.jade", title=title)
 
 @app.route("/admin/team/edit/<tid>", methods=["GET", "POST"])
 def admin_edit(tid):

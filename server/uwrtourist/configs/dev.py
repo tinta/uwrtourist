@@ -9,3 +9,4 @@ class DevConfig:
     SQLALCHEMY_DATABASE_URI = "{}:///{}/uwrtourist.db"\
                                 .format(DATABASE, BASEDIR)
     SITE_NAME = "Underwater Rugby Tourist"
+    SECRET_KEY = "something super secret"

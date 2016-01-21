@@ -20,6 +20,8 @@ div.row.uncollapse
             ng-controller="ControllerAddTeam"
             ng-cloak
             novalidate
+            action="{{request.path}}"
+            method="post"
         )
             div.row.collapse
                 div.column.small-11.small-centered
@@ -40,20 +42,11 @@ div.row.uncollapse
             div.row
                 div.column.small-11.small-centered
                     div.row.uncollapse
-                        div.column.small-5.small-offset-2(ng-if="!form.isAdmin")
+                        div.column.small-5.small-offset-2
                             button.pad-tb.width-full.text-sm.btn-green.pressable(
                                 type="submit"
-                                ng-click="submit()"
                             )
                                 div.text-sm.pull-left Submit Team Info
-                                i.pull-right.fa.fa-chevron-right
-
-                        div.column.small-3.small-offset-2(ng-if="form.isAdmin")
-                            button.pad-tb.width-full.text-sm.btn-green.pressable(
-                                type="submit"
-                                ng-click="submit()"
-                            )
-                                div.text-sm.pull-left Save
                                 i.pull-right.fa.fa-chevron-right
             div.spacer-xl
             div.spacer-xl
