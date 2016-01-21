@@ -48,12 +48,10 @@ def teams():
 
 @app.route("/team/<tid>")
 def team(tid):
-    team = get_teams(id=tid, status="active", format="json")
-    num_teams = len(team)
-    if not team or num_teams != 1:
+    teams = get_teams(id=tid, status="active")
+    if not teams or not teams[0]:
         return pnf()
-
-    team = team[0]
+    team = teams[0];
 
     return render_template("pages/team/index.jade", title=team.name, team=team)
 
@@ -95,7 +93,6 @@ def admin_edit(tid):
             return render_template("pages/add-team/index.jade", title=title, team=team)
         else:
             return pnf()
-
 
 # @app.route("/competitions")
 # def competitions():
