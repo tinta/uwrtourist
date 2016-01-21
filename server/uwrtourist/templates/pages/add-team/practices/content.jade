@@ -2,14 +2,14 @@
 
 div.row
     - set model = "practiceLocation.name"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2
         +label("Name", uid)
     div.column.small-4
         +textInput(model, uid)
 
     - set model = "practiceLocation.address"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2
         +label("Address", uid)
     div.column.small-4
@@ -19,14 +19,14 @@ div.spacer-md
 
 div.row
     - set model = "practiceLocation.city"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2
         +label("City", uid)
     div.column.small-4
         +textInput(model, uid)
 
     - set model = "practiceLocation.region"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2
         +label("Region", uid)
     div.column.small-4
@@ -36,14 +36,14 @@ div.spacer-md
 
 div.row
     - set model = "practiceLocation.zip"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2
         +label("Postal Code", uid)
     div.column.small-2
         +textInput(model, uid)
 
     - set model = "practiceLocation.country"
-    - set uid = "[[" + model + " + locIndex ]]"
+    - set uid = "[[ '" + model + "' + locIndex ]]"
     div.column.small-2.small-offset-2
         +label("Country", uid)
     div.column.small-4

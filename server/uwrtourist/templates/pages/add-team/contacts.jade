@@ -10,50 +10,44 @@
     div.spacer-xl
     div.row
         div.column.small-12
-            div.row.collapse(ng-repeat="(index, contactInput) in form.contacts.all")
+            div.row.collapse(ng-repeat="(contactIndex, contactInput) in form.contacts.all")
 
                 div.column.small-12
                     div.row.uncollapse
+                        - set model = "contactInput.name"
+                        - set uid = "[[ '" + model + "' + contactIndex ]]"
+
                         div.column.small-2
-                            +label("Name", "contactInput.name")
-                            div.spacer-xs
-                            div.spacer-1
-                            label.text-xbold.text-xxs Name
+                            +label("Name", uid)
 
                         div.column.small-10
                             div.row
                                 div.column.small-3
                                     div.row.collapse
                                         div.column.small-12
-                                            +textInput("contactInput.name")
+                                            +textInput(model, uid)
 
-                                div.column.small-1.text-right
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div.text-xbold.text-xxs Email
+                                - set model = "contactInput.email"
+                                - set uid = "[[ '" + model + "' + contactIndex ]]"
+                                div.column.small-1
+                                    +label("Email", uid)
+                                div.column.small-3
+                                    +textInput(model, uid)
 
+                                - set model = "contactInput.title"
+                                - set uid = "[[ '" + model + "' + contactIndex ]]"
+                                div.column.small-1
+                                    +label("Role", uid)
                                 div.column.small-3
                                     input.text-xxs.input-height(
                                         type="text"
-                                        name="contact"
-                                        ng-model="contactInput.email"
-                                    )
-
-                                div.column.small-1.text-right
-                                    div.spacer-xs
-                                    div.spacer-1
-                                    div.text-xxs Role
-
-                                div.column.small-3
-                                    input.text-xxs.input-height(
-                                        type="text"
-                                        name="contact"
-                                        ng-model="contactInput.title"
+                                        id=uid
+                                        ng-model=model
                                         placeholder="e.g. Coach"
                                     )
 
                                 div.column.small-1.text-gray-md.text-hover-red(
-                                    ng-click="form.contacts.remove(index)"
+                                    ng-click="form.contacts.remove(contactIndex)"
                                 )
                                     div.spacer-xxs
                                     div.text-xs.text-center
