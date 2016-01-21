@@ -11,74 +11,68 @@
         div.column.small-12
             div.row.collapse(ng-repeat="(index, contactInput) in form.contacts.all")
 
-                div.column.small-8
+                div.column.small-12
                     div.row.uncollapse
-                        div.column.small-3.text-right
+                        div.column.small-2.text-right
                             div.spacer-xs
                             div.spacer-1
                             div.text-xbold.text-xxs Name
 
-                        div.column.small-9
-                            div.row.collapse
-                                div.column.small-12
-                                    input.input-height.text-xxs(
+                        div.column.small-10
+                            div.row
+
+                                div.column.small-3
+                                    div.row.collapse
+                                        div.column.small-12
+                                            input.input-height.text-xxs(
+                                                type="text"
+                                                name="contact"
+                                                ng-model="contactInput.name"
+                                            )
+
+                                div.column.small-1.text-right
+                                        div.spacer-xs
+                                        div.spacer-1
+                                        div.text-xbold.text-xxs Email
+
+                                div.column.small-3
+                                    input.text-xxs.input-height(
                                         type="text"
                                         name="contact"
-                                        ng-model="contactInput.name"
+                                        ng-model="contactInput.email"
                                     )
-                        div.column.small-12
-                            div.spacer-md
 
-                        div.column.small-3.text-right
-                                div.spacer-xs
-                                div.spacer-1
-                                div.text-xbold.text-xxs Email
+                                div.column.small-1.text-right
+                                    div.spacer-xs
+                                    div.spacer-1
+                                    div.text-xxs Role
 
-                        div.column.small-4
-                            input.text-xxs.input-height(
-                                type="text"
-                                name="contact"
-                                ng-model="contactInput.email"
-                            )
+                                div.column.small-3
+                                    input.text-xxs.input-height(
+                                        type="text"
+                                        name="contact"
+                                        ng-model="contactInput.title"
+                                        placeholder="e.g. Coach"
+                                    )
 
-                        div.column.small-2.text-right
-                            div.spacer-xs
-                            div.spacer-1
-                            div.text-xxs Role
-
-                        div.column.small-3
-                            input.text-xxs.input-height(
-                                type="text"
-                                name="contact"
-                                ng-model="contactInput.title"
-                                placeholder="e.g. Coach"
-                            )
-
-                div.column.small-1.btn-red.round-md-right(
-                    ng-click="form.contacts.remove(index)"
-                )
-                    div.text-xs.text-center
-                        div.spacer-xl
-                        div.spacer-1
-                        div
-                            i.fa.fa-trash-o.text-white
-                        div.spacer-xl
+                                div.column.small-1.text-gray-md.text-hover-red(
+                                    ng-click="form.contacts.remove(index)"
+                                )
+                                    div.spacer-xxs
+                                    div.text-xs.text-center
+                                        i.fa.fa-times
+                                    div.spacer-xxs
 
                 div.column.small-12
                     div.spacer-xl
 
             div.row.uncollapse
                 div.column.small-10.small-offset-2
-                    div.row.collapse
-                        div.column.small-4
-                            div.btn-blue.pressable.text-xxs(ng-click="form.contacts.create()")
-                                div.input-height
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div
-                                            span Add New Contact
-                                            span &nbsp;&nbsp;&nbsp;&nbsp;
-                                            i.fa.fa-plus
-
-
-    div.spacer-xl
+                    div.btn-blue.pressable.text-xs(ng-click="form.contacts.create()")
+                        div.input-height
+                                div.spacer-xs
+                                div.spacer-1
+                                div
+                                    span Add New Contact
+                                    span &nbsp;&nbsp;&nbsp;&nbsp;
+                                    i.fa.fa-plus
