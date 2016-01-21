@@ -1,4 +1,5 @@
 var $ = window.$ = window.jQuery = require("jquery");
+require("geocomplete");
 var _ = require("underscore");
 var angular = require("angular");
 
@@ -24,15 +25,19 @@ angular.module('ControllerAddTeam', [
         $.post(window.location.href, body)
     };
 
-    $(document).on("geocode:result", function (event, result) {
-        var location = {
-            countryCode: result.address_components[result.address_components.length - 1].short_name,
-            lat: result.geometry.location.lat(),
-            lng: result.geometry.location.lng(),
-            val: result.formatted_address 
-        };
+    $(function () {
+        $('[ng-model="form.location.val"]')
+        .geocomplete()
+        .bind("geocode:result", function(event, result) {
+            var location = {
+                countryCode: result.address_components[result.address_components.length - 1].short_name,
+                lat: result.geometry.location.lat(),
+                lng: result.geometry.location.lng(),
+                val: result.formatted_address 
+            };
 
-        _.extend($scope.form.location, location);
+            _.extend($scope.form.location, location);
+        });
     });
 
     // Dev

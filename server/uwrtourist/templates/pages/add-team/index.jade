@@ -6,16 +6,6 @@
 script
     window.team = {{ team or {} }};
 script(src="http://maps.googleapis.com/maps/api/js?libraries=places")
-script(src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.6.5/jquery.geocomplete.js")
-script
-    $(function () {
-        var eventName = "geocode:result";
-        $('[ng-model="form.location.val"]')
-        .geocomplete()
-        .bind(eventName, function(event, result) {
-            $(document).trigger(eventName, result);
-        });
-    });
 {% endblock %}
 
 {% block body %}
