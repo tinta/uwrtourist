@@ -1,14 +1,11 @@
-label.row(for="[['time-end' + index]]")
+- from './pages/add-team/mixins.jade' import textInput, label
+
+- set model = "time.endTime"
+- set uid = "[[ '" + model + "' + locIndex + timeIndex ]]"
+
+div.row
     div.column.small-4
-        div.text-right.input-height.text-xxs
-            div.spacer-xs
-            div.spacer-1
-            div End
+        +label("End", uid)
 
     div.column.small-6
-        input.text-xxs.input-height.border-gray-dark(
-            id="[['time-end' + index]]"
-            type="text"
-            name="contact"
-            ng-model="time.endTime"
-        )
+        +textInput(model, uid)

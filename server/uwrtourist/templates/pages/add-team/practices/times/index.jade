@@ -3,7 +3,7 @@
 div.row
     div.column.small-10.small-offset-2
         div.row.collapse(
-            ng-repeat="(index, time) in practiceLocation.times.all"
+            ng-repeat="(timeIndex, time) in practiceLocation.times.all"
         )
             div.column.small-12.border-gray-dark.round-md
                 div.row.uncollapse
@@ -22,7 +22,7 @@ div.row
                                 include pages/add-team/practices/times/day-of-week
 
                     div.column.small-1.text-left.text-xs(
-                        ng-click="practiceLocation.times.remove(index)"
+                        ng-click="practiceLocation.times.remove(timeIndex)"
                     )
                         div.spacer-xxs
                         div

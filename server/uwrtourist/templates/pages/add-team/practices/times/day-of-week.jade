@@ -1,14 +1,16 @@
+- from './pages/add-team/mixins.jade' import textInput, label
+
+- set model = "time.day"
+- set uid = "[[ '" + model + "' + locIndex + timeIndex ]]"
+
 div.row
     div.column.small-3
-        div.text-right.input-height.text-xxs
-            div.spacer-xs
-            div.spacer-1
-            div Day
+        +label("Day", uid)
 
     div.column.small-9
         div.text-xxs(style="margin-right: 1px;")
             select.text-xxs.input-height.border-gray-dark(
-                name="[[index + 'day']]"
-                ng-model="time.day"
+                id=uid
+                ng-model=model
             )
                 option(ng-repeat="day in form.practiceLocations.dayOptions") [[ day ]]
