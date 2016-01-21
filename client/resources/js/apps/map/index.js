@@ -52,7 +52,6 @@ module.exports = function () {
                 ].join('');
 
                 _.each(item.properties.description, function(desc) {
-                    console.log(item)
                     _desc += [
                         '<div>',
                         '<a href="', desc, '">',

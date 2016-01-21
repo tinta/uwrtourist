@@ -80,11 +80,6 @@ angular.module('ControllerTeamsList', [
 
     $scope.icons = icons;
 
-
-    $scope.followLink = function () {
-        console.log('LLLL');
-    };
-
     // Dev
     $window.logScope = function () {
         $window.$scope = $scope;
