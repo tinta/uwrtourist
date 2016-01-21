@@ -41,7 +41,7 @@ table.text-left.text-gray-dark.text-xxs.valign-top
                             a(href="[[ :: val.link ]]").text-xs.text-hover-gray-dark
                                 div.fa-stack
                                     i.fa.fa-stack-2x.fa-circle-thin(
-                                        ng-class="{'text-none': icons.getClass(val.link) == 'fa-meetup'}"
+                                        ng-class="{'text-none': getFAClass(val.link) == 'fa-meetup'}"
                                     )
-                                    i.fa.fa-stack-1x(class="[[ :: icons.getClass(val.link) ]]")
+                                    i.fa.fa-stack-1x(class="[[ :: getFAClass(val.link) ]]")
                                 div.spacer-xxs
