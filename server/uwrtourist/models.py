@@ -139,3 +139,7 @@ def get_teams(format=None, **kwargs):
         return json.dumps([team.as_dict() for team in teams])
 
     return teams
+
+def create_team(form_data):
+    print form_data
+    return "Sucess"
