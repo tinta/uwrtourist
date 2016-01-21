@@ -42,15 +42,14 @@ templates.renderPopup = function (team) {
     }).join("");
 
     var template = [
-        "<div class='text-xs'>",
-            team.name,
-        "</div>",
+        "<div class='spacer-xs'></div>",
+        "<div class='text-xs'>", team.name, "</div>",
         "<div class='spacer-sm'></div>",
         "<div class='spacer-1 bg-gray-dark'></div>",
         "<div class='spacer-sm'></div>",
         "<a ",
             "href='", window.location.origin, "/team/", team.id, "' ",
-            "class='btn-blue pad-tb text-white text-xxs text-hover-white pressable'",
+            "class='btn-blue pad-tb text-thin text-white text-xxs text-hover-white pressable'",
         ">View Profile</a>",
         "<div class='spacer-xs'></div>",
         links,

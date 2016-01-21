@@ -1,5 +1,5 @@
 %btn {
-    @extend .text-bold;
+    font-weight: 600;
     color: map-get($bg-colors, "white");
     padding: 0 4rem;
 
