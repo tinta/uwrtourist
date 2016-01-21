@@ -9,7 +9,9 @@ script(src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.6.5/jquery.geoc
 script
     $(function () {    
         $('[ng-model="form.location"]').geocomplete();
-    })
+    });
+    window.foo = "{{request.path or ""}}";
+
 {% endblock %}
 
 {% block body %}
@@ -23,8 +25,7 @@ div.row.uncollapse
             ng-controller="ControllerAddTeam"
             ng-cloak
             novalidate
-            action="{{request.path}}"
-            method="post"
+            ng-submit="submit()"
         )
             div.row.double-gutter
                 div.column.small-12

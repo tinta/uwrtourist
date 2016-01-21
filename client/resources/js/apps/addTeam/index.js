@@ -20,7 +20,9 @@ angular.module('ControllerAddTeam', [
     $scope.form = new TeamFormModel(window.team);
 
     $scope.submit = function () {
-        console.log(this.form.getOutput());
+        console.log(window.foo);
+        var body = this.form.getOutput();
+        $.post(window.foo, body)
     };
 
     // Dev
