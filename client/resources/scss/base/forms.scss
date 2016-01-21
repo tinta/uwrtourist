@@ -37,16 +37,21 @@ textarea,
     color: inherit;
     background-color: #fff;
     overflow: hidden;
+    border-radius: 2px;
+    -webkit-appearance: none;
 
     width: 100%;
     max-width: 100%;
 
-    -webkit-transition: background-color 0.30s ease-in-out;
-    -moz-transition: background-color 0.30s ease-in-out;
-    -ms-transition: background-color 0.30s ease-in-out;
-    -o-transition: background-color 0.30s ease-in-out;
-
     border: 1px solid map-get($border-colors, gray-dark);
+
+
+    &:focus {
+        border: 1px solid map-get($border-colors, gray-md);
+        outline: none;
+        box-shadow: 0 0 5px map-get($bg-colors, "blue");
+        transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+    }
 }
 
 textarea {
