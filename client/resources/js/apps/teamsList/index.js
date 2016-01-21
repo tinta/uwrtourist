@@ -1,6 +1,7 @@
 require("jquery");
 var angular = require("angular");
 
+var Links = require("./../../services/links.js");
 require("./../../models/TableModel.js");
 require("./../../filters/startAt.js");
 
@@ -23,6 +24,7 @@ angular.module('ControllerTeamsList', [
 
     var tableOptions = {};
     tableOptions.rows = window.teams;
+
     tableOptions.keys = [
         {
             display: 'Name',
@@ -58,27 +60,10 @@ angular.module('ControllerTeamsList', [
         return typeof input;
     };
 
-    var icons = {
-        default: 'fa-globe',
-        map: {
-            '.facebook.': 'fa-facebook',
-            '.wordpress.': 'fa-wordpress',
-            '.tumblr.': 'fa-tumblr',
-            '.google.': 'fa-google',
-            '.youtube.': 'fa-youtube',
-            '.meetup.': 'fa-meetup'
-        },
-        getClass: function (url) {
-            if (!url) return false;
-            var className = this.default;
-            angular.forEach(this.map, function (val, key) {
-                if (url.indexOf(key) > -1) className = val;
-            });
-            return className;
-        }
+    $scope.getFAClass = function (url) {
+        var className = Links.getIcon(url);
+        return className || "fa-globe";
     };
-
-    $scope.icons = icons;
 
     // Dev
     $window.logScope = function () {

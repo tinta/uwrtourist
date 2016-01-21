@@ -48124,7 +48124,7 @@ L.Map.include({
 
 }(window, document));
 },{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
   "_args": [
     [
       "mapbox.js",
@@ -54953,82 +54953,123 @@ var _ = require("underscore");
 var $ = require("jquery");
 require('mapbox.js'); // <-- auto-attaches to window.L
 
-module.exports = function () {
+var templates = require("./templates.js");
+
+var Mapbox = {};
+Mapbox.load = function () {
+    // API pub key
+    window.L.mapbox.accessToken = 'pk.eyJ1IjoieG11bm96IiwiYSI6IkN5MzZ1Y3MifQ.7lRhW5rm5NNZrt7zlIyoJQ';
+    // Create a map in the div #map
+    var map = window.L.mapbox.map(
+        Mapbox.viewport,
+        'xmunoz.hgclk828',
+        {
+            'worldCopyJump': true
+        }
+    );
+
+    map.featureLayer.setGeoJSON(this.geoJSON);
+};
+
+Mapbox.init = function (teams, viewport) {
+    // Process data
     var geojson = _.map(teams, function (team) {
         var teamData = {
             "geometry": {
-                // 
+                "type": "Point",
                 "coordinates": [ team.longitude, team.latitude ]
             },
             "properties": {
-                "title": team.name,
-                "description": _.map(team.links, function (link) { return link.link })
-            }
+                'marker-color': "#fc4353",
+                'marker-size': "medium",
+                'marker-symbol': "swimming"
+            },
+            type: "Feature"
         };
+
+        teamData.properties.description = templates.renderPopup(team);
+
         return teamData;
     });
 
-    var Mapbox = {};
-    Mapbox.viewport = "map";
-    Mapbox.$viewport = $('#' + Mapbox.viewport);
-    Mapbox.load = function () {
-        // API pub key
-        window.L.mapbox.accessToken = 'pk.eyJ1IjoieG11bm96IiwiYSI6IkN5MzZ1Y3MifQ.7lRhW5rm5NNZrt7zlIyoJQ';
-        // Create a map in the div #map
-        window.L.mapbox.map(
-            Mapbox.viewport,
-            'xmunoz.hgclk828',
-            {
-                'worldCopyJump': true
-            }
-        )
-        .featureLayer.setGeoJSON(this.geoJSON);
-    };
-    Mapbox.init = function (geoJSON) {
-        this.setGeoJSON(geoJSON);
-        Mapbox.$viewport.ready(this.load.bind(this));
-    };
-    Mapbox.setGeoJSON = function (geoJSON) {
-        geoJSON.forEach(function(item) {
-            item.type = "Feature";
-            item.geometry.type = "Point";
-            item.properties['marker-color'] = "#fc4353";
-            item.properties['marker-size'] = "medium";
-            item.properties['marker-symbol'] = "swimming";
-
-            var desc = (function() {
-                var _desc = [
-                    "<div class='spacer-1 bg-gray-dark'></div>",
-                    "<div class='spacer-xxs'></div>",
-                ].join('');
-
-                _.each(item.properties.description, function(desc) {
-                    _desc += [
-                        '<div>',
-                        '<a href="', desc, '">',
-                            desc, '99999', item.geometry.coordinates,
-                        '</a>',
-                        '</div>'
-                    ].join('');
-                });
-
-                return _desc;
-            })();
-
-            item.properties.description = desc;
-        });
-
-        this.geoJSON = geoJSON;
-    };
-
-    Mapbox.init(geojson);
-
+    // Initialize view
+    this.viewport = viewport;
+    this.$viewport = $('#' + this.viewport);
+    this.geoJSON = geojson;
+    this.$viewport.ready(this.load.bind(this));
 };
 
-},{"jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js","mapbox.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js":[function(require,module,exports){
+module.exports = function () {
+    Mapbox.init(window.teams, "map");
+};
+
+},{"./templates.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/templates.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js","mapbox.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/templates.js":[function(require,module,exports){
+var _ = require("underscore");
+
+var Links = require("./../../services/links.js");
+var templates = {};
+
+templates.renderLink = function (link) {
+    var socialMediaIcon = Links.getIcon(link);
+    var template = [];
+
+    if (socialMediaIcon) {
+        template = template.concat([
+            '<a class="text-xs" href="', link, '">',
+                "<span class='fa-stack'>"
+        ]);
+
+        if (socialMediaIcon !== "fa-meetup") {
+            template.push("<i class='fa fa-stack-2x fa-circle-thin'></i>");
+        }
+
+        template = template.concat([
+                    "<i class='fa fa-stack-1x ", socialMediaIcon, "'></i>",
+                "</span>",
+            "</a>"                        
+        ]);
+
+    } else {
+        template = template.concat([
+            '<div>',
+                '<a href="', link, '">',
+                    Links.makePretty(link),
+                '</a>',
+            '</div>'
+        ]);
+    }
+
+    return template.join("");
+};
+
+templates.renderPopup = function (team) {
+    var links = _.map(team.links, function (link) {
+        return templates.renderLink(link.link);
+    }).join("");
+
+    var template = [
+        "<div class='spacer-xs'></div>",
+        "<div class='text-xs'>", team.name, "</div>",
+        "<div class='spacer-sm'></div>",
+        "<div class='spacer-1 bg-gray-dark'></div>",
+        "<div class='spacer-sm'></div>",
+        "<a ",
+            "href='", window.location.origin, "/team/", team.id, "' ",
+            "class='btn-blue pad-tb text-thin text-white text-xxs text-hover-white pressable'",
+        ">View Profile</a>",
+        "<div class='spacer-xs'></div>",
+        links,
+    ];
+
+    return template.join("");
+};
+
+module.exports = templates;
+},{"./../../services/links.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js":[function(require,module,exports){
 require("jquery");
 var angular = require("angular");
 
+var Links = require("./../../services/links.js");
 require("./../../models/TableModel.js");
 require("./../../filters/startAt.js");
 
@@ -55051,6 +55092,7 @@ angular.module('ControllerTeamsList', [
 
     var tableOptions = {};
     tableOptions.rows = window.teams;
+
     tableOptions.keys = [
         {
             display: 'Name',
@@ -55086,27 +55128,10 @@ angular.module('ControllerTeamsList', [
         return typeof input;
     };
 
-    var icons = {
-        default: 'fa-globe',
-        map: {
-            '.facebook.': 'fa-facebook',
-            '.wordpress.': 'fa-wordpress',
-            '.tumblr.': 'fa-tumblr',
-            '.google.': 'fa-google',
-            '.youtube.': 'fa-youtube',
-            '.meetup.': 'fa-meetup'
-        },
-        getClass: function (url) {
-            if (!url) return false;
-            var className = this.default;
-            angular.forEach(this.map, function (val, key) {
-                if (url.indexOf(key) > -1) className = val;
-            });
-            return className;
-        }
+    $scope.getFAClass = function (url) {
+        var className = Links.getIcon(url);
+        return className || "fa-globe";
     };
-
-    $scope.icons = icons;
 
     // Dev
     $window.logScope = function () {
@@ -55115,7 +55140,7 @@ angular.module('ControllerTeamsList', [
     };
 });
 
-},{"./../../filters/startAt.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js","./../../models/TableModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TableModel.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js":[function(require,module,exports){
+},{"./../../filters/startAt.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js","./../../models/TableModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TableModel.js","./../../services/links.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js":[function(require,module,exports){
 var angular = require("angular");
 
 angular
@@ -55486,4 +55511,51 @@ module.exports = TeamFormModel;
             break;
     }
 })();
-},{"./apps/addTeam/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/addTeam/index.js","./apps/map/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js","./apps/teamsList/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js"}]},{},["/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js"]);
+},{"./apps/addTeam/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/addTeam/index.js","./apps/map/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js","./apps/teamsList/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js":[function(require,module,exports){
+var _ = require("underscore");
+
+var Links = {};
+
+Links.makePretty = function (link) {
+    if (link.indexOf('https://') === 0) {
+        var end = link.length;
+        link = link.substring(8, end);
+    }
+
+    if (link.indexOf('http://') === 0) {
+        var end = link.length;
+        link = link.substring(7, end);
+    }
+
+    if (link.indexOf('www.') === 0) {
+        var end = link.length;
+        link = link.substring(4, end);
+    }
+
+    if (link[link.length - 1] == '/') {
+        link = link.substring(0, link.length - 1);
+    }
+
+    return link;
+};
+
+var iconToClassHash = {
+    'facebook.com': 'fa-facebook',
+    'fb.com': 'fa-facebook',
+    'wordpress.com': 'fa-wordpress',
+    'tumblr.com': 'fa-tumblr',
+    'google.com': 'fa-google',
+    'youtube.com': 'fa-youtube',
+    'meetup.com': 'fa-meetup'
+};
+
+Links.getIcon = function (url) {
+    var className = false;
+    _.each(iconToClassHash, function (val, key) {
+        if (url.indexOf(key) > -1) className = val;
+    });
+    return className;
+};
+
+module.exports = Links;
+},{"underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}]},{},["/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js"]);
