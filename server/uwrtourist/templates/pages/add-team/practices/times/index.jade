@@ -1,29 +1,39 @@
 - from './mixins/squareCounter.jade' import squareCounter
 
-div.row.border-gray-dark-bottom.bg-white
+div.row
     div.column.small-10.small-offset-2
         div.row.collapse(
             ng-repeat="(index, time) in practiceLocation.times.all"
         )
-            div.column.small-11
-                div.row.collapse
+            div.column.small-12.border-gray-dark.round-md
+                div.row.uncollapse
+                    div.column.small-12
+                        div.spacer-md
+                    div.column.small-11
+                        div.row.collapse
 
-                    div.column.small-4
-                        include pages/add-team/practices/times/start
+                            div.column.small-4
+                                include pages/add-team/practices/times/start
 
-                    div.column.small-4
-                        include pages/add-team/practices/times/end
+                            div.column.small-4
+                                include pages/add-team/practices/times/end
 
-                    div.column.small-4
-                        include pages/add-team/practices/times/day-of-week
+                            div.column.small-4
+                                include pages/add-team/practices/times/day-of-week
 
-            div.column.small-1.text-left.text-xs(
-                ng-click="practiceLocation.times.remove(index)"
-            )
-                div.spacer-xxs
-                div
-                    i.fa.fa-times.text-gray-md.text-hover-red
-                div.spacer-xs
-                div.spacer-md
+                    div.column.small-1.text-left.text-xs(
+                        ng-click="practiceLocation.times.remove(index)"
+                    )
+                        div.spacer-xxs
+                        div
+                            i.fa.fa-times.text-gray-md.text-hover-red
+                        div.spacer-xs
+                    
+                    div.column.small-12
+                        div.spacer-md
+
+            div.column.small-12
+                div.spacer-lg
+
 
 include pages/add-team/practices/times/add-new-time
