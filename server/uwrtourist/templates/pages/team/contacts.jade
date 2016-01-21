@@ -2,41 +2,42 @@
 
 if team.contacts
     div.small-6.column
-        +titleBanner(10)
+        +titleBanner(11)
             div.text-xs Contacts
-        div.column.small-10.small-centered
-            div.spacer-md
-            {% for contact in team.contacts %}
-            div.row.collapse
-                if contact.name
-                    div.column.small-4
-                        div.pad-r.text-xxs
-                            div.text-bold {{contact.name}}
-                            div.spacer-xs
-                div.column.small-8
-                    if contact.title
-                        div.text-xxs
-                            span {{contact.title}}
-                        div.spacer-sm
-                    if contact.email
-                        div.text-xxs
-                            i.fa.fa-envelope
-                            span &nbsp; {{contact.email}}
-                        div.spacer-sm
-                    if contact.phone
-                        div.text-xxs
-                            i.valign-mid.fa.fa-phone
-                            span.valign-mid  &nbsp; {{contact.phone}}
-                        div.spacer-sm
-                    if contact.facebook
-                        div.text-xxs Facebook: {{contact.facebook}}
-                        div.spacer-sm
-                    if contact.twitter
-                        div.text-xxs Twitter: {{contact.twitter}}
-                        div.spacer-sm
-                    if contact.whatsapp
-                        div.text-xxs Whatsapp: {{contact.whatsapp}}
-                        div.spacer-sm
-            div.spacer-sm
-            {% endfor %}
+        div.row.double-gutter
+            div.column.small-11.small-centered
+                div.spacer-md
+                {% for contact in team.contacts %}
+                div.row.collapse
+                    if contact.name
+                        div.column.small-4
+                            div.pad-r.text-xxs
+                                div.text-bold {{contact.name}}
+                                div.spacer-xs
+                    div.column.small-8
+                        if contact.title
+                            div.text-xxs
+                                span {{contact.title}}
+                            div.spacer-sm
+                        if contact.email
+                            div.text-xxs
+                                i.fa.fa-envelope
+                                span &nbsp; {{contact.email}}
+                            div.spacer-sm
+                        if contact.phone
+                            div.text-xxs
+                                i.valign-mid.fa.fa-phone
+                                span.valign-mid  &nbsp; {{contact.phone}}
+                            div.spacer-sm
+                        if contact.facebook
+                            div.text-xxs Facebook: {{contact.facebook}}
+                            div.spacer-sm
+                        if contact.twitter
+                            div.text-xxs Twitter: {{contact.twitter}}
+                            div.spacer-sm
+                        if contact.whatsapp
+                            div.text-xxs Whatsapp: {{contact.whatsapp}}
+                            div.spacer-sm
+                div.spacer-sm
+                {% endfor %}
         div.spacer-xl

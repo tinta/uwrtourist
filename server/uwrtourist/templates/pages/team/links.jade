@@ -2,31 +2,32 @@
 
 if team.links
     div.small-6.column
-        +titleBanner(10)
+        +titleBanner(11)
             div.text-xs Links
-        div.column.small-10.small-centered
-            div.spacer-md
-            div.text-xxs
-                {% for link in team.links %}
-                div
-                    - set prettyLink = link.link
-                    - if (prettyLink.find('https://') == 0)
-                        - set end = prettyLink|length
-                        - set prettyLink = prettyLink[8:end]
+        div.row.double-gutter
+            div.column.small-11.small-centered
+                div.spacer-md
+                div.text-xxs
+                    {% for link in team.links %}
+                    div
+                        - set prettyLink = link.link
+                        - if (prettyLink.find('https://') == 0)
+                            - set end = prettyLink|length
+                            - set prettyLink = prettyLink[8:end]
 
-                    - if (prettyLink.find('http://') == 0)
-                        - set end = prettyLink|length
-                        - set prettyLink = prettyLink[7:end]
+                        - if (prettyLink.find('http://') == 0)
+                            - set end = prettyLink|length
+                            - set prettyLink = prettyLink[7:end]
 
-                    - if (prettyLink.find('www.') == 0)
-                        - set end = prettyLink|length
-                        - set prettyLink = prettyLink[4:end]
+                        - if (prettyLink.find('www.') == 0)
+                            - set end = prettyLink|length
+                            - set prettyLink = prettyLink[4:end]
 
-                    - if (prettyLink[prettyLink|length - 1:] == '/')
-                        - set prettyLink = prettyLink[:prettyLink|length - 1]
+                        - if (prettyLink[prettyLink|length - 1:] == '/')
+                            - set prettyLink = prettyLink[:prettyLink|length - 1]
 
-                    a.text-hover-green(href="#{link.link}")
-                        span {{prettyLink}}
-                div.spacer-xs
-                {% endfor %}
+                        a.text-hover-green(href="#{link.link}")
+                            span {{prettyLink}}
+                    div.spacer-xs
+                    {% endfor %}
         div.spacer-xl

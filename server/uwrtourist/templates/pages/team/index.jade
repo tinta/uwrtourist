@@ -6,7 +6,17 @@ div.spacer-lg
 
 div.row.collapse
     div.column.small-12.small-centered
+
+        div.row.double-gutter
+            div.column.small-12
+                div.row.uncollapse
+                    div.column.small-12
+                        h1=team.name
+        div.spacer-xs
+
+
         div#team.row.uncollapse
+
             include pages/team/info
 
             include pages/team/contacts
