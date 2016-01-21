@@ -27,7 +27,7 @@ babel = Babel(app)
 
 @app.context_processor
 def add_pages():
-    return {"pages" : Navbar().routes}
+    return { "pages" : Navbar().routes}
 
 @app.route("/")
 def homepage():
@@ -124,21 +124,20 @@ def pnf():
     return render_template("404.jade", title=title), 404
 
 class Navbar:
-    def __init__(self, other_routes=[]):
-        self.routes = [
+    def __init__(self):
+        routes = [
             {
                 "url": "/about",
-                "title": "About",
+                "title": "About"
             },
             {
                 "url": "/teams",
-                "title": "Teams",
+                "title": "Teams"
             },
             {
                 "url": "/team/add",
-                "title": "Add Your Team",
+                "title": "Add Your Team"
             },
         ]
 
-        if other_routes:
-            self.routes += other_routes
+        self.routes = routes

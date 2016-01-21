@@ -41,3 +41,7 @@ html {
 #uwr form .ng-dirty {
     background-color: lighten(map-get($bg-colors, "green"), 50%);
 }
+
+.current-route {
+    @extend .bg-red;
+}
