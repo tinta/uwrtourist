@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask.ext.babel import Babel, gettext
 from flask_mail import Mail, Message
 
-from models import db, get_teams
+from models import db, get_teams, create_team
 import os
 import json
 
@@ -82,7 +82,7 @@ def admin():
 def admin_add():
     title = gettext("Add a new team")
     if request.method == "POST":
-        # add the team
+        result = create_team(request.form)
         flash("The {} have been successfully added!".format("Mississippi Starfishes"))
         return redirect(url_for('.admin'))
     else:
