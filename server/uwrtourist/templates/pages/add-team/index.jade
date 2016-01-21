@@ -2,7 +2,7 @@
 
 {% extends "layout.jade" %}
 
-{% block javascript %}
+{% block pre_javascript %}
 script
     window.team = {{ team or {} }};
 script(src="http://maps.googleapis.com/maps/api/js?libraries=places")
@@ -16,11 +16,9 @@ script
             $(document).trigger(eventName, result);
         });
     });
-
 {% endblock %}
 
 {% block body %}
-
 div.spacer-lg
 
 div.row.uncollapse

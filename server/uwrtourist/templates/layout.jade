@@ -18,11 +18,14 @@ head
     {% block css %}
     {% endblock %}
 
-    script(src="/resources/build/index.js")
 
-    {% block javascript %}
+    {% block pre_javascript %}
     {% endblock %}
 
+    script(src="/resources/build/index.js")
+
+    {% block post_javascript %}
+    {% endblock %}
 
 body#uwr.text-gray-dark
     include partials/messages

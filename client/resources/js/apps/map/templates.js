@@ -37,6 +37,7 @@ templates.renderLink = function (link) {
 };
 
 templates.renderPopup = function (team) {
+    console.log(team);
     var links = _.map(team.links, function (link) {
         return templates.renderLink(link.link);
     }).join("");

@@ -1,19 +1,5 @@
 {% extends "layout.jade" %}
 
-{% block css%}
-link(
-    href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css',
-    rel='stylesheet'
-)
-{% endblock %}
-
-{% block javascript %}
-script(src="/node_modules/underscore/underscore-min.js")
-script(src="/node_modules/jquery/dist/jquery.min.js")
-script(src="/node_modules/mapbox/dist/mapbox-sdk.min.js")
-script(src="/resources/js/map.js")
-{% endblock %}
-
 {% block body %}
 div.spacer-xs
 div#map
