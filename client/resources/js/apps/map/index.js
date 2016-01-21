@@ -1,5 +1,5 @@
 var _ = require("underscore");
-var $ = require("jquery");
+var $ = window.$ = window.jQuery = require("jquery"); // Required for cdn scripts
 require('mapbox.js'); // <-- auto-attaches to window.L
 
 var templates = require("./templates.js");

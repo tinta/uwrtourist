@@ -42,7 +42,12 @@ var TeamFormModel = (function() {
         ];
 
         this.name = team.name || '';
-        this.location = team.location || '';
+        this.location = {
+            val: team.location || '',
+            lat: '',
+            lng: '',
+            countryCode: ''
+        };
         this.yearEstablished = team.year_established || 'n/a';
         this.blurb = team.blurb || '';
 
