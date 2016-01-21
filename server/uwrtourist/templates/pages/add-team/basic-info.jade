@@ -1,5 +1,6 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
+- from './pages/add-team/mixins.jade' import textInput, title
 
 +titleBanner(12)
     div.text-sm Basic Info
@@ -9,21 +10,18 @@
     div.row.uncollapse
         div.column.small-2.text-right
             div.spacer-xs
-            div.text-xxs.text-xbold Team Name
+            label.text-xxs.text-xbold(for="form.name") Team Name
 
         div.column.small-4
-            input.text-xxs(
-                ng-model="form.name"
-                type="text"
-                name="name"
-            )
+            +textInput("form.name")
 
         div.column.small-2.text-right(ng-if="form.status")
             div.spacer-xs
-            div.text-xxs.text-xbold Status
+            label.text-xxs.text-xbold(for="form.status") Status
 
         div.column.small-2(ng-if="form.isAdmin")
             select.text-xxs(
+                id="form.status"
                 ng-model="form.status"
                 ng-options="status for status in form.statusOptions"
                 name="status"
@@ -34,10 +32,11 @@
 
         div.column.small-2.text-right
             div.spacer-xs
-            div.text-xxs.text-xbold Location
+            label.text-xxs.text-xbold(for="form.location.val") Location
 
-        div.column.small-3.left
+        div.column.small-4.left
             input.text-xxs(
+                id="form.location.val"
                 ng-model="form.location.val"
                 type="text"
                 name="city"
@@ -45,12 +44,13 @@
                 placeholder="Your team's metro area"
             )
 
-        div.column.small-2.small-offset-1.text-right
+        div.column.small-2.text-right
             div.spacer-xs
-            div.text-xxs Year Founded
+            label.text-xxs(for="form.yearEstablished") Year Founded
 
         div.column.small-2.left
             select.text-xxs(
+                id="form.yearEstablished"
                 ng-model="form.yearEstablished"
                 name="yearEstablished"
                 ng-options="year for year in form.yearEstablishedOptions"
@@ -61,11 +61,12 @@
     div.row.uncollapse
         div.column.small-2.text-right
             div.spacer-xs
-            div.text-xxs Blurb
+            label.text-xxs(for="form.blurb") Blurb
 
         div.column.small-8.left
             textarea.text-xxs(
-                name="blurb"
+                id="form.blurb"
+                ng-model="form.blurb"
                 placeholder="Introduce your team!"
                 rows="4"
             )

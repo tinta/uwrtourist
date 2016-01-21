@@ -1,6 +1,7 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
 - from './mixins/squareCounter.jade' import squareCounter
+- from './pages/add-team/mixins.jade' import textInput, title
 
 +titleBanner(12)
     div.text-sm Links
@@ -18,11 +19,7 @@
                 div.column.small-6
                     div.row.collapse
                         div.column.small-12
-                            input.input-height.text-xxs(
-                                type="text"
-                                name="link"
-                                ng-model="urlInput.val"
-                            )
+                            +textInput("urlInput.val")
 
                 div.column.small-1.text-left(
                     ng-click="form.links.remove(index)"

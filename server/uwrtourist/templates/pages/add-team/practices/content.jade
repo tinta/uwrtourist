@@ -1,23 +1,4 @@
-mixin textInput (modelName)
-    input.text-xxs.input-height(
-        type="text"
-        id=modelName
-        ng-model="#{modelName}"
-    )
-
-mixin title (text)
-    div.text-xxs.text-right
-        div.spacer-xs
-        div.spacer-1
-        div.text-xbold= text
-
-mixin textInputBlock (titleText, modelName)
-    div.row
-        div.column.small-2.text-center
-            +title(titleText)
-
-        div.column.small-10
-            +textInput(modelName)
+- from './pages/add-team/mixins.jade' import textInput, title
 
 div.row.bg-white
     div.column.small-2
