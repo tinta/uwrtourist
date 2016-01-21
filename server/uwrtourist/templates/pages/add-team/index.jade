@@ -1,3 +1,5 @@
+- from './mixins/mainColumn.jade' import mainColumn
+
 {% extends "layout.jade" %}
 
 {% block javascript %}
@@ -44,13 +46,17 @@ div.row.uncollapse
             include pages/add-team/practices/index
 
             div.spacer-xl
+            div.spacer-xl
             div.row.double-gutter
-                div.column.small-5.small-offset-2
-                    button.pad-tb.width-full.text-sm.btn-green.pressable(
-                        type="submit"
-                    )
-                        div.text-sm.pull-left Submit Team Info
-                        i.pull-right.fa.fa-chevron-right
+                div.column.small-12
+                    div.row.uncollapse
+                        div.column.small-10.small-offset-2
+                            button.pad-tb.text-sm.btn-green.pressable.text-sm(
+                                type="submit"
+                            )
+                                span Submit Team Info
+                                span &nbsp;&nbsp;&nbsp;&nbsp;
+                                i.pull-right.fa.fa-chevron-right
 
             div.spacer-xl
             div.spacer-xl

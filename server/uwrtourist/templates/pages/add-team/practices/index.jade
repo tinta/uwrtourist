@@ -6,9 +6,9 @@
     div.text-sm Practice Locations
 
 +mainColumn()
-    div.row.uncollapse.double-gutter
+    div.row.collapse.double-gutter
         div.column.small-12
-            div.row.uncollapse(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
+            div.row.double-gutter(ng-repeat="(index, practiceLocation) in form.practiceLocations.all")
                 div.column.small-12
                     div.spacer-xl
 
@@ -21,26 +21,21 @@
                     div.text-xs.text-center
                         div.spacer-xl
                         div.spacer-lg
-                        div.spacer-1
+                        div.spacer-xxs
                         div
                             i.fa.fa-trash-o.text-white
                         div.spacer-xl
                         div.spacer-lg
-                        div.spacer-xxs
                         div.spacer-1
 
             div.spacer-xl
-            div.row.uncollapse
-                div.column.small-11
-                    div.row
-                        div.column.small-5.small-offset-2
-                            div.btn-blue.pressable.text-xxs(ng-click="form.newPractice()")
-                                div.input-height
-                                    div.pull-left
-                                        div.spacer-xs
-                                        div.spacer-1
-                                        div Add New Practice Location
-                                    div.pull-right
-                                        div.spacer-xs
-                                        div
-                                            i.fa.fa-plus
+            div.row.collapse
+                div.column.small-10.small-offset-2
+                    div.btn-blue.pressable.text-xxs(ng-click="form.newPractice()")
+                        div.input-height
+                            div.spacer-xs
+                            div.spacer-1
+                            div
+                                span Add New Practice Location
+                                span &nbsp;&nbsp;&nbsp;&nbsp;
+                                i.fa.fa-plus
