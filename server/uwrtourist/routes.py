@@ -83,7 +83,7 @@ def admin_add():
     title = gettext("Add a new team")
     if request.method == "POST":
         # add the team
-        flash("The {} have been successfully added!".format("Mississippi Starfishes")
+        flash("The {} have been successfully added!".format("Mississippi Starfishes"))
         return redirect(url_for('.admin'))
     else:
         # show the add team form
