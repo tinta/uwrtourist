@@ -12,7 +12,7 @@
         div.column.small-12
             div.row.collapse(ng-repeat="(contactIndex, contactInput) in form.contacts.all")
 
-                div.column.small-12
+                div.column.small-12(id="[[ 'contact' + contactIndex ]]")
                     div.row.uncollapse
                         - set model = "contactInput.name"
                         - set uid = "[[ '" + model + "' + contactIndex ]]"

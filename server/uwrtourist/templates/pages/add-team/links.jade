@@ -10,7 +10,10 @@
     div.spacer-xl
     div.row
         div.column.small-12
-            div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
+            div.row.uncollapse(
+                id="[[ 'url' + index ]]"
+                ng-repeat="(index, urlInput) in form.links.all"
+            )
                 div.column.small-2.text-right
                     +label("URL", "[[ 'urlInput.val' + index ]]")
 
