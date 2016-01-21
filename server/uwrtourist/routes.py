@@ -74,7 +74,7 @@ def addform():
         title = gettext("Add a New Team")
         return render_template("pages/add-team/index.jade", title=title)
 
-@app.route("/admin/teams/pending")
+@app.route("/admin")
 def admin():
     title = gettext("Pending Teams")
     teams = get_teams(status="active", format="json")
