@@ -1,12 +1,13 @@
-mixin textInput (modelName)
+mixin textInput (modelName, id)
+    - set id = id if id else modelName
     input.text-xxs.input-height(
         type="text"
-        id=modelName
+        id=id
         ng-model="#{modelName}"
     )
 
-mixin title (text)
-    div.text-xxs.text-right
+mixin label (label, for)
+    div.text-right
         div.spacer-xs
         div.spacer-1
-        div.text-xbold= text
+        label.text-xbold.text-xxs(for=for)= label

@@ -1,59 +1,53 @@
-- from './pages/add-team/mixins.jade' import textInput, title
+- from './pages/add-team/mixins.jade' import textInput, label
 
-div.row.bg-white
+div.row
+    - set model = "practiceLocation.name"
+    - set uid = "[[" + model + " + index ]]"
     div.column.small-2
-        label.text-center(for="practiceLocation.name")
-            +title("Name")
+        +label("Name", uid)
     div.column.small-4
-        div
-            +textInput("practiceLocation.name")
+        +textInput(model, uid)
 
+    - set model = "practiceLocation.address"
+    - set uid = "[[" + model + " + index ]]"
     div.column.small-2
-        label.text-center(for="practiceLocation.address")
-            +title("Address")
-
+        +label("Address", uid)
     div.column.small-4
-        div
-            +textInput("practiceLocation.address")
-
-div.spacer-md
-
-div.row.bg-white
-    div.column.small-2
-        label.text-center(for="practiceLocation.city")
-            +title("City")
-
-    div.column.small-4
-        div
-            +textInput("practiceLocation.city")
-
-    div.column.small-2
-        label.text-center(for="practiceLocation.region")
-            +title("Region")
-
-    div.column.small-4
-        div
-            +textInput("practiceLocation.region")
+        +textInput(model, uid)
 
 div.spacer-md
 
 div.row
-
+    - set model = "practiceLocation.city"
+    - set uid = "[[" + model + " + index ]]"
     div.column.small-2
-        label.text-center(for="practiceLocation.zip")
-            +title("Postal Code")
-
-    div.column.small-2
-        div
-            +textInput("practiceLocation.zip")
-
-    div.column.small-2.small-offset-2
-        label.text-center(for="practiceLocation.country")
-            +title("Country")
-
+        +label("City", uid)
     div.column.small-4
-        div
-            +textInput("practiceLocation.country")
+        +textInput(model, uid)
+
+    - set model = "practiceLocation.region"
+    - set uid = "[[" + model + " + index ]]"
+    div.column.small-2
+        +label("Region", uid)
+    div.column.small-4
+        +textInput(model, uid)
+
+div.spacer-md
+
+div.row
+    - set model = "practiceLocation.zip"
+    - set uid = "[[" + model + " + index ]]"
+    div.column.small-2
+        +label("Postal Code", uid)
+    div.column.small-2
+        +textInput(model, uid)
+
+    - set model = "practiceLocation.country"
+    - set uid = "[[" + model + " + index ]]"
+    div.column.small-2.small-offset-2
+        +label("Country", uid)
+    div.column.small-4
+        +textInput(model, uid)
 
 div.spacer-lg
 

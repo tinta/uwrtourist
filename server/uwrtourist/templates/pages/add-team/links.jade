@@ -1,7 +1,7 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
 - from './mixins/squareCounter.jade' import squareCounter
-- from './pages/add-team/mixins.jade' import textInput, title
+- from './pages/add-team/mixins.jade' import textInput, label
 
 +titleBanner(12)
     div.text-sm Links
@@ -12,14 +12,12 @@
         div.column.small-12
             div.row.uncollapse(ng-repeat="(index, urlInput) in form.links.all")
                 div.column.small-2.text-right
-                    div.spacer-xs
-                    div.spacer-1
-                    div.text-xbold.text-xxs URL
+                    +label("URL", "[[ 'urlInput.val' + index ]]")
 
-                div.column.small-6
+                div.column.small-8
                     div.row.collapse
                         div.column.small-12
-                            +textInput("urlInput.val")
+                            +textInput("urlInput.val", "[[ 'urlInput.val' + index ]]")
 
                 div.column.small-1.text-left(
                     ng-click="form.links.remove(index)"

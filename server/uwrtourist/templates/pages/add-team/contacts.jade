@@ -1,6 +1,7 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
 - from './mixins/squareCounter.jade' import squareCounter
+- from './pages/add-team/mixins.jade' import textInput, label
 
 +titleBanner(12)
     div.text-sm Contacts
@@ -13,22 +14,18 @@
 
                 div.column.small-12
                     div.row.uncollapse
-                        div.column.small-2.text-right
+                        div.column.small-2
+                            +label("Name", "contactInput.name")
                             div.spacer-xs
                             div.spacer-1
-                            div.text-xbold.text-xxs Name
+                            label.text-xbold.text-xxs Name
 
                         div.column.small-10
                             div.row
-
                                 div.column.small-3
                                     div.row.collapse
                                         div.column.small-12
-                                            input.input-height.text-xxs(
-                                                type="text"
-                                                name="contact"
-                                                ng-model="contactInput.name"
-                                            )
+                                            +textInput("contactInput.name")
 
                                 div.column.small-1.text-right
                                         div.spacer-xs
