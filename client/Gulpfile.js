@@ -45,7 +45,7 @@ gulp.task('js:lint', function() {
     return gp.eslint(paths.js.watch);
 });
 
-gulp.task('scss:compile', function() {
+gulp.task('scss:build', function() {
     var stream = gulp.src(paths.scss.src);
 
     stream.pipe(gp.sourcemaps.init())
@@ -73,13 +73,13 @@ gulp.task('server', function() {
 
 gulp.task('watch', function() {
     gulp.watch(paths.js.watch, ['js:lint', 'js:build']);
-    gulp.watch(paths.scss.watch, ['scss:compile']);
+    gulp.watch(paths.scss.watch, ['scss:build']);
 });
 
 gulp.task('build', [
-    'scss:compile',
-    // 'js:lint'
-])
+    'scss:build',
+    'js:build'
+]);
 
 gulp.task('dev', [
     'server',
