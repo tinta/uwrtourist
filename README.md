@@ -18,7 +18,20 @@ This installs server and client-side requirements, and sets up a dev sqlite inst
 
     bin/runserver
 
-The dev server runs on [localhost:8001](localhost:8001).
+The dev server runs on [localhost:30311](localhost:30311).
+
+## Client-Side Development
+
+Available CLI commands, their flags and their default values are listed below.
+They must be run from the `./client` directory.
+
+| Executable | Action |
+| :--- | :--- |
+| `npm start` | Boots Flask and Gulp's build and watch tasks.
+| `npm start -- build` | Compiles SCSS and JS files once. It runs the `scss:build` and `js:build` tasks.
+| `npm start -- scss:build` | Compiles SCSS files once. Dumps `./client/resources/build/build.css`
+| `npm start -- js:build` | Compiles JS files once. Dumps `./client/resources/build/index.js`
+
 
 ## Opening a Flask REPL with the app loaded
 
