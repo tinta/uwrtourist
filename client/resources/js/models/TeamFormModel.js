@@ -43,10 +43,10 @@ var TeamFormModel = (function() {
 
         this.name = team.name || '';
         this.location = {
-            val: team.location || '',
             lat: '',
             lng: '',
-            countryCode: ''
+            country: '',
+            metro: '',
         };
         this.yearEstablished = team.year_established || 'n/a';
         this.blurb = team.blurb || '';

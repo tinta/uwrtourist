@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, Response, jsonify
 from flask.ext.babel import Babel, gettext
 from flask_mail import Mail, Message
 
 from models import db, get_teams, create_team
 import os
 import json
+from pprint import pprint
 
 mail = Mail()
 
@@ -80,13 +81,14 @@ def admin():
 
 @app.route("/admin/team/add", methods=["GET", "POST"])
 def admin_add():
-    title = gettext("Add a new team")
     if request.method == "POST":
-        result = create_team(request.form)
-        flash("The {} have been successfully added!".format("Mississippi Starfishes"))
-        return redirect(url_for('.admin'))
+        result = create_team(request.json)
+        response_json = jsonify({"result": result})
+        response_json.status_code = 200
+        return response_json 
     else:
         # show the add team form
+        title = gettext("Add a new team")
         return render_template("pages/add-team/index.jade", title=title)
 
 @app.route("/admin/team/edit/<tid>", methods=["GET", "POST"])
@@ -95,7 +97,9 @@ def admin_edit(tid):
     if request.method == "POST":
         # process post data and display a success message
         msg = "Success!"
-        return render_template("pages/team/index.jade", title=title, team=team, msg=msg)
+        result_json = jsonify({"result": msg})
+        result_json.status_code = 200
+        return result_json
     else:
         teams = get_teams(id=tid)
         team_is_found = len(teams) is 1

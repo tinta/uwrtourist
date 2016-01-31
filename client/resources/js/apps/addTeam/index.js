@@ -22,21 +22,64 @@ angular.module('ControllerAddTeam', [
 
     $scope.submit = function () {
         var body = this.form.getOutput();
-        $.post(window.location.href, body)
+        body["status"] = "active";
+        var formInfo = formValidator(body);
+
+        if (formInfo["isValid"]) {
+            $.ajax({
+                type: 'POST',
+                url: window.location.href,
+                data: JSON.stringify(body),
+                dataType:"json",
+                contentType: "application/json; charset=utf-8",
+                success: function(data) { alert("success") },
+            });
+            // if form submission success, show success message and redirect
+        }
+        else {
+            showValidationErrors(formInfo["messages"]);
+        }
     };
 
     $(function () {
         $('[ng-model="form.location.val"]')
         .geocomplete()
         .bind("geocode:result", function(event, result) {
-            var location = {
-                countryCode: result.address_components[result.address_components.length - 1].short_name,
-                lat: result.geometry.location.lat(),
-                lng: result.geometry.location.lng(),
-                val: result.formatted_address 
-            };
+            // parse address components from google maps api response
+            for (i in result.address_components) {
+                var locationComponent = result.address_components[i];
+                var unitType = locationComponent["types"];
+                var city, state, country;
+                if (_.isEqual(unitType, ["locality", "political"])) {
+                    city = locationComponent["long_name"];
+                }
+                else if (_.isEqual(unitType, ["administrative_area_level_1", "political"])) {
+                    state = locationComponent["long_name"];
+                }
+                else if (_.isEqual(unitType, ["country", "political"])) {
+                    country = locationComponent["long_name"];
+                }
+            }
+            if (!(state)) {
+                state = city;
+            }
+            if (!(city && country)) {
+                console.log(city, country);
+                //raise a validation error. A specific location is required.
+            }
+            else {
+                // concatenating strings in javascript can sometimes result in a slow, painful death
+                var metro = city + ", " + state;
 
-            _.extend($scope.form.location, location);
+                var location = {
+                    country: country,
+                    metro: metro,
+                    lat: result.geometry.location.lat(),
+                    lng: result.geometry.location.lng(),
+                };
+
+                _.extend($scope.form.location, location);
+            }
         });
     });
 
@@ -45,3 +88,41 @@ angular.module('ControllerAddTeam', [
         $window.$scope = $scope;
     };
 });
+
+/**
+ * @description
+ * `$formValidator` validates the new team form input fields.
+ * The function returns an associative array with two keys:
+ *   `isValid` - true/false
+ *   `messages`- helpful hits for the user to fix validation errors
+ */
+function formValidator(data) {
+    var messages = new Array();
+    var isValid;
+
+    // do the validation here, and populate messages if needed
+    // messages.push("Houstin, there's a problem.")
+
+    if (true) {
+        isValid = true;
+    }
+    else {
+        isValid = false;
+    }
+
+    var result = new Object;
+    result["isValid"] = isValid;
+    result["messages"] = messages;
+
+    return result;
+}
+
+/**
+ * @description
+ * `$showValidationErrors` displays the validation error messages
+ * in some kind of html element just below the menu. `messages`
+ * is an array of strings.
+ */
+function showValidationErrors(messages) {
+    console.log(messages)
+}

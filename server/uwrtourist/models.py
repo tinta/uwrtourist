@@ -3,6 +3,8 @@ from sqlalchemy import inspect
 from sqlalchemy.orm import relationship, subqueryload, joinedload
 import datetime
 import json
+from pprint import pprint
+from inspect import getmembers
 
 db = SQLAlchemy()
 
@@ -46,9 +48,9 @@ class Team(db.Model, BaseMixin):
     longitude = db.Column(db.Float())
     status = db.Column(db.Enum("active", "pending", "inactive"), default="pending", nullable=False)
 
-    def __init__(self, club_name, city, country, status):
+    def __init__(self, club_name, metro_area, country, status):
         self.name = club_name
-        self.location = city
+        self.location = metro_area
         self.country = country
         self.status = status
 
@@ -141,5 +143,32 @@ def get_teams(format=None, **kwargs):
     return teams
 
 def create_team(form_data):
-    print form_data
-    return "Sucess"
+    location = form_data["location"]["metro"]
+    country = form_data["location"]["country"] 
+    team = Team(form_data["name"], location, country, form_data["status"])
+    team.latitude = form_data["location"]["lat"]
+    team.longitude = form_data["location"]["lng"]
+    team.year_established = form_data.get("yearEstablished")
+
+    contacts = form_data.get("contacts")
+    if contacts:
+        for contact in contacts:
+            new_contact = Contact()
+            new_contact.name = contact.get("name")
+            new_contact.email = contact.get("email")
+            new_contact.title = contact.get("role")
+
+    practice_locations = form_data.get("practiceLocations")
+    if practice_locations:
+        for location in practice_locations:
+            pass
+
+    links = form_data.get("links")
+    if links:
+        for link in links:
+            pass
+
+    db.session.add(team)
+    db.session.commit()
+    print "Success"
+    return "Success!!"
