@@ -83,11 +83,20 @@ def admin():
 def admin_add():
     if request.method == "POST":
         result = create_team(request.json)
-        response_json = jsonify({"result": result})
-        response_json.status_code = 200
+        response_json = jsonify(result)
+
+        result_status = result["result"]
+        if result_status == "error":
+            response_json.status_code = 500
+        elif result_status == "success":
+            response_json.status_code = 200
+        else:
+            raise Exception("WTF! Only two options here: `error` and `success`. Instead received {}". format(result_status))
+
         return response_json 
+
     else:
-        # show the add team form
+        # show the add team form for GET request
         title = gettext("Add a new team")
         return render_template("pages/add-team/index.jade", title=title)
 

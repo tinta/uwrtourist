@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/angular.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/angular.js":[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -29017,106 +29017,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js":[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/angular.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/corslite/corslite.js":[function(require,module,exports){
-function corslite(url, callback, cors) {
-    var sent = false;
-
-    if (typeof window.XMLHttpRequest === 'undefined') {
-        return callback(Error('Browser not supported'));
-    }
-
-    if (typeof cors === 'undefined') {
-        var m = url.match(/^\s*https?:\/\/[^\/]*/);
-        cors = m && (m[0] !== location.protocol + '//' + location.domain +
-                (location.port ? ':' + location.port : ''));
-    }
-
-    var x = new window.XMLHttpRequest();
-
-    function isSuccessful(status) {
-        return status >= 200 && status < 300 || status === 304;
-    }
-
-    if (cors && !('withCredentials' in x)) {
-        // IE8-9
-        x = new window.XDomainRequest();
-
-        // Ensure callback is never called synchronously, i.e., before
-        // x.send() returns (this has been observed in the wild).
-        // See https://github.com/mapbox/mapbox.js/issues/472
-        var original = callback;
-        callback = function() {
-            if (sent) {
-                original.apply(this, arguments);
-            } else {
-                var that = this, args = arguments;
-                setTimeout(function() {
-                    original.apply(that, args);
-                }, 0);
-            }
-        }
-    }
-
-    function loaded() {
-        if (
-            // XDomainRequest
-            x.status === undefined ||
-            // modern browsers
-            isSuccessful(x.status)) callback.call(x, null, x);
-        else callback.call(x, x, null);
-    }
-
-    // Both `onreadystatechange` and `onload` can fire. `onreadystatechange`
-    // has [been supported for longer](http://stackoverflow.com/a/9181508/229001).
-    if ('onload' in x) {
-        x.onload = loaded;
-    } else {
-        x.onreadystatechange = function readystate() {
-            if (x.readyState === 4) {
-                loaded();
-            }
-        };
-    }
-
-    // Call the callback with the XMLHttpRequest object as an error and prevent
-    // it from ever being called again by reassigning it to `noop`
-    x.onerror = function error(evt) {
-        // XDomainRequest provides no evt parameter
-        callback.call(this, evt || true, null);
-        callback = function() { };
-    };
-
-    // IE9 must have onprogress be set to a unique function.
-    x.onprogress = function() { };
-
-    x.ontimeout = function(evt) {
-        callback.call(this, evt, null);
-        callback = function() { };
-    };
-
-    x.onabort = function(evt) {
-        callback.call(this, evt, null);
-        callback = function() { };
-    };
-
-    // GET is the only supported HTTP Verb by XDomainRequest and is the
-    // only one supported here.
-    x.open('GET', url, true);
-
-    // Send the request. Sending data is not supported.
-    x.send(null);
-    sent = true;
-
-    return x;
-}
-
-if (typeof module !== 'undefined') module.exports = corslite;
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/geocomplete/jquery.geocomplete.js":[function(require,module,exports){
+},{"./angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/angular.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/geocomplete/jquery.geocomplete.js":[function(require,module,exports){
 /**
  * jQuery Geocoding and Places Autocomplete Plugin - V 1.6.5
  *
@@ -29705,12 +29610,7 @@ if (typeof module !== 'undefined') module.exports = corslite;
 
 })( jQuery, window, document );
 
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/isarray/index.js":[function(require,module,exports){
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.0
  * http://jquery.com/
@@ -39543,7 +39443,107 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/corslite/corslite.js":[function(require,module,exports){
+function corslite(url, callback, cors) {
+    var sent = false;
+
+    if (typeof window.XMLHttpRequest === 'undefined') {
+        return callback(Error('Browser not supported'));
+    }
+
+    if (typeof cors === 'undefined') {
+        var m = url.match(/^\s*https?:\/\/[^\/]*/);
+        cors = m && (m[0] !== location.protocol + '//' + location.domain +
+                (location.port ? ':' + location.port : ''));
+    }
+
+    var x = new window.XMLHttpRequest();
+
+    function isSuccessful(status) {
+        return status >= 200 && status < 300 || status === 304;
+    }
+
+    if (cors && !('withCredentials' in x)) {
+        // IE8-9
+        x = new window.XDomainRequest();
+
+        // Ensure callback is never called synchronously, i.e., before
+        // x.send() returns (this has been observed in the wild).
+        // See https://github.com/mapbox/mapbox.js/issues/472
+        var original = callback;
+        callback = function() {
+            if (sent) {
+                original.apply(this, arguments);
+            } else {
+                var that = this, args = arguments;
+                setTimeout(function() {
+                    original.apply(that, args);
+                }, 0);
+            }
+        }
+    }
+
+    function loaded() {
+        if (
+            // XDomainRequest
+            x.status === undefined ||
+            // modern browsers
+            isSuccessful(x.status)) callback.call(x, null, x);
+        else callback.call(x, x, null);
+    }
+
+    // Both `onreadystatechange` and `onload` can fire. `onreadystatechange`
+    // has [been supported for longer](http://stackoverflow.com/a/9181508/229001).
+    if ('onload' in x) {
+        x.onload = loaded;
+    } else {
+        x.onreadystatechange = function readystate() {
+            if (x.readyState === 4) {
+                loaded();
+            }
+        };
+    }
+
+    // Call the callback with the XMLHttpRequest object as an error and prevent
+    // it from ever being called again by reassigning it to `noop`
+    x.onerror = function error(evt) {
+        // XDomainRequest provides no evt parameter
+        callback.call(this, evt || true, null);
+        callback = function() { };
+    };
+
+    // IE9 must have onprogress be set to a unique function.
+    x.onprogress = function() { };
+
+    x.ontimeout = function(evt) {
+        callback.call(this, evt, null);
+        callback = function() { };
+    };
+
+    x.onabort = function(evt) {
+        callback.call(this, evt, null);
+        callback = function() { };
+    };
+
+    // GET is the only supported HTTP Verb by XDomainRequest and is the
+    // only one supported here.
+    x.open('GET', url, true);
+
+    // Send the request. Sending data is not supported.
+    x.send(null);
+    sent = true;
+
+    return x;
+}
+
+if (typeof module !== 'undefined') module.exports = corslite;
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/isarray/index.js":[function(require,module,exports){
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js":[function(require,module,exports){
 /*
  Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin
@@ -48712,2228 +48712,7 @@ L.Map.include({
 
 
 }(window, document));
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
-  "_args": [
-    [
-      "mapbox.js",
-      "/Users/walterroman/Sites/uwr/uwrtourist/client"
-    ]
-  ],
-  "_from": "mapbox.js@*",
-  "_id": "mapbox.js@2.2.4",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/mapbox.js",
-  "_npmUser": {
-    "email": "alexandra.ulsh@gmail.com",
-    "name": "alulsh"
-  },
-  "_npmVersion": "1.4.28",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "mapbox.js",
-    "raw": "mapbox.js",
-    "rawSpec": "",
-    "scope": null,
-    "spec": "*",
-    "type": "range"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-2.2.4.tgz",
-  "_shasum": "72e64514ed34b539da33869ee28fbacbd1474159",
-  "_shrinkwrap": null,
-  "_spec": "mapbox.js",
-  "_where": "/Users/walterroman/Sites/uwr/uwrtourist/client",
-  "author": {
-    "name": "Mapbox"
-  },
-  "bugs": {
-    "url": "https://github.com/mapbox/mapbox.js/issues"
-  },
-  "dependencies": {
-    "corslite": "0.0.6",
-    "isarray": "0.0.1",
-    "leaflet": "0.7.7",
-    "mustache": "0.7.3",
-    "sanitize-caja": "0.1.3"
-  },
-  "description": "mapbox javascript api",
-  "devDependencies": {
-    "browserify": "^6.3.2",
-    "clean-css": "~2.0.7",
-    "eslint": "^0.23.0",
-    "expect.js": "0.3.1",
-    "happen": "0.1.3",
-    "leaflet-fullscreen": "0.0.4",
-    "leaflet-hash": "0.2.1",
-    "marked": "~0.3.0",
-    "minifyify": "^6.1.0",
-    "minimist": "0.0.5",
-    "mocha": "1.17.1",
-    "mocha-phantomjs": "3.1.6",
-    "sinon": "1.10.2"
-  },
-  "directories": {},
-  "dist": {
-    "shasum": "72e64514ed34b539da33869ee28fbacbd1474159",
-    "tarball": "http://registry.npmjs.org/mapbox.js/-/mapbox.js-2.2.4.tgz"
-  },
-  "engines": {
-    "node": "*"
-  },
-  "gitHead": "562aafee5a30c112df5f2c2e4abc6df8662301a9",
-  "homepage": "http://mapbox.com/",
-  "license": "BSD-3-Clause",
-  "main": "src/index.js",
-  "maintainers": [
-    {
-      "name": "lbud",
-      "email": "lauren@mapbox.com"
-    },
-    {
-      "name": "1ec5",
-      "email": "mxn@1ec5.org"
-    },
-    {
-      "name": "ajashton",
-      "email": "aj.ashton@gmail.com"
-    },
-    {
-      "name": "alulsh",
-      "email": "ulsh@mapbox.com"
-    },
-    {
-      "name": "ansis",
-      "email": "ansis.brammanis@gmail.com"
-    },
-    {
-      "name": "apendleton",
-      "email": "andrew@mapbox.com"
-    },
-    {
-      "name": "bergwerkgis",
-      "email": "wb@bergwerk-gis.at"
-    },
-    {
-      "name": "bhousel",
-      "email": "bryan@mapbox.com"
-    },
-    {
-      "name": "bsudekum",
-      "email": "bobby@mapbox.com"
-    },
-    {
-      "name": "camilleanne",
-      "email": "camille@mapbox.com"
-    },
-    {
-      "name": "dnomadb",
-      "email": "damon@mapbox.com"
-    },
-    {
-      "name": "dthompson",
-      "email": "dthompson@gmail.com"
-    },
-    {
-      "name": "emilymcafee",
-      "email": "emily@mapbox.com"
-    },
-    {
-      "name": "flippmoke",
-      "email": "flippmoke@gmail.com"
-    },
-    {
-      "name": "freenerd",
-      "email": "spam@freenerd.de"
-    },
-    {
-      "name": "gretacb",
-      "email": "carol@mapbox.com"
-    },
-    {
-      "name": "ian29",
-      "email": "ian.villeda@gmail.com"
-    },
-    {
-      "name": "ianshward",
-      "email": "ian@mapbox.com"
-    },
-    {
-      "name": "ingalls",
-      "email": "nicholas.ingalls@gmail.com"
-    },
-    {
-      "name": "jfirebaugh",
-      "email": "john.firebaugh@gmail.com"
-    },
-    {
-      "name": "jrpruit1",
-      "email": "jake@jakepruitt.com"
-    },
-    {
-      "name": "karenzshea",
-      "email": "karen@mapbox.com"
-    },
-    {
-      "name": "kelvinabrokwa",
-      "email": "kelvinabrokwa@gmail.com"
-    },
-    {
-      "name": "kkaefer",
-      "email": "kkaefer@gmail.com"
-    },
-    {
-      "name": "aaronlidman",
-      "email": "aaronlidman@gmail.com"
-    },
-    {
-      "name": "lucaswoj",
-      "email": "lucas@lucaswoj.com"
-    },
-    {
-      "name": "lxbarth",
-      "email": "alex@mapbox.com"
-    },
-    {
-      "name": "lyzidiamond",
-      "email": "lyzi@mapbox.com"
-    },
-    {
-      "name": "mapbox-admin",
-      "email": "accounts@mapbox.com"
-    },
-    {
-      "name": "mateov",
-      "email": "matt@mapbox.com"
-    },
-    {
-      "name": "mcwhittemore",
-      "email": "mcwhittemore@gmail.com"
-    },
-    {
-      "name": "miccolis",
-      "email": "jeff@miccolis.net"
-    },
-    {
-      "name": "mikemorris",
-      "email": "michael.patrick.morris@gmail.com"
-    },
-    {
-      "name": "morganherlocker",
-      "email": "morgan.herlocker@gmail.com"
-    },
-    {
-      "name": "mourner",
-      "email": "agafonkin@gmail.com"
-    },
-    {
-      "name": "mtirwin",
-      "email": "irwin@mapbox.com"
-    },
-    {
-      "name": "nickidlugash",
-      "email": "nicki@mapbox.com"
-    },
-    {
-      "name": "rclark",
-      "email": "ryan.clark.j@gmail.com"
-    },
-    {
-      "name": "samanbb",
-      "email": "saman@mapbox.com"
-    },
-    {
-      "name": "sbma44",
-      "email": "tlee@mapbox.com"
-    },
-    {
-      "name": "scothis",
-      "email": "scothis@gmail.com"
-    },
-    {
-      "name": "sgillies",
-      "email": "sean@mapbox.com"
-    },
-    {
-      "name": "springmeyer",
-      "email": "dane@mapbox.com"
-    },
-    {
-      "name": "themarex",
-      "email": "patrick@mapbox.com"
-    },
-    {
-      "name": "tmcw",
-      "email": "tom@macwright.org"
-    },
-    {
-      "name": "tristen",
-      "email": "tristen.brown@gmail.com"
-    },
-    {
-      "name": "willwhite",
-      "email": "will@mapbox.com"
-    },
-    {
-      "name": "yhahn",
-      "email": "young@mapbox.com"
-    }
-  ],
-  "name": "mapbox.js",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mapbox/mapbox.js.git"
-  },
-  "scripts": {
-    "test": "eslint --no-eslintrc -c .eslintrc src && mocha-phantomjs test/index.html"
-  },
-  "version": "2.2.4"
-}
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/config.js":[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    HTTP_URL: 'http://a.tiles.mapbox.com/v4',
-    HTTPS_URL: 'https://a.tiles.mapbox.com/v4',
-    FORCE_HTTPS: false,
-    REQUIRE_ACCESS_TOKEN: true
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js":[function(require,module,exports){
-'use strict';
-
-var util = require('./util'),
-    format_url = require('./format_url'),
-    request = require('./request'),
-    marker = require('./marker'),
-    simplestyle = require('./simplestyle');
-
-// # featureLayer
-//
-// A layer of features, loaded from Mapbox or else. Adds the ability
-// to reset features, filter them, and load them from a GeoJSON URL.
-var FeatureLayer = L.FeatureGroup.extend({
-    options: {
-        filter: function() { return true; },
-        sanitizer: require('sanitize-caja'),
-        style: simplestyle.style,
-        popupOptions: { closeButton: false }
-    },
-
-    initialize: function(_, options) {
-        L.setOptions(this, options);
-
-        this._layers = {};
-
-        if (typeof _ === 'string') {
-            util.idUrl(_, this);
-        // javascript object of TileJSON data
-        } else if (_ && typeof _ === 'object') {
-            this.setGeoJSON(_);
-        }
-    },
-
-    setGeoJSON: function(_) {
-        this._geojson = _;
-        this.clearLayers();
-        this._initialize(_);
-        return this;
-    },
-
-    getGeoJSON: function() {
-        return this._geojson;
-    },
-
-    loadURL: function(url) {
-        if (this._request && 'abort' in this._request) this._request.abort();
-        this._request = request(url, L.bind(function(err, json) {
-            this._request = null;
-            if (err && err.type !== 'abort') {
-                util.log('could not load features at ' + url);
-                this.fire('error', {error: err});
-            } else if (json) {
-                this.setGeoJSON(json);
-                this.fire('ready');
-            }
-        }, this));
-        return this;
-    },
-
-    loadID: function(id) {
-        return this.loadURL(format_url('/v4/' + id + '/features.json', this.options.accessToken));
-    },
-
-    setFilter: function(_) {
-        this.options.filter = _;
-        if (this._geojson) {
-            this.clearLayers();
-            this._initialize(this._geojson);
-        }
-        return this;
-    },
-
-    getFilter: function() {
-        return this.options.filter;
-    },
-
-    _initialize: function(json) {
-        var features = L.Util.isArray(json) ? json : json.features,
-            i, len;
-
-        if (features) {
-            for (i = 0, len = features.length; i < len; i++) {
-                // Only add this if geometry or geometries are set and not null
-                if (features[i].geometries || features[i].geometry || features[i].features) {
-                    this._initialize(features[i]);
-                }
-            }
-        } else if (this.options.filter(json)) {
-
-            var opts = {accessToken: this.options.accessToken},
-                pointToLayer = this.options.pointToLayer || function(feature, latlon) {
-                  return marker.style(feature, latlon, opts);
-                },
-                layer = L.GeoJSON.geometryToLayer(json, pointToLayer),
-                popupHtml = marker.createPopup(json, this.options.sanitizer),
-                style = this.options.style,
-                defaultStyle = style === simplestyle.style;
-
-            if (style && 'setStyle' in layer &&
-                // if the style method is the simplestyle default, then
-                // never style L.Circle or L.CircleMarker because
-                // simplestyle has no rules over them, only over geometry
-                // primitives directly from GeoJSON
-                (!(defaultStyle && (layer instanceof L.Circle ||
-                  layer instanceof L.CircleMarker)))) {
-                if (typeof style === 'function') {
-                    style = style(json);
-                }
-                layer.setStyle(style);
-            }
-
-            layer.feature = json;
-
-            if (popupHtml) {
-                layer.bindPopup(popupHtml, this.options.popupOptions);
-            }
-
-            this.addLayer(layer);
-        }
-    }
-});
-
-module.exports.FeatureLayer = FeatureLayer;
-
-module.exports.featureLayer = function(_, options) {
-    return new FeatureLayer(_, options);
-};
-
-},{"./format_url":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./marker":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/marker.js","./request":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/request.js","./simplestyle":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feedback.js":[function(require,module,exports){
-'use strict';
-
-var Feedback = L.Class.extend({
-    includes: L.Mixin.Events,
-    data: {},
-    record: function(data) {
-        L.extend(this.data, data);
-        this.fire('change');
-    }
-});
-
-module.exports = new Feedback();
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js":[function(require,module,exports){
-'use strict';
-
-var config = require('./config'),
-    version = require('../package.json').version;
-
-module.exports = function(path, accessToken) {
-    accessToken = accessToken || L.mapbox.accessToken;
-
-    if (!accessToken && config.REQUIRE_ACCESS_TOKEN) {
-        throw new Error('An API access token is required to use Mapbox.js. ' +
-            'See https://www.mapbox.com/mapbox.js/api/v' + version + '/api-access-tokens/');
-    }
-
-    var url = (document.location.protocol === 'https:' || config.FORCE_HTTPS) ? config.HTTPS_URL : config.HTTP_URL;
-    url = url.replace(/\/v4$/, '');
-    url += path;
-    url += url.indexOf('?') !== -1 ? '&access_token=' : '?access_token=';
-
-    if (config.REQUIRE_ACCESS_TOKEN) {
-        if (accessToken[0] === 's') {
-            throw new Error('Use a public access token (pk.*) with Mapbox.js, not a secret access token (sk.*). ' +
-                'See https://www.mapbox.com/mapbox.js/api/v' + version + '/api-access-tokens/');
-        }
-
-        url += accessToken;
-    }
-
-    return url;
-};
-
-module.exports.tileJSON = function(urlOrMapID, accessToken) {
-    if (urlOrMapID.indexOf('/') !== -1)
-        return urlOrMapID;
-
-    var url = module.exports('/v4/' + urlOrMapID + '.json', accessToken);
-
-    // TileJSON requests need a secure flag appended to their URLs so
-    // that the server knows to send SSL-ified resource references.
-    if (url.indexOf('https') === 0)
-        url += '&secure';
-
-    return url;
-};
-
-},{"../package.json":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json","./config":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/config.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js":[function(require,module,exports){
-'use strict';
-
-var isArray = require('isarray'),
-    util = require('./util'),
-    format_url = require('./format_url'),
-    feedback = require('./feedback'),
-    request = require('./request');
-
-// Low-level geocoding interface - wraps specific API calls and their
-// return values.
-module.exports = function(url, options) {
-    if (!options) options = {};
-    var geocoder = {};
-
-    util.strict(url, 'string');
-
-    if (url.indexOf('/') === -1) {
-        url = format_url('/geocoding/v5/' + url + '/{query}.json', options.accessToken, 5);
-    }
-
-    function roundTo(latLng, precision) {
-        var mult = Math.pow(10, precision);
-        latLng.lat = Math.round(latLng.lat * mult) / mult;
-        latLng.lng = Math.round(latLng.lng * mult) / mult;
-        return latLng;
-    }
-
-    geocoder.getURL = function() {
-        return url;
-    };
-
-    geocoder.queryURL = function(_) {
-        var isObject = !(isArray(_) || typeof _ === 'string'),
-            query = isObject ? _.query : _;
-
-        if (isArray(query)) {
-            var parts = [];
-            for (var i = 0; i < query.length; i++) {
-                parts[i] = encodeURIComponent(query[i]);
-            }
-            query = parts.join(';');
-        } else {
-            query = encodeURIComponent(query);
-        }
-
-        feedback.record({ geocoding: query });
-
-        var url = L.Util.template(geocoder.getURL(), {query: query});
-
-        if (isObject && _.types) {
-            if (isArray(_.types)) {
-                url += '&types=' + _.types.join();
-            } else {
-                url += '&types=' + _.types;
-            }
-        }
-
-        if (isObject && _.proximity) {
-            var proximity = roundTo(L.latLng(_.proximity), 3);
-            url += '&proximity=' + proximity.lng + ',' + proximity.lat;
-        }
-
-        return url;
-    };
-
-    geocoder.query = function(_, callback) {
-        util.strict(callback, 'function');
-
-        request(geocoder.queryURL(_), function(err, json) {
-            if (json && (json.length || json.features)) {
-                var res = {
-                    results: json
-                };
-                if (json.features && json.features.length) {
-                    res.latlng = [
-                        json.features[0].center[1],
-                        json.features[0].center[0]];
-
-                    if (json.features[0].bbox) {
-                        res.bounds = json.features[0].bbox;
-                        res.lbounds = util.lbounds(res.bounds);
-                    }
-                }
-                callback(null, res);
-            } else callback(err || true);
-        });
-
-        return geocoder;
-    };
-
-    // a reverse geocode:
-    //
-    //  geocoder.reverseQuery([80, 20])
-    geocoder.reverseQuery = function(_, callback) {
-        var q = '';
-
-        // sort through different ways people represent lat and lon pairs
-        function normalize(x) {
-            var latLng;
-            if (x.lat !== undefined && x.lng !== undefined) {
-                latLng = L.latLng(x.lat, x.lng);
-            } else if (x.lat !== undefined && x.lon !== undefined) {
-                latLng = L.latLng(x.lat, x.lon);
-            } else {
-                latLng = L.latLng(x[1], x[0]);
-            }
-            latLng = roundTo(latLng, 5);
-            return latLng.lng + ',' + latLng.lat;
-        }
-
-        if (_.length && _[0].length) {
-            for (var i = 0, pts = []; i < _.length; i++) {
-                pts.push(normalize(_[i]));
-            }
-            q = pts.join(';');
-        } else {
-            q = normalize(_);
-        }
-
-        request(geocoder.queryURL(q), function(err, json) {
-            callback(err, json);
-        });
-
-        return geocoder;
-    };
-
-    return geocoder;
-};
-
-},{"./feedback":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./format_url":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./request":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","isarray":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/isarray/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/geocoder_control.js":[function(require,module,exports){
-'use strict';
-
-var geocoder = require('./geocoder'),
-    util = require('./util');
-
-var GeocoderControl = L.Control.extend({
-    includes: L.Mixin.Events,
-
-    options: {
-        proximity: true,
-        position: 'topleft',
-        pointZoom: 16,
-        keepOpen: false,
-        autocomplete: false
-    },
-
-    initialize: function(_, options) {
-        L.Util.setOptions(this, options);
-        this.setURL(_);
-        this._updateSubmit = L.bind(this._updateSubmit, this);
-        this._updateAutocomplete = L.bind(this._updateAutocomplete, this);
-        this._chooseResult = L.bind(this._chooseResult, this);
-    },
-
-    setURL: function(_) {
-        this.geocoder = geocoder(_, {
-            accessToken: this.options.accessToken
-        });
-        return this;
-    },
-
-    getURL: function() {
-        return this.geocoder.getURL();
-    },
-
-    setID: function(_) {
-        return this.setURL(_);
-    },
-
-    setTileJSON: function(_) {
-        return this.setURL(_.geocoder);
-    },
-
-    _toggle: function(e) {
-        if (e) L.DomEvent.stop(e);
-        if (L.DomUtil.hasClass(this._container, 'active')) {
-            L.DomUtil.removeClass(this._container, 'active');
-            this._results.innerHTML = '';
-            this._input.blur();
-        } else {
-            L.DomUtil.addClass(this._container, 'active');
-            this._input.focus();
-            this._input.select();
-        }
-    },
-
-    _closeIfOpen: function() {
-        if (L.DomUtil.hasClass(this._container, 'active') &&
-            !this.options.keepOpen) {
-            L.DomUtil.removeClass(this._container, 'active');
-            this._results.innerHTML = '';
-            this._input.blur();
-        }
-    },
-
-    onAdd: function(map) {
-
-        var container = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder leaflet-bar leaflet-control'),
-            link = L.DomUtil.create('a', 'leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder', container),
-            results = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder-results', container),
-            wrap = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder-wrap', container),
-            form = L.DomUtil.create('form', 'leaflet-control-mapbox-geocoder-form', wrap),
-            input = L.DomUtil.create('input', '', form);
-
-        link.href = '#';
-        link.innerHTML = '&nbsp;';
-
-        input.type = 'text';
-        input.setAttribute('placeholder', 'Search');
-
-        L.DomEvent.addListener(form, 'submit', this._geocode, this);
-        L.DomEvent.addListener(input, 'keyup', this._autocomplete, this);
-        L.DomEvent.disableClickPropagation(container);
-
-        this._map = map;
-        this._results = results;
-        this._input = input;
-        this._form = form;
-
-        if (this.options.keepOpen) {
-            L.DomUtil.addClass(container, 'active');
-        } else {
-            this._map.on('click', this._closeIfOpen, this);
-            L.DomEvent.addListener(link, 'click', this._toggle, this);
-        }
-
-        return container;
-    },
-
-    _updateSubmit: function(err, resp) {
-        L.DomUtil.removeClass(this._container, 'searching');
-        this._results.innerHTML = '';
-        if (err || !resp) {
-            this.fire('error', {error: err});
-        } else {
-            var features = [];
-            if (resp.results && resp.results.features) {
-                features = resp.results.features;
-            }
-            if (features.length === 1) {
-                this.fire('autoselect', { feature: features[0] });
-                this.fire('found', {results: resp.results});
-                this._chooseResult(features[0]);
-                this._closeIfOpen();
-            } else if (features.length > 1) {
-                this.fire('found', {results: resp.results});
-                this._displayResults(features);
-            } else {
-                this._displayResults(features);
-            }
-        }
-    },
-
-    _updateAutocomplete: function(err, resp) {
-        this._results.innerHTML = '';
-        if (err || !resp) {
-            this.fire('error', {error: err});
-        } else {
-            var features = [];
-            if (resp.results && resp.results.features) {
-                features = resp.results.features;
-            }
-            if (features.length) {
-                this.fire('found', {results: resp.results});
-            }
-            this._displayResults(features);
-        }
-    },
-
-    _displayResults: function(features) {
-        for (var i = 0, l = Math.min(features.length, 5); i < l; i++) {
-            var feature = features[i];
-            var name = feature.place_name;
-            if (!name.length) continue;
-
-            var r = L.DomUtil.create('a', '', this._results);
-            var text = ('innerText' in r) ? 'innerText' : 'textContent';
-            r[text] = name;
-            r.setAttribute('title', name);
-            r.href = '#';
-
-            (L.bind(function(feature) {
-                L.DomEvent.addListener(r, 'click', function(e) {
-                    this._chooseResult(feature);
-                    L.DomEvent.stop(e);
-                    this.fire('select', { feature: feature });
-                }, this);
-            }, this))(feature);
-        }
-        if (features.length > 5) {
-            var outof = L.DomUtil.create('span', '', this._results);
-            outof.innerHTML = 'Top 5 of ' + features.length + '  results';
-        }
-    },
-
-    _chooseResult: function(result) {
-        if (result.bbox) {
-            this._map.fitBounds(util.lbounds(result.bbox));
-        } else if (result.center) {
-            this._map.setView([result.center[1], result.center[0]], (this._map.getZoom() === undefined) ?
-                this.options.pointZoom :
-                Math.max(this._map.getZoom(), this.options.pointZoom));
-        }
-    },
-
-    _geocode: function(e) {
-        L.DomEvent.preventDefault(e);
-        if (this._input.value === '') return this._updateSubmit();
-        L.DomUtil.addClass(this._container, 'searching');
-        this.geocoder.query({
-            query: this._input.value,
-            proximity: this.options.proximity ? this._map.getCenter() : false
-        }, this._updateSubmit);
-    },
-
-    _autocomplete: function() {
-        if (!this.options.autocomplete) return;
-        if (this._input.value === '') return this._updateAutocomplete();
-        this.geocoder.query({
-            query: this._input.value,
-            proximity: this.options.proximity ? this._map.getCenter() : false
-        }, this._updateAutocomplete);
-    }
-});
-
-module.exports.GeocoderControl = GeocoderControl;
-
-module.exports.geocoderControl = function(_, options) {
-    return new GeocoderControl(_, options);
-};
-
-},{"./geocoder":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid.js":[function(require,module,exports){
-'use strict';
-
-function utfDecode(c) {
-    if (c >= 93) c--;
-    if (c >= 35) c--;
-    return c - 32;
-}
-
-module.exports = function(data) {
-    return function(x, y) {
-        if (!data) return;
-        var idx = utfDecode(data.grid[y].charCodeAt(x)),
-            key = data.keys[idx];
-        return data.data[key];
-    };
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js":[function(require,module,exports){
-'use strict';
-
-var util = require('./util'),
-    Mustache = require('mustache');
-
-var GridControl = L.Control.extend({
-
-    options: {
-        pinnable: true,
-        follow: false,
-        sanitizer: require('sanitize-caja'),
-        touchTeaser: true,
-        location: true
-    },
-
-    _currentContent: '',
-
-    // pinned means that this control is on a feature and the user has likely
-    // clicked. pinned will not become false unless the user clicks off
-    // of the feature onto another or clicks x
-    _pinned: false,
-
-    initialize: function(_, options) {
-        L.Util.setOptions(this, options);
-        util.strict_instance(_, L.Class, 'L.mapbox.gridLayer');
-        this._layer = _;
-    },
-
-    setTemplate: function(template) {
-        util.strict(template, 'string');
-        this.options.template = template;
-        return this;
-    },
-
-    _template: function(format, data) {
-        if (!data) return;
-        var template = this.options.template || this._layer.getTileJSON().template;
-        if (template) {
-            var d = {};
-            d['__' + format + '__'] = true;
-            return this.options.sanitizer(
-                Mustache.to_html(template, L.extend(d, data)));
-        }
-    },
-
-    // change the content of the tooltip HTML if it has changed, otherwise
-    // noop
-    _show: function(content, o) {
-        if (content === this._currentContent) return;
-
-        this._currentContent = content;
-
-        if (this.options.follow) {
-            this._popup.setContent(content)
-                .setLatLng(o.latLng);
-            if (this._map._popup !== this._popup) this._popup.openOn(this._map);
-        } else {
-            this._container.style.display = 'block';
-            this._contentWrapper.innerHTML = content;
-        }
-    },
-
-    hide: function() {
-        this._pinned = false;
-        this._currentContent = '';
-
-        this._map.closePopup();
-        this._container.style.display = 'none';
-        this._contentWrapper.innerHTML = '';
-
-        L.DomUtil.removeClass(this._container, 'closable');
-
-        return this;
-    },
-
-    _mouseover: function(o) {
-        if (o.data) {
-            L.DomUtil.addClass(this._map._container, 'map-clickable');
-        } else {
-            L.DomUtil.removeClass(this._map._container, 'map-clickable');
-        }
-
-        if (this._pinned) return;
-
-        var content = this._template('teaser', o.data);
-        if (content) {
-            this._show(content, o);
-        } else {
-            this.hide();
-        }
-    },
-
-    _mousemove: function(o) {
-        if (this._pinned) return;
-        if (!this.options.follow) return;
-
-        this._popup.setLatLng(o.latLng);
-    },
-
-    _navigateTo: function(url) {
-        window.top.location.href = url;
-    },
-
-    _click: function(o) {
-
-        var location_formatted = this._template('location', o.data);
-        if (this.options.location && location_formatted &&
-            location_formatted.search(/^https?:/) === 0) {
-            return this._navigateTo(this._template('location', o.data));
-        }
-
-        if (!this.options.pinnable) return;
-
-        var content = this._template('full', o.data);
-
-        if (!content && this.options.touchTeaser && L.Browser.touch) {
-            content = this._template('teaser', o.data);
-        }
-
-        if (content) {
-            L.DomUtil.addClass(this._container, 'closable');
-            this._pinned = true;
-            this._show(content, o);
-        } else if (this._pinned) {
-            L.DomUtil.removeClass(this._container, 'closable');
-            this._pinned = false;
-            this.hide();
-        }
-    },
-
-    _onPopupClose: function() {
-        this._currentContent = null;
-        this._pinned = false;
-    },
-
-    _createClosebutton: function(container, fn) {
-        var link = L.DomUtil.create('a', 'close', container);
-
-        link.innerHTML = 'close';
-        link.href = '#';
-        link.title = 'close';
-
-        L.DomEvent
-            .on(link, 'click', L.DomEvent.stopPropagation)
-            .on(link, 'mousedown', L.DomEvent.stopPropagation)
-            .on(link, 'dblclick', L.DomEvent.stopPropagation)
-            .on(link, 'click', L.DomEvent.preventDefault)
-            .on(link, 'click', fn, this);
-
-        return link;
-    },
-
-    onAdd: function(map) {
-        this._map = map;
-
-        var className = 'leaflet-control-grid map-tooltip',
-            container = L.DomUtil.create('div', className),
-            contentWrapper = L.DomUtil.create('div', 'map-tooltip-content');
-
-        // hide the container element initially
-        container.style.display = 'none';
-        this._createClosebutton(container, this.hide);
-        container.appendChild(contentWrapper);
-
-        this._contentWrapper = contentWrapper;
-        this._popup = new L.Popup({ autoPan: false, closeOnClick: false });
-
-        map.on('popupclose', this._onPopupClose, this);
-
-        L.DomEvent
-            .disableClickPropagation(container)
-            // allow people to scroll tooltips with mousewheel
-            .addListener(container, 'mousewheel', L.DomEvent.stopPropagation);
-
-        this._layer
-            .on('mouseover', this._mouseover, this)
-            .on('mousemove', this._mousemove, this)
-            .on('click', this._click, this);
-
-        return container;
-    },
-
-    onRemove: function (map) {
-
-        map.off('popupclose', this._onPopupClose, this);
-
-        this._layer
-            .off('mouseover', this._mouseover, this)
-            .off('mousemove', this._mousemove, this)
-            .off('click', this._click, this);
-    }
-});
-
-module.exports.GridControl = GridControl;
-
-module.exports.gridControl = function(_, options) {
-    return new GridControl(_, options);
-};
-
-},{"./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","mustache":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mustache/mustache.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js":[function(require,module,exports){
-'use strict';
-
-var util = require('./util'),
-    request = require('./request'),
-    grid = require('./grid');
-
-// forked from danzel/L.UTFGrid
-var GridLayer = L.Class.extend({
-    includes: [L.Mixin.Events, require('./load_tilejson')],
-
-    options: {
-        template: function() { return ''; }
-    },
-
-    _mouseOn: null,
-    _tilejson: {},
-    _cache: {},
-
-    initialize: function(_, options) {
-        L.Util.setOptions(this, options);
-        this._loadTileJSON(_);
-    },
-
-    _setTileJSON: function(json) {
-        util.strict(json, 'object');
-
-        L.extend(this.options, {
-            grids: json.grids,
-            minZoom: json.minzoom,
-            maxZoom: json.maxzoom,
-            bounds: json.bounds && util.lbounds(json.bounds)
-        });
-
-        this._tilejson = json;
-        this._cache = {};
-        this._update();
-
-        return this;
-    },
-
-    getTileJSON: function() {
-        return this._tilejson;
-    },
-
-    active: function() {
-        return !!(this._map && this.options.grids && this.options.grids.length);
-    },
-
-    addTo: function (map) {
-        map.addLayer(this);
-        return this;
-    },
-
-    onAdd: function(map) {
-        this._map = map;
-        this._update();
-
-        this._map
-            .on('click', this._click, this)
-            .on('mousemove', this._move, this)
-            .on('moveend', this._update, this);
-    },
-
-    onRemove: function() {
-        this._map
-            .off('click', this._click, this)
-            .off('mousemove', this._move, this)
-            .off('moveend', this._update, this);
-    },
-
-    getData: function(latlng, callback) {
-        if (!this.active()) return;
-
-        var map = this._map,
-            point = map.project(latlng.wrap()),
-            tileSize = 256,
-            resolution = 4,
-            x = Math.floor(point.x / tileSize),
-            y = Math.floor(point.y / tileSize),
-            max = map.options.crs.scale(map.getZoom()) / tileSize;
-
-        x = (x + max) % max;
-        y = (y + max) % max;
-
-        this._getTile(map.getZoom(), x, y, function(grid) {
-            var gridX = Math.floor((point.x - (x * tileSize)) / resolution),
-                gridY = Math.floor((point.y - (y * tileSize)) / resolution);
-
-            callback(grid(gridX, gridY));
-        });
-
-        return this;
-    },
-
-    _click: function(e) {
-        this.getData(e.latlng, L.bind(function(data) {
-            this.fire('click', {
-                latLng: e.latlng,
-                data: data
-            });
-        }, this));
-    },
-
-    _move: function(e) {
-        this.getData(e.latlng, L.bind(function(data) {
-            if (data !== this._mouseOn) {
-                if (this._mouseOn) {
-                    this.fire('mouseout', {
-                        latLng: e.latlng,
-                        data: this._mouseOn
-                    });
-                }
-
-                this.fire('mouseover', {
-                    latLng: e.latlng,
-                    data: data
-                });
-
-                this._mouseOn = data;
-            } else {
-                this.fire('mousemove', {
-                    latLng: e.latlng,
-                    data: data
-                });
-            }
-        }, this));
-    },
-
-    _getTileURL: function(tilePoint) {
-        var urls = this.options.grids,
-            index = (tilePoint.x + tilePoint.y) % urls.length,
-            url = urls[index];
-
-        return L.Util.template(url, tilePoint);
-    },
-
-    // Load up all required json grid files
-    _update: function() {
-        if (!this.active()) return;
-
-        var bounds = this._map.getPixelBounds(),
-            z = this._map.getZoom(),
-            tileSize = 256;
-
-        if (z > this.options.maxZoom || z < this.options.minZoom) return;
-
-        var tileBounds = L.bounds(
-                bounds.min.divideBy(tileSize)._floor(),
-                bounds.max.divideBy(tileSize)._floor()),
-            max = this._map.options.crs.scale(z) / tileSize;
-
-        for (var x = tileBounds.min.x; x <= tileBounds.max.x; x++) {
-            for (var y = tileBounds.min.y; y <= tileBounds.max.y; y++) {
-                // x wrapped
-                this._getTile(z, ((x % max) + max) % max, ((y % max) + max) % max);
-            }
-        }
-    },
-
-    _getTile: function(z, x, y, callback) {
-        var key = z + '_' + x + '_' + y,
-            tilePoint = L.point(x, y);
-
-        tilePoint.z = z;
-
-        if (!this._tileShouldBeLoaded(tilePoint)) {
-            return;
-        }
-
-        if (key in this._cache) {
-            if (!callback) return;
-
-            if (typeof this._cache[key] === 'function') {
-                callback(this._cache[key]); // Already loaded
-            } else {
-                this._cache[key].push(callback); // Pending
-            }
-
-            return;
-        }
-
-        this._cache[key] = [];
-
-        if (callback) {
-            this._cache[key].push(callback);
-        }
-
-        request(this._getTileURL(tilePoint), L.bind(function(err, json) {
-            var callbacks = this._cache[key];
-            this._cache[key] = grid(json);
-            for (var i = 0; i < callbacks.length; ++i) {
-                callbacks[i](this._cache[key]);
-            }
-        }, this));
-    },
-
-    _tileShouldBeLoaded: function(tilePoint) {
-        if (tilePoint.z > this.options.maxZoom || tilePoint.z < this.options.minZoom) {
-            return false;
-        }
-
-        if (this.options.bounds) {
-            var tileSize = 256,
-                nwPoint = tilePoint.multiplyBy(tileSize),
-                sePoint = nwPoint.add(new L.Point(tileSize, tileSize)),
-                nw = this._map.unproject(nwPoint),
-                se = this._map.unproject(sePoint),
-                bounds = new L.LatLngBounds([nw, se]);
-
-            if (!this.options.bounds.intersects(bounds)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-});
-
-module.exports.GridLayer = GridLayer;
-
-module.exports.gridLayer = function(_, options) {
-    return new GridLayer(_, options);
-};
-
-},{"./grid":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid.js","./load_tilejson":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./request":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/index.js":[function(require,module,exports){
-'use strict';
-
-var leaflet = require('./leaflet');
-
-require('./mapbox');
-
-module.exports = leaflet;
-
-},{"./leaflet":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/leaflet.js","./mapbox":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/mapbox.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/info_control.js":[function(require,module,exports){
-'use strict';
-
-var InfoControl = L.Control.extend({
-    options: {
-        position: 'bottomright',
-        sanitizer: require('sanitize-caja')
-    },
-
-    initialize: function(options) {
-        L.setOptions(this, options);
-        this._info = {};
-        console.warn('infoControl has been deprecated and will be removed in mapbox.js v3.0.0. Use the default attribution control instead, which is now responsive.');
-    },
-
-    onAdd: function(map) {
-        this._container = L.DomUtil.create('div', 'mapbox-control-info mapbox-small');
-        this._content = L.DomUtil.create('div', 'map-info-container', this._container);
-
-        var link = L.DomUtil.create('a', 'mapbox-info-toggle mapbox-icon mapbox-icon-info', this._container);
-        link.href = '#';
-
-        L.DomEvent.addListener(link, 'click', this._showInfo, this);
-        L.DomEvent.disableClickPropagation(this._container);
-
-        for (var i in map._layers) {
-            if (map._layers[i].getAttribution) {
-                this.addInfo(map._layers[i].getAttribution());
-            }
-        }
-
-        map
-            .on('layeradd', this._onLayerAdd, this)
-            .on('layerremove', this._onLayerRemove, this);
-
-        this._update();
-        return this._container;
-    },
-
-    onRemove: function(map) {
-        map
-            .off('layeradd', this._onLayerAdd, this)
-            .off('layerremove', this._onLayerRemove, this);
-    },
-
-    addInfo: function(text) {
-        if (!text) return this;
-        if (!this._info[text]) this._info[text] = 0;
-        this._info[text] = true;
-        return this._update();
-    },
-
-    removeInfo: function (text) {
-        if (!text) return this;
-        if (this._info[text]) this._info[text] = false;
-        return this._update();
-    },
-
-    _showInfo: function(e) {
-        L.DomEvent.preventDefault(e);
-        if (this._active === true) return this._hidecontent();
-
-        L.DomUtil.addClass(this._container, 'active');
-        this._active = true;
-        this._update();
-    },
-
-    _hidecontent: function() {
-        this._content.innerHTML = '';
-        this._active = false;
-        L.DomUtil.removeClass(this._container, 'active');
-        return;
-    },
-
-    _update: function() {
-        if (!this._map) { return this; }
-        this._content.innerHTML = '';
-        var hide = 'none';
-        var info = [];
-
-        for (var i in this._info) {
-            if (this._info.hasOwnProperty(i) && this._info[i]) {
-                info.push(this.options.sanitizer(i));
-                hide = 'block';
-            }
-        }
-
-        this._content.innerHTML += info.join(' | ');
-
-        // If there are no results in _info then hide this.
-        this._container.style.display = hide;
-        return this;
-    },
-
-    _onLayerAdd: function(e) {
-        if (e.layer.getAttribution && e.layer.getAttribution()) {
-            this.addInfo(e.layer.getAttribution());
-        } else if ('on' in e.layer && e.layer.getAttribution) {
-            e.layer.on('ready', L.bind(function() {
-                this.addInfo(e.layer.getAttribution());
-            }, this));
-        }
-    },
-
-    _onLayerRemove: function (e) {
-        if (e.layer.getAttribution) {
-            this.removeInfo(e.layer.getAttribution());
-        }
-    }
-});
-
-module.exports.InfoControl = InfoControl;
-
-module.exports.infoControl = function(options) {
-    return new InfoControl(options);
-};
-
-},{"sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/leaflet.js":[function(require,module,exports){
-module.exports = window.L = require('leaflet/dist/leaflet-src');
-
-},{"leaflet/dist/leaflet-src":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/leaflet/dist/leaflet-src.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js":[function(require,module,exports){
-'use strict';
-
-var LegendControl = L.Control.extend({
-
-    options: {
-        position: 'bottomright',
-        sanitizer: require('sanitize-caja')
-    },
-
-    initialize: function(options) {
-        L.setOptions(this, options);
-        this._legends = {};
-    },
-
-    onAdd: function() {
-        this._container = L.DomUtil.create('div', 'map-legends wax-legends');
-        L.DomEvent.disableClickPropagation(this._container);
-
-        this._update();
-
-        return this._container;
-    },
-
-    addLegend: function(text) {
-        if (!text) { return this; }
-
-        if (!this._legends[text]) {
-            this._legends[text] = 0;
-        }
-
-        this._legends[text]++;
-        return this._update();
-    },
-
-    removeLegend: function(text) {
-        if (!text) { return this; }
-        if (this._legends[text]) this._legends[text]--;
-        return this._update();
-    },
-
-    _update: function() {
-        if (!this._map) { return this; }
-
-        this._container.innerHTML = '';
-        var hide = 'none';
-
-        for (var i in this._legends) {
-            if (this._legends.hasOwnProperty(i) && this._legends[i]) {
-                var div = L.DomUtil.create('div', 'map-legend wax-legend', this._container);
-                div.innerHTML = this.options.sanitizer(i);
-                hide = 'block';
-            }
-        }
-
-        // hide the control entirely unless there is at least one legend;
-        // otherwise there will be a small grey blemish on the map.
-        this._container.style.display = hide;
-
-        return this;
-    }
-});
-
-module.exports.LegendControl = LegendControl;
-
-module.exports.legendControl = function(options) {
-    return new LegendControl(options);
-};
-
-},{"sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js":[function(require,module,exports){
-'use strict';
-
-var request = require('./request'),
-    format_url = require('./format_url'),
-    util = require('./util');
-
-module.exports = {
-    _loadTileJSON: function(_) {
-        if (typeof _ === 'string') {
-            _ = format_url.tileJSON(_, this.options && this.options.accessToken);
-            request(_, L.bind(function(err, json) {
-                if (err) {
-                    util.log('could not load TileJSON at ' + _);
-                    this.fire('error', {error: err});
-                } else if (json) {
-                    this._setTileJSON(json);
-                    this.fire('ready');
-                }
-            }, this));
-        } else if (_ && typeof _ === 'object') {
-            this._setTileJSON(_);
-        }
-    }
-};
-
-},{"./format_url":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./request":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/map.js":[function(require,module,exports){
-'use strict';
-
-var tileLayer = require('./tile_layer').tileLayer,
-    featureLayer = require('./feature_layer').featureLayer,
-    gridLayer = require('./grid_layer').gridLayer,
-    gridControl = require('./grid_control').gridControl,
-    infoControl = require('./info_control').infoControl,
-    shareControl = require('./share_control').shareControl,
-    legendControl = require('./legend_control').legendControl,
-    mapboxLogoControl = require('./mapbox_logo').mapboxLogoControl,
-    feedback = require('./feedback');
-
-function withAccessToken(options, accessToken) {
-    if (!accessToken || options.accessToken)
-        return options;
-    return L.extend({accessToken: accessToken}, options);
-}
-
-var LMap = L.Map.extend({
-    includes: [require('./load_tilejson')],
-
-    options: {
-        tileLayer: {},
-        featureLayer: {},
-        gridLayer: {},
-        legendControl: {},
-        gridControl: {},
-        infoControl: false,
-        shareControl: false,
-        sanitizer: require('sanitize-caja')
-    },
-
-    _tilejson: {},
-
-    initialize: function(element, _, options) {
-
-        L.Map.prototype.initialize.call(this, element,
-            L.extend({}, L.Map.prototype.options, options));
-
-        // Disable the default 'Leaflet' text
-        if (this.attributionControl) {
-            this.attributionControl.setPrefix('');
-
-            var compact = this.options.attributionControl.compact;
-            // Set a compact display if map container width is < 640 or
-            // compact is set to `true` in attributionControl options.
-            if (compact || (compact !== false && this._container.offsetWidth <= 640)) {
-                L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
-            }
-
-            if (compact === undefined) {
-                this.on('resize', function() {
-                    if (this._container.offsetWidth > 640) {
-                        L.DomUtil.removeClass(this.attributionControl._container, 'leaflet-compact-attribution');
-                    } else {
-                        L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
-                    }
-                });
-            }
-        }
-
-        if (this.options.tileLayer) {
-            this.tileLayer = tileLayer(undefined,
-                withAccessToken(this.options.tileLayer, this.options.accessToken));
-            this.addLayer(this.tileLayer);
-        }
-
-        if (this.options.featureLayer) {
-            this.featureLayer = featureLayer(undefined,
-                withAccessToken(this.options.featureLayer, this.options.accessToken));
-            this.addLayer(this.featureLayer);
-        }
-
-        if (this.options.gridLayer) {
-            this.gridLayer = gridLayer(undefined,
-                withAccessToken(this.options.gridLayer, this.options.accessToken));
-            this.addLayer(this.gridLayer);
-        }
-
-        if (this.options.gridLayer && this.options.gridControl) {
-            this.gridControl = gridControl(this.gridLayer, this.options.gridControl);
-            this.addControl(this.gridControl);
-        }
-
-        if (this.options.infoControl) {
-            this.infoControl = infoControl(this.options.infoControl);
-            this.addControl(this.infoControl);
-        }
-
-        if (this.options.legendControl) {
-            this.legendControl = legendControl(this.options.legendControl);
-            this.addControl(this.legendControl);
-        }
-
-        if (this.options.shareControl) {
-            this.shareControl = shareControl(undefined,
-                withAccessToken(this.options.shareControl, this.options.accessToken));
-            this.addControl(this.shareControl);
-        }
-
-        this._mapboxLogoControl = mapboxLogoControl(this.options.mapboxLogoControl);
-        this.addControl(this._mapboxLogoControl);
-
-        this._loadTileJSON(_);
-
-        this.on('layeradd', this._onLayerAdd, this)
-            .on('layerremove', this._onLayerRemove, this)
-            .on('moveend', this._updateMapFeedbackLink, this);
-
-        this.whenReady(function () {
-            feedback.on('change', this._updateMapFeedbackLink, this);
-        });
-
-        this.on('unload', function () {
-            feedback.off('change', this._updateMapFeedbackLink, this);
-        });
-    },
-
-    // use a javascript object of tilejson data to configure this layer
-    _setTileJSON: function(_) {
-        this._tilejson = _;
-        this._initialize(_);
-        return this;
-    },
-
-    getTileJSON: function() {
-        return this._tilejson;
-    },
-
-    _initialize: function(json) {
-        if (this.tileLayer) {
-            this.tileLayer._setTileJSON(json);
-            this._updateLayer(this.tileLayer);
-        }
-
-        if (this.featureLayer && !this.featureLayer.getGeoJSON() && json.data && json.data[0]) {
-            this.featureLayer.loadURL(json.data[0]);
-        }
-
-        if (this.gridLayer) {
-            this.gridLayer._setTileJSON(json);
-            this._updateLayer(this.gridLayer);
-        }
-
-        if (this.infoControl && json.attribution) {
-            this.infoControl.addInfo(this.options.sanitizer(json.attribution));
-            this._updateMapFeedbackLink();
-        }
-
-        if (this.legendControl && json.legend) {
-            this.legendControl.addLegend(json.legend);
-        }
-
-        if (this.shareControl) {
-            this.shareControl._setTileJSON(json);
-        }
-
-        this._mapboxLogoControl._setTileJSON(json);
-
-        if (!this._loaded && json.center) {
-            var zoom = this.getZoom() !== undefined ? this.getZoom() : json.center[2],
-                center = L.latLng(json.center[1], json.center[0]);
-
-            this.setView(center, zoom);
-        }
-    },
-
-    _updateMapFeedbackLink: function() {
-        if (!this._controlContainer.getElementsByClassName) return;
-        var link = this._controlContainer.getElementsByClassName('mapbox-improve-map');
-        if (link.length && this._loaded) {
-            var center = this.getCenter().wrap();
-            var tilejson = this._tilejson || {};
-            var id = tilejson.id || '';
-
-            var hash = '#' + id + '/' +
-                center.lng.toFixed(3) + '/' +
-                center.lat.toFixed(3) + '/' +
-                this.getZoom();
-
-            for (var key in feedback.data) {
-                hash += '/' + key + '=' + feedback.data[key];
-            }
-
-            for (var i = 0; i < link.length; i++) {
-                link[i].hash = hash;
-            }
-        }
-    },
-
-    _onLayerAdd: function(e) {
-        if ('on' in e.layer) {
-            e.layer.on('ready', this._onLayerReady, this);
-        }
-        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
-    },
-
-    _onLayerRemove: function(e) {
-        if ('on' in e.layer) {
-            e.layer.off('ready', this._onLayerReady, this);
-        }
-        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
-    },
-
-    _onLayerReady: function(e) {
-        this._updateLayer(e.target);
-    },
-
-    _updateLayer: function(layer) {
-        if (!layer.options) return;
-
-        if (this.infoControl && this._loaded) {
-            this.infoControl.addInfo(layer.options.infoControl);
-        }
-
-        if (this.attributionControl && this._loaded && layer.getAttribution) {
-            this.attributionControl.addAttribution(layer.getAttribution());
-        }
-
-        if (!(L.stamp(layer) in this._zoomBoundLayers) &&
-                (layer.options.maxZoom || layer.options.minZoom)) {
-            this._zoomBoundLayers[L.stamp(layer)] = layer;
-        }
-
-        this._updateMapFeedbackLink();
-        this._updateZoomLevels();
-    }
-});
-
-module.exports.Map = LMap;
-
-module.exports.map = function(element, _, options) {
-    return new LMap(element, _, options);
-};
-
-},{"./feature_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js","./feedback":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./grid_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js","./load_tilejson":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./mapbox_logo":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/mapbox_logo.js","./share_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/share_control.js","./tile_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/mapbox.js":[function(require,module,exports){
-'use strict';
-
-var geocoderControl = require('./geocoder_control'),
-    gridControl = require('./grid_control'),
-    featureLayer = require('./feature_layer'),
-    legendControl = require('./legend_control'),
-    shareControl = require('./share_control'),
-    tileLayer = require('./tile_layer'),
-    infoControl = require('./info_control'),
-    map = require('./map'),
-    gridLayer = require('./grid_layer');
-
-L.mapbox = module.exports = {
-    VERSION: require('../package.json').version,
-    geocoder: require('./geocoder'),
-    marker: require('./marker'),
-    simplestyle: require('./simplestyle'),
-    tileLayer: tileLayer.tileLayer,
-    TileLayer: tileLayer.TileLayer,
-    infoControl: infoControl.infoControl,
-    InfoControl: infoControl.InfoControl,
-    shareControl: shareControl.shareControl,
-    ShareControl: shareControl.ShareControl,
-    legendControl: legendControl.legendControl,
-    LegendControl: legendControl.LegendControl,
-    geocoderControl: geocoderControl.geocoderControl,
-    GeocoderControl: geocoderControl.GeocoderControl,
-    gridControl: gridControl.gridControl,
-    GridControl: gridControl.GridControl,
-    gridLayer: gridLayer.gridLayer,
-    GridLayer: gridLayer.GridLayer,
-    featureLayer: featureLayer.featureLayer,
-    FeatureLayer: featureLayer.FeatureLayer,
-    map: map.map,
-    Map: map.Map,
-    config: require('./config'),
-    sanitize: require('sanitize-caja'),
-    template: require('mustache').to_html,
-    feedback: require('./feedback')
-};
-
-
-// Hardcode image path, because Leaflet's autodetection
-// fails, because mapbox.js is not named leaflet.js
-window.L.Icon.Default.imagePath =
-    // Detect bad-news protocols like file:// and hardcode
-    // to https if they're detected.
-    ((document.location.protocol === 'https:' ||
-    document.location.protocol === 'http:') ? '' : 'https:') +
-    '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
-    require('../package.json').version + '/images';
-
-},{"../package.json":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json","./config":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/config.js","./feature_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js","./feedback":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./geocoder":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js","./geocoder_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/geocoder_control.js","./grid_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js","./map":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/map.js","./marker":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/marker.js","./share_control":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/share_control.js","./simplestyle":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js","./tile_layer":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js","mustache":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mustache/mustache.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/mapbox_logo.js":[function(require,module,exports){
-'use strict';
-
-var MapboxLogoControl = L.Control.extend({
-
-    options: {
-        position: 'bottomleft'
-    },
-
-    initialize: function(options) {
-        L.setOptions(this, options);
-    },
-
-    onAdd: function() {
-        this._container = L.DomUtil.create('div', 'mapbox-logo');
-        return this._container;
-    },
-
-    _setTileJSON: function(json) {
-        // Check if account referenced by the accessToken
-        // is asscociated with the Mapbox Logo
-        // as determined by mapbox-maps.
-        if (json.mapbox_logo) {
-            L.DomUtil.addClass(this._container, 'mapbox-logo-true');
-        }
-    }
-});
-
-module.exports.MapboxLogoControl = MapboxLogoControl;
-
-module.exports.mapboxLogoControl = function(options) {
-    return new MapboxLogoControl(options);
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/marker.js":[function(require,module,exports){
-'use strict';
-
-var format_url = require('./format_url'),
-    util = require('./util'),
-    sanitize = require('sanitize-caja');
-
-// mapbox-related markers functionality
-// provide an icon from mapbox's simple-style spec and hosted markers
-// service
-function icon(fp, options) {
-    fp = fp || {};
-
-    var sizes = {
-            small: [20, 50],
-            medium: [30, 70],
-            large: [35, 90]
-        },
-        size = fp['marker-size'] || 'medium',
-        symbol = ('marker-symbol' in fp && fp['marker-symbol'] !== '') ? '-' + fp['marker-symbol'] : '',
-        color = (fp['marker-color'] || '7e7e7e').replace('#', '');
-
-    return L.icon({
-        iconUrl: format_url('/v4/marker/' +
-            'pin-' + size.charAt(0) + symbol + '+' + color +
-            // detect and use retina markers, which are x2 resolution
-            (L.Browser.retina ? '@2x' : '') + '.png', options && options.accessToken),
-        iconSize: sizes[size],
-        iconAnchor: [sizes[size][0] / 2, sizes[size][1] / 2],
-        popupAnchor: [0, -sizes[size][1] / 2]
-    });
-}
-
-// a factory that provides markers for Leaflet from Mapbox's
-// [simple-style specification](https://github.com/mapbox/simplestyle-spec)
-// and [Markers API](http://mapbox.com/developers/api/#markers).
-function style(f, latlon, options) {
-    return L.marker(latlon, {
-        icon: icon(f.properties, options),
-        title: util.strip_tags(
-            sanitize((f.properties && f.properties.title) || ''))
-    });
-}
-
-// Sanitize and format properties of a GeoJSON Feature object in order
-// to form the HTML string used as the argument for `L.createPopup`
-function createPopup(f, sanitizer) {
-    if (!f || !f.properties) return '';
-    var popup = '';
-
-    if (f.properties.title) {
-        popup += '<div class="marker-title">' + f.properties.title + '</div>';
-    }
-
-    if (f.properties.description) {
-        popup += '<div class="marker-description">' + f.properties.description + '</div>';
-    }
-
-    return (sanitizer || sanitize)(popup);
-}
-
-module.exports = {
-    icon: icon,
-    style: style,
-    createPopup: createPopup
-};
-
-},{"./format_url":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/request.js":[function(require,module,exports){
-'use strict';
-
-var corslite = require('corslite'),
-    strict = require('./util').strict,
-    config = require('./config');
-
-var protocol = /^(https?:)?(?=\/\/(.|api)\.tiles\.mapbox\.com\/)/;
-
-module.exports = function(url, callback) {
-    strict(url, 'string');
-    strict(callback, 'function');
-
-    url = url.replace(protocol, function(match, protocol) {
-        if (!('withCredentials' in new window.XMLHttpRequest())) {
-            // XDomainRequest in use; doesn't support cross-protocol requests
-            return document.location.protocol;
-        } else if (protocol === 'https:' || document.location.protocol === 'https:' || config.FORCE_HTTPS) {
-            return 'https:';
-        } else {
-            return 'http:';
-        }
-    });
-
-    function onload(err, resp) {
-        if (!err && resp) {
-            resp = JSON.parse(resp.responseText);
-        }
-        callback(err, resp);
-    }
-
-    return corslite(url, onload);
-};
-
-},{"./config":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/config.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","corslite":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/corslite/corslite.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/share_control.js":[function(require,module,exports){
-'use strict';
-
-var format_url = require('./format_url');
-
-var ShareControl = L.Control.extend({
-    includes: [require('./load_tilejson')],
-
-    options: {
-        position: 'topleft',
-        url: ''
-    },
-
-    initialize: function(_, options) {
-        L.setOptions(this, options);
-        this._loadTileJSON(_);
-    },
-
-    _setTileJSON: function(json) {
-        this._tilejson = json;
-    },
-
-    onAdd: function(map) {
-        this._map = map;
-
-        var container = L.DomUtil.create('div', 'leaflet-control-mapbox-share leaflet-bar');
-        var link = L.DomUtil.create('a', 'mapbox-share mapbox-icon mapbox-icon-share', container);
-        link.href = '#';
-
-        this._modal = L.DomUtil.create('div', 'mapbox-modal', this._map._container);
-        this._mask = L.DomUtil.create('div', 'mapbox-modal-mask', this._modal);
-        this._content = L.DomUtil.create('div', 'mapbox-modal-content', this._modal);
-
-        L.DomEvent.addListener(link, 'click', this._shareClick, this);
-        L.DomEvent.disableClickPropagation(container);
-
-        this._map.on('mousedown', this._clickOut, this);
-
-        return container;
-    },
-
-    _clickOut: function(e) {
-        if (this._sharing) {
-            L.DomEvent.preventDefault(e);
-            L.DomUtil.removeClass(this._modal, 'active');
-            this._content.innerHTML = '';
-            this._sharing = null;
-            return;
-        }
-    },
-
-    _shareClick: function(e) {
-        L.DomEvent.stop(e);
-        if (this._sharing) return this._clickOut(e);
-
-        var tilejson = this._tilejson || this._map._tilejson || {},
-            url = encodeURIComponent(this.options.url || tilejson.webpage || window.location),
-            name = encodeURIComponent(tilejson.name),
-            image = format_url('/v4/' + tilejson.id + '/' + this._map.getCenter().lng + ',' + this._map.getCenter().lat + ',' + this._map.getZoom() + '/600x600.png', this.options.accessToken),
-            embed = format_url('/v4/' + tilejson.id + '.html', this.options.accessToken),
-            twitterURL = '//twitter.com/intent/tweet?status=' + name + ' ' + url,
-            facebookURL = '//www.facebook.com/sharer.php?u=' + url + '&t=' + name,
-            pinterestURL = '//www.pinterest.com/pin/create/button/?url=' + url + '&media=' + image + '&description=' + name,
-            embedValue = '<iframe width="100%" height="500px" frameBorder="0" src="' + embed + '"></iframe>',
-            embedLabel = 'Copy and paste this <strong>HTML code</strong> into documents to embed this map on web pages.';
-
-        function createShareButton(buttonClass, href, socialMediaName) {
-            var elem = document.createElement('a');
-            elem.setAttribute('class', buttonClass);
-            elem.setAttribute('href', href);
-            elem.setAttribute('target', '_blank');
-            socialMediaName = document.createTextNode(socialMediaName);
-            elem.appendChild(socialMediaName);
-
-            return elem;
-        }
-
-        L.DomUtil.addClass(this._modal, 'active');
-
-        this._sharing = L.DomUtil.create('div', 'mapbox-modal-body', this._content);
-
-        var twitterButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-twitter', twitterURL, 'Twitter');
-        var facebookButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-facebook', facebookURL, 'Facebook');
-        var pinterestButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-pinterest', pinterestURL, 'Pinterest');
-
-        var shareHeader = document.createElement('h3');
-        var shareText = document.createTextNode('Share this map');
-        shareHeader.appendChild(shareText);
-
-        var shareButtons = document.createElement('div');
-        shareButtons.setAttribute('class', 'mapbox-share-buttons');
-        shareButtons.appendChild(facebookButton);
-        shareButtons.appendChild(twitterButton);
-        shareButtons.appendChild(pinterestButton);
-
-        this._sharing.appendChild(shareHeader);
-        this._sharing.appendChild(shareButtons);
-
-        var input = L.DomUtil.create('input', 'mapbox-embed', this._sharing);
-        input.type = 'text';
-        input.value = embedValue;
-
-        var label = L.DomUtil.create('label', 'mapbox-embed-description', this._sharing);
-        label.innerHTML = embedLabel;
-
-        var close = L.DomUtil.create('a', 'leaflet-popup-close-button', this._sharing);
-        close.href = '#';
-
-        L.DomEvent.disableClickPropagation(this._sharing);
-        L.DomEvent.addListener(close, 'click', this._clickOut, this);
-        L.DomEvent.addListener(input, 'click', function(e) {
-            e.target.focus();
-            e.target.select();
-        });
-    }
-});
-
-module.exports.ShareControl = ShareControl;
-
-module.exports.shareControl = function(_, options) {
-    return new ShareControl(_, options);
-};
-
-},{"./format_url":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./load_tilejson":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js":[function(require,module,exports){
-'use strict';
-
-// an implementation of the simplestyle spec for polygon and linestring features
-// https://github.com/mapbox/simplestyle-spec
-var defaults = {
-    stroke: '#555555',
-    'stroke-width': 2,
-    'stroke-opacity': 1,
-    fill: '#555555',
-    'fill-opacity': 0.5
-};
-
-var mapping = [
-    ['stroke', 'color'],
-    ['stroke-width', 'weight'],
-    ['stroke-opacity', 'opacity'],
-    ['fill', 'fillColor'],
-    ['fill-opacity', 'fillOpacity']
-];
-
-function fallback(a, b) {
-    var c = {};
-    for (var k in b) {
-        if (a[k] === undefined) c[k] = b[k];
-        else c[k] = a[k];
-    }
-    return c;
-}
-
-function remap(a) {
-    var d = {};
-    for (var i = 0; i < mapping.length; i++) {
-        d[mapping[i][1]] = a[mapping[i][0]];
-    }
-    return d;
-}
-
-function style(feature) {
-    return remap(fallback(feature.properties || {}, defaults));
-}
-
-module.exports = {
-    style: style,
-    defaults: defaults
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js":[function(require,module,exports){
-'use strict';
-
-var util = require('./util');
-var formatPattern = /\.((?:png|jpg)\d*)(?=$|\?)/;
-
-var TileLayer = L.TileLayer.extend({
-    includes: [require('./load_tilejson')],
-
-    options: {
-        sanitizer: require('sanitize-caja')
-    },
-
-    // http://mapbox.com/developers/api/#image_quality
-    formats: [
-        'png', 'jpg',
-        // PNG
-        'png32', 'png64', 'png128', 'png256',
-        // JPG
-        'jpg70', 'jpg80', 'jpg90'],
-
-    scalePrefix: '@2x.',
-
-    initialize: function(_, options) {
-        L.TileLayer.prototype.initialize.call(this, undefined, options);
-
-        this._tilejson = {};
-
-        if (options && options.format) {
-            util.strict_oneof(options.format, this.formats);
-        }
-
-        this._loadTileJSON(_);
-    },
-
-    setFormat: function(_) {
-        util.strict(_, 'string');
-        this.options.format = _;
-        this.redraw();
-        return this;
-    },
-
-    // disable the setUrl function, which is not available on mapbox tilelayers
-    setUrl: null,
-
-    _setTileJSON: function(json) {
-        util.strict(json, 'object');
-
-        this.options.format = this.options.format ||
-            json.tiles[0].match(formatPattern)[1];
-
-        L.extend(this.options, {
-            tiles: json.tiles,
-            attribution: this.options.sanitizer(json.attribution),
-            minZoom: json.minzoom || 0,
-            maxZoom: json.maxzoom || 18,
-            tms: json.scheme === 'tms',
-            bounds: json.bounds && util.lbounds(json.bounds)
-        });
-
-        this._tilejson = json;
-        this.redraw();
-        return this;
-    },
-
-    getTileJSON: function() {
-        return this._tilejson;
-    },
-
-    // this is an exception to mapbox.js naming rules because it's called
-    // by `L.map`
-    getTileUrl: function(tilePoint) {
-        var tiles = this.options.tiles,
-            index = Math.floor(Math.abs(tilePoint.x + tilePoint.y) % tiles.length),
-            url = tiles[index];
-
-        var templated = L.Util.template(url, tilePoint);
-        if (!templated) {
-            return templated;
-        } else {
-            return templated.replace(formatPattern,
-                (L.Browser.retina ? this.scalePrefix : '.') + this.options.format);
-        }
-    },
-
-    // TileJSON.TileLayers are added to the map immediately, so that they get
-    // the desired z-index, but do not update until the TileJSON has been loaded.
-    _update: function() {
-        if (this.options.tiles) {
-            L.TileLayer.prototype._update.call(this);
-        }
-    }
-});
-
-module.exports.TileLayer = TileLayer;
-
-module.exports.tileLayer = function(_, options) {
-    return new TileLayer(_, options);
-};
-
-},{"./load_tilejson":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./util":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/util.js":[function(require,module,exports){
-'use strict';
-
-function contains(item, list) {
-    if (!list || !list.length) return false;
-    for (var i = 0; i < list.length; i++) {
-        if (list[i] === item) return true;
-    }
-    return false;
-}
-
-module.exports = {
-    idUrl: function(_, t) {
-        if (_.indexOf('/') === -1) t.loadID(_);
-        else t.loadURL(_);
-    },
-    log: function(_) {
-        if (typeof console === 'object' &&
-            typeof console.error === 'function') {
-            console.error(_);
-        }
-    },
-    strict: function(_, type) {
-        if (typeof _ !== type) {
-            throw new Error('Invalid argument: ' + type + ' expected');
-        }
-    },
-    strict_instance: function(_, klass, name) {
-        if (!(_ instanceof klass)) {
-            throw new Error('Invalid argument: ' + name + ' expected');
-        }
-    },
-    strict_oneof: function(_, values) {
-        if (!contains(_, values)) {
-            throw new Error('Invalid argument: ' + _ + ' given, valid values are ' +
-                values.join(', '));
-        }
-    },
-    strip_tags: function(_) {
-        return _.replace(/<[^<]+>/g, '');
-    },
-    lbounds: function(_) {
-        // leaflet-compatible bounds, since leaflet does not do geojson
-        return new L.LatLngBounds([[_[1], _[0]], [_[3], _[2]]]);
-    }
-};
-
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mustache/mustache.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/mustache/mustache.js":[function(require,module,exports){
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -51486,7 +49265,7 @@ module.exports = {
 
 }));
 
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/index.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js":[function(require,module,exports){
 var html_sanitize = require('./sanitizer-bundle.js');
 
 module.exports = function(_) {
@@ -51506,7 +49285,7 @@ function cleanUrl(url) {
 
 function cleanId(id) { return id; }
 
-},{"./sanitizer-bundle.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/sanitizer-bundle.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/sanitize-caja/sanitizer-bundle.js":[function(require,module,exports){
+},{"./sanitizer-bundle.js":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/sanitizer-bundle.js":[function(require,module,exports){
 
 // Copyright (C) 2010 Google Inc.
 //
@@ -53955,7 +51734,2203 @@ if (typeof module !== 'undefined') {
     module.exports = html_sanitize;
 }
 
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
+  "author": {
+    "name": "Mapbox"
+  },
+  "name": "mapbox.js",
+  "description": "mapbox javascript api",
+  "version": "2.2.4",
+  "homepage": "http://mapbox.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mapbox/mapbox.js.git"
+  },
+  "main": "src/index.js",
+  "dependencies": {
+    "corslite": "0.0.6",
+    "isarray": "0.0.1",
+    "leaflet": "0.7.7",
+    "mustache": "0.7.3",
+    "sanitize-caja": "0.1.3"
+  },
+  "scripts": {
+    "test": "eslint --no-eslintrc -c .eslintrc src && mocha-phantomjs test/index.html"
+  },
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "browserify": "^6.3.2",
+    "clean-css": "~2.0.7",
+    "eslint": "^0.23.0",
+    "expect.js": "0.3.1",
+    "happen": "0.1.3",
+    "leaflet-fullscreen": "0.0.4",
+    "leaflet-hash": "0.2.1",
+    "marked": "~0.3.0",
+    "minifyify": "^6.1.0",
+    "minimist": "0.0.5",
+    "mocha": "1.17.1",
+    "mocha-phantomjs": "3.1.6",
+    "sinon": "1.10.2"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "gitHead": "562aafee5a30c112df5f2c2e4abc6df8662301a9",
+  "bugs": {
+    "url": "https://github.com/mapbox/mapbox.js/issues"
+  },
+  "_id": "mapbox.js@2.2.4",
+  "_shasum": "72e64514ed34b539da33869ee28fbacbd1474159",
+  "_from": "mapbox.js@>=2.2.4 <3.0.0",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "alulsh",
+    "email": "alexandra.ulsh@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "1ec5",
+      "email": "mxn@1ec5.org"
+    },
+    {
+      "name": "aaronlidman",
+      "email": "aaronlidman@gmail.com"
+    },
+    {
+      "name": "ajashton",
+      "email": "aj.ashton@gmail.com"
+    },
+    {
+      "name": "alulsh",
+      "email": "ulsh@mapbox.com"
+    },
+    {
+      "name": "ansis",
+      "email": "ansis.brammanis@gmail.com"
+    },
+    {
+      "name": "apendleton",
+      "email": "andrew@mapbox.com"
+    },
+    {
+      "name": "bergwerkgis",
+      "email": "wb@bergwerk-gis.at"
+    },
+    {
+      "name": "bhousel",
+      "email": "bryan@mapbox.com"
+    },
+    {
+      "name": "bsudekum",
+      "email": "bobby@mapbox.com"
+    },
+    {
+      "name": "camilleanne",
+      "email": "camille@mapbox.com"
+    },
+    {
+      "name": "dnomadb",
+      "email": "damon@mapbox.com"
+    },
+    {
+      "name": "dthompson",
+      "email": "dthompson@gmail.com"
+    },
+    {
+      "name": "emilymcafee",
+      "email": "emily@mapbox.com"
+    },
+    {
+      "name": "flippmoke",
+      "email": "flippmoke@gmail.com"
+    },
+    {
+      "name": "freenerd",
+      "email": "spam@freenerd.de"
+    },
+    {
+      "name": "gretacb",
+      "email": "carol@mapbox.com"
+    },
+    {
+      "name": "ian29",
+      "email": "ian.villeda@gmail.com"
+    },
+    {
+      "name": "ianshward",
+      "email": "ian@mapbox.com"
+    },
+    {
+      "name": "ingalls",
+      "email": "nicholas.ingalls@gmail.com"
+    },
+    {
+      "name": "jfirebaugh",
+      "email": "john.firebaugh@gmail.com"
+    },
+    {
+      "name": "jrpruit1",
+      "email": "jake@jakepruitt.com"
+    },
+    {
+      "name": "karenzshea",
+      "email": "karen@mapbox.com"
+    },
+    {
+      "name": "kelvinabrokwa",
+      "email": "kelvinabrokwa@gmail.com"
+    },
+    {
+      "name": "kkaefer",
+      "email": "kkaefer@gmail.com"
+    },
+    {
+      "name": "lbud",
+      "email": "lauren@mapbox.com"
+    },
+    {
+      "name": "lucaswoj",
+      "email": "lucas@lucaswoj.com"
+    },
+    {
+      "name": "lxbarth",
+      "email": "alex@mapbox.com"
+    },
+    {
+      "name": "lyzidiamond",
+      "email": "lyzi@mapbox.com"
+    },
+    {
+      "name": "mapbox-admin",
+      "email": "accounts@mapbox.com"
+    },
+    {
+      "name": "mateov",
+      "email": "matt@mapbox.com"
+    },
+    {
+      "name": "mcwhittemore",
+      "email": "mcwhittemore@gmail.com"
+    },
+    {
+      "name": "miccolis",
+      "email": "jeff@miccolis.net"
+    },
+    {
+      "name": "mikemorris",
+      "email": "michael.patrick.morris@gmail.com"
+    },
+    {
+      "name": "morganherlocker",
+      "email": "morgan.herlocker@gmail.com"
+    },
+    {
+      "name": "mourner",
+      "email": "agafonkin@gmail.com"
+    },
+    {
+      "name": "mtirwin",
+      "email": "irwin@mapbox.com"
+    },
+    {
+      "name": "nickidlugash",
+      "email": "nicki@mapbox.com"
+    },
+    {
+      "name": "rclark",
+      "email": "ryan.clark.j@gmail.com"
+    },
+    {
+      "name": "samanbb",
+      "email": "saman@mapbox.com"
+    },
+    {
+      "name": "sbma44",
+      "email": "tlee@mapbox.com"
+    },
+    {
+      "name": "scothis",
+      "email": "scothis@gmail.com"
+    },
+    {
+      "name": "sgillies",
+      "email": "sean@mapbox.com"
+    },
+    {
+      "name": "springmeyer",
+      "email": "dane@mapbox.com"
+    },
+    {
+      "name": "themarex",
+      "email": "patrick@mapbox.com"
+    },
+    {
+      "name": "tmcw",
+      "email": "tom@macwright.org"
+    },
+    {
+      "name": "tristen",
+      "email": "tristen.brown@gmail.com"
+    },
+    {
+      "name": "willwhite",
+      "email": "will@mapbox.com"
+    },
+    {
+      "name": "yhahn",
+      "email": "young@mapbox.com"
+    }
+  ],
+  "dist": {
+    "shasum": "72e64514ed34b539da33869ee28fbacbd1474159",
+    "tarball": "http://registry.npmjs.org/mapbox.js/-/mapbox.js-2.2.4.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-2.2.4.tgz"
+}
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/config.js":[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    HTTP_URL: 'http://a.tiles.mapbox.com/v4',
+    HTTPS_URL: 'https://a.tiles.mapbox.com/v4',
+    FORCE_HTTPS: false,
+    REQUIRE_ACCESS_TOKEN: true
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js":[function(require,module,exports){
+'use strict';
+
+var util = require('./util'),
+    format_url = require('./format_url'),
+    request = require('./request'),
+    marker = require('./marker'),
+    simplestyle = require('./simplestyle');
+
+// # featureLayer
+//
+// A layer of features, loaded from Mapbox or else. Adds the ability
+// to reset features, filter them, and load them from a GeoJSON URL.
+var FeatureLayer = L.FeatureGroup.extend({
+    options: {
+        filter: function() { return true; },
+        sanitizer: require('sanitize-caja'),
+        style: simplestyle.style,
+        popupOptions: { closeButton: false }
+    },
+
+    initialize: function(_, options) {
+        L.setOptions(this, options);
+
+        this._layers = {};
+
+        if (typeof _ === 'string') {
+            util.idUrl(_, this);
+        // javascript object of TileJSON data
+        } else if (_ && typeof _ === 'object') {
+            this.setGeoJSON(_);
+        }
+    },
+
+    setGeoJSON: function(_) {
+        this._geojson = _;
+        this.clearLayers();
+        this._initialize(_);
+        return this;
+    },
+
+    getGeoJSON: function() {
+        return this._geojson;
+    },
+
+    loadURL: function(url) {
+        if (this._request && 'abort' in this._request) this._request.abort();
+        this._request = request(url, L.bind(function(err, json) {
+            this._request = null;
+            if (err && err.type !== 'abort') {
+                util.log('could not load features at ' + url);
+                this.fire('error', {error: err});
+            } else if (json) {
+                this.setGeoJSON(json);
+                this.fire('ready');
+            }
+        }, this));
+        return this;
+    },
+
+    loadID: function(id) {
+        return this.loadURL(format_url('/v4/' + id + '/features.json', this.options.accessToken));
+    },
+
+    setFilter: function(_) {
+        this.options.filter = _;
+        if (this._geojson) {
+            this.clearLayers();
+            this._initialize(this._geojson);
+        }
+        return this;
+    },
+
+    getFilter: function() {
+        return this.options.filter;
+    },
+
+    _initialize: function(json) {
+        var features = L.Util.isArray(json) ? json : json.features,
+            i, len;
+
+        if (features) {
+            for (i = 0, len = features.length; i < len; i++) {
+                // Only add this if geometry or geometries are set and not null
+                if (features[i].geometries || features[i].geometry || features[i].features) {
+                    this._initialize(features[i]);
+                }
+            }
+        } else if (this.options.filter(json)) {
+
+            var opts = {accessToken: this.options.accessToken},
+                pointToLayer = this.options.pointToLayer || function(feature, latlon) {
+                  return marker.style(feature, latlon, opts);
+                },
+                layer = L.GeoJSON.geometryToLayer(json, pointToLayer),
+                popupHtml = marker.createPopup(json, this.options.sanitizer),
+                style = this.options.style,
+                defaultStyle = style === simplestyle.style;
+
+            if (style && 'setStyle' in layer &&
+                // if the style method is the simplestyle default, then
+                // never style L.Circle or L.CircleMarker because
+                // simplestyle has no rules over them, only over geometry
+                // primitives directly from GeoJSON
+                (!(defaultStyle && (layer instanceof L.Circle ||
+                  layer instanceof L.CircleMarker)))) {
+                if (typeof style === 'function') {
+                    style = style(json);
+                }
+                layer.setStyle(style);
+            }
+
+            layer.feature = json;
+
+            if (popupHtml) {
+                layer.bindPopup(popupHtml, this.options.popupOptions);
+            }
+
+            this.addLayer(layer);
+        }
+    }
+});
+
+module.exports.FeatureLayer = FeatureLayer;
+
+module.exports.featureLayer = function(_, options) {
+    return new FeatureLayer(_, options);
+};
+
+},{"./format_url":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./marker":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/marker.js","./request":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/request.js","./simplestyle":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feedback.js":[function(require,module,exports){
+'use strict';
+
+var Feedback = L.Class.extend({
+    includes: L.Mixin.Events,
+    data: {},
+    record: function(data) {
+        L.extend(this.data, data);
+        this.fire('change');
+    }
+});
+
+module.exports = new Feedback();
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js":[function(require,module,exports){
+'use strict';
+
+var config = require('./config'),
+    version = require('../package.json').version;
+
+module.exports = function(path, accessToken) {
+    accessToken = accessToken || L.mapbox.accessToken;
+
+    if (!accessToken && config.REQUIRE_ACCESS_TOKEN) {
+        throw new Error('An API access token is required to use Mapbox.js. ' +
+            'See https://www.mapbox.com/mapbox.js/api/v' + version + '/api-access-tokens/');
+    }
+
+    var url = (document.location.protocol === 'https:' || config.FORCE_HTTPS) ? config.HTTPS_URL : config.HTTP_URL;
+    url = url.replace(/\/v4$/, '');
+    url += path;
+    url += url.indexOf('?') !== -1 ? '&access_token=' : '?access_token=';
+
+    if (config.REQUIRE_ACCESS_TOKEN) {
+        if (accessToken[0] === 's') {
+            throw new Error('Use a public access token (pk.*) with Mapbox.js, not a secret access token (sk.*). ' +
+                'See https://www.mapbox.com/mapbox.js/api/v' + version + '/api-access-tokens/');
+        }
+
+        url += accessToken;
+    }
+
+    return url;
+};
+
+module.exports.tileJSON = function(urlOrMapID, accessToken) {
+    if (urlOrMapID.indexOf('/') !== -1)
+        return urlOrMapID;
+
+    var url = module.exports('/v4/' + urlOrMapID + '.json', accessToken);
+
+    // TileJSON requests need a secure flag appended to their URLs so
+    // that the server knows to send SSL-ified resource references.
+    if (url.indexOf('https') === 0)
+        url += '&secure';
+
+    return url;
+};
+
+},{"../package.json":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/package.json","./config":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/config.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js":[function(require,module,exports){
+'use strict';
+
+var isArray = require('isarray'),
+    util = require('./util'),
+    format_url = require('./format_url'),
+    feedback = require('./feedback'),
+    request = require('./request');
+
+// Low-level geocoding interface - wraps specific API calls and their
+// return values.
+module.exports = function(url, options) {
+    if (!options) options = {};
+    var geocoder = {};
+
+    util.strict(url, 'string');
+
+    if (url.indexOf('/') === -1) {
+        url = format_url('/geocoding/v5/' + url + '/{query}.json', options.accessToken, 5);
+    }
+
+    function roundTo(latLng, precision) {
+        var mult = Math.pow(10, precision);
+        latLng.lat = Math.round(latLng.lat * mult) / mult;
+        latLng.lng = Math.round(latLng.lng * mult) / mult;
+        return latLng;
+    }
+
+    geocoder.getURL = function() {
+        return url;
+    };
+
+    geocoder.queryURL = function(_) {
+        var isObject = !(isArray(_) || typeof _ === 'string'),
+            query = isObject ? _.query : _;
+
+        if (isArray(query)) {
+            var parts = [];
+            for (var i = 0; i < query.length; i++) {
+                parts[i] = encodeURIComponent(query[i]);
+            }
+            query = parts.join(';');
+        } else {
+            query = encodeURIComponent(query);
+        }
+
+        feedback.record({ geocoding: query });
+
+        var url = L.Util.template(geocoder.getURL(), {query: query});
+
+        if (isObject && _.types) {
+            if (isArray(_.types)) {
+                url += '&types=' + _.types.join();
+            } else {
+                url += '&types=' + _.types;
+            }
+        }
+
+        if (isObject && _.proximity) {
+            var proximity = roundTo(L.latLng(_.proximity), 3);
+            url += '&proximity=' + proximity.lng + ',' + proximity.lat;
+        }
+
+        return url;
+    };
+
+    geocoder.query = function(_, callback) {
+        util.strict(callback, 'function');
+
+        request(geocoder.queryURL(_), function(err, json) {
+            if (json && (json.length || json.features)) {
+                var res = {
+                    results: json
+                };
+                if (json.features && json.features.length) {
+                    res.latlng = [
+                        json.features[0].center[1],
+                        json.features[0].center[0]];
+
+                    if (json.features[0].bbox) {
+                        res.bounds = json.features[0].bbox;
+                        res.lbounds = util.lbounds(res.bounds);
+                    }
+                }
+                callback(null, res);
+            } else callback(err || true);
+        });
+
+        return geocoder;
+    };
+
+    // a reverse geocode:
+    //
+    //  geocoder.reverseQuery([80, 20])
+    geocoder.reverseQuery = function(_, callback) {
+        var q = '';
+
+        // sort through different ways people represent lat and lon pairs
+        function normalize(x) {
+            var latLng;
+            if (x.lat !== undefined && x.lng !== undefined) {
+                latLng = L.latLng(x.lat, x.lng);
+            } else if (x.lat !== undefined && x.lon !== undefined) {
+                latLng = L.latLng(x.lat, x.lon);
+            } else {
+                latLng = L.latLng(x[1], x[0]);
+            }
+            latLng = roundTo(latLng, 5);
+            return latLng.lng + ',' + latLng.lat;
+        }
+
+        if (_.length && _[0].length) {
+            for (var i = 0, pts = []; i < _.length; i++) {
+                pts.push(normalize(_[i]));
+            }
+            q = pts.join(';');
+        } else {
+            q = normalize(_);
+        }
+
+        request(geocoder.queryURL(q), function(err, json) {
+            callback(err, json);
+        });
+
+        return geocoder;
+    };
+
+    return geocoder;
+};
+
+},{"./feedback":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./format_url":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./request":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","isarray":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/isarray/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/geocoder_control.js":[function(require,module,exports){
+'use strict';
+
+var geocoder = require('./geocoder'),
+    util = require('./util');
+
+var GeocoderControl = L.Control.extend({
+    includes: L.Mixin.Events,
+
+    options: {
+        proximity: true,
+        position: 'topleft',
+        pointZoom: 16,
+        keepOpen: false,
+        autocomplete: false
+    },
+
+    initialize: function(_, options) {
+        L.Util.setOptions(this, options);
+        this.setURL(_);
+        this._updateSubmit = L.bind(this._updateSubmit, this);
+        this._updateAutocomplete = L.bind(this._updateAutocomplete, this);
+        this._chooseResult = L.bind(this._chooseResult, this);
+    },
+
+    setURL: function(_) {
+        this.geocoder = geocoder(_, {
+            accessToken: this.options.accessToken
+        });
+        return this;
+    },
+
+    getURL: function() {
+        return this.geocoder.getURL();
+    },
+
+    setID: function(_) {
+        return this.setURL(_);
+    },
+
+    setTileJSON: function(_) {
+        return this.setURL(_.geocoder);
+    },
+
+    _toggle: function(e) {
+        if (e) L.DomEvent.stop(e);
+        if (L.DomUtil.hasClass(this._container, 'active')) {
+            L.DomUtil.removeClass(this._container, 'active');
+            this._results.innerHTML = '';
+            this._input.blur();
+        } else {
+            L.DomUtil.addClass(this._container, 'active');
+            this._input.focus();
+            this._input.select();
+        }
+    },
+
+    _closeIfOpen: function() {
+        if (L.DomUtil.hasClass(this._container, 'active') &&
+            !this.options.keepOpen) {
+            L.DomUtil.removeClass(this._container, 'active');
+            this._results.innerHTML = '';
+            this._input.blur();
+        }
+    },
+
+    onAdd: function(map) {
+
+        var container = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder leaflet-bar leaflet-control'),
+            link = L.DomUtil.create('a', 'leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder', container),
+            results = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder-results', container),
+            wrap = L.DomUtil.create('div', 'leaflet-control-mapbox-geocoder-wrap', container),
+            form = L.DomUtil.create('form', 'leaflet-control-mapbox-geocoder-form', wrap),
+            input = L.DomUtil.create('input', '', form);
+
+        link.href = '#';
+        link.innerHTML = '&nbsp;';
+
+        input.type = 'text';
+        input.setAttribute('placeholder', 'Search');
+
+        L.DomEvent.addListener(form, 'submit', this._geocode, this);
+        L.DomEvent.addListener(input, 'keyup', this._autocomplete, this);
+        L.DomEvent.disableClickPropagation(container);
+
+        this._map = map;
+        this._results = results;
+        this._input = input;
+        this._form = form;
+
+        if (this.options.keepOpen) {
+            L.DomUtil.addClass(container, 'active');
+        } else {
+            this._map.on('click', this._closeIfOpen, this);
+            L.DomEvent.addListener(link, 'click', this._toggle, this);
+        }
+
+        return container;
+    },
+
+    _updateSubmit: function(err, resp) {
+        L.DomUtil.removeClass(this._container, 'searching');
+        this._results.innerHTML = '';
+        if (err || !resp) {
+            this.fire('error', {error: err});
+        } else {
+            var features = [];
+            if (resp.results && resp.results.features) {
+                features = resp.results.features;
+            }
+            if (features.length === 1) {
+                this.fire('autoselect', { feature: features[0] });
+                this.fire('found', {results: resp.results});
+                this._chooseResult(features[0]);
+                this._closeIfOpen();
+            } else if (features.length > 1) {
+                this.fire('found', {results: resp.results});
+                this._displayResults(features);
+            } else {
+                this._displayResults(features);
+            }
+        }
+    },
+
+    _updateAutocomplete: function(err, resp) {
+        this._results.innerHTML = '';
+        if (err || !resp) {
+            this.fire('error', {error: err});
+        } else {
+            var features = [];
+            if (resp.results && resp.results.features) {
+                features = resp.results.features;
+            }
+            if (features.length) {
+                this.fire('found', {results: resp.results});
+            }
+            this._displayResults(features);
+        }
+    },
+
+    _displayResults: function(features) {
+        for (var i = 0, l = Math.min(features.length, 5); i < l; i++) {
+            var feature = features[i];
+            var name = feature.place_name;
+            if (!name.length) continue;
+
+            var r = L.DomUtil.create('a', '', this._results);
+            var text = ('innerText' in r) ? 'innerText' : 'textContent';
+            r[text] = name;
+            r.setAttribute('title', name);
+            r.href = '#';
+
+            (L.bind(function(feature) {
+                L.DomEvent.addListener(r, 'click', function(e) {
+                    this._chooseResult(feature);
+                    L.DomEvent.stop(e);
+                    this.fire('select', { feature: feature });
+                }, this);
+            }, this))(feature);
+        }
+        if (features.length > 5) {
+            var outof = L.DomUtil.create('span', '', this._results);
+            outof.innerHTML = 'Top 5 of ' + features.length + '  results';
+        }
+    },
+
+    _chooseResult: function(result) {
+        if (result.bbox) {
+            this._map.fitBounds(util.lbounds(result.bbox));
+        } else if (result.center) {
+            this._map.setView([result.center[1], result.center[0]], (this._map.getZoom() === undefined) ?
+                this.options.pointZoom :
+                Math.max(this._map.getZoom(), this.options.pointZoom));
+        }
+    },
+
+    _geocode: function(e) {
+        L.DomEvent.preventDefault(e);
+        if (this._input.value === '') return this._updateSubmit();
+        L.DomUtil.addClass(this._container, 'searching');
+        this.geocoder.query({
+            query: this._input.value,
+            proximity: this.options.proximity ? this._map.getCenter() : false
+        }, this._updateSubmit);
+    },
+
+    _autocomplete: function() {
+        if (!this.options.autocomplete) return;
+        if (this._input.value === '') return this._updateAutocomplete();
+        this.geocoder.query({
+            query: this._input.value,
+            proximity: this.options.proximity ? this._map.getCenter() : false
+        }, this._updateAutocomplete);
+    }
+});
+
+module.exports.GeocoderControl = GeocoderControl;
+
+module.exports.geocoderControl = function(_, options) {
+    return new GeocoderControl(_, options);
+};
+
+},{"./geocoder":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid.js":[function(require,module,exports){
+'use strict';
+
+function utfDecode(c) {
+    if (c >= 93) c--;
+    if (c >= 35) c--;
+    return c - 32;
+}
+
+module.exports = function(data) {
+    return function(x, y) {
+        if (!data) return;
+        var idx = utfDecode(data.grid[y].charCodeAt(x)),
+            key = data.keys[idx];
+        return data.data[key];
+    };
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js":[function(require,module,exports){
+'use strict';
+
+var util = require('./util'),
+    Mustache = require('mustache');
+
+var GridControl = L.Control.extend({
+
+    options: {
+        pinnable: true,
+        follow: false,
+        sanitizer: require('sanitize-caja'),
+        touchTeaser: true,
+        location: true
+    },
+
+    _currentContent: '',
+
+    // pinned means that this control is on a feature and the user has likely
+    // clicked. pinned will not become false unless the user clicks off
+    // of the feature onto another or clicks x
+    _pinned: false,
+
+    initialize: function(_, options) {
+        L.Util.setOptions(this, options);
+        util.strict_instance(_, L.Class, 'L.mapbox.gridLayer');
+        this._layer = _;
+    },
+
+    setTemplate: function(template) {
+        util.strict(template, 'string');
+        this.options.template = template;
+        return this;
+    },
+
+    _template: function(format, data) {
+        if (!data) return;
+        var template = this.options.template || this._layer.getTileJSON().template;
+        if (template) {
+            var d = {};
+            d['__' + format + '__'] = true;
+            return this.options.sanitizer(
+                Mustache.to_html(template, L.extend(d, data)));
+        }
+    },
+
+    // change the content of the tooltip HTML if it has changed, otherwise
+    // noop
+    _show: function(content, o) {
+        if (content === this._currentContent) return;
+
+        this._currentContent = content;
+
+        if (this.options.follow) {
+            this._popup.setContent(content)
+                .setLatLng(o.latLng);
+            if (this._map._popup !== this._popup) this._popup.openOn(this._map);
+        } else {
+            this._container.style.display = 'block';
+            this._contentWrapper.innerHTML = content;
+        }
+    },
+
+    hide: function() {
+        this._pinned = false;
+        this._currentContent = '';
+
+        this._map.closePopup();
+        this._container.style.display = 'none';
+        this._contentWrapper.innerHTML = '';
+
+        L.DomUtil.removeClass(this._container, 'closable');
+
+        return this;
+    },
+
+    _mouseover: function(o) {
+        if (o.data) {
+            L.DomUtil.addClass(this._map._container, 'map-clickable');
+        } else {
+            L.DomUtil.removeClass(this._map._container, 'map-clickable');
+        }
+
+        if (this._pinned) return;
+
+        var content = this._template('teaser', o.data);
+        if (content) {
+            this._show(content, o);
+        } else {
+            this.hide();
+        }
+    },
+
+    _mousemove: function(o) {
+        if (this._pinned) return;
+        if (!this.options.follow) return;
+
+        this._popup.setLatLng(o.latLng);
+    },
+
+    _navigateTo: function(url) {
+        window.top.location.href = url;
+    },
+
+    _click: function(o) {
+
+        var location_formatted = this._template('location', o.data);
+        if (this.options.location && location_formatted &&
+            location_formatted.search(/^https?:/) === 0) {
+            return this._navigateTo(this._template('location', o.data));
+        }
+
+        if (!this.options.pinnable) return;
+
+        var content = this._template('full', o.data);
+
+        if (!content && this.options.touchTeaser && L.Browser.touch) {
+            content = this._template('teaser', o.data);
+        }
+
+        if (content) {
+            L.DomUtil.addClass(this._container, 'closable');
+            this._pinned = true;
+            this._show(content, o);
+        } else if (this._pinned) {
+            L.DomUtil.removeClass(this._container, 'closable');
+            this._pinned = false;
+            this.hide();
+        }
+    },
+
+    _onPopupClose: function() {
+        this._currentContent = null;
+        this._pinned = false;
+    },
+
+    _createClosebutton: function(container, fn) {
+        var link = L.DomUtil.create('a', 'close', container);
+
+        link.innerHTML = 'close';
+        link.href = '#';
+        link.title = 'close';
+
+        L.DomEvent
+            .on(link, 'click', L.DomEvent.stopPropagation)
+            .on(link, 'mousedown', L.DomEvent.stopPropagation)
+            .on(link, 'dblclick', L.DomEvent.stopPropagation)
+            .on(link, 'click', L.DomEvent.preventDefault)
+            .on(link, 'click', fn, this);
+
+        return link;
+    },
+
+    onAdd: function(map) {
+        this._map = map;
+
+        var className = 'leaflet-control-grid map-tooltip',
+            container = L.DomUtil.create('div', className),
+            contentWrapper = L.DomUtil.create('div', 'map-tooltip-content');
+
+        // hide the container element initially
+        container.style.display = 'none';
+        this._createClosebutton(container, this.hide);
+        container.appendChild(contentWrapper);
+
+        this._contentWrapper = contentWrapper;
+        this._popup = new L.Popup({ autoPan: false, closeOnClick: false });
+
+        map.on('popupclose', this._onPopupClose, this);
+
+        L.DomEvent
+            .disableClickPropagation(container)
+            // allow people to scroll tooltips with mousewheel
+            .addListener(container, 'mousewheel', L.DomEvent.stopPropagation);
+
+        this._layer
+            .on('mouseover', this._mouseover, this)
+            .on('mousemove', this._mousemove, this)
+            .on('click', this._click, this);
+
+        return container;
+    },
+
+    onRemove: function (map) {
+
+        map.off('popupclose', this._onPopupClose, this);
+
+        this._layer
+            .off('mouseover', this._mouseover, this)
+            .off('mousemove', this._mousemove, this)
+            .off('click', this._click, this);
+    }
+});
+
+module.exports.GridControl = GridControl;
+
+module.exports.gridControl = function(_, options) {
+    return new GridControl(_, options);
+};
+
+},{"./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","mustache":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js":[function(require,module,exports){
+'use strict';
+
+var util = require('./util'),
+    request = require('./request'),
+    grid = require('./grid');
+
+// forked from danzel/L.UTFGrid
+var GridLayer = L.Class.extend({
+    includes: [L.Mixin.Events, require('./load_tilejson')],
+
+    options: {
+        template: function() { return ''; }
+    },
+
+    _mouseOn: null,
+    _tilejson: {},
+    _cache: {},
+
+    initialize: function(_, options) {
+        L.Util.setOptions(this, options);
+        this._loadTileJSON(_);
+    },
+
+    _setTileJSON: function(json) {
+        util.strict(json, 'object');
+
+        L.extend(this.options, {
+            grids: json.grids,
+            minZoom: json.minzoom,
+            maxZoom: json.maxzoom,
+            bounds: json.bounds && util.lbounds(json.bounds)
+        });
+
+        this._tilejson = json;
+        this._cache = {};
+        this._update();
+
+        return this;
+    },
+
+    getTileJSON: function() {
+        return this._tilejson;
+    },
+
+    active: function() {
+        return !!(this._map && this.options.grids && this.options.grids.length);
+    },
+
+    addTo: function (map) {
+        map.addLayer(this);
+        return this;
+    },
+
+    onAdd: function(map) {
+        this._map = map;
+        this._update();
+
+        this._map
+            .on('click', this._click, this)
+            .on('mousemove', this._move, this)
+            .on('moveend', this._update, this);
+    },
+
+    onRemove: function() {
+        this._map
+            .off('click', this._click, this)
+            .off('mousemove', this._move, this)
+            .off('moveend', this._update, this);
+    },
+
+    getData: function(latlng, callback) {
+        if (!this.active()) return;
+
+        var map = this._map,
+            point = map.project(latlng.wrap()),
+            tileSize = 256,
+            resolution = 4,
+            x = Math.floor(point.x / tileSize),
+            y = Math.floor(point.y / tileSize),
+            max = map.options.crs.scale(map.getZoom()) / tileSize;
+
+        x = (x + max) % max;
+        y = (y + max) % max;
+
+        this._getTile(map.getZoom(), x, y, function(grid) {
+            var gridX = Math.floor((point.x - (x * tileSize)) / resolution),
+                gridY = Math.floor((point.y - (y * tileSize)) / resolution);
+
+            callback(grid(gridX, gridY));
+        });
+
+        return this;
+    },
+
+    _click: function(e) {
+        this.getData(e.latlng, L.bind(function(data) {
+            this.fire('click', {
+                latLng: e.latlng,
+                data: data
+            });
+        }, this));
+    },
+
+    _move: function(e) {
+        this.getData(e.latlng, L.bind(function(data) {
+            if (data !== this._mouseOn) {
+                if (this._mouseOn) {
+                    this.fire('mouseout', {
+                        latLng: e.latlng,
+                        data: this._mouseOn
+                    });
+                }
+
+                this.fire('mouseover', {
+                    latLng: e.latlng,
+                    data: data
+                });
+
+                this._mouseOn = data;
+            } else {
+                this.fire('mousemove', {
+                    latLng: e.latlng,
+                    data: data
+                });
+            }
+        }, this));
+    },
+
+    _getTileURL: function(tilePoint) {
+        var urls = this.options.grids,
+            index = (tilePoint.x + tilePoint.y) % urls.length,
+            url = urls[index];
+
+        return L.Util.template(url, tilePoint);
+    },
+
+    // Load up all required json grid files
+    _update: function() {
+        if (!this.active()) return;
+
+        var bounds = this._map.getPixelBounds(),
+            z = this._map.getZoom(),
+            tileSize = 256;
+
+        if (z > this.options.maxZoom || z < this.options.minZoom) return;
+
+        var tileBounds = L.bounds(
+                bounds.min.divideBy(tileSize)._floor(),
+                bounds.max.divideBy(tileSize)._floor()),
+            max = this._map.options.crs.scale(z) / tileSize;
+
+        for (var x = tileBounds.min.x; x <= tileBounds.max.x; x++) {
+            for (var y = tileBounds.min.y; y <= tileBounds.max.y; y++) {
+                // x wrapped
+                this._getTile(z, ((x % max) + max) % max, ((y % max) + max) % max);
+            }
+        }
+    },
+
+    _getTile: function(z, x, y, callback) {
+        var key = z + '_' + x + '_' + y,
+            tilePoint = L.point(x, y);
+
+        tilePoint.z = z;
+
+        if (!this._tileShouldBeLoaded(tilePoint)) {
+            return;
+        }
+
+        if (key in this._cache) {
+            if (!callback) return;
+
+            if (typeof this._cache[key] === 'function') {
+                callback(this._cache[key]); // Already loaded
+            } else {
+                this._cache[key].push(callback); // Pending
+            }
+
+            return;
+        }
+
+        this._cache[key] = [];
+
+        if (callback) {
+            this._cache[key].push(callback);
+        }
+
+        request(this._getTileURL(tilePoint), L.bind(function(err, json) {
+            var callbacks = this._cache[key];
+            this._cache[key] = grid(json);
+            for (var i = 0; i < callbacks.length; ++i) {
+                callbacks[i](this._cache[key]);
+            }
+        }, this));
+    },
+
+    _tileShouldBeLoaded: function(tilePoint) {
+        if (tilePoint.z > this.options.maxZoom || tilePoint.z < this.options.minZoom) {
+            return false;
+        }
+
+        if (this.options.bounds) {
+            var tileSize = 256,
+                nwPoint = tilePoint.multiplyBy(tileSize),
+                sePoint = nwPoint.add(new L.Point(tileSize, tileSize)),
+                nw = this._map.unproject(nwPoint),
+                se = this._map.unproject(sePoint),
+                bounds = new L.LatLngBounds([nw, se]);
+
+            if (!this.options.bounds.intersects(bounds)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+});
+
+module.exports.GridLayer = GridLayer;
+
+module.exports.gridLayer = function(_, options) {
+    return new GridLayer(_, options);
+};
+
+},{"./grid":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid.js","./load_tilejson":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./request":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/index.js":[function(require,module,exports){
+'use strict';
+
+var leaflet = require('./leaflet');
+
+require('./mapbox');
+
+module.exports = leaflet;
+
+},{"./leaflet":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/leaflet.js","./mapbox":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/mapbox.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/info_control.js":[function(require,module,exports){
+'use strict';
+
+var InfoControl = L.Control.extend({
+    options: {
+        position: 'bottomright',
+        sanitizer: require('sanitize-caja')
+    },
+
+    initialize: function(options) {
+        L.setOptions(this, options);
+        this._info = {};
+        console.warn('infoControl has been deprecated and will be removed in mapbox.js v3.0.0. Use the default attribution control instead, which is now responsive.');
+    },
+
+    onAdd: function(map) {
+        this._container = L.DomUtil.create('div', 'mapbox-control-info mapbox-small');
+        this._content = L.DomUtil.create('div', 'map-info-container', this._container);
+
+        var link = L.DomUtil.create('a', 'mapbox-info-toggle mapbox-icon mapbox-icon-info', this._container);
+        link.href = '#';
+
+        L.DomEvent.addListener(link, 'click', this._showInfo, this);
+        L.DomEvent.disableClickPropagation(this._container);
+
+        for (var i in map._layers) {
+            if (map._layers[i].getAttribution) {
+                this.addInfo(map._layers[i].getAttribution());
+            }
+        }
+
+        map
+            .on('layeradd', this._onLayerAdd, this)
+            .on('layerremove', this._onLayerRemove, this);
+
+        this._update();
+        return this._container;
+    },
+
+    onRemove: function(map) {
+        map
+            .off('layeradd', this._onLayerAdd, this)
+            .off('layerremove', this._onLayerRemove, this);
+    },
+
+    addInfo: function(text) {
+        if (!text) return this;
+        if (!this._info[text]) this._info[text] = 0;
+        this._info[text] = true;
+        return this._update();
+    },
+
+    removeInfo: function (text) {
+        if (!text) return this;
+        if (this._info[text]) this._info[text] = false;
+        return this._update();
+    },
+
+    _showInfo: function(e) {
+        L.DomEvent.preventDefault(e);
+        if (this._active === true) return this._hidecontent();
+
+        L.DomUtil.addClass(this._container, 'active');
+        this._active = true;
+        this._update();
+    },
+
+    _hidecontent: function() {
+        this._content.innerHTML = '';
+        this._active = false;
+        L.DomUtil.removeClass(this._container, 'active');
+        return;
+    },
+
+    _update: function() {
+        if (!this._map) { return this; }
+        this._content.innerHTML = '';
+        var hide = 'none';
+        var info = [];
+
+        for (var i in this._info) {
+            if (this._info.hasOwnProperty(i) && this._info[i]) {
+                info.push(this.options.sanitizer(i));
+                hide = 'block';
+            }
+        }
+
+        this._content.innerHTML += info.join(' | ');
+
+        // If there are no results in _info then hide this.
+        this._container.style.display = hide;
+        return this;
+    },
+
+    _onLayerAdd: function(e) {
+        if (e.layer.getAttribution && e.layer.getAttribution()) {
+            this.addInfo(e.layer.getAttribution());
+        } else if ('on' in e.layer && e.layer.getAttribution) {
+            e.layer.on('ready', L.bind(function() {
+                this.addInfo(e.layer.getAttribution());
+            }, this));
+        }
+    },
+
+    _onLayerRemove: function (e) {
+        if (e.layer.getAttribution) {
+            this.removeInfo(e.layer.getAttribution());
+        }
+    }
+});
+
+module.exports.InfoControl = InfoControl;
+
+module.exports.infoControl = function(options) {
+    return new InfoControl(options);
+};
+
+},{"sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/leaflet.js":[function(require,module,exports){
+module.exports = window.L = require('leaflet/dist/leaflet-src');
+
+},{"leaflet/dist/leaflet-src":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/leaflet/dist/leaflet-src.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js":[function(require,module,exports){
+'use strict';
+
+var LegendControl = L.Control.extend({
+
+    options: {
+        position: 'bottomright',
+        sanitizer: require('sanitize-caja')
+    },
+
+    initialize: function(options) {
+        L.setOptions(this, options);
+        this._legends = {};
+    },
+
+    onAdd: function() {
+        this._container = L.DomUtil.create('div', 'map-legends wax-legends');
+        L.DomEvent.disableClickPropagation(this._container);
+
+        this._update();
+
+        return this._container;
+    },
+
+    addLegend: function(text) {
+        if (!text) { return this; }
+
+        if (!this._legends[text]) {
+            this._legends[text] = 0;
+        }
+
+        this._legends[text]++;
+        return this._update();
+    },
+
+    removeLegend: function(text) {
+        if (!text) { return this; }
+        if (this._legends[text]) this._legends[text]--;
+        return this._update();
+    },
+
+    _update: function() {
+        if (!this._map) { return this; }
+
+        this._container.innerHTML = '';
+        var hide = 'none';
+
+        for (var i in this._legends) {
+            if (this._legends.hasOwnProperty(i) && this._legends[i]) {
+                var div = L.DomUtil.create('div', 'map-legend wax-legend', this._container);
+                div.innerHTML = this.options.sanitizer(i);
+                hide = 'block';
+            }
+        }
+
+        // hide the control entirely unless there is at least one legend;
+        // otherwise there will be a small grey blemish on the map.
+        this._container.style.display = hide;
+
+        return this;
+    }
+});
+
+module.exports.LegendControl = LegendControl;
+
+module.exports.legendControl = function(options) {
+    return new LegendControl(options);
+};
+
+},{"sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js":[function(require,module,exports){
+'use strict';
+
+var request = require('./request'),
+    format_url = require('./format_url'),
+    util = require('./util');
+
+module.exports = {
+    _loadTileJSON: function(_) {
+        if (typeof _ === 'string') {
+            _ = format_url.tileJSON(_, this.options && this.options.accessToken);
+            request(_, L.bind(function(err, json) {
+                if (err) {
+                    util.log('could not load TileJSON at ' + _);
+                    this.fire('error', {error: err});
+                } else if (json) {
+                    this._setTileJSON(json);
+                    this.fire('ready');
+                }
+            }, this));
+        } else if (_ && typeof _ === 'object') {
+            this._setTileJSON(_);
+        }
+    }
+};
+
+},{"./format_url":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./request":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/request.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/map.js":[function(require,module,exports){
+'use strict';
+
+var tileLayer = require('./tile_layer').tileLayer,
+    featureLayer = require('./feature_layer').featureLayer,
+    gridLayer = require('./grid_layer').gridLayer,
+    gridControl = require('./grid_control').gridControl,
+    infoControl = require('./info_control').infoControl,
+    shareControl = require('./share_control').shareControl,
+    legendControl = require('./legend_control').legendControl,
+    mapboxLogoControl = require('./mapbox_logo').mapboxLogoControl,
+    feedback = require('./feedback');
+
+function withAccessToken(options, accessToken) {
+    if (!accessToken || options.accessToken)
+        return options;
+    return L.extend({accessToken: accessToken}, options);
+}
+
+var LMap = L.Map.extend({
+    includes: [require('./load_tilejson')],
+
+    options: {
+        tileLayer: {},
+        featureLayer: {},
+        gridLayer: {},
+        legendControl: {},
+        gridControl: {},
+        infoControl: false,
+        shareControl: false,
+        sanitizer: require('sanitize-caja')
+    },
+
+    _tilejson: {},
+
+    initialize: function(element, _, options) {
+
+        L.Map.prototype.initialize.call(this, element,
+            L.extend({}, L.Map.prototype.options, options));
+
+        // Disable the default 'Leaflet' text
+        if (this.attributionControl) {
+            this.attributionControl.setPrefix('');
+
+            var compact = this.options.attributionControl.compact;
+            // Set a compact display if map container width is < 640 or
+            // compact is set to `true` in attributionControl options.
+            if (compact || (compact !== false && this._container.offsetWidth <= 640)) {
+                L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
+            }
+
+            if (compact === undefined) {
+                this.on('resize', function() {
+                    if (this._container.offsetWidth > 640) {
+                        L.DomUtil.removeClass(this.attributionControl._container, 'leaflet-compact-attribution');
+                    } else {
+                        L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
+                    }
+                });
+            }
+        }
+
+        if (this.options.tileLayer) {
+            this.tileLayer = tileLayer(undefined,
+                withAccessToken(this.options.tileLayer, this.options.accessToken));
+            this.addLayer(this.tileLayer);
+        }
+
+        if (this.options.featureLayer) {
+            this.featureLayer = featureLayer(undefined,
+                withAccessToken(this.options.featureLayer, this.options.accessToken));
+            this.addLayer(this.featureLayer);
+        }
+
+        if (this.options.gridLayer) {
+            this.gridLayer = gridLayer(undefined,
+                withAccessToken(this.options.gridLayer, this.options.accessToken));
+            this.addLayer(this.gridLayer);
+        }
+
+        if (this.options.gridLayer && this.options.gridControl) {
+            this.gridControl = gridControl(this.gridLayer, this.options.gridControl);
+            this.addControl(this.gridControl);
+        }
+
+        if (this.options.infoControl) {
+            this.infoControl = infoControl(this.options.infoControl);
+            this.addControl(this.infoControl);
+        }
+
+        if (this.options.legendControl) {
+            this.legendControl = legendControl(this.options.legendControl);
+            this.addControl(this.legendControl);
+        }
+
+        if (this.options.shareControl) {
+            this.shareControl = shareControl(undefined,
+                withAccessToken(this.options.shareControl, this.options.accessToken));
+            this.addControl(this.shareControl);
+        }
+
+        this._mapboxLogoControl = mapboxLogoControl(this.options.mapboxLogoControl);
+        this.addControl(this._mapboxLogoControl);
+
+        this._loadTileJSON(_);
+
+        this.on('layeradd', this._onLayerAdd, this)
+            .on('layerremove', this._onLayerRemove, this)
+            .on('moveend', this._updateMapFeedbackLink, this);
+
+        this.whenReady(function () {
+            feedback.on('change', this._updateMapFeedbackLink, this);
+        });
+
+        this.on('unload', function () {
+            feedback.off('change', this._updateMapFeedbackLink, this);
+        });
+    },
+
+    // use a javascript object of tilejson data to configure this layer
+    _setTileJSON: function(_) {
+        this._tilejson = _;
+        this._initialize(_);
+        return this;
+    },
+
+    getTileJSON: function() {
+        return this._tilejson;
+    },
+
+    _initialize: function(json) {
+        if (this.tileLayer) {
+            this.tileLayer._setTileJSON(json);
+            this._updateLayer(this.tileLayer);
+        }
+
+        if (this.featureLayer && !this.featureLayer.getGeoJSON() && json.data && json.data[0]) {
+            this.featureLayer.loadURL(json.data[0]);
+        }
+
+        if (this.gridLayer) {
+            this.gridLayer._setTileJSON(json);
+            this._updateLayer(this.gridLayer);
+        }
+
+        if (this.infoControl && json.attribution) {
+            this.infoControl.addInfo(this.options.sanitizer(json.attribution));
+            this._updateMapFeedbackLink();
+        }
+
+        if (this.legendControl && json.legend) {
+            this.legendControl.addLegend(json.legend);
+        }
+
+        if (this.shareControl) {
+            this.shareControl._setTileJSON(json);
+        }
+
+        this._mapboxLogoControl._setTileJSON(json);
+
+        if (!this._loaded && json.center) {
+            var zoom = this.getZoom() !== undefined ? this.getZoom() : json.center[2],
+                center = L.latLng(json.center[1], json.center[0]);
+
+            this.setView(center, zoom);
+        }
+    },
+
+    _updateMapFeedbackLink: function() {
+        if (!this._controlContainer.getElementsByClassName) return;
+        var link = this._controlContainer.getElementsByClassName('mapbox-improve-map');
+        if (link.length && this._loaded) {
+            var center = this.getCenter().wrap();
+            var tilejson = this._tilejson || {};
+            var id = tilejson.id || '';
+
+            var hash = '#' + id + '/' +
+                center.lng.toFixed(3) + '/' +
+                center.lat.toFixed(3) + '/' +
+                this.getZoom();
+
+            for (var key in feedback.data) {
+                hash += '/' + key + '=' + feedback.data[key];
+            }
+
+            for (var i = 0; i < link.length; i++) {
+                link[i].hash = hash;
+            }
+        }
+    },
+
+    _onLayerAdd: function(e) {
+        if ('on' in e.layer) {
+            e.layer.on('ready', this._onLayerReady, this);
+        }
+        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
+    },
+
+    _onLayerRemove: function(e) {
+        if ('on' in e.layer) {
+            e.layer.off('ready', this._onLayerReady, this);
+        }
+        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
+    },
+
+    _onLayerReady: function(e) {
+        this._updateLayer(e.target);
+    },
+
+    _updateLayer: function(layer) {
+        if (!layer.options) return;
+
+        if (this.infoControl && this._loaded) {
+            this.infoControl.addInfo(layer.options.infoControl);
+        }
+
+        if (this.attributionControl && this._loaded && layer.getAttribution) {
+            this.attributionControl.addAttribution(layer.getAttribution());
+        }
+
+        if (!(L.stamp(layer) in this._zoomBoundLayers) &&
+                (layer.options.maxZoom || layer.options.minZoom)) {
+            this._zoomBoundLayers[L.stamp(layer)] = layer;
+        }
+
+        this._updateMapFeedbackLink();
+        this._updateZoomLevels();
+    }
+});
+
+module.exports.Map = LMap;
+
+module.exports.map = function(element, _, options) {
+    return new LMap(element, _, options);
+};
+
+},{"./feature_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js","./feedback":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./grid_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js","./load_tilejson":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./mapbox_logo":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/mapbox_logo.js","./share_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/share_control.js","./tile_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/mapbox.js":[function(require,module,exports){
+'use strict';
+
+var geocoderControl = require('./geocoder_control'),
+    gridControl = require('./grid_control'),
+    featureLayer = require('./feature_layer'),
+    legendControl = require('./legend_control'),
+    shareControl = require('./share_control'),
+    tileLayer = require('./tile_layer'),
+    infoControl = require('./info_control'),
+    map = require('./map'),
+    gridLayer = require('./grid_layer');
+
+L.mapbox = module.exports = {
+    VERSION: require('../package.json').version,
+    geocoder: require('./geocoder'),
+    marker: require('./marker'),
+    simplestyle: require('./simplestyle'),
+    tileLayer: tileLayer.tileLayer,
+    TileLayer: tileLayer.TileLayer,
+    infoControl: infoControl.infoControl,
+    InfoControl: infoControl.InfoControl,
+    shareControl: shareControl.shareControl,
+    ShareControl: shareControl.ShareControl,
+    legendControl: legendControl.legendControl,
+    LegendControl: legendControl.LegendControl,
+    geocoderControl: geocoderControl.geocoderControl,
+    GeocoderControl: geocoderControl.GeocoderControl,
+    gridControl: gridControl.gridControl,
+    GridControl: gridControl.GridControl,
+    gridLayer: gridLayer.gridLayer,
+    GridLayer: gridLayer.GridLayer,
+    featureLayer: featureLayer.featureLayer,
+    FeatureLayer: featureLayer.FeatureLayer,
+    map: map.map,
+    Map: map.Map,
+    config: require('./config'),
+    sanitize: require('sanitize-caja'),
+    template: require('mustache').to_html,
+    feedback: require('./feedback')
+};
+
+
+// Hardcode image path, because Leaflet's autodetection
+// fails, because mapbox.js is not named leaflet.js
+window.L.Icon.Default.imagePath =
+    // Detect bad-news protocols like file:// and hardcode
+    // to https if they're detected.
+    ((document.location.protocol === 'https:' ||
+    document.location.protocol === 'http:') ? '' : 'https:') +
+    '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
+    require('../package.json').version + '/images';
+
+},{"../package.json":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/package.json","./config":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/config.js","./feature_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feature_layer.js","./feedback":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/feedback.js","./geocoder":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/geocoder.js","./geocoder_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/geocoder_control.js","./grid_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_control.js","./grid_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/grid_layer.js","./info_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/info_control.js","./legend_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/legend_control.js","./map":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/map.js","./marker":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/marker.js","./share_control":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/share_control.js","./simplestyle":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js","./tile_layer":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js","mustache":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/mustache/mustache.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/mapbox_logo.js":[function(require,module,exports){
+'use strict';
+
+var MapboxLogoControl = L.Control.extend({
+
+    options: {
+        position: 'bottomleft'
+    },
+
+    initialize: function(options) {
+        L.setOptions(this, options);
+    },
+
+    onAdd: function() {
+        this._container = L.DomUtil.create('div', 'mapbox-logo');
+        return this._container;
+    },
+
+    _setTileJSON: function(json) {
+        // Check if account referenced by the accessToken
+        // is asscociated with the Mapbox Logo
+        // as determined by mapbox-maps.
+        if (json.mapbox_logo) {
+            L.DomUtil.addClass(this._container, 'mapbox-logo-true');
+        }
+    }
+});
+
+module.exports.MapboxLogoControl = MapboxLogoControl;
+
+module.exports.mapboxLogoControl = function(options) {
+    return new MapboxLogoControl(options);
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/marker.js":[function(require,module,exports){
+'use strict';
+
+var format_url = require('./format_url'),
+    util = require('./util'),
+    sanitize = require('sanitize-caja');
+
+// mapbox-related markers functionality
+// provide an icon from mapbox's simple-style spec and hosted markers
+// service
+function icon(fp, options) {
+    fp = fp || {};
+
+    var sizes = {
+            small: [20, 50],
+            medium: [30, 70],
+            large: [35, 90]
+        },
+        size = fp['marker-size'] || 'medium',
+        symbol = ('marker-symbol' in fp && fp['marker-symbol'] !== '') ? '-' + fp['marker-symbol'] : '',
+        color = (fp['marker-color'] || '7e7e7e').replace('#', '');
+
+    return L.icon({
+        iconUrl: format_url('/v4/marker/' +
+            'pin-' + size.charAt(0) + symbol + '+' + color +
+            // detect and use retina markers, which are x2 resolution
+            (L.Browser.retina ? '@2x' : '') + '.png', options && options.accessToken),
+        iconSize: sizes[size],
+        iconAnchor: [sizes[size][0] / 2, sizes[size][1] / 2],
+        popupAnchor: [0, -sizes[size][1] / 2]
+    });
+}
+
+// a factory that provides markers for Leaflet from Mapbox's
+// [simple-style specification](https://github.com/mapbox/simplestyle-spec)
+// and [Markers API](http://mapbox.com/developers/api/#markers).
+function style(f, latlon, options) {
+    return L.marker(latlon, {
+        icon: icon(f.properties, options),
+        title: util.strip_tags(
+            sanitize((f.properties && f.properties.title) || ''))
+    });
+}
+
+// Sanitize and format properties of a GeoJSON Feature object in order
+// to form the HTML string used as the argument for `L.createPopup`
+function createPopup(f, sanitizer) {
+    if (!f || !f.properties) return '';
+    var popup = '';
+
+    if (f.properties.title) {
+        popup += '<div class="marker-title">' + f.properties.title + '</div>';
+    }
+
+    if (f.properties.description) {
+        popup += '<div class="marker-description">' + f.properties.description + '</div>';
+    }
+
+    return (sanitizer || sanitize)(popup);
+}
+
+module.exports = {
+    icon: icon,
+    style: style,
+    createPopup: createPopup
+};
+
+},{"./format_url":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/request.js":[function(require,module,exports){
+'use strict';
+
+var corslite = require('corslite'),
+    strict = require('./util').strict,
+    config = require('./config');
+
+var protocol = /^(https?:)?(?=\/\/(.|api)\.tiles\.mapbox\.com\/)/;
+
+module.exports = function(url, callback) {
+    strict(url, 'string');
+    strict(callback, 'function');
+
+    url = url.replace(protocol, function(match, protocol) {
+        if (!('withCredentials' in new window.XMLHttpRequest())) {
+            // XDomainRequest in use; doesn't support cross-protocol requests
+            return document.location.protocol;
+        } else if (protocol === 'https:' || document.location.protocol === 'https:' || config.FORCE_HTTPS) {
+            return 'https:';
+        } else {
+            return 'http:';
+        }
+    });
+
+    function onload(err, resp) {
+        if (!err && resp) {
+            resp = JSON.parse(resp.responseText);
+        }
+        callback(err, resp);
+    }
+
+    return corslite(url, onload);
+};
+
+},{"./config":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/config.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","corslite":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/corslite/corslite.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/share_control.js":[function(require,module,exports){
+'use strict';
+
+var format_url = require('./format_url');
+
+var ShareControl = L.Control.extend({
+    includes: [require('./load_tilejson')],
+
+    options: {
+        position: 'topleft',
+        url: ''
+    },
+
+    initialize: function(_, options) {
+        L.setOptions(this, options);
+        this._loadTileJSON(_);
+    },
+
+    _setTileJSON: function(json) {
+        this._tilejson = json;
+    },
+
+    onAdd: function(map) {
+        this._map = map;
+
+        var container = L.DomUtil.create('div', 'leaflet-control-mapbox-share leaflet-bar');
+        var link = L.DomUtil.create('a', 'mapbox-share mapbox-icon mapbox-icon-share', container);
+        link.href = '#';
+
+        this._modal = L.DomUtil.create('div', 'mapbox-modal', this._map._container);
+        this._mask = L.DomUtil.create('div', 'mapbox-modal-mask', this._modal);
+        this._content = L.DomUtil.create('div', 'mapbox-modal-content', this._modal);
+
+        L.DomEvent.addListener(link, 'click', this._shareClick, this);
+        L.DomEvent.disableClickPropagation(container);
+
+        this._map.on('mousedown', this._clickOut, this);
+
+        return container;
+    },
+
+    _clickOut: function(e) {
+        if (this._sharing) {
+            L.DomEvent.preventDefault(e);
+            L.DomUtil.removeClass(this._modal, 'active');
+            this._content.innerHTML = '';
+            this._sharing = null;
+            return;
+        }
+    },
+
+    _shareClick: function(e) {
+        L.DomEvent.stop(e);
+        if (this._sharing) return this._clickOut(e);
+
+        var tilejson = this._tilejson || this._map._tilejson || {},
+            url = encodeURIComponent(this.options.url || tilejson.webpage || window.location),
+            name = encodeURIComponent(tilejson.name),
+            image = format_url('/v4/' + tilejson.id + '/' + this._map.getCenter().lng + ',' + this._map.getCenter().lat + ',' + this._map.getZoom() + '/600x600.png', this.options.accessToken),
+            embed = format_url('/v4/' + tilejson.id + '.html', this.options.accessToken),
+            twitterURL = '//twitter.com/intent/tweet?status=' + name + ' ' + url,
+            facebookURL = '//www.facebook.com/sharer.php?u=' + url + '&t=' + name,
+            pinterestURL = '//www.pinterest.com/pin/create/button/?url=' + url + '&media=' + image + '&description=' + name,
+            embedValue = '<iframe width="100%" height="500px" frameBorder="0" src="' + embed + '"></iframe>',
+            embedLabel = 'Copy and paste this <strong>HTML code</strong> into documents to embed this map on web pages.';
+
+        function createShareButton(buttonClass, href, socialMediaName) {
+            var elem = document.createElement('a');
+            elem.setAttribute('class', buttonClass);
+            elem.setAttribute('href', href);
+            elem.setAttribute('target', '_blank');
+            socialMediaName = document.createTextNode(socialMediaName);
+            elem.appendChild(socialMediaName);
+
+            return elem;
+        }
+
+        L.DomUtil.addClass(this._modal, 'active');
+
+        this._sharing = L.DomUtil.create('div', 'mapbox-modal-body', this._content);
+
+        var twitterButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-twitter', twitterURL, 'Twitter');
+        var facebookButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-facebook', facebookURL, 'Facebook');
+        var pinterestButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-pinterest', pinterestURL, 'Pinterest');
+
+        var shareHeader = document.createElement('h3');
+        var shareText = document.createTextNode('Share this map');
+        shareHeader.appendChild(shareText);
+
+        var shareButtons = document.createElement('div');
+        shareButtons.setAttribute('class', 'mapbox-share-buttons');
+        shareButtons.appendChild(facebookButton);
+        shareButtons.appendChild(twitterButton);
+        shareButtons.appendChild(pinterestButton);
+
+        this._sharing.appendChild(shareHeader);
+        this._sharing.appendChild(shareButtons);
+
+        var input = L.DomUtil.create('input', 'mapbox-embed', this._sharing);
+        input.type = 'text';
+        input.value = embedValue;
+
+        var label = L.DomUtil.create('label', 'mapbox-embed-description', this._sharing);
+        label.innerHTML = embedLabel;
+
+        var close = L.DomUtil.create('a', 'leaflet-popup-close-button', this._sharing);
+        close.href = '#';
+
+        L.DomEvent.disableClickPropagation(this._sharing);
+        L.DomEvent.addListener(close, 'click', this._clickOut, this);
+        L.DomEvent.addListener(input, 'click', function(e) {
+            e.target.focus();
+            e.target.select();
+        });
+    }
+});
+
+module.exports.ShareControl = ShareControl;
+
+module.exports.shareControl = function(_, options) {
+    return new ShareControl(_, options);
+};
+
+},{"./format_url":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/format_url.js","./load_tilejson":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/simplestyle.js":[function(require,module,exports){
+'use strict';
+
+// an implementation of the simplestyle spec for polygon and linestring features
+// https://github.com/mapbox/simplestyle-spec
+var defaults = {
+    stroke: '#555555',
+    'stroke-width': 2,
+    'stroke-opacity': 1,
+    fill: '#555555',
+    'fill-opacity': 0.5
+};
+
+var mapping = [
+    ['stroke', 'color'],
+    ['stroke-width', 'weight'],
+    ['stroke-opacity', 'opacity'],
+    ['fill', 'fillColor'],
+    ['fill-opacity', 'fillOpacity']
+];
+
+function fallback(a, b) {
+    var c = {};
+    for (var k in b) {
+        if (a[k] === undefined) c[k] = b[k];
+        else c[k] = a[k];
+    }
+    return c;
+}
+
+function remap(a) {
+    var d = {};
+    for (var i = 0; i < mapping.length; i++) {
+        d[mapping[i][1]] = a[mapping[i][0]];
+    }
+    return d;
+}
+
+function style(feature) {
+    return remap(fallback(feature.properties || {}, defaults));
+}
+
+module.exports = {
+    style: style,
+    defaults: defaults
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/tile_layer.js":[function(require,module,exports){
+'use strict';
+
+var util = require('./util');
+var formatPattern = /\.((?:png|jpg)\d*)(?=$|\?)/;
+
+var TileLayer = L.TileLayer.extend({
+    includes: [require('./load_tilejson')],
+
+    options: {
+        sanitizer: require('sanitize-caja')
+    },
+
+    // http://mapbox.com/developers/api/#image_quality
+    formats: [
+        'png', 'jpg',
+        // PNG
+        'png32', 'png64', 'png128', 'png256',
+        // JPG
+        'jpg70', 'jpg80', 'jpg90'],
+
+    scalePrefix: '@2x.',
+
+    initialize: function(_, options) {
+        L.TileLayer.prototype.initialize.call(this, undefined, options);
+
+        this._tilejson = {};
+
+        if (options && options.format) {
+            util.strict_oneof(options.format, this.formats);
+        }
+
+        this._loadTileJSON(_);
+    },
+
+    setFormat: function(_) {
+        util.strict(_, 'string');
+        this.options.format = _;
+        this.redraw();
+        return this;
+    },
+
+    // disable the setUrl function, which is not available on mapbox tilelayers
+    setUrl: null,
+
+    _setTileJSON: function(json) {
+        util.strict(json, 'object');
+
+        this.options.format = this.options.format ||
+            json.tiles[0].match(formatPattern)[1];
+
+        L.extend(this.options, {
+            tiles: json.tiles,
+            attribution: this.options.sanitizer(json.attribution),
+            minZoom: json.minzoom || 0,
+            maxZoom: json.maxzoom || 18,
+            tms: json.scheme === 'tms',
+            bounds: json.bounds && util.lbounds(json.bounds)
+        });
+
+        this._tilejson = json;
+        this.redraw();
+        return this;
+    },
+
+    getTileJSON: function() {
+        return this._tilejson;
+    },
+
+    // this is an exception to mapbox.js naming rules because it's called
+    // by `L.map`
+    getTileUrl: function(tilePoint) {
+        var tiles = this.options.tiles,
+            index = Math.floor(Math.abs(tilePoint.x + tilePoint.y) % tiles.length),
+            url = tiles[index];
+
+        var templated = L.Util.template(url, tilePoint);
+        if (!templated) {
+            return templated;
+        } else {
+            return templated.replace(formatPattern,
+                (L.Browser.retina ? this.scalePrefix : '.') + this.options.format);
+        }
+    },
+
+    // TileJSON.TileLayers are added to the map immediately, so that they get
+    // the desired z-index, but do not update until the TileJSON has been loaded.
+    _update: function() {
+        if (this.options.tiles) {
+            L.TileLayer.prototype._update.call(this);
+        }
+    }
+});
+
+module.exports.TileLayer = TileLayer;
+
+module.exports.tileLayer = function(_, options) {
+    return new TileLayer(_, options);
+};
+
+},{"./load_tilejson":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/load_tilejson.js","./util":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js","sanitize-caja":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/node_modules/sanitize-caja/index.js"}],"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/util.js":[function(require,module,exports){
+'use strict';
+
+function contains(item, list) {
+    if (!list || !list.length) return false;
+    for (var i = 0; i < list.length; i++) {
+        if (list[i] === item) return true;
+    }
+    return false;
+}
+
+module.exports = {
+    idUrl: function(_, t) {
+        if (_.indexOf('/') === -1) t.loadID(_);
+        else t.loadURL(_);
+    },
+    log: function(_) {
+        if (typeof console === 'object' &&
+            typeof console.error === 'function') {
+            console.error(_);
+        }
+    },
+    strict: function(_, type) {
+        if (typeof _ !== type) {
+            throw new Error('Invalid argument: ' + type + ' expected');
+        }
+    },
+    strict_instance: function(_, klass, name) {
+        if (!(_ instanceof klass)) {
+            throw new Error('Invalid argument: ' + name + ' expected');
+        }
+    },
+    strict_oneof: function(_, values) {
+        if (!contains(_, values)) {
+            throw new Error('Invalid argument: ' + _ + ' given, valid values are ' +
+                values.join(', '));
+        }
+    },
+    strip_tags: function(_) {
+        return _.replace(/<[^<]+>/g, '');
+    },
+    lbounds: function(_) {
+        // leaflet-compatible bounds, since leaflet does not do geojson
+        return new L.LatLngBounds([[_[1], _[0]], [_[3], _[2]]]);
+    }
+};
+
+},{}],"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js":[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -55505,7 +55480,7 @@ if (typeof module !== 'undefined') {
   }
 }.call(this));
 
-},{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/addTeam/index.js":[function(require,module,exports){
+},{}],"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/addTeam/index.js":[function(require,module,exports){
 var $ = window.$ = window.jQuery = require("jquery");
 require("geocomplete");
 var _ = require("underscore");
@@ -55530,21 +55505,64 @@ angular.module('ControllerAddTeam', [
 
     $scope.submit = function () {
         var body = this.form.getOutput();
-        $.post(window.location.href, body)
+        body["status"] = "active";
+        var formInfo = formValidator(body);
+
+        if (formInfo["isValid"]) {
+            $.ajax({
+                type: 'POST',
+                url: window.location.href,
+                data: JSON.stringify(body),
+                dataType:"json",
+                contentType: "application/json; charset=utf-8",
+                success: function(data) { alert("success") },
+            });
+            // if form submission success, show success message and redirect
+        }
+        else {
+            showValidationErrors(formInfo["messages"]);
+        }
     };
 
     $(function () {
         $('[ng-model="form.location.val"]')
         .geocomplete()
         .bind("geocode:result", function(event, result) {
-            var location = {
-                countryCode: result.address_components[result.address_components.length - 1].short_name,
-                lat: result.geometry.location.lat(),
-                lng: result.geometry.location.lng(),
-                val: result.formatted_address 
-            };
+            // parse address components from google maps api response
+            for (i in result.address_components) {
+                var locationComponent = result.address_components[i];
+                var unitType = locationComponent["types"];
+                var city, state, country;
+                if (_.isEqual(unitType, ["locality", "political"])) {
+                    city = locationComponent["long_name"];
+                }
+                else if (_.isEqual(unitType, ["administrative_area_level_1", "political"])) {
+                    state = locationComponent["long_name"];
+                }
+                else if (_.isEqual(unitType, ["country", "political"])) {
+                    country = locationComponent["long_name"];
+                }
+            }
+            if (!(state)) {
+                state = city;
+            }
+            if (!(city && country)) {
+                console.log(city, country);
+                //raise a validation error. A specific location is required.
+            }
+            else {
+                // concatenating strings in javascript can sometimes result in a slow, painful death
+                var metro = city + ", " + state;
 
-            _.extend($scope.form.location, location);
+                var location = {
+                    country: country,
+                    metro: metro,
+                    lat: result.geometry.location.lat(),
+                    lng: result.geometry.location.lng(),
+                };
+
+                _.extend($scope.form.location, location);
+            }
         });
     });
 
@@ -55554,7 +55572,45 @@ angular.module('ControllerAddTeam', [
     };
 });
 
-},{"./../../models/TeamFormModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TeamFormModel.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","geocomplete":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/geocomplete/jquery.geocomplete.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js":[function(require,module,exports){
+/**
+ * @description
+ * `$formValidator` validates the new team form input fields.
+ * The function returns an associative array with two keys:
+ *   `isValid` - true/false
+ *   `messages`- helpful hits for the user to fix validation errors
+ */
+function formValidator(data) {
+    var messages = new Array();
+    var isValid;
+
+    // do the validation here, and populate messages if needed
+    // messages.push("Houstin, there's a problem.")
+
+    if (true) {
+        isValid = true;
+    }
+    else {
+        isValid = false;
+    }
+
+    var result = new Object;
+    result["isValid"] = isValid;
+    result["messages"] = messages;
+
+    return result;
+}
+
+/**
+ * @description
+ * `$showValidationErrors` displays the validation error messages
+ * in some kind of html element just below the menu. `messages`
+ * is an array of strings.
+ */
+function showValidationErrors(messages) {
+    console.log(messages)
+}
+
+},{"./../../models/TeamFormModel.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/models/TeamFormModel.js","angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js","geocomplete":"/Users/xmunoz/github/uwrtourist/client/node_modules/geocomplete/jquery.geocomplete.js","jquery":"/Users/xmunoz/github/uwrtourist/client/node_modules/jquery/dist/jquery.js","underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/map/index.js":[function(require,module,exports){
 var _ = require("underscore");
 var $ = window.$ = window.jQuery = require("jquery"); // Required for cdn scripts
 require('mapbox.js'); // <-- auto-attaches to window.L
@@ -55609,7 +55665,7 @@ module.exports = function () {
     Mapbox.init(window.teams, "map");
 };
 
-},{"./templates.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/templates.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js","mapbox.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/src/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/templates.js":[function(require,module,exports){
+},{"./templates.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/map/templates.js","jquery":"/Users/xmunoz/github/uwrtourist/client/node_modules/jquery/dist/jquery.js","mapbox.js":"/Users/xmunoz/github/uwrtourist/client/node_modules/mapbox.js/src/index.js","underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/map/templates.js":[function(require,module,exports){
 var _ = require("underscore");
 
 var Links = require("./../../services/links.js");
@@ -55672,7 +55728,7 @@ templates.renderPopup = function (team) {
 };
 
 module.exports = templates;
-},{"./../../services/links.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js":[function(require,module,exports){
+},{"./../../services/links.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/services/links.js","underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/teamsList/index.js":[function(require,module,exports){
 require("jquery");
 var angular = require("angular");
 
@@ -55747,7 +55803,7 @@ angular.module('ControllerTeamsList', [
     };
 });
 
-},{"./../../filters/startAt.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js","./../../models/TableModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TableModel.js","./../../services/links.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/filters/startAt.js":[function(require,module,exports){
+},{"./../../filters/startAt.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/filters/startAt.js","./../../models/TableModel.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/models/TableModel.js","./../../services/links.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/services/links.js","angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js","jquery":"/Users/xmunoz/github/uwrtourist/client/node_modules/jquery/dist/jquery.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/filters/startAt.js":[function(require,module,exports){
 var angular = require("angular");
 
 angular
@@ -55761,7 +55817,7 @@ angular
         return filteredInput;
     };
 });
-},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js":[function(require,module,exports){
+},{"angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js":[function(require,module,exports){
 var angular = require("angular");
 
 var DynamicFieldsCollection = (function () {
@@ -55789,7 +55845,7 @@ var DynamicFieldsCollection = (function () {
 })();
 
 module.exports = DynamicFieldsCollection;
-},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TableModel.js":[function(require,module,exports){
+},{"angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/models/TableModel.js":[function(require,module,exports){
 var angular = require("angular");
 var _ = require("underscore");
 
@@ -55959,7 +56015,7 @@ angular
 
     return Table;
 });
-},{"angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TeamFormModel.js":[function(require,module,exports){
+},{"angular":"/Users/xmunoz/github/uwrtourist/client/node_modules/angular/index.js","underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/models/TeamFormModel.js":[function(require,module,exports){
 var _ = require("underscore");
 var DynamicFields = require("./DynamicFieldsCollection.js");
 
@@ -56005,10 +56061,10 @@ var TeamFormModel = (function() {
 
         this.name = team.name || '';
         this.location = {
-            val: team.location || '',
             lat: '',
             lng: '',
-            countryCode: ''
+            country: '',
+            metro: '',
         };
         this.yearEstablished = team.year_established || 'n/a';
         this.blurb = team.blurb || '';
@@ -56109,7 +56165,8 @@ var TeamFormModel = (function() {
 })();
 
 module.exports = TeamFormModel;
-},{"./DynamicFieldsCollection.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js":[function(require,module,exports){
+
+},{"./DynamicFieldsCollection.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/models/DynamicFieldsCollection.js","underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/router.js":[function(require,module,exports){
 (function () {
     var apps = {
         "addTeam": require("./apps/addTeam/index.js"),
@@ -56123,7 +56180,7 @@ module.exports = TeamFormModel;
             break;
     }
 })();
-},{"./apps/addTeam/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/addTeam/index.js","./apps/map/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js","./apps/teamsList/index.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/teamsList/index.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/services/links.js":[function(require,module,exports){
+},{"./apps/addTeam/index.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/addTeam/index.js","./apps/map/index.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/map/index.js","./apps/teamsList/index.js":"/Users/xmunoz/github/uwrtourist/client/resources/js/apps/teamsList/index.js"}],"/Users/xmunoz/github/uwrtourist/client/resources/js/services/links.js":[function(require,module,exports){
 var _ = require("underscore");
 
 var Links = {};
@@ -56170,4 +56227,4 @@ Links.getIcon = function (url) {
 };
 
 module.exports = Links;
-},{"underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}]},{},["/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/router.js"]);
+},{"underscore":"/Users/xmunoz/github/uwrtourist/client/node_modules/underscore/underscore.js"}]},{},["/Users/xmunoz/github/uwrtourist/client/resources/js/router.js"]);

@@ -102,11 +102,13 @@ class PracticeLocation(db.Model, BaseMixin):
     city = db.Column(db.String(128))
     region = db.Column(db.String(128))
     country = db.Column(db.String(128))
+    #latitude = db.Column(db.Float())
+    #longitude = db.Column(db.Float())
     postal_code = db.Column(db.String(128))
     permalink = db.Column(db.String(1024))
 
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"), index=True)
-    practice_times = relationship("PracticeTime", order_by="PracticeTime.id", backref="location")
+    practice_times = relationship("PracticeTime", order_by="PracticeTime.id", backref="practice_location")
 
 class Contact(db.Model, BaseMixin):
     __tablename__ = "contacts"
@@ -143,9 +145,13 @@ def get_teams(format=None, **kwargs):
     return teams
 
 def create_team(form_data):
-    location = form_data["location"]["metro"]
+    '''
+    Create the team object and associated objects. Accepts a dictionary decoded from json or a form submission. See fixtures/teams.py for a detailed example of the expected input.
+    '''
+    pprint(form_data["location"])
+    region = form_data["location"]["metro"]
     country = form_data["location"]["country"] 
-    team = Team(form_data["name"], location, country, form_data["status"])
+    team = Team(form_data["name"], region, country, form_data["status"])
     team.latitude = form_data["location"]["lat"]
     team.longitude = form_data["location"]["lng"]
     team.year_established = form_data.get("yearEstablished")
@@ -153,22 +159,39 @@ def create_team(form_data):
     contacts = form_data.get("contacts")
     if contacts:
         for contact in contacts:
-            new_contact = Contact()
-            new_contact.name = contact.get("name")
-            new_contact.email = contact.get("email")
-            new_contact.title = contact.get("role")
+            team.contacts.append(
+                Contact(
+                    name=contact.get("name"),
+                    email=contact.get("email"),
+                    title=contact.get("role"),
+                )
+            )
 
     practice_locations = form_data.get("practiceLocations")
     if practice_locations:
         for location in practice_locations:
-            pass
+            team.practice_locations.append(
+                PracticeLocation(
+                    name=location.get("name"),
+                    street_address=location.get("address"),
+                    city=location.get("city"),
+                    region=location.get("region"),
+                    country=location.get("country"),
+                    postal_code=location.get("postalCode"),
+                    #latitude=location.get("latitude"),
+                    #longitude=location.get("longitude"),
+                )
+            )
 
     links = form_data.get("links")
     if links:
         for link in links:
-            pass
+            team.links.append(Link(link))
 
-    db.session.add(team)
-    db.session.commit()
-    print "Success"
-    return "Success!!"
+    try:
+        db.session.add(team)
+        db.session.commit()
+    except Exception, e:
+        return {"result": "error", "exception": e}
+
+    return {"result": "success"}
