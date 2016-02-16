@@ -18,7 +18,7 @@
                         - set uid = "[[ '" + model + "' + contactIndex ]]"
 
                         div.column.small-2
-                            +label("Name", uid)
+                            +label("Name", uid, true)
 
                         div.column.small-10
                             div.row
@@ -30,7 +30,7 @@
                                 - set model = "contactInput.email"
                                 - set uid = "[[ '" + model + "' + contactIndex ]]"
                                 div.column.small-1
-                                    +label("Email", uid)
+                                    +label("Email", uid, true)
                                 div.column.small-3
                                     +textInput(model, uid)
 

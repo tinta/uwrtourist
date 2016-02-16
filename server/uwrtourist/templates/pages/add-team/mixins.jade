@@ -6,8 +6,9 @@ mixin textInput (modelName, id)
         ng-model="#{modelName}"
     )
 
-mixin label (label, for)
+mixin label (label, for, req)
     div.text-right
         div.spacer-xs
         div.spacer-1
-        label.text-xbold.text-xxs(for=for)= label
+        - set bold = 'text-xbold' if req else ''
+        label.text-xxs(for=for, class=bold)= label
