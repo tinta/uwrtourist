@@ -15,15 +15,13 @@
                 div.column.small-11(id="[[ 'practiceLocation' + locIndex ]]")
                     include pages/add-team/practices/content
 
-                div.column.small-1.btn-red.round-md-right(
+                div.column.small-1.text-gray-md.text-hover-red(
                     ng-click="form.practiceLocations.remove(locIndex)"
                 )
                     div.text-xs.text-center
-                        div.spacer-xl
-                        div.spacer-lg
                         div.spacer-xxs
                         div
-                            i.fa.fa-times.text-white
+                            i.fa.fa-times
                         div.spacer-xl
                         div.spacer-lg
                         div.spacer-1
