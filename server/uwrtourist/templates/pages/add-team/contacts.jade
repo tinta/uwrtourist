@@ -1,7 +1,7 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
 - from './mixins/squareCounter.jade' import squareCounter
-- from './pages/add-team/mixins.jade' import textInput, label
+- from './pages/add-team/mixins.jade' import textInput, label, errorSet
 
 +titleBanner(12)
     div.text-sm Contacts
@@ -67,3 +67,5 @@
                                     span Add Contact
                                     span &nbsp;&nbsp;&nbsp;&nbsp;
                                     i.fa.fa-plus
+
+            +errorSet('contacts')

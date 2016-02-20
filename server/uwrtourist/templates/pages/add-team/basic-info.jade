@@ -1,6 +1,6 @@
 - from './mixins/titleBanner.jade' import titleBanner
 - from './mixins/mainColumn.jade' import mainColumn
-- from './pages/add-team/mixins.jade' import textInput, title
+- from './pages/add-team/mixins.jade' import textInput, title, errorSet
 
 +titleBanner(12)
     div.text-sm Basic Info
@@ -70,3 +70,5 @@
                 placeholder="Introduce your team!"
                 rows="4"
             )
+
+    +errorSet('basicInfo')

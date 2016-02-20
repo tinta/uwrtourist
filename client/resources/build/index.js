@@ -48713,7 +48713,7 @@ L.Map.include({
 
 }(window, document));
 },{}],"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
   "_args": [
     [
       "mapbox.js",
@@ -55530,29 +55530,31 @@ angular.module('ControllerAddTeam', [
 
     $scope.submit = function () {
         var body = this.form.getOutput();
-        body["status"] = "active";
-        var formInfo = formValidator(body);
+        body.status = "active";
 
-        if (formInfo["isValid"]) {
+        var formInfo = formValidator(body);
+        $scope.errorSets = formInfo.errorSets;
+        console.log($scope.errorSets)
+
+        if (formInfo.isValid) {
             $.ajax({
                 type: 'POST',
                 url: window.location.href,
                 data: JSON.stringify(body),
                 dataType:"json",
                 contentType: "application/json; charset=utf-8",
-                success: function(data) { alert("success") },
+                success: function (data) { alert("success") },
             });
             // if form submission success, show success message and redirect
         }
-        else {
-            showValidationErrors(formInfo["messages"]);
-        }
     };
+
+    $scope.form.contacts.create();
 
     $(function () {
         $('[ng-model="form.location.val"]')
         .geocomplete()
-        .bind("geocode:result", function(event, result) {
+        .bind("geocode:result", function (event, result) {
             // parse address components from google maps api response
             for (i in result.address_components) {
                 var locationComponent = result.address_components[i];
@@ -55602,39 +55604,65 @@ angular.module('ControllerAddTeam', [
  * `$formValidator` validates the new team form input fields.
  * The function returns an associative array with two keys:
  *   `isValid` - true/false
- *   `messages`- helpful hits for the user to fix validation errors
+ *   `messages`- helpful hints for the user to fix validation errors
  */
-function formValidator(data) {
-    var messages = new Array();
-    var isValid;
+function formValidator (data) {
 
-    // do the validation here, and populate messages if needed
-    // messages.push("Houstin, there's a problem.")
+    // Setup
+    var validFields = {};
+    _.each([
+        'name',
+        'location',
+        'contactsName',
+        'contactsEmail'
+    ], function (field) {
+        validFields[field] = {
+            isValid: true
+        };
+    });
 
-    if (true) {
-        isValid = true;
-    }
-    else {
-        isValid = false;
-    }
+    // Validate
 
-    var result = new Object;
-    result["isValid"] = isValid;
-    result["messages"] = messages;
+    // "Basic Info"
+    if (!data.name) validFields.name = false;
+    if (!data.location.val) validFields.location = false;
 
-    return result;
+    // "Contacts"
+    _.each(data.contacts, function (contact) {
+        if (!contact.name) validFields.contactsName = false;
+        if (!contact.email) validFields.contactsEmail = false;
+    });
+
+
+    // Set error messages for invalid fields
+    var errorSets = {};
+
+    errorSets.basicInfo = [];
+    if (!validFields.name)
+        errorSets.basicInfo.push('- Field "Team Name" is required.');
+    if (!validFields.location)
+        errorSets.basicInfo.push('- Field "Location" is required.');
+
+    errorSets.contacts = [];
+    if (!validFields.contactsName)
+        errorSets.contacts.push('- Each Contact requires a "Name".');
+    if (!validFields.contactsEmail)
+        errorSets.contacts.push('- Each Contact requires an "Email".');
+
+
+    // Were any errors caught?
+    var isValid = true;
+    _.each(validFields, function (fieldVal) {
+        if (!fieldVal) isValid = false;
+    });
+
+    var expose = {
+        isValid: isValid,
+        errorSets: errorSets
+    };
+
+    return expose;
 }
-
-/**
- * @description
- * `$showValidationErrors` displays the validation error messages
- * in some kind of html element just below the menu. `messages`
- * is an array of strings.
- */
-function showValidationErrors(messages) {
-    console.log(messages)
-}
-
 },{"./../../models/TeamFormModel.js":"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/models/TeamFormModel.js","angular":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/angular/index.js","geocomplete":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/geocomplete/jquery.geocomplete.js","jquery":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/jquery/dist/jquery.js","underscore":"/Users/walterroman/Sites/uwr/uwrtourist/client/node_modules/underscore/underscore.js"}],"/Users/walterroman/Sites/uwr/uwrtourist/client/resources/js/apps/map/index.js":[function(require,module,exports){
 var _ = require("underscore");
 var $ = window.$ = window.jQuery = require("jquery"); // Required for cdn scripts

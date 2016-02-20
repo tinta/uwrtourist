@@ -1,3 +1,13 @@
+mixin errorSet (name)
+    - set errors = "errorSets." + name
+    div.row.uncollapse
+        div.column.small-10.small-offset-2(ng-if="#{errors}.length > 0")
+            div.spacer-lg
+            div.text-red.text-xs(ng-repeat="error in #{errors}")
+                div [[error]]
+                div.spacer-sm
+
+
 mixin textInput (modelName, id)
     - set id = id if id else modelName
     input.text-xxs.input-height(
@@ -6,9 +16,13 @@ mixin textInput (modelName, id)
         ng-model="#{modelName}"
     )
 
+
 mixin label (label, for, req)
     div.text-right
         div.spacer-xs
         div.spacer-1
         - set bold = 'text-xbold' if req else ''
-        label.text-xxs(for=for, class=bold)= label
+        label.text-xxs(
+            for=for,
+            class=bold
+        )= label
