@@ -26,9 +26,10 @@ angular.module('ControllerAddTeam', [
 
     $scope.submit = function () {
         var body = this.form.getOutput();
+        this.formValidator.validate(body);
 
         // Do not proceed if form is invalid
-        if (!this.formValidator.validate(body)) return;
+        if (!this.formValidator.isValid) return;
         body.status = "active";
 
         $.ajax({
