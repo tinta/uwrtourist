@@ -1,5 +1,10 @@
 var gulp = require('gulp');
 var gp = require('gulp-load-plugins')();
+var bInc = require('browserify-incremental');
+var source = require('vinyl-source-stream');
+var exorcist = require("exorcist");
+var uglifyify = require('uglifyify');
+var browserify = require('browserify');
 
 var spawn = require('child_process').spawn;
 
@@ -16,8 +21,9 @@ paths.scss.src = [
 paths.scss.watch = [paths.scss.root + '**/*.scss'];
 
 paths.js = {
-    root: paths.resources + 'js/',
+    src: paths.resources + 'js/router.js',
     build: 'build.js',
+    cache: './client/browserify-cache.json',
     watch: [paths.resources + 'js/**/*.js']
 };
 
@@ -36,9 +42,23 @@ var exec = function (command) {
 process.chdir(paths.projectRoot);
 
 gulp.task('js:build', function () {
-    process.chdir("./client");
-    exec("./node_modules/.bin/browserifyinc --entry ./resources/js/router.js -v -o ./resources/build/index.js");
-    process.chdir("./../");
+    var b = browserify({
+        entries: paths.js.src,
+        debug: true,
+        // ignoreMissing: true,
+        // b inc options
+        cache: {}, packageCache: {}, fullPaths: true
+    });
+
+    return bInc(b, {cacheFile: paths.js.cache})
+        .transform({ global: true, mangle: false }, uglifyify)
+        .bundle()
+        // Write sourcemap
+        .pipe(exorcist(paths.build + 'build.js.map'))
+        // Create stream for output file
+        .pipe(source('build.js'))
+        // Write output file
+        .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('js:lint', function() {
