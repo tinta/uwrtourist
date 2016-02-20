@@ -1,5 +1,5 @@
 mixin errorSet (name)
-    - set errors = "errorSets." + name
+    - set errors = "formValidator.errorSets." + name
     div.row.uncollapse
         div.column.small-10.small-offset-2(ng-if="#{errors}.length > 0")
             div.spacer-lg
