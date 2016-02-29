@@ -65,7 +65,6 @@ var AddTeamFormValidator = (function () {
         if (!validFields.mustHaveContact)
             this.errorSets.contacts.push('- At least one Contact is required.');
 
-
         // Were any errors caught?
         var isValid = true;
         _.each(validFields, function (fieldVal) {

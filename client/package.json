@@ -33,6 +33,7 @@
     "assign": "^0.1.7",
     "browserify": "^13.0.0",
     "browserify-incremental": "^3.0.1",
+    "exorcist": "^0.4.0",
     "gulp": "3.9",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.1.1",
@@ -41,6 +42,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "1.3.0",
     "gulp-util": "^3.0.7",
+    "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
