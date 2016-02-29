@@ -42,7 +42,7 @@ class Team(db.Model, BaseMixin):
     year_disbanded = db.Column(db.Integer)
     logo = db.Column(db.String(256))
     photo = db.Column(db.String(256))
-    location = db.Column(db.String(256), nullable=False)
+    region = db.Column(db.String(256), nullable=False)
     country = db.Column(db.String(256), nullable=False)
     latitude = db.Column(db.Float())
     longitude = db.Column(db.Float())
@@ -50,7 +50,7 @@ class Team(db.Model, BaseMixin):
 
     def __init__(self, club_name, metro_area, country, status):
         self.name = club_name
-        self.location = metro_area
+        self.region = metro_area
         self.country = country
         self.status = status
 
@@ -102,8 +102,8 @@ class PracticeLocation(db.Model, BaseMixin):
     city = db.Column(db.String(128))
     region = db.Column(db.String(128))
     country = db.Column(db.String(128))
-    #latitude = db.Column(db.Float())
-    #longitude = db.Column(db.Float())
+    latitude = db.Column(db.Float())
+    longitude = db.Column(db.Float())
     postal_code = db.Column(db.String(128))
     permalink = db.Column(db.String(1024))
 
@@ -148,7 +148,6 @@ def create_team(form_data):
     '''
     Create the team object and associated objects. Accepts a dictionary decoded from json or a form submission. See fixtures/teams.py for a detailed example of the expected input.
     '''
-    pprint(form_data["location"])
     region = form_data["location"]["metro"]
     country = form_data["location"]["country"] 
     team = Team(form_data["name"], region, country, form_data["status"])
@@ -178,8 +177,8 @@ def create_team(form_data):
                     region=location.get("region"),
                     country=location.get("country"),
                     postal_code=location.get("postalCode"),
-                    #latitude=location.get("latitude"),
-                    #longitude=location.get("longitude"),
+                    latitude=location.get("latitude"),
+                    longitude=location.get("longitude"),
                 )
             )
 
